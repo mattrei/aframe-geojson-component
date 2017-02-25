@@ -82,6 +82,12 @@ AFRAME.registerComponent('player', {
         // look vector or binormal/bitangent vector
         var look = tangent.clone().cross(up).normalize()
 
+        var object = this.el.object3D 
+
+        //object.position.copy(this.position)
+        // nearly works
+        //object.quaternion.setFromUnitVectors(this.forward, look);
+
         this.look = look
 
 
@@ -94,11 +100,14 @@ AFRAME.registerComponent('player', {
         c[8] = look.x, c[9] = look.y, c[10] = look.z, c[11] = 0 // look vector
         c[12] = this.position.x, c[13] = this.position.y, c[14] = this.position.z, c[15] = 1
 
-        var object = this.el.object3D 
+        
+
 
         object.matrixAutoUpdate = false
         object.matrix = matrix
         object.updateMatrixWorld()  // also apply to child
+
+        
     },
 
 

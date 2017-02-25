@@ -5,34 +5,20 @@ var PI_2 = Math.PI / 2;
 var radToDeg = THREE.Math.radToDeg;
 
 
-
+// https://stackoverflow.com/questions/23002984/three-js-calculating-relative-rotations
 AFRAME.registerComponent('touch-rotate', {
-  dependencies: ["geojson-canvas"],
 
   schema: {
-    enabled: {default: true},
-    hmdEnabled: {default: true},
-    reverseMouseDrag: {default: false},
-    standing: {default: true},
     camera: {default: "#camera", type: "selector"}
   },
 
   init: function () {
     var sceneEl = this.el.sceneEl;
-
-    //this.el.object3D.scale.x = -1
-
-    this.previousHMDPosition = new THREE.Vector3();
-    this.setupHMDControls();
-    this.setupMouseControls();
-    
+  
     this.bindMethods();
-
-    this.lastHmdEuler = new THREE.Euler()
 
 
     this.camera = this.data.camera.object3D
-    this.geojsonCanvas = this.el.components["geojson-canvas"]
 
     // Enable grab cursor class on canvas.
     function enableGrabCursor () { sceneEl.canvas.classList.add('a-grab-cursor'); }
@@ -44,19 +30,6 @@ AFRAME.registerComponent('touch-rotate', {
   },
 
   update: function (oldData) {
-    var data = this.data;
-    var hmdEnabled = data.hmdEnabled;
-    if (!data.enabled) { return; }
-    if (!hmdEnabled && oldData && hmdEnabled !== oldData.hmdEnabled) {
-      this.pitchObject.rotation.set(0, 0, 0);
-      this.yawObject.rotation.set(0, 0, 0);
-    }
-    this.controls.standing = data.standing;
-    this.controls.update();
-
-    if (this.mouseDown || this.touchStarted) {
-      this.updateOrientation();  
-    }
   },
 
   play: function () {
@@ -77,32 +50,9 @@ AFRAME.registerComponent('touch-rotate', {
 
   bindMethods: function () {
     this.onMouseDown = bind(this.onMouseDown, this);
-    this.onMouseMove = bind(this.onMouseMove, this);
     this.releaseMouse = bind(this.releaseMouse, this);
     this.onTouchStart = bind(this.onTouchStart, this);
-    this.onTouchMove = bind(this.onTouchMove, this);
     this.onTouchEnd = bind(this.onTouchEnd, this);
-  },
-
-  setupMouseControls: function () {
-    // The canvas where the scene is painted
-
-    this.mouseDown = false;
-    this.pitchObject = new THREE.Object3D();
-    this.pitchObject.rotation.order = "YXZ"
-
-    this.yawObject = new THREE.Object3D();
-    this.yawObject.rotation.order = "YXZ"
-    this.yawObject.position.y = 10;
-    this.yawObject.add(this.pitchObject);
-    
-  },
-
-  setupHMDControls: function () {
-    this.dolly = new THREE.Object3D();
-    this.euler = new THREE.Euler();
-    this.controls = new THREE.VRControls(this.dolly);
-    this.controls.userHeight = 0.0;
   },
 
   addEventListeners: function () {
@@ -117,12 +67,10 @@ AFRAME.registerComponent('touch-rotate', {
 
     // Mouse Events
     canvasEl.addEventListener('mousedown', this.onMouseDown, false);
-    window.addEventListener('mousemove', this.onMouseMove, false);
     window.addEventListener('mouseup', this.releaseMouse, false);
 
     // Touch events
     canvasEl.addEventListener('touchstart', this.onTouchStart);
-    window.addEventListener('touchmove', this.onTouchMove);
     window.addEventListener('touchend', this.onTouchEnd);
   },
 
@@ -133,178 +81,37 @@ AFRAME.registerComponent('touch-rotate', {
 
     // Mouse Events
     canvasEl.removeEventListener('mousedown', this.onMouseDown);
-    canvasEl.removeEventListener('mousemove', this.onMouseMove);
     canvasEl.removeEventListener('mouseup', this.releaseMouse);
     canvasEl.removeEventListener('mouseout', this.releaseMouse);
 
     // Touch events
     canvasEl.removeEventListener('touchstart', this.onTouchStart);
-    canvasEl.removeEventListener('touchmove', this.onTouchMove);
     canvasEl.removeEventListener('touchend', this.onTouchEnd);
   },
-  updateOrientation: (function () {
-    var hmdEuler = new THREE.Euler();
-    return function () {
-      var currentRotation;
-      var deltaRotation;
-      var pitchObject = this.pitchObject;
-      var yawObject = this.yawObject;
-      var hmdQuaternion = this.calculateHMDQuaternion();
-      var sceneEl = this.el.sceneEl;
-      var rotation;
-      hmdEuler.setFromQuaternion(hmdQuaternion, 'YXZ');
-      if (isMobile) {
-        // In mobile we allow camera rotation with touch events and sensors
-        rotation = {
-          x: radToDeg(hmdEuler.x) + radToDeg(pitchObject.rotation.x),
-          y: radToDeg(hmdEuler.y) + radToDeg(yawObject.rotation.y),
-          z: radToDeg(hmdEuler.z)
-        };
-      } else if (!sceneEl.is('vr-mode') || isNullVector(hmdEuler) || !this.data.hmdEnabled) {
-        currentRotation = this.el.getAttribute('rotation');
-        deltaRotation = this.calculateDeltaRotation();
-        // Mouse look only if HMD disabled or no info coming from the sensors
-        if (this.data.reverseMouseDrag) {
-          rotation = {
-            x: currentRotation.x - deltaRotation.x,
-            y: currentRotation.y - deltaRotation.y,
-            z: currentRotation.z
-          };
-        } else {
-          rotation = {
-            x: currentRotation.x + deltaRotation.x,
-            y: currentRotation.y + deltaRotation.y,
-            z: currentRotation.z
-          };
-        }
-      } else {
-        // Mouse rotation ignored with an active headset.
-        // The user head rotation takes priority
-        rotation = {
-          x: radToDeg(hmdEuler.x),
-          y: radToDeg(hmdEuler.y),
-          z: radToDeg(hmdEuler.z)
-        };
-      }
-      //this.touching && this.el.setAttribute('rotation', rotation);
-    var object = this.el.object3D
-
-    //this.touching && object.rotation.copy(camera.rotation)
-
-
-
-    var xaxisRotation = this.getXAxis()[0].normalize()
-    var yaxisRotation = this.getXAxis()[1].normalize()
-
-    var xQuaternion = new THREE.Quaternion().setFromAxisAngle( xaxisRotation, 
-      pitchObject.rotation.x);
-
-    var yQuaternion = new THREE.Quaternion().setFromAxisAngle( yaxisRotation, 
-      yawObject.rotation.y);
-
-    var q = new THREE.Quaternion().multiplyQuaternions(yQuaternion, xQuaternion)
-
-
-    object.setRotationFromQuaternion(q)    
-
-/*
-    object.setRotationFromAxisAngle(this.yaxisRotation, 
-      yawObject.rotation.y)
-
-    object.setRotationFromAxisAngle(this.xaxisRotation, 
-      pitchObject.rotation.x)
-*/
-    
-    };
-  })(),
-
-  calculateDeltaRotation: (function () {
-    var previousRotationX;
-    var previousRotationY;
-    return function () {
-      var currentRotationX = radToDeg(this.pitchObject.rotation.x);
-      var currentRotationY = radToDeg(this.yawObject.rotation.y);
-      var deltaRotation;
-      previousRotationX = previousRotationX || currentRotationX;
-      previousRotationY = previousRotationY || currentRotationY;
-      deltaRotation = {
-        x: currentRotationX - previousRotationX,
-        y: currentRotationY - previousRotationY
-      };
-      previousRotationX = currentRotationX;
-      previousRotationY = currentRotationY;
-      return deltaRotation;
-    };
-  })(),
-
-  calculateHMDQuaternion: (function () {
-    var hmdQuaternion = new THREE.Quaternion();
-    return function () {
-      hmdQuaternion.copy(this.dolly.quaternion);
-      return hmdQuaternion;
-    };
-  })(),
-
-  onMouseMove: function (event) {
-    var pitchObject = this.pitchObject;
-    var yawObject = this.yawObject;
-    var previousMouseEvent = this.previousMouseEvent;
-
-    if (!this.mouseDown || !this.data.enabled) { return; }
-
-    var movementX = event.movementX || event.mozMovementX;
-    var movementY = event.movementY || event.mozMovementY;
-
-    if (movementX === undefined || movementY === undefined) {
-      movementX = event.screenX - previousMouseEvent.screenX;
-      movementY = event.screenY - previousMouseEvent.screenY;
-    }
-    this.previousMouseEvent = event;
-
-    yawObject.rotation.y -= movementX * 0.002;
-    pitchObject.rotation.x -= movementY * 0.002;
-    //pitchObject.rotation.x = Math.max(-PI_2, Math.min(PI_2, pitchObject.rotation.x));
-  },
-
 
   onMouseDown: function (event) {
+
+    var object = this.el.object3D
+
+    
+  
     if (event.button != 1) return
 
     this.touching = true
-
-    var object = this.el.object3D
-
-    this.xaxisRotation = this.getXAxis()[0].normalize()
-  
-    this.yaxisRotation = this.getXAxis()[1].normalize()
-
-    console.log(object.getWorldRotation())
-    console.log(this.camera.getWorldRotation())
-
-
-    //this.geojsonCanvas.setAttribute("rotation")
-    //this.geojsonCanvas.rotateToLatLon(1.3, 3.4)
-
+    THREE.SceneUtils.attach( object, this.el.sceneEl, this.camera); 
     
     this.mouseDown = true;
     this.previousMouseEvent = event;
     document.body.classList.add('a-grabbing');
   },
 
-  getXAxis: function() {
-    var xaxis = new THREE.Vector3()
-        yaxis = new THREE.Vector3()
-        zaxis = new THREE.Vector3()
-
-    return function() {
-        this.camera.matrixWorld.extractBasis(xaxis, yaxis, zaxis)
-        return [xaxis, yaxis]
-    }
-
-}(),
 
   releaseMouse: function () {
     if (event.button != 1) return
+
+      var object = this.el.object3D
+
+      THREE.SceneUtils.detach( object, this.camera, this.el.sceneEl.object3D); 
 
     this.touching = false
       this.data.camera.setAttribute("look-controls-enabled", "true")
@@ -321,28 +128,7 @@ AFRAME.registerComponent('touch-rotate', {
     this.touchStarted = true;
   },
 
-  onTouchMove: function (e) {
-    var deltaY;
-    var yawObject = this.yawObject;
-    var previousTouchEvent = this.previousTouchEvent;
-
-
-    if (!this.touchStarted || !this.data.enabled) { return; }
-    deltaY = 2 * Math.PI * (e.touches[0].pageX - this.touchStart.x) /
-            this.el.sceneEl.canvas.clientWidth;
-    // Limits touch orientaion to to yaw (y axis)
-    yawObject.rotation.y -= deltaY * 0.5;
-    this.touchStart = {
-      x: e.touches[0].pageX,
-      y: e.touches[0].pageY
-    };
-  },
-
   onTouchEnd: function () {
     this.touchStarted = false;
   }
 });
-
-function isNullVector (vector) {
-  return vector.x === 0 && vector.y === 0 && vector.z === 0;
-}
