@@ -1,4 +1,4 @@
-AFRAME.registerComponent('player', {
+AFRAME.registerComponent('drone', {
     schema: {
         radius: {
             type: 'number',
@@ -20,12 +20,25 @@ AFRAME.registerComponent('player', {
 
         this.origin = new THREE.Vector3(0, 0, 0)
         this.position = new THREE.Vector3(0, 1, 0)
-        this.position.setLength(this.data.radius)
+        
         this.forward = new THREE.Vector3(0, 0, 1)
         this.look = new THREE.Vector3(0, 0, 1)
 
+
+        this.direction = new THREE.Vector3(); // create once and reuse it!
+
+
+        this.sphericalDelta = new THREE.Spherical();
+        this.spherical = new THREE.Spherical();
     },
     update: function(oldData) {
+
+        this.position.setLength(this.data.radius)
+        this.el.object3D.position.copy(this.position)
+
+
+        //this.el.object3D.up = new THREE.Vector3(0, 1, 0)
+        //this.el.object3D.lookAt(this.look)
     },
 
     tick: function(time, delta) {
@@ -41,26 +54,61 @@ AFRAME.registerComponent('player', {
             zaxis = new THREE.Vector3()
 
         return function() {
-            // extract the direction of the camera in the zaxis
-            // was before
-            //this.camera.matrixWorld.extractBasis(xaxis, yaxis, zaxis)
-            this.camera.getWorldDirection(zaxis)    // new method
+            this.camera.matrixWorld.extractBasis(xaxis, yaxis, zaxis)
             return zaxis
+            //return new THREE.Vector3(0,0,-1)
         }
 
     }(),
     move: function(delta) {
 
+        var object = this.el.object3D 
+
         var distance = this.speed * (delta / 1000)
 
-        var forward = this.getForward().setLength(distance) 
+        var forward = this.camera.getWorldDirection( this.forward );
+        this.forward.normalize()
+
+        if (Math.abs(this.forward.z) > 1) this.forward.z = 0
+        //this.forward.setLength(distance) 
+
+
+        // x for theta
+        // z for phi
+
         // set length of forward z-axis
         // position = position + speed
-
+        //console.log(this.getForward())
 
         // change position by forward
-        this.position.sub(forward)
+        //this.position.sub(forward)
+        // up
 
+        //this.sphericalDelta.phi += 0.005
+
+        //this.sphericalDelta.theta += -this.forward.x * 0.01
+        this.sphericalDelta.theta %= (Math.PI * 2)
+
+        this.sphericalDelta.phi +=  forward.z * 0.01
+        this.sphericalDelta.phi %= (Math.PI * 2)
+
+        this.spherical.theta = this.sphericalDelta.theta;
+        this.spherical.phi = this.sphericalDelta.phi - Math.PI
+        
+        //this.spherical.makeSafe();
+        //console.log(this.spherical.phi + " " + this.spherical.theta)
+        this.spherical.radius = this.data.radius;
+
+        var position = new THREE.Vector3()
+        position.setFromSpherical( this.spherical );
+
+        var look = new THREE.Vector3()
+        var lookSpherical = this.spherical.clone()
+        // be one unit behind the moving object
+        //lookSpherical.phi -= 0.01
+        lookSpherical.radius += 1
+        look.setFromSpherical( lookSpherical );
+        //console.log(position)
         // set height
 /*
         if (this.position.sub(forward) < minglenth) {
@@ -72,35 +120,26 @@ AFRAME.registerComponent('player', {
         // https://classroom.udacity.com/courses/cs291/lessons/158750187/concepts/1694147620923#
         // find the frame of reference
 
-        // calculate with the cross product the real forward/look vector
+        // looAt
+        var up = position.clone().sub(this.origin).normalize()
+        // xaxis, right vector
+        var right = up.clone().cross(forward).normalize()
+        // true look vector
+        var realLook = right.clone().cross(up).normalize()
 
-        // up or normal vector
-        var up = this.position.clone().sub(this.origin).normalize()
-        // tangent vector
-        var tangent = up.clone().cross(this.look).normalize()
+
+
+
         
-        // look vector or binormal/bitangent vector
-        var look = tangent.clone().cross(up).normalize()
+        //object.up = up
+        object.up = new THREE.Vector3(0, 0, 1)
+        object.lookAt(look)
+        //object.lookAt(this.origin)
 
-        this.look = look
+        object.position.copy(position)
 
 
-        var matrix = new THREE.Matrix4,
-            c = matrix.elements;
-        // aplpy x, y and z axis basis vector
-        // 4th column is position
-        c[0] = tangent.x, c[1] = tangent.y, c[2] = tangent.z, c[3] = 0   // tangent vector
-        c[4] = up.x, c[5] = up.y, c[6] = up.z, c[7] = 0   // up Vector
-        c[8] = look.x, c[9] = look.y, c[10] = look.z, c[11] = 0 // look vector
-        c[12] = this.position.x, c[13] = this.position.y, c[14] = this.position.z, c[15] = 1
-
-        var object = this.el.object3D 
-
-        object.matrixAutoUpdate = false
-        object.matrix = matrix
-        object.updateMatrixWorld()  // also apply to child
     },
-
 
     play: function() {
         this.active = true;

@@ -4,6 +4,7 @@
     <meta name="description" content="Basic example for Geojson component."></meta>
     <script src="../build.js"></script>
     <script src="./player.js"></script>
+    <script src="./drone.js"></script>
     <script src="./plane-arrow.js"></script>
     <script src="./ortho-arrow.js"></script>
   </head>
@@ -71,8 +72,7 @@
 
       <a-entity light="type: ambient; color: #fff; intensity: 1.0;" visible="true"></a-entity>
 
-      <a-entity id="player" position="0 0 0" wasd-controls
-      universal-controls="movementControls: automove-controls, gamepad, keyboard"
+      <a-entity id="player" position="0 0 0" look-controls
       player="camera: #camera"
         >
       <a-entity id="camera" camera="userHeight: 0" look-controls >

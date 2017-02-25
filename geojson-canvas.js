@@ -83,14 +83,14 @@ AFRAME.registerComponent('geojson-canvas', {
         context.clearRect(0, 0, width, height)
         this.features.forEach((feature, i) => {
             // TODO really needed?
-            //context.save();
+            context.save();
             context.beginPath()
             contextPath(feature);
             context.strokeStyle = `rgba(0,120,0,0.4)`
             context.stroke()
             context.fillStyle = `rgba(0,0,0,0.4)`
             context.fill();
-            //context.restore();
+            context.restore();
         })
 
     },
@@ -111,6 +111,7 @@ AFRAME.registerComponent('geojson-canvas', {
     rotateToLatLon: function(lat, lon) {
 
         var lonLat = this._degFromRad([lon, lat])
+        //console.log(lonLat)
 
         this.projection.rotate([-lonLat[0], -lonLat[1]])
         this.draw()

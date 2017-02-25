@@ -24,7 +24,7 @@ AFRAME.registerShader('geojson-texture', {
                 transparent: true,
                 opacity: 0, 
                 depthWrite: false
-            })
+            }) 
 
         data.projection.addEventListener("geojson-projection-generated", e => {
 

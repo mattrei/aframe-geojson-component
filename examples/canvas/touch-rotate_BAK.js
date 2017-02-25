@@ -7,7 +7,7 @@ var radToDeg = THREE.Math.radToDeg;
 
 
 AFRAME.registerComponent('touch-rotate', {
-  dependencies: ["geojson-canvas"],
+  dependencies: ['position', 'rotation', "geojson-canvas"],
 
   schema: {
     enabled: {default: true},
@@ -30,8 +30,6 @@ AFRAME.registerComponent('touch-rotate', {
 
     this.lastHmdEuler = new THREE.Euler()
 
-
-    this.camera = this.data.camera.object3D
     this.geojsonCanvas = this.el.components["geojson-canvas"]
 
     // Enable grab cursor class on canvas.
@@ -186,35 +184,43 @@ AFRAME.registerComponent('touch-rotate', {
           z: radToDeg(hmdEuler.z)
         };
       }
-      //this.touching && this.el.setAttribute('rotation', rotation);
-    var object = this.el.object3D
+      //this.el.setAttribute('rotation', rotation);
+      var pivot = this.el.parentNode
+      var pivotRotation = {
+        x: -rotation.x,
+        y: -rotation.y,
+        z: -rotation.z
+      }
+      //pivot.setAttribute('rotation', pivotRotation);
+      //console.log(pivot.object3D.rotation.x + " " + this.el.object3D.rotation.x)
+      
 
-    //this.touching && object.rotation.copy(camera.rotation)
+      var camera = this.data.camera.object3D
 
+      var pivotRotation = pivot.getAttribute('rotation')
 
+      var rotation = {
+            x: rotation.x,
+            y: radToDeg(camera.rotation.y),
+            //y: pivotRotation.y,
+            z: rotation.z
+          };
+      pivot.setAttribute('rotation', rotation);
+      var globeRotation = {
+          x: radToDeg(0),
+          y: -pivotRotation.y,//radToDeg(-camera.rotation.y),
+          z: radToDeg(0)
+        };
 
-    var xaxisRotation = this.getXAxis()[0].normalize()
-    var yaxisRotation = this.getXAxis()[1].normalize()
+      this.el.setAttribute('rotation', globeRotation);
 
-    var xQuaternion = new THREE.Quaternion().setFromAxisAngle( xaxisRotation, 
-      pitchObject.rotation.x);
+      console.log("Pivot")
+      console.log(pivot.getAttribute('rotation'))
+      console.log("Camera")
+      console.log(this.data.camera.getAttribute('rotation'))
+      console.log("Layer")
+      console.log(this.el.getAttribute('rotation'))
 
-    var yQuaternion = new THREE.Quaternion().setFromAxisAngle( yaxisRotation, 
-      yawObject.rotation.y);
-
-    var q = new THREE.Quaternion().multiplyQuaternions(yQuaternion, xQuaternion)
-
-
-    object.setRotationFromQuaternion(q)    
-
-/*
-    object.setRotationFromAxisAngle(this.yaxisRotation, 
-      yawObject.rotation.y)
-
-    object.setRotationFromAxisAngle(this.xaxisRotation, 
-      pitchObject.rotation.x)
-*/
-    
     };
   })(),
 
@@ -270,20 +276,44 @@ AFRAME.registerComponent('touch-rotate', {
   onMouseDown: function (event) {
     if (event.button != 1) return
 
-    this.touching = true
-
+    var camera = this.data.camera.object3D
     var object = this.el.object3D
 
-    this.xaxisRotation = this.getXAxis()[0].normalize()
-  
-    this.yaxisRotation = this.getXAxis()[1].normalize()
+    var pivot = this.el.parentNode
+    
 
-    console.log(object.getWorldRotation())
-    console.log(this.camera.getWorldRotation())
+    var pivotRotation = {
+          x: radToDeg(camera.rotation.x),
+          y: radToDeg(camera.rotation.y),
+          z: radToDeg(camera.rotation.z)
+        };
+    pivot.setAttribute('rotation', pivotRotation);
 
 
-    //this.geojsonCanvas.setAttribute("rotation")
-    //this.geojsonCanvas.rotateToLatLon(1.3, 3.4)
+
+    var globeRotation = {
+          x: radToDeg(0),
+          y: radToDeg(-camera.rotation.y),
+          z: radToDeg(0)
+        };
+
+    //this.el.setAttribute('rotation', globeRotation);
+
+    console.log("Pivot")
+    console.log(pivot.getAttribute('rotation'))
+    //console.log("Camera")
+    //console.log(this.data.camera.getAttribute('rotation'))
+    console.log("Layer")
+    console.log(this.el.getAttribute('rotation'))
+
+    //this.data.camera.setAttribute("look-controls-enabled", "false")
+
+    //console.log(this.data.camera.getAttribute("look-controls-enabled"))
+
+    this.rotationMatrix = 
+      object.matrix.clone().multiply(
+        new THREE.Matrix4().getInverse(camera.matrix)).clone()
+
 
     
     this.mouseDown = true;
@@ -291,22 +321,8 @@ AFRAME.registerComponent('touch-rotate', {
     document.body.classList.add('a-grabbing');
   },
 
-  getXAxis: function() {
-    var xaxis = new THREE.Vector3()
-        yaxis = new THREE.Vector3()
-        zaxis = new THREE.Vector3()
-
-    return function() {
-        this.camera.matrixWorld.extractBasis(xaxis, yaxis, zaxis)
-        return [xaxis, yaxis]
-    }
-
-}(),
-
   releaseMouse: function () {
     if (event.button != 1) return
-
-    this.touching = false
       this.data.camera.setAttribute("look-controls-enabled", "true")
     this.mouseDown = false;
     document.body.classList.remove('a-grabbing');

@@ -18,9 +18,9 @@
         <a-asset-item id="tsv-earth" src="assets/110m.tsv" />
       </a-assets>
       <!--<a-entity geojson=""></a-entity>-->
-      <a-sky src="#img-earth" rotation="0 180 0"></a-sky>
+      <a-sky src="#img-earth" rotation="0 0 0"></a-sky>
 
-      <a-sphere src="#img-bathymetry" radius="2" rotation="0 180 0" opacity="0.8" scale="-1 1 1" visible="false"></a-sphere>
+      <a-sphere src="#img-bathymetry" radius="2" rotation="0 0 0" opacity="0.8" scale="-1 1 1" visible="false"></a-sphere>
 
       <a-light type="ambient" color="#999"></a-light>
 
@@ -28,24 +28,27 @@
         class="interactiveNOT"
         geojson-projection="src: #json-earth; featureKey: id;"
         geojson-globe="radius: 1; color: #A0A; linewidth: 2;"
+        rotation="0 -180 0"
         >
         </a-entity>
 
-        <a-entity id="pivot" rotation="0 0 0">
+        <a-entity id="pivot" rotation="0 -180 0">
+
+        </a-entity>
+
           <a-entity id="movable-layer" 
             material="shader: flat; src: #world-canvas; transparent: true;"
             geometry="primitive: sphere; radius: 1; phiStart: 0;"
             scale="-1 1 1"
-            geojson-canvas="canvas: #world-canvas; projection: #earth-globe; color: #FFF;"
-            touch-rotate
+            geojson-canvas="canvas: #world-canvas; src: #json-earth; projection: equirectangular; fillColor: #FFF; strokeColor: #FF0;"
+            touch-rotate="camera: #camera"
             >
             </a-entity>
-        </a-entity>
 
 
-                    <a-camera id="camera" raycaster="objects: .gazeactivated" user-height="0" wasd-controls-enabled="true" look-controls-enabled="true"
+          <a-camera id="camera" raycaster="objects: .gazeactivated" user-height="0" wasd-controls-enabled="true" look-controls-enabled="true"
              >
-             
+
 
 
                 <a-entity id="cursor" raycaster="objects: .interactive" cursor="fuse: true; fuseTimeout: 2000" position="0 0 -1" geometry="primitive: ring; radiusInner:0.007; radiusOuter:0.012" material="color: grey; shader: flat; opacity:0.9">
