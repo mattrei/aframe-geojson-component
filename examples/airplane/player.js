@@ -7,6 +7,10 @@ AFRAME.registerComponent('player', {
         camera: {
             type: "selector",
             default: "[camera]"
+        },
+        speed: {
+            type: "int",
+            default: 5
         }
     },
 
@@ -16,7 +20,7 @@ AFRAME.registerComponent('player', {
 
         this.camera = this.data.camera.object3D
 
-        this.speed = 1
+        
 
         this.origin = new THREE.Vector3(0, 0, 0)
         this.position = new THREE.Vector3(0, 1, 0)
@@ -37,8 +41,8 @@ AFRAME.registerComponent('player', {
     },
     getForward: function() {
         var xaxis = new THREE.Vector3()
-            yaxis = new THREE.Vector3()
-            zaxis = new THREE.Vector3()
+        var yaxis = new THREE.Vector3()
+        var zaxis = new THREE.Vector3()
 
         return function() {
             // extract the direction of the camera in the zaxis
@@ -51,7 +55,7 @@ AFRAME.registerComponent('player', {
     }(),
     move: function(delta) {
 
-        var distance = this.speed * (delta / 1000)
+        var distance = this.data.speed * (delta / 1000)
 
         var forward = this.getForward().setLength(distance) 
         // set length of forward z-axis

@@ -1,4 +1,4 @@
-## aframe-geojson-component
+## *WIP* aframe-geojson-component
 
 Mapping Geojson documents to meshes
 
@@ -55,3 +55,7 @@ Then require and use.
 require('aframe');
 require('aframe-geojson-component');
 ```
+
+
+### TODO
+* error in GEOJSON
