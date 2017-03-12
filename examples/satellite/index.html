@@ -1,25 +1,29 @@
 <html>
   <head>
-    <title>A-Frame Geojson Component - Airplane</title>
+    <title>A-Frame Geojson Component - Satellite Example</title>
     <meta name="description" content="Airplane example."></meta>
     <script src="../build.js"></script>
     <script src="./player.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.3.1/dist/aframe-extras.min.js"></script>
   </head>
   <body>
-    <a-scene stats>
+    <a-scene>
       <a-assets>
         <img id="waterNormalMap" src="assets/water-normal.jpg">
 
         <img id="earthMap" src="assets/earth.png">
 
-        <img id="normalMap" src="assets/earth_normalmap.png">
+        <img id="normalMap" src="assets/earth_normalmap.jpg">
         
         <img id="bumpMap" src="assets/bathymetry_bw_composite_4k.jpg">
 
         <img id="diffuseMap" src="assets/bathymetry_diffuse_4k.jpg">
 
-        <img id="img-stars" src="assets/stars.png">
+        <img id="img-stars" src="assets/stars.jpg">
+
+
+        <a-asset-item id="json-plates" src="assets/PB2002_plates.json" />
+        <a-asset-item id="json-countries" src="assets/50m.json" />
       </a-assets>
 
 
@@ -38,20 +42,26 @@
         shader: standard;
         depthTest: true;"
         scale="1 1 1">
+
+          <a-entity scale="-1 1 1" rotation="0 180 0">
+            <a-entity id="plates-globe" 
+              class="interactive"
+              geojson-projection="src: #json-plates; featureKey: name;"
+              geojson-globe="radius: 11.5; color: #F0F; linewidth: 2;"
+              visible="true"
+              >
+            </a-entity>
+
+            <a-entity id="countries-globe" 
+              class="interactiveNOT"
+              geojson-projection="src:#json-countries; featureKey: id;"
+              geojson-globe="radius: 11.3; color: #00F; linewidth: 1;"
+              visible="true"
+              >
+            </a-entity>
+          </a-entity>
+
         </a-entity>
-        <a-entity 
-        geometry="primitive: icosahedron; detail: 4; radius: 11.25;"
-        material="normalMap: #waterNormalMap; 
-        normalTextureRepeat: 2 1; normalScale: 4 4;
-        flatShading: false;
-        shader: standard;
-        depthTest: true;
-        color: #1c6ba0;
-        transparent: true; opacity: 0.6;"
-        visible="false"
-        scale="1 1 1"
-         >
-        </a-entity>
       </a-entity>
       </a-entity>
       </a-entity>
@@ -59,7 +69,7 @@
 
 
 
-      <a-entity id="player" position="0 0 16" 
+      <a-entity id="player" position="0 0 19" 
       satellite="globe: #globe;"
         >
 

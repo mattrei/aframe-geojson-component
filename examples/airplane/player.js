@@ -10,7 +10,7 @@ AFRAME.registerComponent('player', {
         },
         speed: {
             type: "int",
-            default: 5
+            default: 1
         }
     },
 
@@ -55,7 +55,7 @@ AFRAME.registerComponent('player', {
     }(),
     move: function(delta) {
 
-        var distance = this.data.speed * (delta / 1000)
+        var distance = this.data.speed * (delta / 10000)
 
         var forward = this.getForward().setLength(distance) 
         // set length of forward z-axis
