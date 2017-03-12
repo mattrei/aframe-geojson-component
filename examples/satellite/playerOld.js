@@ -1,8 +1,8 @@
-AFRAME.registerComponent('drone', {
+AFRAME.registerComponent('satellite', {
     schema: {
         radius: {
             type: 'number',
-            default: 13
+            default: 14
         },
         camera: {
             type: "selector",
@@ -50,26 +50,89 @@ AFRAME.registerComponent('drone', {
     },
     getForward: function() {
         var xaxis = new THREE.Vector3()
-            yaxis = new THREE.Vector3()
-            zaxis = new THREE.Vector3()
+        var yaxis = new THREE.Vector3()
+        var zaxis = new THREE.Vector3()
 
         return function() {
-            this.camera.matrixWorld.extractBasis(xaxis, yaxis, zaxis)
+            //this.camera.getWorldDirection(zaxis)
+            // extract local looking direction
+            this.camera.matrix.extractBasis(xaxis, yaxis, zaxis)
             return zaxis
-            //return new THREE.Vector3(0,0,-1)
         }
 
     }(),
-    move: function(delta) {
+        move: function(delta) {
 
         var object = this.el.object3D 
 
         var distance = this.speed * (delta / 1000)
 
-        var forward = this.camera.getWorldDirection( this.forward );
-        this.forward.normalize()
+        var forward = this.getForward()
+        
+        
+        //if (Math.abs(this.forward.z) > 1) this.forward.z = 0
+        //this.forward.setLength(distance) 
+        //this.sphericalDelta.phi += 0.005
 
-        if (Math.abs(this.forward.z) > 1) this.forward.z = 0
+        this.sphericalDelta.theta += forward.x * 0.01
+        this.sphericalDelta.theta %= (Math.PI * 2)
+
+        // Math.atan2(forward.y, forward.x) // to get angle
+        this.sphericalDelta.phi +=  forward.y * -0.01
+        this.sphericalDelta.phi %= (Math.PI * 2)
+
+        this.spherical.theta = this.sphericalDelta.theta;
+        this.spherical.phi = this.sphericalDelta.phi - Math.PI
+        
+        //this.spherical.makeSafe();
+        //console.log(this.spherical.phi + " " + this.spherical.theta)
+        this.spherical.radius = this.data.radius;
+
+        var position = new THREE.Vector3()
+        position.setFromSpherical( this.spherical );
+
+
+        // thats were cross products are used most
+        // https://classroom.udacity.com/courses/cs291/lessons/158750187/concepts/1694147620923#
+        // find the frame of reference
+
+        // looAt
+        var up = position.clone().sub(this.origin).normalize()
+        // xaxis, right vector
+        var tangent = up.clone().cross(forward).normalize()
+        // true up vector
+        var realUp = tangent.clone().cross(up).normalize()
+
+        console.log(this.sphericalDelta.phi)
+        object.position.copy(position)
+        //object.up = up
+        var l = this.sphericalDelta.phi >= Math.PI || this.sphericalDelta.phi < 0  ? -1 : 1
+        object.up = new THREE.Vector3(0, l, 0)
+        //object.up.copy(tangent)
+        //object.lookAt(look)
+        object.lookAt(this.origin)
+
+
+        
+        //console.log(position)
+
+
+        // https://stackoverflow.com/questions/14250208/three-js-how-to-rotate-an-object-to-lookat-one-point-and-orient-towards-anothe
+
+    },
+    move2: function(delta) {
+
+        var object = this.el.object3D 
+
+        var distance = this.speed * (delta / 1000)
+
+        //var forward = this.camera.getWorldDirection( this.forward );
+        //this.forward.normalize()
+        var forward = this.getForward()
+
+
+
+        //if (Math.abs(this.forward.z) > 1) this.forward.z = 0
         //this.forward.setLength(distance) 
 
 
@@ -86,10 +149,11 @@ AFRAME.registerComponent('drone', {
 
         //this.sphericalDelta.phi += 0.005
 
-        //this.sphericalDelta.theta += -this.forward.x * 0.01
+        this.sphericalDelta.theta += -this.forward.z * 0.01
         this.sphericalDelta.theta %= (Math.PI * 2)
 
-        this.sphericalDelta.phi +=  forward.z * 0.01
+        // Math.atan2(forward.y, forward.x) // to get angle
+        this.sphericalDelta.phi +=  -forward.y * 0.01
         this.sphericalDelta.phi %= (Math.PI * 2)
 
         this.spherical.theta = this.sphericalDelta.theta;
@@ -124,20 +188,25 @@ AFRAME.registerComponent('drone', {
         var up = position.clone().sub(this.origin).normalize()
         // xaxis, right vector
         var right = up.clone().cross(forward).normalize()
-        // true look vector
-        var realLook = right.clone().cross(up).normalize()
+        // true up vector
+        var realUp = right.clone().cross(up).normalize()
 
 
-
+        //console.log(realUp)
 
         
         //object.up = up
-        object.up = new THREE.Vector3(0, 0, 1)
-        object.lookAt(look)
-        //object.lookAt(this.origin)
+        //object.up = new THREE.Vector3(0, 0, 1)
+        object.up.copy(realUp)
+        //object.lookAt(look)
+        object.lookAt(this.origin)
+
 
         object.position.copy(position)
+        //console.log(position)
 
+
+        // https://stackoverflow.com/questions/14250208/three-js-how-to-rotate-an-object-to-lookat-one-point-and-orient-towards-anothe
 
     },
 

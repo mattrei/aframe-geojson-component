@@ -1,3 +1,3 @@
-require('./geojson-canvas')
-require('./geojson-projection')
-require('./geojson-globe')
+require('./src/geojson-canvas')
+require('./src/geojson-projection')
+require('./src/geojson-globe')

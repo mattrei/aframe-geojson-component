@@ -59,3 +59,7 @@ require('aframe-geojson-component');
 
 ### TODO
 * error in GEOJSON
+
+
+
+https://gamedev.stackexchange.com/questions/131012/how-can-i-rotate-the-camera-for-a-player-walking-around-the-surface-of-a-sphere
