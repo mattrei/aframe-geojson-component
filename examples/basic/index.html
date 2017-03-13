@@ -7,7 +7,7 @@
   <body>
     <a-scene>
       <a-assets>
-        <a-asset-item id="json-earth" src="assets/110m.json" />
+        <a-asset-item id="json-countries" src="assets/110m.json" />
         <a-asset-item id="tsv-earth" src="assets/110m.tsv" />
         <a-asset-item id="json-plates" src="assets/PB2002_plates.json" />
         <a-asset-item id="json-rivers" src="assets/ne_50m_rivers_lake_centerlines.geojson" />
@@ -19,14 +19,17 @@
         class="interactive"
         geojson-projection="src: #json-plates; featureKey: name;"
         geojson-globe="radius: 1; color: #F0F; linewidth: 2;"
+        visible="false"
         >
       </a-entity>
-      <a-entity id="earth-globe" 
+      <a-entity id="countries-globe" 
         class="interactiveNOT"
-        geojson-projection="src: #json-earth; featureKey: id;"
-        geojson-globe="radius: 1; color: #A0A; linewidth: 2;"
+        geojson-projection="src: #json-countries; featureKey: id; topologyObject: land"
+        geojson-globe="radius: 1; color: #A0A; linewidth: 1;"
+        scale="-1 1 1"
+
         >
-        </a-entity>
+      </a-entity>
       <a-entity id="rivers-globe" 
         class="interactive"
         geojson-projection="src: #json-rivers; featureKey: name;"
@@ -42,7 +45,7 @@
         </a-entity>
 
 
-        <a-camera id="camera" raycaster="objects: .gazeactivated" user-height="0" wasd-controls-enabled="false" look-controls-enabled="true">
+        <a-camera id="camera" raycaster="objects: .gazeactivated" user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
         </a-camera>
     </a-scene>
   </body>

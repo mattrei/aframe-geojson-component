@@ -12,11 +12,15 @@ AFRAME.registerComponent('geojson-projection', {
             default: "" // TODO
         },
         projection: {
-            default: "equirectangular"
-            // or orthographic
+            default: "equirectangular",
+            oneOf: ["equirectangular", "orthographic"]
         },
         featureKey: {
             default: "id"
+        },
+        // for a topojson, else first will be taken
+        topologyObject: {
+            default: undefined
         }
     },
 
@@ -27,16 +31,13 @@ AFRAME.registerComponent('geojson-projection', {
         const data = this.data;
         const el = this.el;
 
-        var width = 360,    // corresponds to lon
-            height = 180    // and lat
+        var width = 360, // corresponds to lon
+            height = 180 // and lat
 
 
-        var geoFunc = data.projection === "equirectangular" ? 
+        var geoFunc = data.projection === "equirectangular" ?
             d3.geoEquirectangular :
             d3.geoOrthographic
-
-        
-        console.log(geoFunc)
 
         const projection = geoFunc()
             .scale(height / Math.PI) //http://bl.ocks.org/mbostock/3757119
@@ -48,12 +49,19 @@ AFRAME.registerComponent('geojson-projection', {
             .attr("width", width)
             .attr("height", height)
 
-        var isTopojson = json.features === null
+        var isTopojson = json.features === undefined
 
-        var features = json.features ||
-            topojson.feature(json, json.objects.countries).features
 
-        //console.log(map.features)
+        var features
+        if (isTopojson) {
+            var topologyObjectName = data.topologyObject
+            if (!data.topologyObject) {
+                topologyObjectName = Object.keys(json.objects)[0]
+            }
+            features = topojson.feature(json, json.objects[topologyObjectName]).features
+        } else {
+            features = json.features
+        }
 
         var paths = svg.append("g")
             .attr("class", "features")
@@ -83,7 +91,7 @@ AFRAME.registerComponent('geojson-projection', {
 
         pathNodes.forEach(p => {
             var key = p.__data__.properties[this.data.featureKey] //p.id
-            var type = p.__data__.geometry.type  // Point, String, Polygon
+            var type = p.__data__.geometry.type // Point, String, Polygon
 
             var territory = {
                 id: key,
@@ -91,7 +99,7 @@ AFRAME.registerComponent('geojson-projection', {
                 points: []
             };
             var line = []
-            //var vertices = line.vertices;
+                //var vertices = line.vertices;
             var x, y;
             var ox, oy;
             var px, py;
@@ -113,7 +121,7 @@ AFRAME.registerComponent('geojson-projection', {
                     console.log(segment);
                 }
                 */
-                
+
                 //console.log(segment)
                 // TODO add segements for points
 
@@ -122,7 +130,7 @@ AFRAME.registerComponent('geojson-projection', {
                     y = segment.y;
                     ox = x;
                     oy = y;
-                    
+
 
                     if (type.includes("Point")) {
                         territory.points.push(new THREE.Vector2(x, y));
@@ -130,7 +138,7 @@ AFRAME.registerComponent('geojson-projection', {
                         // add line;
                         territory.lines.push(line);
                         line = []
-                        line.push(new THREE.Vector2(x, y));    
+                        line.push(new THREE.Vector2(x, y));
                     }
                 }
                 if (segment instanceof SVGPathSegLinetoRel) {
@@ -164,7 +172,7 @@ AFRAME.registerComponent('geojson-projection', {
                     line.push(new THREE.Vector2(x, y));
                 }
                 if (segment instanceof SVGPathSegClosePath ||
-                    i+1 === segments.numberOfItems) {   // Lines are not closed
+                    i + 1 === segments.numberOfItems) { // Lines are not closed
                     //x = ox;
                     //y = oy;
                     //line.push( new THREE.Vector2( x, y ) );
@@ -180,8 +188,8 @@ AFRAME.registerComponent('geojson-projection', {
 
 
             territory.lines = territory.lines.filter((l) => {
-                return l.length > 0
-            })
+                    return l.length > 0
+                })
                 //countries.push( territory );
 
             if (!map.has(key)) {
