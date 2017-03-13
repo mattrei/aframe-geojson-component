@@ -260,7 +260,8 @@ void main(){
         //lat = Math.max(175, Math.min(5, lat));
         //lat = Math.min(160, lat)
         const phi = (lat) * Math.PI / 180;
-        const theta = (-lon) * Math.PI / 180;
+        // -lon for inversion
+        const theta = (lon) * Math.PI / 180;
         const d = this.data.radius;
         const x = -d * Math.sin(phi) * Math.cos(theta);
         const y = d * Math.cos(phi);
