@@ -1,5 +1,7 @@
 var d3 = require('d3');
 
+var FEATURE_SELECTED_EVENT = "feature-selected"
+
 AFRAME.registerComponent('geojson-globe', {
 
     dependencies: ["geojson-projection"],
@@ -28,6 +30,7 @@ AFRAME.registerComponent('geojson-globe', {
 
         var data = this.data
 
+        this._selectedFeature = null
         this.isSelecting = false
 
         this.codes = new Map(); // country color codes for selecting
@@ -42,7 +45,9 @@ AFRAME.registerComponent('geojson-globe', {
         this.dataMap = new Map()
         if (data.dataSrc) {
             d3[data.dataType](data.dataSrc, (error, dataObject) => {
-                console.log("loaded")
+                dataObject.forEach(e => {
+                    this.dataMap.set(e.iso_n3, e)
+                })
             })
 
         }
@@ -290,12 +295,21 @@ void main(){
 
     },
     selectFeature: function(feature) {
+        
         this.isSelecting = false
         if (!feature) return
-        if (this.dataMap.size() > 0) {
 
+        var selected = null
+        if (this.dataMap.size > 0) {
+            selected = this.dataMap.get(feature.id)
         } else {
-            console.log(feature.properties)
+            selected = feature.properties
+        }
+
+        if (this._selectedFeature !== selected) {
+            console.log(selected.name_long)
+            this._selectedFeature = selected
+            this.el.emit(FEATURE_SELECTED_EVENT, selected)
         }
     },
     hitTest: function(obj) {
@@ -310,19 +324,19 @@ void main(){
 
         return new Promise((resolve, reject) => {
 
-            requestAnimationFrame(function() {
+            //requestAnimationFrame(function() {
                 var res = null;
 
                 renderer.readRenderTargetPixels(this.hitTexture, 0, 0, 1, 1, pixelBuffer);
                 //if (pixelBuffer[3] === 255) {
                     if (pixelBuffer[0] === 255) {
-                        console.log("Getting " + pixelBuffer[2])
+                        //console.log("Getting " + pixelBuffer[2])
                         res = this.codes.get(pixelBuffer[2])
                     }
                 //}
                 resolve(res);
 
-            }.bind(this));
+            //}.bind(this));
 
         });
 
@@ -341,9 +355,11 @@ void main(){
             var p = intersections[0].point;
 
             var dummy = new THREE.Object3D();
+            //dummy.scale.y = -1
             dummy.lookAt(p)
-            dummy.rotation.y += Math.PI;
-            //dummy.scale.x = -1  // TODO?
+            //dummy.rotation.y += Math.PI;
+            //dummy.rotation.z = Math.PI
+            
 
             this.hitTest(dummy).then(res => this.selectFeature(res))
         }
@@ -358,7 +374,9 @@ void main(){
 
         const projection = d3.geoEquirectangular()
             .scale(height / Math.PI)
-            .translate([width / 2, height / 2]);
+            .translate([width / 2, height / 2])
+            .rotate([0, 0, 0])
+
         const path = d3.geoPath(projection)
 
         var canvas = d3
@@ -393,7 +411,7 @@ void main(){
             context.restore();
         })
 
-        console.log(canvas.node().toDataURL());
+        //console.log(canvas.node().toDataURL());
         const texture = new THREE.Texture(canvas.node());
         texture.needsUpdate = true;
 
@@ -406,7 +424,12 @@ void main(){
                 opacity: 1
             })
         );
-        mesh.scale.x = -1;
+        // TODO?
+        var scale = this.el.getAttribute("scale")
+        //console.log(scale)
+        //mesh.scale.x = this.el.object3D.scale.x
+        mesh.scale.x = -1
+        mesh.scale.y = -1
 
         this.hitScene.add(mesh);
 

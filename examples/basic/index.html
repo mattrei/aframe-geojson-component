@@ -5,7 +5,7 @@
     <script src="../build.js"></script>
   </head>
   <body>
-    <a-scene>
+    <a-scene stats>
       <a-assets>
         <a-asset-item id="json-world" src="assets/world-50m.v1.json" />
         <a-asset-item id="tsv-world" src="assets/world-50m.v1.tsv" />
@@ -28,7 +28,7 @@
         </a-entity>
         -->
         <a-entity id="countries-globe" 
-          class="interactiveNOT"
+          class="gazeactivated"
           geojson-projection="src: #json-world; featureKey: id; topologyObject: countries"
           geojson-globe="radius: 1; color: #A0A; linewidth: 1; dataSrc: #tsv-world; dataType: tsv;"
           visible="true"
@@ -54,8 +54,8 @@
       </a-entity>
 
 
-        <a-camera id="camera" raycaster="objects: .gazeactivated" user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
-          <a-cursor></a-cursor>
+        <a-camera id="camera"  user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
+          <a-cursor raycaster="objects: .gazeactivated; interval: 1500;"></a-cursor>
         </a-camera>
     </a-scene>
   </body>
