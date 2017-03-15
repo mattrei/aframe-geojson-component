@@ -11,16 +11,16 @@
         <a-asset-item id="tsv-world" src="assets/world-50m.v1.tsv" />
 
         <a-asset-item id="json-plates" src="assets/PB2002_plates.json" />
+        <a-asset-item id="json-plates2" src="assets/plates_topo.json" />
         <a-asset-item id="json-rivers" src="assets/ne_50m_rivers_lake_centerlines.geojson" />
 
         <a-asset-item id="json-places" src="assets/ne_110m_populated_places_simple.geojson" />
       </a-assets>
-      <!--<a-entity geojson=""></a-entity>-->
 
       <a-entity scale="-1 1 1">
         <a-entity id="plates-globe" 
           class="interactive"
-          geojson-projection="src: #json-plates; featureKey: name;"
+          geojson-projection="src: #json-plates2; featureKey: name;"
           geojson-globe="radius: 1; color: #000; linewidth: 2;"
           visible="false"
           >
@@ -48,6 +48,7 @@
 
 
         <a-camera id="camera" raycaster="objects: .gazeactivated" user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
+          <a-cursor></a-cursor>
         </a-camera>
     </a-scene>
   </body>

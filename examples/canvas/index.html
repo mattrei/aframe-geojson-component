@@ -28,7 +28,7 @@
         class="interactiveNOT"
         geojson-projection="src: #json-earth; featureKey: id;"
         geojson-globe="radius: 1; color: #A0A; linewidth: 2;"
-        rotation="0 -180 0"
+        scale="-1 1 1"
         >
         </a-entity>
 
@@ -37,11 +37,12 @@
         </a-entity>
 
           <a-entity id="movable-layer" 
-            material="shader: flat; src: #world-canvas; transparent: true;"
+            material="shader: flat; src: #world-canvas; transparent: true; opacity: 0.4;"
             geometry="primitive: sphere; radius: 1; phiStart: 0;"
             scale="-1 1 1"
-            geojson-canvas="canvas: #world-canvas; src: #json-earth; projection: equirectangular; fillColor: #FFF; strokeColor: #FF0;"
+            geojson-canvas="canvas: #world-canvas; src: #json-earth; projection: equirectangular; fillColor: #FFF; lineColor: #000; linewidth: 2;"
             touch-rotate="camera: #camera"
+            scale="-1 1 1"
             >
             </a-entity>
 

@@ -1,7 +1,5 @@
 var d3 = require('d3');
 
-// TODO registerPrimitive a-geojson-globe, a-geojson-plane
-
 AFRAME.registerComponent('geojson-globe', {
 
     dependencies: ["geojson-projection"],
@@ -44,7 +42,7 @@ AFRAME.registerComponent('geojson-globe', {
             layer.add(linesMesh)
 
             this.el.setObject3D('mesh', layer)
-            this.el.addEventListener('click', this.select.bind(this))
+            //this.el.addEventListener('click', this.select.bind(this))
 
             //el.addEventListener('raycaster-intersected', _ => console.log("BORDER Inter"));
             //el.addEventListener('raycaster-intersected-cleared', _ => console.log("BORDER Cleared"));

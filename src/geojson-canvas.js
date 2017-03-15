@@ -1,28 +1,32 @@
 var d3 = require('d3');
 var topojson = require('topojson-client')
 
-const PI_TWO = Math.PI / 2
+const PI_2 = Math.PI / 2
 
 AFRAME.registerComponent('geojson-canvas', {
     schema: {
         src: {
             type: "asset"
         },
+        canvas: {
+            default: '',
+            type: "selector"
+        },
         projection: {
             type: "string",
-            default: "equirectangular"
+            default: "equirectangular",
+            oneOf: ["equirectangular", "orthographic"]
         },
         fillColor: {
             default: "#fff",
             type: "color"
         },
-        strokeColor: {
+        lineColor: {
             default: "#fff",
             type: "color"
         },
-        canvas: {
-            default: '',
-            type: "selector"
+        lineWidth: {
+            default: 1
         },
         center: {
             default: [0, 0],
@@ -31,6 +35,9 @@ AFRAME.registerComponent('geojson-canvas', {
         rotation: {
             default: [0, 0],
             type: "array"
+        },
+        topologyObject: {
+            default: undefined
         }
     },
 
@@ -66,29 +73,42 @@ AFRAME.registerComponent('geojson-canvas', {
     },
     initialize: function(err, json) {
 
-        this.features = json.features ||
-            topojson.feature(json, json.objects.countries).features
+        var data = this.data
+
+        var isTopojson = json.features === undefined
+        if (isTopojson) {
+            var topologyObjectName = data.topologyObject
+            if (!data.topologyObject) {
+                topologyObjectName = Object.keys(json.objects)[0]
+            }
+            this.features = topojson.feature(json, json.objects[topologyObjectName]).features
+        } else {
+            this.features = json.features
+        }
 
         this.draw()
     },
     draw: function() {
         if (!this.features) return
 
+        var data = this.data
+        var lineColor = new THREE.Color(data.lineColor).getStyle()
+        var fillColor = new THREE.Color(data.fillColor).getStyle()
+
         var context = this.ctx
-        var width = this.canvas.width
-        var height = this.canvas.height
 
         var contextPath = this.mapPath.context(context);
 
-        context.clearRect(0, 0, width, height)
+        context.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.features.forEach((feature, i) => {
             // TODO really needed?
             context.save();
             context.beginPath()
             contextPath(feature);
-            context.strokeStyle = `rgba(0,120,0,0.4)`
+            context.lineWidth = data.lineWidth
+            context.strokeStyle = lineColor//`rgba(0,120,0,1)`
             context.stroke()
-            context.fillStyle = `rgba(0,0,0,0.4)`
+            context.fillStyle = fillColor//`rgba(1,1,1,1)`
             context.fill();
             context.restore();
         })
@@ -117,6 +137,6 @@ AFRAME.registerComponent('geojson-canvas', {
         this.draw()
     },
     _degFromRad: function(lonLat) {
-        return [lonLat[0] / Math.PI * 180, lonLat[1] / (PI_TWO) * 90]
+        return [lonLat[0] / Math.PI * 180, lonLat[1] / (PI_2) * 90]
     }
 });
