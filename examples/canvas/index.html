@@ -12,7 +12,6 @@
       </a-assets>
       <a-assets>
         <img id="img-earth" src="assets/earth_4k.jpg" />
-        <img id="img-bathymetry" src="assets/bathymetry_composite_4k.jpg" />
 
         <a-asset-item id="json-earth" src="assets/110m.json" />
         <a-asset-item id="tsv-earth" src="assets/110m.tsv" />
@@ -20,46 +19,30 @@
       <!--<a-entity geojson=""></a-entity>-->
       <a-sky src="#img-earth" rotation="0 0 0"></a-sky>
 
-      <a-sphere src="#img-bathymetry" radius="2" rotation="0 0 0" opacity="0.8" scale="-1 1 1" visible="false"></a-sphere>
-
-      <a-light type="ambient" color="#999"></a-light>
-
-      <a-entity id="earth-globe" 
-        class="interactiveNOT"
-        geojson-projection="src: #json-earth; featureKey: id;"
-        geojson-globe="radius: 1; color: #A0A; linewidth: 2;"
-        scale="-1 1 1"
-        >
+      <a-entity >
+        <a-entity id="earth-globe" 
+          class="interactiveNOT"
+          geojson-projection="src: #json-earth; featureKey: id;"
+          geojson-globe="radius: 1; color: #A0A; linewidth: 2;"
+          scale="-1 1 1"
+          >
         </a-entity>
 
-        <a-entity id="pivot" rotation="0 -180 0">
-
+        <a-entity id="movable-layer" 
+          material="shader: flat; src: #world-canvas; transparent: true; opacity: 0.4;"
+          geometry="primitive: sphere; radius: 1; phiStart: 0;"
+          geojson-canvas="canvas: #world-canvas; src: #json-earth; projection: equirectangular; fillColor: #FFF; lineColor: #000; lineWidth: 2;
+          topologyObject: countries;"
+          touch-rotate="camera: #camera"
+          scale="-1 1 1"
+          >
         </a-entity>
-
-          <a-entity id="movable-layer" 
-            material="shader: flat; src: #world-canvas; transparent: true; opacity: 0.4;"
-            geometry="primitive: sphere; radius: 1; phiStart: 0;"
-            scale="-1 1 1"
-            geojson-canvas="canvas: #world-canvas; src: #json-earth; projection: equirectangular; fillColor: #FFF; lineColor: #000; linewidth: 2;"
-            touch-rotate="camera: #camera"
-            scale="-1 1 1"
-            >
-            </a-entity>
+       </a-entity> 
 
 
-          <a-camera id="camera" raycaster="objects: .gazeactivated" user-height="0" wasd-controls-enabled="true" look-controls-enabled="true"
-             >
-
-
-
-                <a-entity id="cursor" raycaster="objects: .interactive" cursor="fuse: true; fuseTimeout: 2000" position="0 0 -1" geometry="primitive: ring; radiusInner:0.007; radiusOuter:0.012" material="color: grey; shader: flat; opacity:0.9">
-
-                    <a-animation begin="cursor-fusing" easing="linear" attribute="scale" fill="forwards" from="1 1 1" to="2 2 2" dur="100"></a-animation>
-                    <a-animation begin="cursor-fusing" easing="linear" attribute="material.color" fill="forwards" from="grey" to="#ff3f75" dur="100"></a-animation>
-                    <a-animation begin="cursor-fusing" easing="linear" attribute="geometry.thetaLength" fill="forwards" from="0" to="360" dur="1000"></a-animation>
-                    <a-animation begin="click" easing="linear" attribute="scale" fill="none" from="2 2 2" to="4 4 4" dur="200"></a-animation>
-                </a-entity>
-            </a-camera>
+      <a-camera id="camera" raycaster="objects: .gazeactivated" user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
+        <a-cursor></a-cursor>
+      </a-camera>
 
     </a-scene>
   </body>

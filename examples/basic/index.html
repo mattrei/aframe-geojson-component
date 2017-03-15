@@ -17,7 +17,8 @@
         <a-asset-item id="json-places" src="assets/ne_110m_populated_places_simple.geojson" />
       </a-assets>
 
-      <a-entity scale="-1 1 1">
+      <a-entity scale="-1.1 1.1 1.1">
+      <!--
         <a-entity id="plates-globe" 
           class="interactive"
           geojson-projection="src: #json-plates2; featureKey: name;"
@@ -25,25 +26,31 @@
           visible="false"
           >
         </a-entity>
+        -->
         <a-entity id="countries-globe" 
           class="interactiveNOT"
-          geojson-projection="src: #json-world; featureKey: id; topologyObject: land"
-          geojson-globe="radius: 1; color: #A0A; linewidth: 1;"
+          geojson-projection="src: #json-world; featureKey: id; topologyObject: countries"
+          geojson-globe="radius: 1; color: #A0A; linewidth: 1; dataSrc: #tsv-world; dataType: tsv;"
+          visible="true"
           >
         </a-entity>
+        <!--
         <a-entity id="rivers-globe" 
           class="interactive"
           geojson-projection="src: #json-rivers; featureKey: name;"
           geojson-globe="radius: 1; color: #0AF; linewidth: 2;"
+          visible="false"
           >
           </a-entity>
-
+-->
+<!--
         <a-entity id="places-globe" 
-          class="interactive"
+          class="gazeactivated"
           geojson-projection="src: #json-places; featureKey: name;"
           geojson-globe="radius: 1; color: #FFF; linewidth: 2;"
           >
           </a-entity>
+          -->
       </a-entity>
 
 

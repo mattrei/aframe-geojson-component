@@ -13,10 +13,22 @@ AFRAME.registerComponent('geojson-globe', {
         },
         radius: {
             default: 2
+        },
+        // the data that holds the data; if not set then it is supposed to be already included
+        dataSrc: {
+            type: "asset"
+        },
+        dataType: {
+            default: 'tsv',
+            oneOf: ['csv', 'tsv']
         }
     },
 
     init: function() {
+
+        var data = this.data
+
+        this.isSelecting = false
 
         this.codes = new Map(); // country color codes for selecting
         this.hitScene = new THREE.Scene();
@@ -26,6 +38,15 @@ AFRAME.registerComponent('geojson-globe', {
         this.hitTexture.texture.magFilter = THREE.NearestFilter;
         this.hitTexture.generateMipMaps = false;
         this.hitTexture.setSize(100, 100)
+
+        this.dataMap = new Map()
+        if (data.dataSrc) {
+            d3[data.dataType](data.dataSrc, (error, dataObject) => {
+                console.log("loaded")
+            })
+
+        }
+
 
         this.el.addEventListener("geojson-projection-generated", e => {
 
@@ -44,7 +65,7 @@ AFRAME.registerComponent('geojson-globe', {
             this.el.setObject3D('mesh', layer)
             //this.el.addEventListener('click', this.select.bind(this))
 
-            //el.addEventListener('raycaster-intersected', _ => console.log("BORDER Inter"));
+            this.el.addEventListener('raycaster-intersected', this.select.bind(this));
             //el.addEventListener('raycaster-intersected-cleared', _ => console.log("BORDER Cleared"));
             this.el.emit('geojson-globe-generated');
         })
@@ -269,7 +290,13 @@ void main(){
 
     },
     selectFeature: function(feature) {
-        console.log(feature)
+        this.isSelecting = false
+        if (!feature) return
+        if (this.dataMap.size() > 0) {
+
+        } else {
+            console.log(feature.properties)
+        }
     },
     hitTest: function(obj) {
 
@@ -287,13 +314,12 @@ void main(){
                 var res = null;
 
                 renderer.readRenderTargetPixels(this.hitTexture, 0, 0, 1, 1, pixelBuffer);
-                console.log(pixelBuffer)
-                if (pixelBuffer[3] === 255) {
+                //if (pixelBuffer[3] === 255) {
                     if (pixelBuffer[0] === 255) {
                         console.log("Getting " + pixelBuffer[2])
                         res = this.codes.get(pixelBuffer[2])
                     }
-                }
+                //}
                 resolve(res);
 
             }.bind(this));
@@ -303,16 +329,21 @@ void main(){
 
     },
     select: function(e) {
+        if (this.isSelecting) return
+
         var entity = document.querySelector("[raycaster]")
         var raycaster = entity.components.raycaster.raycaster
 
         //var intersections = raycaster.intersectObject(this.el.object3DMap.mesh)
         var intersections = raycaster.intersectObject(this.maskMesh)
         if (intersections.length > 0) {
+            this.isSelecting = true
             var p = intersections[0].point;
+
             var dummy = new THREE.Object3D();
             dummy.lookAt(p)
             dummy.rotation.y += Math.PI;
+            //dummy.scale.x = -1  // TODO?
 
             this.hitTest(dummy).then(res => this.selectFeature(res))
         }
@@ -322,8 +353,8 @@ void main(){
     },
     generateMask: function(features) {
 
-        var width = 2048,
-            height = 1024
+        var width = 512*4,
+            height = 256*4
 
         const projection = d3.geoEquirectangular()
             .scale(height / Math.PI)
@@ -362,7 +393,7 @@ void main(){
             context.restore();
         })
 
-        //console.log(canvas.node().toDataURL());
+        console.log(canvas.node().toDataURL());
         const texture = new THREE.Texture(canvas.node());
         texture.needsUpdate = true;
 

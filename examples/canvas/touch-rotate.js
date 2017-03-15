@@ -99,6 +99,7 @@ AFRAME.registerComponent('touch-rotate', {
 
     this.touching = true
     THREE.SceneUtils.attach( object, this.el.sceneEl, this.camera); 
+    //this.el.sceneEl.appendChild(this.el)
     
     this.mouseDown = true;
     this.previousMouseEvent = event;
@@ -112,6 +113,7 @@ AFRAME.registerComponent('touch-rotate', {
       var object = this.el.object3D
 
       THREE.SceneUtils.detach( object, this.camera, this.el.sceneEl.object3D); 
+      //this.el.parentNode.appendChild(this.el)
 
     this.touching = false
       this.data.camera.setAttribute("look-controls-enabled", "true")
