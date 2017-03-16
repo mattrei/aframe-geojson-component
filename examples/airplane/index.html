@@ -70,7 +70,7 @@
   
 
       <a-entity id="player" position="0 0 0" look-controls
-      player="camera: #camera"
+      player="camera: #camera; radius: 16;"
         >
       <a-camera id="camera" userHeight="0" wasd-controls-enabled="false">
 
@@ -79,7 +79,7 @@
         -->
 
           <a-entity id="ortho-map" visible="true"
-            position="-1 0 -2"
+            position="-0.5 0 -2"
             material="shader: flat; side: front;  src: #ortho-map-canvas; transparent: true;"
             geometry="primitive: plane; width: 1; height: 1;"
             geojson-canvas="
@@ -102,7 +102,7 @@
 
 
           <a-entity id="flat-map" visible="true"
-            position="1 0 -2"
+            position="0.5 0 -2"
             material="shader: flat; side: front; src: #flat-map-canvas; transparent: true;"
             geometry="primitive: plane; width: 2; height: 1;"
             geojson-canvas="
