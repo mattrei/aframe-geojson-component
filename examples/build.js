@@ -97271,6 +97271,7 @@ var topojson = require('topojson-client')
 const PI_2 = Math.PI / 2
 
 AFRAME.registerComponent('geojson-canvas', {
+    dependencies: ["material"],
     schema: {
         src: {
             type: "asset"
