@@ -5,10 +5,12 @@
     <script src="../build.js"></script>
   </head>
   <body>
-    <a-scene stats>
+    <a-scene>
       <a-assets>
-        <a-asset-item id="json-world" src="assets/world-50m.v1.json" />
-        <a-asset-item id="tsv-world" src="assets/world-50m.v1.tsv" />
+        <a-asset-item id="json-world-50m" src="assets/world-50m.v1.json" />
+        <a-asset-item id="tsv-world-50m" src="assets/world-50m.v1.tsv" />
+        <a-asset-item id="json-world-110m" src="assets/world-110m.v1.json" />
+        <a-asset-item id="tsv-world-110m" src="assets/world-110m.v1.tsv" />
 
         <a-asset-item id="json-plates" src="assets/PB2002_plates.json" />
         <a-asset-item id="json-plates2" src="assets/plates_topo.json" />
@@ -27,35 +29,50 @@
           >
         </a-entity>
         -->
+        
+        <!--
         <a-entity id="countries-globe" 
-          class="gazeactivated"
-          geojson-projection="src: #json-world; featureKey: id; topologyObject: countries"
-          geojson-globe="radius: 1; color: #A0A; linewidth: 1; dataSrc: #tsv-world; dataType: tsv;"
+          class="gazeactivatedNOT"
+          geojson-projection="src: #json-world-110m; featureKey: id; topologyObject: countries"
+          geojson-globe="radius: 1.1; color: #A0A; linewidth: 1; dataSrc: #tsv-world-110m; dataType: tsv;"
           visible="true"
           >
         </a-entity>
+        -->
         <!--
         <a-entity id="rivers-globe" 
-          class="interactive"
+          class="gazeactivatedNOT"
           geojson-projection="src: #json-rivers; featureKey: name;"
           geojson-globe="radius: 1; color: #0AF; linewidth: 2;"
-          visible="false"
+          visible="true"
           >
           </a-entity>
 -->
-<!--
+
+          
         <a-entity id="places-globe" 
           class="gazeactivated"
           geojson-projection="src: #json-places; featureKey: name;"
           geojson-globe="radius: 1; color: #FFF; linewidth: 2;"
           >
           </a-entity>
-          -->
+          
+          
       </a-entity>
 
 
         <a-camera id="camera"  user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
-          <a-cursor raycaster="objects: .gazeactivated; interval: 1500;"></a-cursor>
+        <a-cursor fuse objects=".gazeactivated" interval=" 1500"></a-cursor>
+        <!--
+          <a-entity 
+            cursor="fuse: true; fuseTimeout: 500"
+            position="0 0 -2"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: black; shader: flat" 
+            raycaster="objects: .gazeactivated; interval: 1500;">
+            </a-entity>
+
+            -->
         </a-camera>
     </a-scene>
   </body>

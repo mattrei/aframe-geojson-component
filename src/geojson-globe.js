@@ -2,9 +2,11 @@ var d3 = require('d3');
 
 var FEATURE_SELECTED_EVENT = "feature-selected"
 
+const CANVAS_DATA_FACTOR = 10
+
 AFRAME.registerComponent('geojson-globe', {
 
-    dependencies: ["geojson-projection"],
+    dependencies: ["scale", "geojson-projection"],
     schema: {
         color: {
             default: "#fff",
@@ -23,6 +25,11 @@ AFRAME.registerComponent('geojson-globe', {
         dataType: {
             default: 'tsv',
             oneOf: ['csv', 'tsv']
+        },
+        // setting the resolution of the data raycasting resolution; set lower if data is very dense; set higher if you have not much data
+        raycastResolution: {
+            default: 1,
+            type: "int"
         }
     },
 
@@ -307,7 +314,7 @@ void main(){
         }
 
         if (this._selectedFeature !== selected) {
-            console.log(selected.name_long)
+            console.log(selected.name || selected.name_long)
             this._selectedFeature = selected
             this.el.emit(FEATURE_SELECTED_EVENT, selected)
         }
@@ -329,9 +336,13 @@ void main(){
 
                 renderer.readRenderTargetPixels(this.hitTexture, 0, 0, 1, 1, pixelBuffer);
                 //if (pixelBuffer[3] === 255) {
-                    if (pixelBuffer[0] === 255) {
-                        //console.log("Getting " + pixelBuffer[2])
-                        res = this.codes.get(pixelBuffer[2])
+                    if (pixelBuffer[0] === 255) {   // encoding test
+                        var multiplicator = pixelBuffer[1]
+                        var number = pixelBuffer[2]
+
+                        var code = multiplicator * 255 + number
+                        res = this.codes.get(code)
+
                     }
                 //}
                 resolve(res);
@@ -343,34 +354,38 @@ void main(){
 
     },
     select: function(e) {
-        if (this.isSelecting) return
+        var dummy = new THREE.Object3D();
 
-        var entity = document.querySelector("[raycaster]")
-        var raycaster = entity.components.raycaster.raycaster
+        return function() {
+            if (this.isSelecting) return
 
-        //var intersections = raycaster.intersectObject(this.el.object3DMap.mesh)
-        var intersections = raycaster.intersectObject(this.maskMesh)
-        if (intersections.length > 0) {
-            this.isSelecting = true
-            var p = intersections[0].point;
+            var entity = document.querySelector("[raycaster]")
+            var raycaster = entity.components.raycaster.raycaster
 
-            var dummy = new THREE.Object3D();
-            //dummy.scale.y = -1
-            dummy.lookAt(p)
-            //dummy.rotation.y += Math.PI;
-            //dummy.rotation.z = Math.PI
-            
+            //var intersections = raycaster.intersectObject(this.el.object3DMap.mesh)
+            var intersections = raycaster.intersectObject(this.maskMesh)
+            if (intersections.length > 0) {
+                this.isSelecting = true
+                var p = intersections[0].point;
 
-            this.hitTest(dummy).then(res => this.selectFeature(res))
+                
+                //dummy.scale.y = -1
+                dummy.lookAt(p)
+                //dummy.rotation.y += Math.PI;
+                //dummy.rotation.z = Math.PI
+                
+
+                this.hitTest(dummy).then(res => this.selectFeature(res))
+            }
+
+            //entity.components.raycaster.refreshObjects()
         }
 
-        //entity.components.raycaster.refreshObjects()
-
-    },
+    }(),
     generateMask: function(features) {
 
-        var width = 512*4,
-            height = 256*4
+        var width = 512*2,
+            height = 256*2
 
         const projection = d3.geoEquirectangular()
             .scale(height / Math.PI)
@@ -383,32 +398,38 @@ void main(){
             .select("body")
             .append("canvas")
             .attr("id", "mask-canvas")
+            .attr("image-rendering", "pixelated")
             .attr("width", `${width}px`)
             .attr("height", `${height}px`)
-        var context = d3.select("#mask-canvas").node().getContext("2d"),
-            contextPath = path.context(context);
+        var ctx = d3.select("#mask-canvas").node().getContext("2d"),
+            ctxPath = path.context(ctx);
+
+        ctx.imageSmoothingEnabled = false
+        ctx.webkitImageSmoothingEnabled = false;
+        ctx.mozImageSmoothingEnabled = false;
+        ctx.globalAlpha = 1
 
         features.forEach((feature, i) => {
-            //console.log(feature)
-            // TODO what if more than 255?
+                        //var valued = feature.id 
 
-            //var valued = feature.id 
+            var multiplicator = Math.floor(i / 255)
+            var number = i % 255
 
-            this.codes.set(i, feature) // feature.id
+            this.codes.set(multiplicator * 255 + number, feature) // feature.id
 
-            context.save();
-            context.beginPath()
-            context.fillStyle = `rgb(255,0,${i})`
-            context.strokeStyle = `rgb(255,0,${i})`
-            context.lineWidth = 10 // TODO set higher?
-            contextPath(feature);
+            ctx.save();
+            ctx.beginPath()
+            ctx.fillStyle = `rgb(255,${multiplicator},${number})`
+            ctx.strokeStyle = `rgb(255,${multiplicator},${number})`
+            ctx.lineWidth = CANVAS_DATA_FACTOR * this.data.raycastResolution
+            ctxPath(feature);
             if (feature.geometry.type.includes("LineString"))
-                context.stroke()
+                ctx.stroke()
             else if (feature.geometry.type.includes("Polygon"))
-                context.fill();
+                ctx.fill();
             else if (feature.geometry.type.includes("Point"))
-                context.fill();
-            context.restore();
+                ctx.fill();
+            ctx.restore();
         })
 
         //console.log(canvas.node().toDataURL());
@@ -426,8 +447,10 @@ void main(){
         );
         // TODO?
         var scale = this.el.getAttribute("scale")
-        //console.log(scale)
+        console.log(scale)
+        console.log(this.el.object3D.scale)
         //mesh.scale.x = this.el.object3D.scale.x
+        // TODO; get somehow scale from entity
         mesh.scale.x = -1
         mesh.scale.y = -1
 
