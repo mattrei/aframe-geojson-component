@@ -16,6 +16,7 @@
         <canvas id="ortho-map-canvas" crossOrigin="anonymous" width="180" height="180"></canvas>
       </a-assets>
       <a-assets>
+      <!--
         <a-cubemap id="sky">
           <img src="assets/milkyway/px.jpg">
           <img src="assets/milkyway/nx.jpg">
@@ -24,11 +25,11 @@
           <img src="assets/milkyway/pz.jpg">
           <img src="assets/milkyway/nz.jpg">
         </a-cubemap>
+      --> 
 
+        <img id="img-stars" src="assets/stars.jpg">
 
         <a-asset-item id="json-earth" src="assets/110m.json" />
-      
-        <!--<img id="milkywayMap" src="assets/milkyway_2k.jpg">-->
 
         <img id="arrow" src="assets/mini_arrow.png">
 
@@ -39,7 +40,7 @@
         <img id="atmosphereTexture" src="assets/rim.png">
       </a-assets>
 
-      <a-entity id="skyCube" geometry="primitive: box" material="envMap: #sky; roughness: 0" scale="5000 5000 5000"></a-entity>
+      <a-box src="#img-stars" width="5000" height="5000" depth="5000" side="back"> </a-box>
 
 
       <a-entity 
@@ -65,58 +66,63 @@
          >
         </a-entity>
 
-      <!-- Background sky. -->
-      <!--<a-sky height="2048" radius="30" src="#skyTexture" theta-length="90" width="2048"></a-sky>-->
+      <a-light type="ambient" color="#fff"></a-light>
+  
 
       <a-entity id="player" position="0 0 0" look-controls
       player="camera: #camera"
         >
-      <a-entity id="camera" camera="userHeight: 0" look-controls >
-        <!--<a-entity light="type: directional; intensity: 1; 
-        distance: 0; decay: 0;
-        angle: 30; penumbra: 1;"
-                  position="0 0 0" visible="false"></a-entity>
-        </a-entity>-->
+      <a-camera id="camera" userHeight="0" wasd-controls-enabled="false">
+
+<!--
+        <a-entity light="type: spot; intensity: 0.75; distance: 50; decay: 2" position="0 0 -1"></a-entity>
+        -->
 
           <a-entity id="ortho-map" visible="true"
             position="-1 0 -2"
-            material="shader: flat; src: #ortho-map-canvas; transparent: true;"
+            material="shader: flat; side: front;  src: #ortho-map-canvas; transparent: true;"
             geometry="primitive: plane; width: 1; height: 1;"
             geojson-canvas="
             canvas: #ortho-map-canvas; 
             src: #json-earth;
             projection: orthographic; 
-            fillColor: #FFF;
-            strokeColor: #F00;
+            fillColor: #000;
+            lineColor: #FFF;
             "
-            scale="0.5 0.5 0"
+            scale="0.5 0.5 1"
             >
-            <a-image src="#arrow" transparent="true" width="0.1" height="0.1"
-            position="0 0 -0.2"
-            ortho-arrow="player: #player"></a-image>
+              <a-image src="#arrow" transparent="true"
+              width="0.05" height="0.08"
+              position="0 0 0.1"
+              ortho-arrow="player: #player">
+                
+              </a-image>
           </a-entity>
 
 
 
           <a-entity id="flat-map" visible="true"
             position="1 0 -2"
-            material="shader: flat; src: #flat-map-canvas; transparent: true;"
+            material="shader: flat; side: front; src: #flat-map-canvas; transparent: true;"
             geometry="primitive: plane; width: 2; height: 1;"
             geojson-canvas="
             canvas: #flat-map-canvas; 
             src: #json-earth;
             projection: equirectangular;
-            fillColor: #FFF;
-            strokeColor: #F00;
+            fillColor: #000;
+            lineColor: #FFF;
             "
-            scale="0.5 0.5 0"
+            scale="0.5 0.5 1"
             >
-            <a-image src="#arrow" transparent="true" width="0.1" height="0.1"
-            position="0 0 -0.2"
-            plane-arrow="player: #player"></a-image>
+              <a-image src="#arrow" transparent="true" 
+              width="0.05" height="0.08"
+              position="0 0 0.1"
+              plane-arrow="player: #player">
+                
+              </a-image>
           </a-entity>
           
-      </a-entity>
+      </a-camera>
     </a-scene>
 
   </body>

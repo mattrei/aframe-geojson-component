@@ -27,6 +27,7 @@ AFRAME.registerComponent('ortho-arrow', {
 
         var loc = this.player.getLatLonAzimuth();
 
+        var position = this.el.getAttribute("position")
         var rotation = this.el.getAttribute("rotation")
 
         this.el.setAttribute("rotation", {
@@ -39,7 +40,8 @@ AFRAME.registerComponent('ortho-arrow', {
 
         this.el.setAttribute("position", {
                 x: 0,
-                y: 0
+                y: 0,
+                z: position.z
             })
     },
 })

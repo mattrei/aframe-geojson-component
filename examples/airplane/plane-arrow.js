@@ -27,6 +27,7 @@ AFRAME.registerComponent('plane-arrow', {
 
         var loc = this.player.getLatLonAzimuth();
 
+        var position = this.el.getAttribute("position")
         var rotation = this.el.getAttribute("rotation")
 
         this.el.setAttribute("rotation", {
@@ -42,38 +43,8 @@ AFRAME.registerComponent('plane-arrow', {
 
         this.el.setAttribute("position", {
                 x: x,
-                y: -y
-            })
-    },
-    tickBAK: function(time, delta) {
-        if (!this.player) return
-
-        var loc = this.player.getLatLonAzimuth();
-
-        var rotation = this.el.getAttribute("rotation")
-
-        this.el.setAttribute("rotation", {
-            x: rotation.x,
-            y: rotation.y,
-            z: (loc.azimuth / (Math.PI * 2)) * 360
-        })
-
-        var lat = loc.lat,
-            lon = loc.lon
-
-        //console.log(lat + " " + lon)
-        var proj = this.projection.getProjection()
-        var xy = proj([lon * (2*Math.PI), lat * (Math.PI)])
-        console.log(xy)
-
-        var x = lon * this.mapWidth / (2 * Math.PI),
-            y = lat * this.mapHeight / Math.PI;
-
-        console.log(x + " - " + y)
-
-        this.el.setAttribute("position", {
-                x: x,
-                y: y
+                y: -y,
+                z: position.z
             })
     }
 })
