@@ -2,7 +2,15 @@ AFRAME.registerComponent('player', {
     schema: {
         radius: {
             type: 'number',
-            default: 13
+            default: 16
+        },
+        minRadius: {
+            type: 'number',
+            default: 13.5
+        },
+        maxRadius: {
+            type: 'number',
+            default: 20
         },
         camera: {
             type: "selector",
@@ -59,18 +67,35 @@ AFRAME.registerComponent('player', {
 
         var forward = this.getForward().setLength(distance) 
         // set length of forward z-axis
-        // position = position + speed
 
 
         // change position by forward
-        this.position.sub(forward)
+        if (this.position.sub(forward)) {
+            var length = this.position.length();
+
+            if (length < this.data.minRadius) {
+                this.position.setLength(this.data.minRadius)
+            } else if (length > this.data.maxRadius) {
+                this.position.setLength(this.data.maxRadius)
+            }
+        }
 
         // set height
+
 /*
-        if (this.position.sub(forward) < minglenth) {
-            this.position.setLength(radius)
+        if (this.position.sub(forward) < this.data.minRadius) {
+            this.position.setLength(this.data.minRadius)
         }
         */
+        /*
+        var altitude = this.position.sub(forward).length()
+        console.log(altitude)
+        if (altitude < this.data.minRadius) {
+            this.position.add(forward)
+            console.log(this.position)
+        }
+        */
+        
 
         // thats were cross products are used most
         // https://classroom.udacity.com/courses/cs291/lessons/158750187/concepts/1694147620923#
