@@ -9,18 +9,12 @@
   <body>
     <a-scene>
       <a-assets>
-        <img id="waterNormalMap" src="assets/water-normal.jpg">
-
-        <img id="earthMap" src="assets/earth.png">
-
+        <img id="earthMap" src="assets/earth.jpg">
         <img id="normalMap" src="assets/earth_normalmap.jpg">
         
         <img id="bumpMap" src="assets/bathymetry_bw_composite_4k.jpg">
 
-        <img id="diffuseMap" src="assets/bathymetry_diffuse_4k.jpg">
-
         <img id="img-stars" src="assets/stars.jpg">
-
 
         <a-asset-item id="json-plates" src="assets/PB2002_plates.json" />
         <a-asset-item id="json-countries" src="assets/50m.json" />
@@ -35,7 +29,7 @@
         <a-entity 
         geometry="primitive: sphere; radius: 10; segmentsWidth: 512; segmentsHeight: 256; " 
         material="
-        src: #bumpMap; 
+        src: #earthMap; 
         normalMap: #normalMap; 
         displacementMap: #bumpMap; displacementTextureRepeat: 2 2; displacementScale: 1.0;
         flatShading: false;
@@ -43,11 +37,11 @@
         depthTest: true;"
         scale="1 1 1">
 
-          <a-entity scale="-1 1 1" rotation="0 180 0">
+          <a-entity scale="1 1 1" rotation="0 0 0">
             <a-entity id="plates-globe" 
               class="interactive"
               geojson-projection="src: #json-plates; featureKey: name;"
-              geojson-globe="radius: 11.5; color: #F0F; linewidth: 2;"
+              geojson-globe="radius: 11.5; color: #FFF; linewidth: 2;"
               visible="true"
               >
             </a-entity>
@@ -56,7 +50,7 @@
               class="interactiveNOT"
               geojson-projection="src:#json-countries; featureKey: id;"
               geojson-globe="radius: 11.3; color: #00F; linewidth: 1;"
-              visible="true"
+              visible="false"
               >
             </a-entity>
           </a-entity>
@@ -73,9 +67,9 @@
       satellite="globe: #globe;"
         >
 
-        <a-entity id="camera" camera="userHeight: 0" look-controls position="0 0 0">
+        <a-camera id="camera" userHeight="0" position="0 0 0">
 
-
+          <!--<a-cursor fuse objects=".gazeactivated"></a-cursor>-->
           <a-entity visible="true" light="type: spot; angle: 80; penumbra: 1.9;"></a-entity>
           <!--<a-entity light="type: directional; intensity: 1; 
           distance: 0; decay: 0;
@@ -83,7 +77,7 @@
                     position="0 0 0" visible="false"></a-entity>
           </a-entity>-->          
         </a-entity>
-      </a-entity>
+      </a-camera>
     </a-scene>
 
   </body>
