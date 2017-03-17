@@ -41,7 +41,7 @@
             <a-entity id="plates-globe" 
               class="interactive"
               geojson-projection="src: #json-plates; featureKey: name;"
-              geojson-globe="radius: 11.5; color: #FFF; linewidth: 2;"
+              geojson-globe="radius: 11.5; color: #FFF; lineWidth: 2;"
               visible="true"
               >
             </a-entity>
@@ -49,7 +49,7 @@
             <a-entity id="countries-globe" 
               class="interactiveNOT"
               geojson-projection="src:#json-countries; featureKey: id;"
-              geojson-globe="radius: 11.3; color: #00F; linewidth: 1;"
+              geojson-globe="radius: 11.3; color: #00F; lineWidth: 1;"
               visible="false"
               >
             </a-entity>
@@ -61,6 +61,7 @@
       </a-entity>
 
 
+      <a-entity visible="false" light="type: ambient"></a-entity>
 
 
       <a-entity id="player" position="0 0 19" 

@@ -138,6 +138,9 @@ AFRAME.registerComponent('player', {
 
         
     },
+    getPosition: function() {
+        return this.position
+    },
 
 
     play: function() {

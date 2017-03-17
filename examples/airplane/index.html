@@ -4,11 +4,12 @@
     <meta name="description" content="Airplane example."></meta>
     <script src="../build.js"></script>
     <script src="./player.js"></script>
+    <script src="./atmosphere.js"></script>
     <script src="./plane-arrow.js"></script>
     <script src="./ortho-arrow.js"></script>
   </head>
   <body>
-    <a-scene>
+    <a-scene >
       <a-assets>
         <canvas id="flat-map-canvas" crossOrigin="anonymous" width="360" height="180"></canvas>
       </a-assets>
@@ -35,44 +36,55 @@
 
         <img id="waterNormalMap" src="assets/water-normal.jpg">
         <img id="bumpMap" src="assets/bathymetry_bw_composite_4k.jpg">
-        <img id="diffuseMap" src="assets/bathymetry_diffuse_4k.jpg">
+        <img id="earthMap" src="assets/bathymetry_diffuse_4k.jpg">
 
         <img id="atmosphereTexture" src="assets/rim.png">
       </a-assets>
 
-      <a-box src="#img-stars" width="5000" height="5000" depth="5000" side="back"> </a-box>
+      <a-box src="#img-stars" material="fog: false" width="5000" height="5000" depth="5000" side="back"> </a-box>
 
 
-      <a-entity 
-        geometry="primitive: sphere; radius: 10; segmentsWidth: 512; segmentsHeight: 256; " 
-        material="src: #diffuseMap; 
-        displacementMap: #bumpMap; displacementTextureRepeat: 2 2; displacementScale: 1.4;
-        flatShading: false;
-        shader: standard;
-        depthTest: true;"
-        scale="1 1 1">
+      <a-entity>
+        <a-entity 
+          geometry="primitive: sphere; radius: 10; segmentsWidth: 512; segmentsHeight: 256; " 
+          material="
+          src: #earthMap; 
+          displacementMap: #bumpMap; displacementTextureRepeat: 2 2; displacementScale: 1.4;
+          flatShading: false;
+          shader: standard;
+          depthTest: true;"
+          scale="1 1 1">
         </a-entity>
         <a-entity 
-        geometry="primitive: icosahedron; detail: 3; radius: 11.25;"
-        material="normalMap: #waterNormalMap; 
-        normalTextureRepeat: 2 1; normalScale: 4 4;
-        flatShading: false;
-        shader: standard;
-        depthTest: true;
-        color: #1c6ba0;
-        transparent: true; opacity: 0.6;"
-        visible="true"
-        scale="1 1 1"
-         >
+          geometry="primitive: icosahedron; detail: 3; radius: 11.25;"
+          material="
+          normalMap: #waterNormalMap; 
+          normalTextureRepeat: 2 1; normalScale: 4 4;
+          flatShading: false;
+          shader: standard;
+          depthTest: true;
+          color: #1c6ba0;
+          transparent: true; opacity: 0.6;"
+          visible="true"
+          scale="1 1 1"
+           >
         </a-entity>
+        
+        <a-entity atmosphere="radius: 9; player: #player; texture: #atmosphereTexture"></a-entity>
+      </a-entity>
 
       <a-light type="ambient" color="#fff"></a-light>
+
+
+      <a-ring src="#atmosphereTexture"></a-ring>
   
 
       <a-entity id="player" position="0 0 0" 
       player="camera: #camera; radius: 16; speed: 2;"
         >
       <a-camera id="camera" userHeight="0" wasd-controls-enabled="false">
+
+
 
 <!--
         <a-entity light="type: spot; intensity: 0.75; distance: 50; decay: 2" position="0 0 -1"></a-entity>
@@ -88,6 +100,10 @@
             projection: orthographic; 
             fillColor: #000;
             lineColor: #FFF;
+            fillOpacity: 0;
+            lineOpacity: 1;
+            lineWidth: 2;
+            topologyObject: land;
             "
             scale="0.5 0.5 1"
             >
@@ -111,6 +127,10 @@
             projection: equirectangular;
             fillColor: #000;
             lineColor: #FFF;
+            fillOpacity: 0;
+            lineOpacity: 1;
+            lineWidth: 2;
+            topologyObject: land;
             "
             scale="0.5 0.5 1"
             >

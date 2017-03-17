@@ -6,13 +6,16 @@ const CANVAS_DATA_FACTOR = 10
 
 AFRAME.registerComponent('geojson-globe', {
 
-    dependencies: ["scale", "geojson-projection"],
+    dependencies: ["geojson-projection"],
     schema: {
         color: {
             default: "#fff",
             type: "color"
         },
-        linewidth: {    // TODO rename to size?
+        lineWidth: { 
+            default: 1
+        },
+        lineOpacity: {
             default: 1
         },
         radius: {
@@ -173,6 +176,8 @@ void main(){
     },
     generateLines: function(mapData) {
 
+        const data = this.data
+
         var layer = new THREE.Object3D()
 
         var min = 10000000,
@@ -195,6 +200,7 @@ void main(){
         const shapesMaterial = new THREE.LineBasicMaterial({
             transparent: true,
             linewidth: 2,
+            opacity: data.lineOpacity,
             color: 0xff0000
         });
 
@@ -274,8 +280,9 @@ void main(){
 
         const bordersMaterial = new THREE.LineBasicMaterial({
             transparent: true,
-            linewidth: this.data.linewidth,
-            color: this.data.color,
+            linewidth: data.lineWidth,
+            opacity: data.lineOpacity,
+            color: data.color,
             side: THREE.DoubleSide,
         });
 
@@ -445,14 +452,13 @@ void main(){
                 opacity: 1
             })
         );
-        // TODO?
-        var scale = this.el.getAttribute("scale")
-        console.log(scale)
-        console.log(this.el.object3D.scale)
+
+        var scale = this.el.object3D.getWorldScale()
         //mesh.scale.x = this.el.object3D.scale.x
         // TODO; get somehow scale from entity
-        mesh.scale.x = -1
-        mesh.scale.y = -1
+        mesh.scale.x = scale.x
+        mesh.scale.y = -scale.y // i have no idea why minus
+        mesh.scale.z = scale.z
 
         this.hitScene.add(mesh);
 

@@ -29,6 +29,12 @@ AFRAME.registerComponent('geojson-canvas', {
         lineWidth: {
             default: 1
         },
+        fillOpacity: {
+            default: 1
+        },
+        lineOpacity: {
+            default: 1
+        },
         center: {
             default: [0, 0],
             type: "array"
@@ -70,6 +76,11 @@ AFRAME.registerComponent('geojson-canvas', {
         var data = this.data
         this.projection.rotate(data.rotation)
         this.projection.center(data.center)
+
+
+        this._lineColor = this._getColorStyle(new THREE.Color(data.lineColor), data.lineOpacity)
+        this._fillColor = this._getColorStyle(new THREE.Color(data.fillColor), data.fillOpacity)
+
         this.draw()
     },
     initialize: function(err, json) {
@@ -92,9 +103,8 @@ AFRAME.registerComponent('geojson-canvas', {
     draw: function() {
         if (!this.features) return
 
-        var data = this.data
-        var lineColor = new THREE.Color(data.lineColor).getStyle()
-        var fillColor = new THREE.Color(data.fillColor).getStyle()
+        const data = this.data
+        
 
         var context = this.ctx
 
@@ -103,16 +113,21 @@ AFRAME.registerComponent('geojson-canvas', {
         context.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.features.forEach((feature, i) => {
             // TODO really needed?
-            context.save();
+            //context.save();
             context.beginPath()
             contextPath(feature);
             context.lineWidth = data.lineWidth
-            context.strokeStyle = lineColor//`rgba(0,120,0,1)`
+            context.strokeStyle = this._lineColor
             context.stroke()
-            context.fillStyle = fillColor//`rgba(1,1,1,1)`
+            context.fillStyle = this._fillColor
             context.fill();
-            context.restore();
+            //context.restore();
         })
+
+    },
+    _getColorStyle: function(color, opacity) {
+
+        return `rgba( ${((color.r * 255 ) | 0)}, ${((color.g * 255 ) | 0 )},${(( color.b * 255 ) | 0 )}, ${opacity})`
 
     },
     getProjection: function() {
