@@ -3,6 +3,7 @@
     <title>A-Frame Geojson Component - Basic</title>
     <meta name="description" content="Basic example for Geojson component."></meta>
     <script src="../build.js"></script>
+    <script src="./selection-to-text.js"></script>
   </head>
   <body>
     <a-scene>
@@ -30,30 +31,30 @@
         </a-entity>
         -->
         
-        <!--
+        
         <a-entity id="countries-globe" 
-          class="gazeactivatedNOT"
+          class="gazeactivated"
           geojson-projection="src: #json-world-110m; featureKey: id; topologyObject: countries"
-          geojson-globe="radius: 1.1; color: #A0A; lineWidth: 1; dataSrc: #tsv-world-110m; dataType: tsv;"
+          geojson-globe="radius: 1.1; color: #000; lineWidth: 1; dataSrc: #tsv-world-110m; dataType: tsv;"
           visible="true"
+          selection-to-text="#infoText"
           >
         </a-entity>
-        -->
-        <!--
+        
         <a-entity id="rivers-globe" 
-          class="gazeactivatedNOT"
+          class="gazeactivated"
           geojson-projection="src: #json-rivers; featureKey: name;"
           geojson-globe="radius: 1; color: #0AF; lineWidth: 2;"
           visible="true"
+          selection-to-text="#infoText"
           >
           </a-entity>
--->
-
           
         <a-entity id="places-globe" 
           class="gazeactivated"
           geojson-projection="src: #json-places; featureKey: name;"
-          geojson-globe="radius: 1; color: #FFF; lineWidth: 2;"
+          geojson-globe="radius: 1; color: #F0A; lineWidth: 2;"
+          selection-to-text="#infoText"
           >
           </a-entity>
           
@@ -62,17 +63,10 @@
 
 
         <a-camera id="camera"  user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
-        <a-cursor fuse objects=".gazeactivated" interval=" 1500"></a-cursor>
-        <!--
-          <a-entity 
-            cursor="fuse: true; fuseTimeout: 500"
-            position="0 0 -2"
-            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-            material="color: black; shader: flat" 
-            raycaster="objects: .gazeactivated; interval: 1500;">
-            </a-entity>
 
-            -->
+          <a-text id="infoText" color="black" value="" position="0.5 0 -0.8" scale="0.4 0.4 0.4"></a-text>
+
+          <a-cursor fuse objects=".gazeactivated" interval="2000"></a-cursor>
         </a-camera>
     </a-scene>
   </body>

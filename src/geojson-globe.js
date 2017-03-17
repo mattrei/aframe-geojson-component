@@ -88,6 +88,8 @@ AFRAME.registerComponent('geojson-globe', {
     },
     generatePoints: function(mapData) {
 
+        const data = this.data
+
         var points = 0;
         mapData.forEach(territory => {
             territory.forEach(path => {
@@ -129,7 +131,8 @@ AFRAME.registerComponent('geojson-globe', {
             size: 0.02,
             sizeAttenuation: true,
             transparent: true,
-            color: 0xff0000
+            color: data.color,
+            //opacity: data.opacity
         });
 
 /*

@@ -104,15 +104,11 @@ AFRAME.registerComponent('geojson-canvas', {
         if (!this.features) return
 
         const data = this.data
-        
-
         var context = this.ctx
-
         var contextPath = this.mapPath.context(context);
 
         context.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.features.forEach((feature, i) => {
-            // TODO really needed?
             //context.save();
             context.beginPath()
             contextPath(feature);
