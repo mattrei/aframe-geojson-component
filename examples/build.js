@@ -97371,15 +97371,11 @@ AFRAME.registerComponent('geojson-canvas', {
         if (!this.features) return
 
         const data = this.data
-        
-
         var context = this.ctx
-
         var contextPath = this.mapPath.context(context);
 
         context.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.features.forEach((feature, i) => {
-            // TODO really needed?
             //context.save();
             context.beginPath()
             contextPath(feature);
@@ -97514,6 +97510,8 @@ AFRAME.registerComponent('geojson-globe', {
     },
     generatePoints: function(mapData) {
 
+        const data = this.data
+
         var points = 0;
         mapData.forEach(territory => {
             territory.forEach(path => {
@@ -97555,7 +97553,8 @@ AFRAME.registerComponent('geojson-globe', {
             size: 0.02,
             sizeAttenuation: true,
             transparent: true,
-            color: 0xff0000
+            color: data.color,
+            //opacity: data.opacity
         });
 
 /*
