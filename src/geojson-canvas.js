@@ -1,4 +1,5 @@
 var d3 = require('d3');
+var d3GeoProjection = require('d3-geo-projection');
 var topojson = require('topojson-client')
 
 const PI_2 = Math.PI / 2
@@ -61,9 +62,11 @@ AFRAME.registerComponent('geojson-canvas', {
         var width = this.canvas.width
         var height = this.canvas.height
 
-        var geoFunc = data.projection === "equirectangular" ? 
+        var geoFunc = data.projection === "equirectangular" ?
             d3.geoEquirectangular :
             d3.geoOrthographic
+
+
 
         this.projection = geoFunc()
             .scale(height / Math.PI)
@@ -86,6 +89,8 @@ AFRAME.registerComponent('geojson-canvas', {
     initialize: function(err, json) {
 
         var data = this.data
+
+        d3GeoProjection.geoStitch(json)
 
         var isTopojson = json.features === undefined
         if (isTopojson) {
@@ -132,7 +137,7 @@ AFRAME.registerComponent('geojson-canvas', {
     xyFromLatLon: function(lat, lon) {
         // lat lon are in rad, but d3 needs them in degrees
         // TODO use THREEJS Math.DEG_RAD
-        
+
 
         var point = this.projection(this._degFromRad([lon, lat]))
         return {

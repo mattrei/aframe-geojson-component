@@ -1,22 +1,25 @@
-//const world = require("./node_modules/world-atlas/world/110m.json")
-require('pathseg') //polyfill
-var d3 = require('d3');
+
+
+require('pathseg') // polyfill
+
+var d3 = require('d3')
+
 var topojson = require('topojson-client')
 
 AFRAME.registerComponent('geojson-projection', {
     schema: {
         src: {
-            type: "asset"
+            type: 'asset'
         },
         codeAttribute: {
-            default: "" // TODO
+            default: '' // TODO
         },
         projection: {
-            default: "equirectangular",
-            oneOf: ["equirectangular", "orthographic"]
+            default: 'equirectangular',
+            oneOf: ['equirectangular', 'orthographic']
         },
         featureKey: {
-            default: "id"
+            default: 'id'
         },
         // for a topojson, else first will be taken
         topologyObject: {
@@ -25,92 +28,101 @@ AFRAME.registerComponent('geojson-projection', {
     },
 
     init: function() {
-        d3.json(this.data.src, this.initialize.bind(this));
+        d3.json(this.data.src, this.initialize.bind(this))
     },
     initialize: function(err, json) {
-        const data = this.data;
-        const el = this.el;
+        const data = this.data
+            const el = this.el
 
-        var width = 360, // corresponds to lon
-            height = 180 // and lat
+                var width = 360, // corresponds to lon
+                    height = 180 // and lat
 
+                var geoFunc = data.projection === 'equirectangular'
+                    ? d3.geoEquirectangular
+                    : d3.geoOrthographic
 
-        var geoFunc = data.projection === "equirectangular" ?
-            d3.geoEquirectangular :
-            d3.geoOrthographic
+                const projection = geoFunc().scale(height / Math.PI). // http://bl.ocks.org/mbostock/3757119
+                translate([
+                    width / 2,
+                    height / 2
+                ])
+                const path = d3.geoPath(projection).pointRadius(0.1)
 
-        const projection = geoFunc()
-            .scale(height / Math.PI) //http://bl.ocks.org/mbostock/3757119
-            .translate([width / 2, height / 2]);
-        const path = d3.geoPath(projection)
-            .pointRadius(0.1)
+                var svg = d3.select('body').append('svg').attr('width', width).attr('height', height)
 
-        var svg = d3.select("body").append("svg")
-            .attr("width", width)
-            .attr("height", height)
+                var isTopojson = json.features === undefined
 
-        var isTopojson = json.features === undefined
+                var features
+                if (isTopojson) {
+                    var topologyObjectName = data.topologyObject
+                    if (!data.topologyObject) {
+                        topologyObjectName = Object.keys(json.objects)[0]
+                    }
+                    features = topojson.feature(json, json.objects[topologyObjectName]).features
+                } else {
+                    features = json.features
+                }
 
+                var paths = svg.append('g').attr('class', 'features')
+                paths.selectAll('path').data(features).enter().append('path').attr('id', d => isTopojson
+                    ? d.id
+                    : d.properties[data.featureKey]).attr('d', path).attr('fill', 'none'). // important for lines!
+                style('stroke', 'black')
 
-        var features
-        if (isTopojson) {
-            var topologyObjectName = data.topologyObject
-            if (!data.topologyObject) {
-                topologyObjectName = Object.keys(json.objects)[0]
-            }
-            features = topojson.feature(json, json.objects[topologyObjectName]).features
-        } else {
-            features = json.features
-        }
+                var mapData = this.generate(svg.selectAll('path'))
 
-        var paths = svg.append("g")
-            .attr("class", "features")
-        paths.selectAll("path")
-            .data(features)
-            .enter()
-            .append("path")
-            .attr("id", d => isTopojson ? d.id : d.properties[data.featureKey])
-            .attr("d", path)
-            .attr("fill", "none") // important for lines!
-            .style("stroke", "black")
+                //svg.remove()
 
-        var mapData = this.generate(svg.selectAll("path"))
+                el.emit('geojson-projection-generated', {
+                    map: mapData,
+                    features: features
+                })
+            },
+            generate: function(paths) {
+                var map = new Map()
 
-        svg.remove()
+                var pathNodes = paths.nodes()
 
-        el.emit('geojson-projection-generated', {
-            map: mapData,
-            features: features
-        });
-    },
-    generate: function(paths) {
+                pathNodes.forEach(p => {
+                    var key = p.__data__.properties[this.data.featureKey] // p.id
+                        var type = p.__data__.geometry.type // Point, String, Polygon
 
-        var map = new Map();
+                            var territory = {
+                                    id: key,
+                                    lines: [],
+                                    points: []
+                                }
+                                var line = []
+                                    // var vertices = line.vertices;
+                                    var x,
+                                        y
+                                    var ox,
+                                        oy
+                                    var px,
+                                        py
 
-        var pathNodes = paths.nodes()
+                                    var segments = p.pathSegList
+                                    for (var i = 0; i < segments.numberOfItems; i++) {
+                                        var segment = segments.getItem(i)
 
-        pathNodes.forEach(p => {
-            var key = p.__data__.properties[this.data.featureKey] //p.id
-            var type = p.__data__.geometry.type // Point, String, Polygon
+                                        if (((segment.x >= 359 || segment.x <= 1) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
+                                            //console.log(segment)
+                                            // some GEOJSON files have a border around them
+                                            // to avoid having a frame aroudn the plane we omit
+                                            // the top-, left, right-, bottomost lines
+                                        } else {
 
-            var territory = {
-                id: key,
-                lines: [],
-                points: []
-            };
-            var line = []
-                //var vertices = line.vertices;
-            var x, y;
-            var ox, oy;
-            var px, py;
-
-            var segments = p.pathSegList;
-            for (var i = 0; i < segments.numberOfItems; i++) {
-
-                var segment = segments.getItem(i);
-
-                var types = [SVGPathSegMovetoAbs, SVGPathSegLinetoRel, SVGPathSegLinetoVerticalRel, SVGPathSegLinetoHorizontalRel, SVGPathSegLinetoHorizontalAbs, SVGPathSegLinetoVerticalAbs, SVGPathSegClosePath, SVGPathSegLinetoAbs /*, SVGPathSegMovetoRel, SVGPathSegCurvetoCubicRel*/ ];
-                /*
+                                            var types = [
+                                                SVGPathSegMovetoAbs,
+                                                SVGPathSegLinetoRel,
+                                                SVGPathSegLinetoVerticalRel,
+                                                SVGPathSegLinetoHorizontalRel,
+                                                SVGPathSegLinetoHorizontalAbs,
+                                                SVGPathSegLinetoVerticalAbs,
+                                                SVGPathSegClosePath,
+                                                SVGPathSegLinetoAbs/*, SVGPathSegMovetoRel, SVGPathSegCurvetoCubicRel */
+                                            ]
+                                            /*
                 var found = false;
                 types.forEach(function(t) {
                     if (segment instanceof t) {
@@ -122,86 +134,83 @@ AFRAME.registerComponent('geojson-projection', {
                 }
                 */
 
-                //console.log(segment)
-                // TODO add segements for points
+                                            // console.log(segment)
+                                            // TODO add segements for points
 
-                if (segment instanceof SVGPathSegMovetoAbs) {
-                    x = segment.x;
-                    y = segment.y;
-                    ox = x;
-                    oy = y;
+                                            if (segment instanceof SVGPathSegMovetoAbs) {
+                                                x = segment.x
+                                                y = segment.y
+                                                ox = x
+                                                oy = y
 
+                                                if (type.includes('Point')) {
+                                                    territory.points.push(new THREE.Vector2(x, y))
+                                                } else {
+                                                    // add line;
+                                                    territory.lines.push(line)
+                                                    line = []
+                                                    line.push(new THREE.Vector2(x, y))
+                                                }
+                                            }
+                                            if (segment instanceof SVGPathSegLinetoRel) {
+                                                x = px + segment.x
+                                                y = py + segment.y
+                                                line.push(new THREE.Vector2(x, y))
+                                            }
+                                            if (segment instanceof SVGPathSegLinetoAbs) {
+                                                x = segment.x
+                                                y = segment.y
+                                                line.push(new THREE.Vector2(x, y))
+                                            }
+                                            if (segment instanceof SVGPathSegLinetoVerticalRel) {
+                                                x = px
+                                                y = py + segment.y
+                                                line.push(new THREE.Vector2(x, y))
+                                            }
+                                            if (segment instanceof SVGPathSegLinetoHorizontalRel) {
+                                                x = px + segment.x
+                                                y = py
+                                                line.push(new THREE.Vector2(x, y))
+                                            }
+                                            if (segment instanceof SVGPathSegLinetoHorizontalAbs) {
+                                                x = segment.x
+                                                y = py
+                                                line.push(new THREE.Vector2(x, y))
+                                            }
+                                            if (segment instanceof SVGPathSegLinetoVerticalAbs) {
+                                                x = px
+                                                y = segment.y
+                                                line.push(new THREE.Vector2(x, y))
+                                            }
+                                            if (segment instanceof SVGPathSegClosePath || i + 1 === segments.numberOfItems) { // Lines are not closed
+                                                // x = ox;
+                                                // y = oy;
+                                                // line.push( new THREE.Vector2( x, y ) );
+                                                // add line
+                                                territory.lines.push(line)
+                                                line = []
+                                            }
 
-                    if (type.includes("Point")) {
-                        territory.points.push(new THREE.Vector2(x, y));
-                    } else {
-                        // add line;
-                        territory.lines.push(line);
-                        line = []
-                        line.push(new THREE.Vector2(x, y));
-                    }
-                }
-                if (segment instanceof SVGPathSegLinetoRel) {
-                    x = px + segment.x;
-                    y = py + segment.y;
-                    line.push(new THREE.Vector2(x, y));
-                }
-                if (segment instanceof SVGPathSegLinetoAbs) {
-                    x = segment.x;
-                    y = segment.y;
-                    line.push(new THREE.Vector2(x, y));
-                }
-                if (segment instanceof SVGPathSegLinetoVerticalRel) {
-                    x = px;
-                    y = py + segment.y;
-                    line.push(new THREE.Vector2(x, y));
-                }
-                if (segment instanceof SVGPathSegLinetoHorizontalRel) {
-                    x = px + segment.x;
-                    y = py;
-                    line.push(new THREE.Vector2(x, y));
-                }
-                if (segment instanceof SVGPathSegLinetoHorizontalAbs) {
-                    x = segment.x;
-                    y = py;
-                    line.push(new THREE.Vector2(x, y));
-                }
-                if (segment instanceof SVGPathSegLinetoVerticalAbs) {
-                    x = px;
-                    y = segment.y;
-                    line.push(new THREE.Vector2(x, y));
-                }
-                if (segment instanceof SVGPathSegClosePath ||
-                    i + 1 === segments.numberOfItems) { // Lines are not closed
-                    //x = ox;
-                    //y = oy;
-                    //line.push( new THREE.Vector2( x, y ) );
-                    // add line
-                    territory.lines.push(line);
-                    line = []
-                }
+                                            px = x
+                                            py = y
+                                        }
 
-                px = x;
-                py = y;
+                                    }
 
-            }
+                                    territory.lines = territory.lines.filter((l) => {
+                                        return l.length > 0
+                                    })
+                                    // countries.push( territory );
 
+                                    if (!map.has(key)) {
+                                        map.set(key, [])
+                                    }
+                                    map.get(key).push(territory)
+                                })
 
-            territory.lines = territory.lines.filter((l) => {
-                    return l.length > 0
-                })
-                //countries.push( territory );
+                                // console.log(map)
 
-            if (!map.has(key)) {
-                map.set(key, []);
-            }
-            map.get(key).push(territory);
+                                return map
+                            }
 
-        })
-
-        //console.log(map)
-
-        return map;
-    }
-
-});
+                        })

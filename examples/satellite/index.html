@@ -11,12 +11,12 @@
       <a-assets>
         <img id="earthMap" src="assets/earth.jpg">
         <img id="normalMap" src="assets/earth_normalmap.jpg">
-        
+
         <img id="bumpMap" src="assets/bathymetry_bw_composite_4k.jpg">
 
         <img id="img-stars" src="assets/stars.jpg">
 
-        <a-asset-item id="json-plates" src="assets/PB2002_plates.json" />
+        <a-asset-item id="json-plates" src="assets/plates.json" />
         <a-asset-item id="json-countries" src="assets/50m.json" />
       </a-assets>
 
@@ -26,11 +26,11 @@
       <a-entity id="pitchObject">
       <a-entity id="yawObject">
       <a-entity id="globe">
-        <a-entity 
-        geometry="primitive: sphere; radius: 10; segmentsWidth: 512; segmentsHeight: 256; " 
+        <a-entity
+        geometry="primitive: sphere; radius: 10; segmentsWidth: 512; segmentsHeight: 256; "
         material="
-        src: #earthMap; 
-        normalMap: #normalMap; 
+        src: #earthMap;
+        normalMap: #normalMap;
         displacementMap: #bumpMap; displacementTextureRepeat: 2 2; displacementScale: 1.0;
         flatShading: false;
         shader: standard;
@@ -38,7 +38,7 @@
         scale="1 1 1">
 
           <a-entity scale="1 1 1" rotation="0 0 0">
-            <a-entity id="plates-globe" 
+            <a-entity id="plates-globe"
               class="interactive"
               geojson-projection="src: #json-plates; featureKey: name;"
               geojson-globe="radius: 11.5; color: #FFF; lineWidth: 2;"
@@ -46,7 +46,7 @@
               >
             </a-entity>
 
-            <a-entity id="countries-globe" 
+            <a-entity id="countries-globe"
               class="interactiveNOT"
               geojson-projection="src:#json-countries; featureKey: id;"
               geojson-globe="radius: 11.3; color: #00F; lineWidth: 1;"
@@ -64,7 +64,7 @@
       <a-entity visible="false" light="type: ambient"></a-entity>
 
 
-      <a-entity id="player" position="0 0 19" 
+      <a-entity id="player" position="0 0 19"
       satellite="globe: #globe;"
         >
 
@@ -72,11 +72,11 @@
 
           <!--<a-cursor fuse objects=".gazeactivated"></a-cursor>-->
           <a-entity visible="true" light="type: spot; angle: 80; penumbra: 1.9;"></a-entity>
-          <!--<a-entity light="type: directional; intensity: 1; 
+          <!--<a-entity light="type: directional; intensity: 1;
           distance: 0; decay: 0;
           angle: 30; penumbra: 1;"
                     position="0 0 0" visible="false"></a-entity>
-          </a-entity>-->          
+          </a-entity>-->
         </a-entity>
       </a-camera>
     </a-scene>

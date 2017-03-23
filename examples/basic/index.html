@@ -13,26 +13,25 @@
         <a-asset-item id="json-world-110m" src="assets/world-110m.v1.json" />
         <a-asset-item id="tsv-world-110m" src="assets/world-110m.v1.tsv" />
 
-        <a-asset-item id="json-plates" src="assets/PB2002_plates.json" />
-        <a-asset-item id="json-plates2" src="assets/plates_topo.json" />
+        <a-asset-item id="json-plates" src="assets/plates.json" />
         <a-asset-item id="json-rivers" src="assets/ne_50m_rivers_lake_centerlines.geojson" />
 
         <a-asset-item id="json-places" src="assets/ne_110m_populated_places_simple.geojson" />
       </a-assets>
 
       <a-entity scale="-1.1 1.1 1.1">
-      <!--
-        <a-entity id="plates-globe" 
+
+        <a-entity id="plates-globe"
           class="interactive"
-          geojson-projection="src: #json-plates2; featureKey: name;"
-          geojson-globe="radius: 1; color: #000; lineWidth: 2;"
-          visible="false"
+          geojson-projection="src: #json-plates; featureKey: name; projection: equirectangular;"
+          geojson-globe="radius: 1; color: #0f0; lineWidth: 2;"
+          visible="true"
           >
         </a-entity>
-        -->
-        
-        
-        <a-entity id="countries-globe" 
+
+
+
+        <a-entity id="countries-globe"
           class="gazeactivated"
           geojson-projection="src: #json-world-110m; featureKey: id; topologyObject: countries"
           geojson-globe="radius: 1.1; color: #000; lineWidth: 1; dataSrc: #tsv-world-110m; dataType: tsv;"
@@ -40,8 +39,8 @@
           selection-to-text="#infoText"
           >
         </a-entity>
-        
-        <a-entity id="rivers-globe" 
+
+        <a-entity id="rivers-globe"
           class="gazeactivated"
           geojson-projection="src: #json-rivers; featureKey: name;"
           geojson-globe="radius: 1; color: #0AF; lineWidth: 2;"
@@ -49,16 +48,16 @@
           selection-to-text="#infoText"
           >
           </a-entity>
-          
-        <a-entity id="places-globe" 
+
+        <a-entity id="places-globe"
           class="gazeactivated"
           geojson-projection="src: #json-places; featureKey: name;"
           geojson-globe="radius: 1; color: #F0A; lineWidth: 2;"
           selection-to-text="#infoText"
           >
           </a-entity>
-          
-          
+
+
       </a-entity>
 
 
