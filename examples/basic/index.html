@@ -23,27 +23,32 @@
 
         <a-entity id="plates-globe"
           class="interactive"
-          geojson-projection="src: #json-plates; featureKey: name; projection: equirectangular;"
-          geojson-globe="radius: 1; color: #0f0; lineWidth: 2;"
+          geometry="primitive: sphere; radius: 1;"
+          material="color: #0f0; transparent: true;"
+          geojson="src: #json-plates;
+            lineWidth: 2;"
           visible="true"
           >
         </a-entity>
 
 
-
         <a-entity id="countries-globe"
           class="gazeactivated"
-          geojson-projection="src: #json-world-110m; featureKey: id; topologyObject: countries"
-          geojson-globe="radius: 1.1; color: #000; lineWidth: 1; dataSrc: #tsv-world-110m; dataType: tsv;"
+          geometry="primitive: sphere; radius: 1.1;"
+          material="color: #000; transparent: true;"
+          geojson="src: #json-world-110m; topologyObject: countries;
+            lineWidth: 1; dataSrc: #tsv-world-110m; dataType: tsv;"
           visible="true"
           selection-to-text="#infoText"
           >
         </a-entity>
 
+
         <a-entity id="rivers-globe"
           class="gazeactivated"
-          geojson-projection="src: #json-rivers; featureKey: name;"
-          geojson-globe="radius: 1; color: #0AF; lineWidth: 2;"
+          geometry="primitive: sphere; radius: 1;"
+          material="color: #0AF; transparent: true;"
+          geojson="src: #json-rivers;"
           visible="true"
           selection-to-text="#infoText"
           >
@@ -51,11 +56,13 @@
 
         <a-entity id="places-globe"
           class="gazeactivated"
-          geojson-projection="src: #json-places; featureKey: name;"
-          geojson-globe="radius: 1; color: #F0A; lineWidth: 2;"
+          geometry="primitive: sphere; radius: 1;"
+          material="color: #F0A; transparent: true;"
+          geojson="src: #json-places;"
           selection-to-text="#infoText"
           >
           </a-entity>
+
 
 
       </a-entity>

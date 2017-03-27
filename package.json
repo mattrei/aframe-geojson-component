@@ -63,7 +63,6 @@
   },
   "dependencies": {
     "d3": "^4.5.0",
-    "d3-geo-projection": "^1.2.2",
     "topojson-client": "^2.1.0",
     "pathseg": "^1.0.2"
   },

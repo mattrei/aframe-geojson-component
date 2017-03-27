@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>A-Frame Geojson Component - Basic</title>
+    <meta name="description" content="Basic example for Geojson component."></meta>
+    <script src="../build.js"></script>
+    <script src="./touch-rotate.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <canvas id="world-canvas" crossOrigin="anonymous" width="2048" height="1024"></canvas>
+      </a-assets>
+      <a-assets>
+        <img id="img-earth" src="assets/earth_2048.jpg" />
+
+        <a-asset-item id="json-world-50m" src="assets/world-50m.v1.json" />
+      </a-assets>
+      <!--<a-entity geojson=""></a-entity>-->
+      <a-sky src="#img-earth" rotation="0 0 0"></a-sky>
+
+      <a-entity>
+        <a-entity id="earth-globe"
+          class="interactiveNOT"
+          geometry="primitive: sphere; radius: 1;"
+          geojson-projection="src: #json-world-50m; featureKey: id;"
+          geojson-globe="radius: 1; color: #FFF; lineWidth: 2;"
+          scale="-2 2 2"
+          >
+        </a-entity>
+
+        <a-entity id="movable-layer"
+          material="shader: flat; src: #world-canvas; transparent: true; opacity: 0.5;"
+          geometry="primitive: sphere; radius: 1;"
+          geojson-canvas="canvas: #world-canvas;
+          src: #json-world-50m;
+          projection: geoEquirectangular; fillColor: #AAA; lineColor: #000; lineWidth: 2;
+          topologyObject: countries;"
+          touch-rotate="camera: #camera"
+          scale="-2 2 2"
+          >
+        </a-entity>
+       </a-entity>
+
+
+      <a-camera id="camera" user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
+        <a-cursor fuse objects=".gazeactivated"></a-cursor>
+      </a-camera>
+
+    </a-scene>
+  </body>
+</html>
