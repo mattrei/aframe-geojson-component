@@ -10,7 +10,7 @@ const FEATURE_SELECTED_EVENT = 'geojson-feature-selected';
 
 const CANVAS_DATA_FACTOR = 10;
 
-const PROJECTION_GENERATED_EVENT = 'geojson-generated';
+const GEOJSON_GENERATED_EVENT = 'geojson-generated';
 
 AFRAME.registerComponent('geojson', {
   schema: {
@@ -24,6 +24,9 @@ AFRAME.registerComponent('geojson', {
     dataType: {
       default: 'tsv',
       oneOf: ['csv', 'tsv']
+    },
+    dataKey: {
+      default: 'id'
     },
     // for a topojson, else first will be taken
     topologyObject: {
@@ -54,8 +57,8 @@ AFRAME.registerComponent('geojson', {
     const data = this.data;
     const el = this.el;
 
-    const width = 360; // corresponds to lon
-    const height = 180; // and lat
+    const width = 360; // corresponds to longitude
+    const height = 180; // corresponds to positive scaled latitude 
 
     const projection = d3.geoEquirectangular().scale(height / Math.PI)
       // http://bl.ocks.org/mbostock/3757119
@@ -92,10 +95,6 @@ AFRAME.registerComponent('geojson', {
 
     svg.remove();
 
-    el.emit(PROJECTION_GENERATED_EVENT, {
-      map: mapData,
-      features: features
-    });
 
     this.matComponent = this.el.components.material;
 
@@ -114,6 +113,8 @@ AFRAME.registerComponent('geojson', {
     this.dataMap = new Map();
     if (data.dataSrc) {
       // TODO load via three js
+      this.loader.load(data.dataSrc, this.onDataLoaded.bind(this));
+
       d3[data.dataType](data.dataSrc, (error, dataObject) => {
         dataObject.forEach(e => {
           this.dataMap.set(e.iso_n3, e);
@@ -134,10 +135,20 @@ AFRAME.registerComponent('geojson', {
 
     this.el.setObject3D('mesh', layer);
     // this.el.addEventListener('click', this.select.bind(this))
-
     this.el.addEventListener('raycaster-intersected', this.select.bind(this));
-    // el.addEventListener('raycaster-intersected-cleared', _ => console.log("BORDER Cleared"))
-    this.el.emit('geojson-globe-generated');
+
+    this.el.emit(GEOJSON_GENERATED_EVENT);
+  },
+  onDataLoaded: function (file) {
+
+    const data = this.data
+
+    const contents = data.dataType === 'tsv' ? d3.tsvParse(file) : d3.csvParse(file)
+
+    contents.forEach(e => {
+        this.dataMap.set(e[data.dataKey], e);
+    });
+
   },
   generate: function (paths) {
     var map = new Map();

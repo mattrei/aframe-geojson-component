@@ -52,7 +52,7 @@ AFRAME.registerComponent('geojson-canvas', {
   },
 
   init: function () {
-    this.loader = new THREE.FileLoader()
+    this.loader = new THREE.FileLoader();
   },
   update: function (oldData) {
     var data = this.data;
@@ -67,6 +67,7 @@ AFRAME.registerComponent('geojson-canvas', {
       .scale(height / Math.PI)
       .translate([width / 2, height / 2]);
     this.mapPath = d3.geoPath(this.projection);
+    console.log(data.rotation)
     this.projection.rotate(data.rotation);
     this.projection.center(data.center);
 
@@ -80,8 +81,7 @@ AFRAME.registerComponent('geojson-canvas', {
     this.draw();
   },
   onGeojsonLoaded: function (file) {
-
-    const json = JSON.parse(file)
+    const json = JSON.parse(file);
 
     var data = this.data;
 

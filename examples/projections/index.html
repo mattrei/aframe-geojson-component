@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>A-Frame Geojson Component - Airplane</title>
+    <meta name="description" content="Airplane example."></meta>
+    <script src="../build.js"></script>
+  </head>
+  <body>
+    <a-scene >
+      <a-assets>
+        <canvas id="equi-map-canvas" crossOrigin="anonymous" width="720" height="360"></canvas>
+        <canvas id="ortho-map-canvas" crossOrigin="anonymous" width="360" height="360"></canvas>
+        <canvas id="mercator-map-canvas" crossOrigin="anonymous" width="720" height="360"></canvas>
+      </a-assets>
+      <a-assets>
+        <a-asset-item id="json-earth" src="assets/110m.json" />
+      </a-assets>
+
+ 
+    <a-entity position="0 2 -4">
+      <a-entity position="-2 0 0">
+        <a-entity s
+            material="src: #equi-map-canvas;"
+            geometry="primitive: plane; width: 2; height: 1;"
+            geojson-canvas="
+            canvas: #equi-map-canvas; 
+            src: #json-earth;
+            projection: geoEquirectangular;
+            fillColor: #ac0;
+            lineColor: #000;
+            fillOpacity: 0;
+            lineOpacity: 1;
+            lineWidth: 2;
+            topologyObject: land;
+            "
+            >
+          </a-entity>
+        </a-entity>
+
+       <a-entity position="0 0 0">
+          <a-entity 
+            material="src: #ortho-map-canvas;"
+            geometry="primitive: plane; width: 1; height: 1;"
+            geojson-canvas="
+            canvas: #ortho-map-canvas; 
+            src: #json-earth;
+            projection: geoOrthographic; 
+            fillColor: #ac0;
+            lineColor: #000;
+            fillOpacity: 0;
+            lineOpacity: 1;
+            lineWidth: 2;
+            topologyObject: land;
+            rotation: 20, 180;
+            "
+            >
+          </a-entity>
+        </a-entity>
+
+        <a-entity position="2 0 0">
+          <a-entity
+            material="src: #mercator-map-canvas;"
+            geometry="primitive: plane; width: 2; height: 1;"
+            geojson-canvas="
+            canvas: #mercator-map-canvas; 
+            src: #json-earth;
+            projection: geoMercator;
+            fillColor: #ac0;
+            lineColor: #000;
+            fillOpacity: 0;
+            lineOpacity: 1;
+            lineWidth: 2;
+            topologyObject: countries;
+            "
+            >
+          </a-entity>
+        </a-entity>
+      </a-entity>
+          
+    </a-scene>
+
+  </body>
+</html>
