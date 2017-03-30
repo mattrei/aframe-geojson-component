@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>A-Frame Geojson Component - Basic</title>
+    <meta name="description" content="Basic example for Geojson component."></meta>
+    <script src="../build.js"></script>
+    <script src="./selection-to-text.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="json-world-110m" src="assets/world-110m.v1.json" />
+        <a-asset-item id="tsv-world-110m" src="assets/world-110m.v1.tsv" />
+      </a-assets>
+
+
+        <a-entity id="countries-plate"
+          position="0 0 -5"
+          class="gazeactivated"
+          geometry="primitive: plane; width: 5; height: 5;"
+          material="color: #000; transparent: true;"
+          geojson="src: #json-world-110m; topologyObject: countries;
+            lineWidth: 1; 
+            dataSrc: #tsv-world-110m; dataType: tsv; dataKey: iso_n3;"
+          visible="true"
+          selection-to-text
+          >
+        </a-entity>
+
+      </a-entity>
+
+
+        <a-camera id="camera"  user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
+
+          <a-text id="infoText" color="black" value="" position="0.5 0 -0.8" scale="0.4 0.4 0.4"></a-text>
+
+          <a-cursor fuse objects=".gazeactivated" interval="2000"></a-cursor>
+        </a-camera>
+    </a-scene>
+  </body>
+</html>

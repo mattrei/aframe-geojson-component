@@ -109,7 +109,6 @@ AFRAME.registerComponent('geojson-canvas', {
 
     context.clearRect(0, 0, data.canvas.width, data.canvas.height);
     this.features.forEach((feature, i) => {
-      // context.save()
       context.beginPath();
       contextPath(feature);
       context.lineWidth = data.lineWidth;
@@ -117,7 +116,6 @@ AFRAME.registerComponent('geojson-canvas', {
       context.stroke();
       context.fillStyle = this._fillColor;
       context.fill();
-    // context.restore()
     });
   },
   _getColorStyle: function (color, opacity) {

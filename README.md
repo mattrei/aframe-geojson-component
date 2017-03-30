@@ -12,10 +12,12 @@ This library provides 3 components working with Geojson/Topojson files
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
 | src | The geojson/topojson asset | "" |
-| dataSrc | The additional data for topojson objects | "" |
+| featureKey | The unique id of the Geojson feature properties. Must be given and unique. For Topojson this is always _id_ | id |
+| dataSrc | The additional data that should be used emitted when selecting a feature | "" |
 | dataType | The data type of the dataSrc attribute. Either csv or tsv. | csv |
-| topologyObjct | *Only for Topojson*: Specifies the object to use. If `undefined` then the first will be taken. | `undefined` |
-| raycastResolution | The resolution of the raycaster. The smaller the closer you have to point on the feature. | 1 |
+| dataKey | The property of the data that is matched to the Geojson feature. | id |
+| topologyObjct | *Only for Topojson*: Specifies the object to use. If `undefined` then the first will be taken. Mainly probably used for the world-atlas topojson. | `undefined` |
+| raycastResolution | The "resolution" of the raycaster selection. The smaller the closer you have to point with raycaster on the feature to be selected. Set smaller if you have many features close by, higher otherwise. Normalized to a generally good working condition. | 1 |
 
 ##### Events
 | Name | Data | Description |

@@ -17,6 +17,9 @@ AFRAME.registerComponent('geojson', {
     src: {
       type: 'asset'
     },
+    featureKey: {
+      default: 'id'
+    },
     // the data that holds the data; if not set then it is supposed to be already included
     dataSrc: {
       type: 'asset'
@@ -26,9 +29,6 @@ AFRAME.registerComponent('geojson', {
       oneOf: ['csv', 'tsv']
     },
     dataKey: {
-      default: 'id'
-    },
-    featureKey: {
       default: 'id'
     },
     // for a topojson, else first will be taken
@@ -42,6 +42,9 @@ AFRAME.registerComponent('geojson', {
     raycastResolution: {
       default: 1,
       type: 'int'
+    },
+    projection: {
+      default: 'geoEquirectangular'
     }
   },
 
@@ -63,7 +66,7 @@ AFRAME.registerComponent('geojson', {
     const width = 360; // corresponds to longitude
     const height = 180; // corresponds to positive scaled latitude 
 
-    const projection = d3.geoEquirectangular().scale(height / Math.PI)
+    const projection = d3[data.projection]().scale(height / Math.PI)
       // http://bl.ocks.org/mbostock/3757119
       .translate([
         width / 2,
@@ -379,7 +382,6 @@ AFRAME.registerComponent('geojson', {
       var mesh = new THREE.LineSegments(partGeometry, shapesMaterial);
       mesh.fustrumCulled = false;
       mesh.visible = false;
-      // layer.add(mesh)
 
       territory.shape = mesh;
     });
@@ -411,18 +413,22 @@ AFRAME.registerComponent('geojson', {
     }
   },
   _planarLatLngToVec3: function (lat, lon) {
-    return new THREE.Vector3();
+    const geomComponent = this.el.components.geometry;
+
+    return new THREE.Vector3(
+      lon / 360 * geomComponent.data.width,
+      lat / 180 * geomComponent.data.height, 
+      0);
   },
   _sphericalLatLngToVec3: function (lat, lon) {
     // lat = Math.max(175, Math.min(5, lat))
     // lat = Math.min(160, lat)
 
     const geomComponent = this.el.components.geometry;
-
-    const phi = (lat) * Math.PI / 180;
-    // -lon for inversion
-    const theta = (lon) * Math.PI / 180;
     const radius = geomComponent.data.radius;
+
+    const phi = lat * Math.PI / 180;
+    const theta = lon * Math.PI / 180;
     const x = -radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.cos(phi);
     const z = radius * Math.sin(phi) * Math.sin(theta);
@@ -462,7 +468,6 @@ AFRAME.registerComponent('geojson', {
       var res = null;
 
       renderer.readRenderTargetPixels(this.hitTexture, 0, 0, 1, 1, pixelBuffer);
-      // if (pixelBuffer[3] === 255) {
       if (pixelBuffer[0] === 255) { // encoding test
         var multiplicator = pixelBuffer[1];
         var number = pixelBuffer[2];
@@ -488,10 +493,7 @@ AFRAME.registerComponent('geojson', {
         this.isSelecting = true;
         var p = intersections[0].point;
 
-        // dummy.scale.y = -1
         dummy.lookAt(p);
-        // dummy.rotation.y += Math.PI
-        // dummy.rotation.z = Math.PI
 
         this.hitTest(dummy).then(res => this.selectFeature(res));
       }
@@ -521,8 +523,6 @@ AFRAME.registerComponent('geojson', {
     const ctxPath = path.context(ctx);
 
     ctx.imageSmoothingEnabled = false;
-    ctx.webkitImageSmoothingEnabled = false;
-    ctx.mozImageSmoothingEnabled = false;
     ctx.globalAlpha = 1;
 
     features.forEach((feature, i) => {
