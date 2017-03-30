@@ -1,15 +1,22 @@
-
 AFRAME.registerComponent('selection-to-text', {
 
-  schema: {
-		                                                                                                                          type: 'selector'
-  },
+    schema: {
+        text: {
+            type: "selector",
+            default: "#infoText"
+        },
+        featureProperty: {
+            default: "name"
+        }
+    },
 
-  init: function () {
-    this.el.addEventListener('geojson-feature-selected', this.setText.bind(this));
-  },
-  setText: function (event) {
-    	  const feature = event.detail;
-    	  this.data.setAttribute('value', feature.name);
-  }
+    init: function() {
+        this.el.addEventListener('geojson-feature-selected', this.setText.bind(this));
+    },
+    setText: function(event) {
+        const data = this.data
+        const feature = event.detail;
+        
+        data.text.setAttribute('value', feature[data.featureProperty]);
+    }
 });

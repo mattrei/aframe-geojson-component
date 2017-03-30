@@ -28,6 +28,9 @@ AFRAME.registerComponent('geojson', {
     dataKey: {
       default: 'id'
     },
+    featureKey: {
+      default: 'id'
+    },
     // for a topojson, else first will be taken
     topologyObject: {
       default: undefined
@@ -112,17 +115,8 @@ AFRAME.registerComponent('geojson', {
 
     this.dataMap = new Map();
     if (data.dataSrc) {
-      // TODO load via three js
       this.loader.load(data.dataSrc, this.onDataLoaded.bind(this));
-
-      d3[data.dataType](data.dataSrc, (error, dataObject) => {
-        dataObject.forEach(e => {
-          this.dataMap.set(e.iso_n3, e);
-        });
-      });
     }
-
-    this.codes = mapData;
 
     var pointsMesh = this.generatePoints(mapData);
     var linesMesh = this.generateLines(mapData);
@@ -436,6 +430,8 @@ AFRAME.registerComponent('geojson', {
     return new THREE.Vector3(x, y, z);
   },
   selectFeature: function (feature) {
+    const data = this.data
+
     this.isSelecting = false;
     if (!feature) return;
 
@@ -446,8 +442,9 @@ AFRAME.registerComponent('geojson', {
       selected = feature.properties;
     }
 
-    if (this._selectedFeature !== selected) {
-      console.log(selected.name || selected.name_long);
+    if (!this._selectedFeature ||
+      this._selectedFeature[data.featureKey] !== selected[data.featureKey]) {
+      //console.log(selected)
       this._selectedFeature = selected;
       this.el.emit(FEATURE_SELECTED_EVENT, selected);
     }
@@ -462,7 +459,6 @@ AFRAME.registerComponent('geojson', {
     renderer.render(this.hitScene, this.hitCamera, this.hitTexture);
 
     return new Promise((resolve, reject) => {
-      // requestAnimationFrame(function() {
       var res = null;
 
       renderer.readRenderTargetPixels(this.hitTexture, 0, 0, 1, 1, pixelBuffer);
@@ -474,10 +470,7 @@ AFRAME.registerComponent('geojson', {
         var code = multiplicator * 255 + number;
         res = this.codes.get(code);
       }
-      // }
       resolve(res);
-
-    // }.bind(this))
     });
   },
   select: (function (e) {
@@ -556,7 +549,7 @@ AFRAME.registerComponent('geojson', {
       ctx.restore();
     });
 
-    // console.log(canvas.node().toDataURL())
+    //console.log(canvas.node().toDataURL())
     const texture = new THREE.Texture(canvas.node());
     texture.needsUpdate = true;
 

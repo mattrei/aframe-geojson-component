@@ -21,17 +21,21 @@
 
       <a-entity scale="-1.1 1.1 1.1">
 
+
         <a-entity id="plates-globe"
-          class="interactive"
-          geometry="primitive: sphere; radius: 1;"
+          class="gazeactivated"
+          geometry="primitive: sphere; radius: 2;"
           material="color: #0f0; transparent: true;"
           geojson="src: #json-plates;
-            lineWidth: 2;"
-          visible="true"
+            lineWidth: 2;
+            featureKey: Code;
+            "
+          selection-to-text="featureProperty: PlateName"
           >
         </a-entity>
+        
 
-
+<!--
         <a-entity id="countries-globe"
           class="gazeactivated"
           geometry="primitive: sphere; radius: 1.1;"
@@ -40,18 +44,19 @@
             lineWidth: 1; 
             dataSrc: #tsv-world-110m; dataType: tsv; dataKey: iso_n3;"
           visible="true"
-          selection-to-text="#infoText"
+          selection-to-text
           >
         </a-entity>
+        -->
 
-
+<!--
         <a-entity id="rivers-globe"
           class="gazeactivated"
           geometry="primitive: sphere; radius: 1;"
           material="color: #0AF; transparent: true;"
           geojson="src: #json-rivers;"
           visible="true"
-          selection-to-text="#infoText"
+          selection-to-text
           >
           </a-entity>
 
@@ -60,10 +65,10 @@
           geometry="primitive: sphere; radius: 1;"
           material="color: #F0A; transparent: true;"
           geojson="src: #json-places;"
-          selection-to-text="#infoText"
+          selection-to-text
           >
           </a-entity>
-
+      -->
 
 
       </a-entity>
