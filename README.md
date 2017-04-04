@@ -4,7 +4,7 @@ A Geojson/Topojson component for [A-Frame](https://aframe.io).
 
 ### API
 
-This library provides 3 components working with Geojson/Topojson files
+This library provides two components working with Geojson/Topojson files
 
 #### `geojson-equirectangular` component
 
@@ -31,7 +31,7 @@ This library provides 3 components working with Geojson/Topojson files
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
 | src | The geojson/topojson asset | "" |
-| projection | One of [d3 projection](https://github.com/d3/d3-geo/blob/master/README.md#projections), like "geoEquirectangular" or "geoOrthographic". | "geoEquirectangular" |
+| projection | One of [D3's projection](https://github.com/d3/d3-geo/blob/master/README.md#projections). Use the function name, like "geoEquirectangular" or "geoOrthographic". Use "geoEquirectangular" if you want to wrap it around a sphere. | "geoEquirectangular" |
 | featureProperty | The geojson feature attribute that is used for matching with the generated hit mask. All Topojson documents have an id, most Geojson also in the feature description.  | "id" |
 | topologyObjct | *Only for Topojson*: Specifies the object to use. If `undefined` then the first will be taken. | `undefined` |
 
@@ -39,6 +39,9 @@ This library provides 3 components working with Geojson/Topojson files
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
 | geojson-canvas-generated | _None_| |
+
+### Styling
+The library respects the commonly used [Geojson Styling Spec](https://github.com/mapbox/simplestyle-spec)
 
 ### Installation
 

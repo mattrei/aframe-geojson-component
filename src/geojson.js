@@ -101,7 +101,6 @@ AFRAME.registerComponent('geojson', {
 
     svg.remove();
 
-
     this.matComponent = this.el.components.material;
 
     this._selectedFeature = null;
@@ -436,6 +435,8 @@ AFRAME.registerComponent('geojson', {
     return new THREE.Vector3(x, y, z);
   },
   selectFeature: function (feature) {
+
+    console.log(feature)
     const data = this.data
 
     this.isSelecting = false;
@@ -464,6 +465,7 @@ AFRAME.registerComponent('geojson', {
     this.hitCamera.rotation.copy(obj.rotation);
     renderer.render(this.hitScene, this.hitCamera, this.hitTexture);
 
+    console.log("before res")
     return new Promise((resolve, reject) => {
       var res = null;
 
@@ -474,6 +476,7 @@ AFRAME.registerComponent('geojson', {
 
         var code = multiplicator * 255 + number;
         res = this.codes.get(code);
+        console.log("res")
       }
       resolve(res);
     });
@@ -487,17 +490,16 @@ AFRAME.registerComponent('geojson', {
       var entity = document.querySelector('[raycaster]');
       var raycaster = entity.components.raycaster.raycaster;
 
-      // var intersections = raycaster.intersectObject(this.el.object3DMap.mesh)
       var intersections = raycaster.intersectObject(this.maskMesh);
       if (intersections.length > 0) {
         this.isSelecting = true;
         var p = intersections[0].point;
 
         dummy.lookAt(p);
+        console.log("select")
 
         this.hitTest(dummy).then(res => this.selectFeature(res));
       }
-
     // entity.components.raycaster.refreshObjects()
     };
   }()),
@@ -555,9 +557,14 @@ AFRAME.registerComponent('geojson', {
 
     // TODO
     const geomComponent = this.el.components.geometry;
+    const maskGeom = geomComponent.geometry.clone()
+    //console.log(maskGeom)
+
     const radius = geomComponent.data.radius;
     const mesh = new THREE.Mesh(
       new THREE.IcosahedronGeometry(radius + 1, 6),
+      // TODO
+      //maskGeom,
       new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.DoubleSide,
@@ -567,9 +574,10 @@ AFRAME.registerComponent('geojson', {
     );
 
     var scale = this.el.object3D.getWorldScale();
-    mesh.scale.x = scale.x;
-    mesh.scale.y = -scale.y; // i have no idea why minus
-    mesh.scale.z = scale.z;
+    mesh.scale.x = scale.x + 1;
+    // has something to do with wrong coordinates
+    mesh.scale.y = -(scale.y + 1) ; // i have no idea why minus
+    mesh.scale.z = scale.z + 1;
 
     this.hitScene.add(mesh);
 
