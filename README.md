@@ -4,6 +4,8 @@ A GeoJSON/TopoJSON component for [A-Frame](https://aframe.io).
 
 > Supports A-Frame 0.6.0.
 
+![Example](doc/example.png)
+
 ### API
 
 This library provides two components visualizing GeoJSON and TopoJSON documents.
