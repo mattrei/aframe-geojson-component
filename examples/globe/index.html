@@ -1,44 +1,50 @@
 <html>
   <head>
     <title>A-Frame Geojson Component - Basic</title>
-    <meta name="description" content="Basic example for Geojson component."></meta>
+    <meta name="description" content="Movable Globe Geojson component."></meta>
     <script src="../build.js"></script>
     <script src="./touch-rotate.js"></script>
   </head>
   <body>
     <a-scene>
       <a-assets>
+        <canvas id="static-canvas" crossOrigin="anonymous" width="2048" height="1024"></canvas>
         <canvas id="world-canvas" crossOrigin="anonymous" width="2048" height="1024"></canvas>
       </a-assets>
       <a-assets>
         <img id="img-earth" src="assets/earth_2048.jpg" />
-
         <a-asset-item id="json-world-50m" src="assets/world-50m.v1.json" />
       </a-assets>
-      <!--<a-entity geojson=""></a-entity>-->
       <a-sky src="#img-earth" rotation="0 0 0"></a-sky>
 
       <a-entity>
-        <a-entity id="earth-globe"
+        <a-entity id="static-globe"
           class="interactiveNOT"
-          geometry="primitive: sphere; radius: 1;"
-          geojson-projection="src: #json-world-50m; featureKey: id;"
-          geojson-globe="radius: 1; color: #FFF; lineWidth: 2;"
+          material="shader: flat; src: #static-canvas; transparent: true;"
+          geometry="primitive: sphere; radius: 1.1;"
+          geojson-canvas="
+          src: #json-world-50m;
+          canvas: #static-canvas;
+          fillOpacity: 0; lineColor: #000; lineOpacity: 0.5; lineWidth: 1;
+          topologyObject: countries;"
           scale="-2 2 2"
           >
         </a-entity>
 
         <a-entity id="movable-layer"
-          material="shader: flat; src: #world-canvas; transparent: true; opacity: 0.5;"
+          material="shader: flat; src: #world-canvas; transparent: true; opacity: 1;"
           geometry="primitive: sphere; radius: 1;"
-          geojson-canvas="canvas: #world-canvas;
+          geojson-canvas="
+          canvas: #world-canvas;
           src: #json-world-50m;
-          projection: geoEquirectangular; fillColor: #AAA; lineColor: #000; lineWidth: 2;
+          fillColor: #AAA; fillOpacity: 0.5; lineColor: #000; lineWidth: 1;
           topologyObject: countries;"
-          touch-rotate="camera: #camera"
+          touch-rotate=""
           scale="-2 2 2"
+          visible="true"
           >
         </a-entity>
+        
        </a-entity>
 
 

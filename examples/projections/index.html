@@ -27,13 +27,22 @@
             projection: geoEquirectangular;
             fillColor: #ac0;
             lineColor: #000;
-            fillOpacity: 0;
+            fillOpacity: 0.5;
             lineOpacity: 1;
             lineWidth: 2;
             topologyObject: land;
             "
             >
+            <a-animation 
+               attribute="geojson-canvas.lineWidth"
+               dur="2000"
+               from="0"
+               direction="alternate"
+               to="1"
+               repeat="indefinite">
+            </a-animation>
           </a-entity>
+
         </a-entity>
 
        <a-entity position="0 0 0">
@@ -46,14 +55,23 @@
             projection: geoOrthographic; 
             fillColor: #ac0;
             lineColor: #000;
-            fillOpacity: 0;
+            fillOpacity: 0.1;
             lineOpacity: 1;
             lineWidth: 2;
             topologyObject: land;
-            rotation: 20, 180;
             "
             >
+            <a-animation 
+               attribute="geojson-canvas.rotation"
+               dur="2000"
+               from="0 0"
+               to="360 360"
+               repeat="indefinite">
+            </a-animation>
+
+
           </a-entity>
+
         </a-entity>
 
         <a-entity position="2 0 0">
@@ -64,9 +82,9 @@
             canvas: #mercator-map-canvas; 
             src: #json-earth;
             projection: geoMercator;
-            fillColor: #ac0;
-            lineColor: #000;
-            fillOpacity: 0;
+            fillColor: #aa2;
+            lineColor: #0ff;
+            fillOpacity: 1;
             lineOpacity: 1;
             lineWidth: 2;
             topologyObject: countries;

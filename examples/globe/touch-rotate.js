@@ -1,21 +1,19 @@
 var bind = AFRAME.utils.bind;
-var isMobile = AFRAME.utils.isMobile;
 
 // https://stackoverflow.com/questions/23002984/three-js-calculating-relative-rotations
 AFRAME.registerComponent('touch-rotate', {
 
   schema: {
-    camera: {
-      default: '#camera',
-      type: 'selector'
-    }
   },
 
   init: function () {
-    var sceneEl = this.el.sceneEl;
+    const sceneEl = this.el.sceneEl;
+
+    sceneEl.addEventListener('camera-set-active', (evt) => {
+      this.camera = evt.detail.cameraEl.object3D
+    });
 
     this.bindMethods();
-    this.camera = this.data.camera.object3D;
   },
 
   update: function (oldData) {},

@@ -3,8 +3,6 @@
 var d3 = require('d3');
 var topojson = require('topojson-client');
 
-const PI_2 = Math.PI / 2;
-
 const CANVAS_GENERATED_EVENT = 'geojson-canvas-generated';
 
 AFRAME.registerComponent('geojson-canvas', {
@@ -22,7 +20,7 @@ AFRAME.registerComponent('geojson-canvas', {
         },
         projection: {
             type: 'string',
-            default: 'geoEquirectangular '
+            default: 'geoEquirectangular'
         },
         fillColor: {
             default: '#fff',
@@ -42,44 +40,41 @@ AFRAME.registerComponent('geojson-canvas', {
             default: 1
         },
         center: {
-            default: [0, 0],
-            type: 'array'
+            type: 'vec2'
         },
         rotation: {
-            default: [0, 0],
-            type: 'array'
+            type: 'vec2'
         }
     },
 
     init: function() {
         this.loader = new THREE.FileLoader();
+        this.ctx = this.data.canvas.getContext('2d');
     },
     update: function(oldData) {
-        var data = this.data;
+        const data = this.data;
 
         this._lineColor = this._getColorStyle(new THREE.Color(data.lineColor), data.lineOpacity);
         this._fillColor = this._getColorStyle(new THREE.Color(data.fillColor), data.fillOpacity);
 
         const width = data.canvas.width;
         const height = data.canvas.height;
-
         this.projection = d3[data.projection]()
             .scale(height / Math.PI)
             .translate([width / 2, height / 2]);
         this.mapPath = d3.geoPath(this.projection);
-        this.projection.rotate(data.rotation);
-        this.projection.center(data.center);
-
-        var src = this.data.src;
-        if (!src || src === oldData.src) {
-            return;
-        }
-
-        this.loader.load(data.src, this.onGeojsonLoaded.bind(this));
-
-        this.ctx = data.canvas.getContext('2d');
+        this.projection.rotate(this._vec2ToArray(data.rotation));
+        this.projection.center(this._vec2ToArray(data.center));
 
         this.redraw();
+
+        const src = this.data.src;
+        if (src && src !== oldData.src) {
+            this.loader.load(this.data.src, this.onGeojsonLoaded.bind(this));
+        }
+    },
+    _vec2ToArray: function(vec2) {
+        return [vec2.x, vec2.y]
     },
     onGeojsonLoaded: function(file) {
         const json = JSON.parse(file);
