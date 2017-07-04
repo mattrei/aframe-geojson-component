@@ -2,42 +2,44 @@
 
 A GeoJSON/TopoJSON component for [A-Frame](https://aframe.io).
 
+> Supports A-Frame 0.6.0.
+
 ### API
 
 This library provides two components visualizing GeoJSON and TopoJSON documents.
 
 #### `geojson` component
 
-The geojson component has the `material` and `geometry` components as a dependency from the entity.
+The geojson component has the `material` and `geometry` components as a dependency from the entity. It implements a raycaster logic that fires an event if a GeoJSON feature gets selected.
 
 ##### Schema
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
-| src | The geojson/topojson asset | "" |
+| src | The GeoJSON/TopoJSON asset. | "" |
 | projection | One of [D3's projection](https://github.com/d3/d3-geo/blob/master/README.md#projections). Use the function name, like "geoEquirectangular" or "geoOrthographic". Use "geoEquirectangular" if you have global data and want to wrap it around a sphere. | "geoEquirectangular" |
-| topologyObjct | *Only for Topojson*: Specifies the Topojson object to use. If empty then the first will be taken. Mainly probably used for the world-atlas topojso to choose between country or state borders. | "" |
-| featureKey | The unique id of the GeoJSON feature properties. Must be given and unique. For TopoJSON this is by definition always _id_ . For GeoJSON you have to select the _primary key_ | id |
-| dataSrc | The meta data that should be used emitted when selecting a feature | "" |
-| dataType | The data type of the dataSrc attribute. Either csv or tsv. | csv |
-| dataKey | The property of the data that is matched to the Geojson's primary key. | id |
+| topologyObjct | *Only for TopoJSON*: Specifies the TopoJSON object to use (see [specification](https://github.com/topojson/topojson-specification#2-topojson-objects) for details). If empty then the first will be taken. | "" |
+| featureKey | The primary key of the GeoJSON feature properties. Must be given and unique. For TopoJSON this is by specification always the _id_ property . For GeoJSON you have to select the _primary key_ | id |
+| dataSrc | The optional metadata that of this GeoJSON document. Mostly GeoJSON contains already all the associated data, however TopoJSON have always associated data sources. | "" |
+| dataType | The data type of the dataSrc attribute. Can be either *csv* or *tsv*. | csv |
+| dataKey | The name of the property of the metadata that is matched to the GeoJSON's _featureKey_ attribute. | id |
 | raycastResolution | The "resolution" of the raycaster selection. The smaller the closer you have to point with raycaster on the feature to be selected. Set smaller if you have many features close by, higher otherwise. Normalized to a generally good working condition. | 1 |
-| featureEventName | The event name that should be added as a listener, for example `click` or `raycaster-intersected`. | '' |
+| featureEventName | The event name that should be added as a listener, for example `click` or `raycaster-intersected`. No events will be omitted if empty. | '' |
 
 ##### Events
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
 | geojson-generated | { map, features }| map: the loaded data, features contains all geojson/topojson features|
-| geojson-feature-selected | { feature }| The selected feature when  |
+| geojson-feature-selected | { feature }| The selected feature by the raycaster if the _featureEventName_ parameter is given.  |
 
 #### `geojson-canvas` component
 
-This component so far can be just used as a texture for a geometry object (plane, sphere, etc). No feature selection event are fired. This may be implemented in future releases.
+This component so far can be just used as a texture for a geometry object (plane, sphere, etc). No feature selection events are fired. A strategy may be implemented in future releases. 
 
 ##### Schema
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
-| src | The geojson/topojson asset | "" |
-| topologyObjct | *Only for Topojson*: Specifies the Topojson object to use. If empty then the first will be taken. | '' |
+| src | The GeoJSON/TopoJSON asset. | "" |
+| topologyObjct | *Only for TopoJSON*: Specifies the TopoJSON object to use (see [specification](https://github.com/topojson/topojson-specification#2-topojson-objects) for details). If empty then the first will be taken. | "" |
 | canvas | The DOM canvas to use as the texture | "" |
 | projection | One of [D3's projection](https://github.com/d3/d3-geo/blob/master/README.md#projections). Use the function name, like "geoEquirectangular" or "geoOrthographic". Use "geoEquirectangular" if you have global data and want to wrap it around a sphere. | "geoEquirectangular" |
 | fillColor | Polygon filling color | "#fff" |
@@ -46,10 +48,6 @@ This component so far can be just used as a texture for a geometry object (plane
 | lineOpacity | Line opacity | "1" |
 | center | The center of the projection. See the D3 documentation for details and use cases. | "0 0" |
 | rotation | The rotation of the projection. See the D3 documentation for details and use cases. | "0 0" |
-
-
-
-| featureProperty | The geojson feature attribute that is used for matching with the generated hit mask. All Topojson documents have an id, most Geojson also in the feature description.  | "id" |
 
 
 ##### Events
