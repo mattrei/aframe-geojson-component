@@ -14,6 +14,7 @@ The geojson component has the `material` and `geometry` components as a dependen
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
 | src | The geojson/topojson asset | "" |
+| projection | One of [D3's projection](https://github.com/d3/d3-geo/blob/master/README.md#projections). Use the function name, like "geoEquirectangular" or "geoOrthographic". Use "geoEquirectangular" if you have global data and want to wrap it around a sphere. | "geoEquirectangular" |
 | topologyObjct | *Only for Topojson*: Specifies the Topojson object to use. If empty then the first will be taken. Mainly probably used for the world-atlas topojso to choose between country or state borders. | "" |
 | featureKey | The unique id of the GeoJSON feature properties. Must be given and unique. For TopoJSON this is by definition always _id_ . For GeoJSON you have to select the _primary key_ | id |
 | dataSrc | The meta data that should be used emitted when selecting a feature | "" |
@@ -38,7 +39,7 @@ This component so far can be just used as a texture for a geometry object (plane
 | src | The geojson/topojson asset | "" |
 | topologyObjct | *Only for Topojson*: Specifies the Topojson object to use. If empty then the first will be taken. | '' |
 | canvas | The DOM canvas to use as the texture | "" |
-| projection | One of [D3's projection](https://github.com/d3/d3-geo/blob/master/README.md#projections). Use the function name, like "geoEquirectangular" or "geoOrthographic". Use "geoEquirectangular" if you want to wrap it around a sphere. | "geoEquirectangular" |
+| projection | One of [D3's projection](https://github.com/d3/d3-geo/blob/master/README.md#projections). Use the function name, like "geoEquirectangular" or "geoOrthographic". Use "geoEquirectangular" if you have global data and want to wrap it around a sphere. | "geoEquirectangular" |
 | fillColor | Polygon filling color | "#fff" |
 | fillOpacity | Opacity of the polygons | "1" |
 | lineColor | Line color | "#fff" |

@@ -135,6 +135,7 @@ AFRAME.registerComponent('geojson', {
     if (data.featureEventName !== '') {
       this.el.addEventListener(data.featureEventName, this.select.bind(this));
     }
+    // TODO remove old events
 
     this.el.emit(GEOJSON_GENERATED_EVENT);
   },
@@ -178,7 +179,7 @@ AFRAME.registerComponent('geojson', {
 
         if (((segment.x >= 359 || segment.x <= 1) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
           // console.log(segment)
-          // some GEOJSON files have a border around them
+          // some GeoJSON files have a border around them
           // to avoid having a frame aroudn the plane we omit
           // the top-, left, right-, bottomost lines
         } else {
@@ -227,11 +228,13 @@ AFRAME.registerComponent('geojson', {
             y = segment.y;
             line.push(new THREE.Vector2(x, y));
           }
-          if (segment instanceof SVGPathSegClosePath || i + 1 === segments.numberOfItems) { // Lines are not closed
-            // x = ox
-            // y = oy
-            // line.push( new THREE.Vector2( x, y ) )
-            // add line
+          if (segment instanceof SVGPathSegClosePath || i + 1 === segments.numberOfItems) {
+            x = ox
+            y = oy
+            if (type.includes("Polygon")) { // do not close line geometries, just polygons
+              line.push( new THREE.Vector2( x, y ) )
+            }
+
             territory.lines.push(line);
             line = [];
           }
