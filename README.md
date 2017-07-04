@@ -66,27 +66,6 @@ This component so far can be just used as a texture for a geometry object (plane
 ### Styling
 The library respects the commonly used [Geojson Styling Spec](https://github.com/mapbox/simplestyle-spec)
 
-### Example
-See the many examples for how to use this component.
-
-To show the world country borders on a sphere:
-```html
-<a-assets>
-  <a-asset-item id="world-geojson" src="assets/world-50m.v1.json" />
-</a-assets>        
-
-<a-entity
-  geometry="primitive: sphere; radius: 1;"
-  material="color: #000;"
-  geojson="
-    src: #world-geojson; 
-    topologyObject: countries;
-    lineWidth: 1;
-    "
-  >
-</a-entity>
-```
-
 ### Installation
 
 #### Browser
@@ -96,13 +75,24 @@ Install and use by directly including the [browser files](dist):
 ```html
 <head>
   <title>My A-Frame Scene</title>
-  <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-geojson-component/dist/aframe-geojson-component.min.js"></script>
 </head>
 
 <body>
   <a-scene>
-    <a-entity geojson="foo: bar"></a-entity>
+    <a-assets>
+    <a-asset-item id="world-geojson" src="assets/world-50m.v1.json" />
+    </a-assets>        
+
+    <a-entity
+      geometry="primitive: sphere; radius: 1;"
+      material="color: #000;"
+      geojson="
+        src: #world-geojson; 
+        topologyObject: countries;
+        "
+      />
   </a-scene>
 </body>
 ```
