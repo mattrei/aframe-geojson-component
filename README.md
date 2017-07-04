@@ -123,7 +123,22 @@ for details from the great @mbostock himself.
 
 ### Implementation details
 The componenet uses the D3 library to convert the Geojson object into a SVG.
-The SVG is then converted into THREE.Js lines and points. Furthermore a invisble hit mask is generated to obtain the selected geojson feature via raycasting.
+The SVG is then converted into THREE.Js lines and point geometires. 
+
+To be able to interact with the generated geometires an invisble hit mask is generated for all GeoJSON polygon, line and points to obtain the selected geojson feature via raycasting (much faster than via meshes).
+
+![Polygon hitmask](doc/polygon-mask.png)
+
+or for point geometries
+
+![Point hitmask](doc/point-mask.png)
+
+and finally for line geometries
+
+![Line hitmask](doc/line-mask.png)
+
+Those various masks that are generated depending on the GeoJSON contents get then laid over onto a mesh.
+
 I have seen this idea and method implemented by the wonderful @thespite and enhanced it for more use cases.
 
 
