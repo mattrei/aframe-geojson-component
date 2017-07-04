@@ -28,8 +28,8 @@ The geojson component has the `material` and `geometry` components as a dependen
 ##### Events
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
-| geojson-generated | { map, features }| map: the loaded data, features contains all geojson/topojson features|
-| geojson-feature-selected | { feature }| The selected feature by the raycaster if the _featureEventName_ parameter is given.  |
+| geojson-generated | `{ map, features }`| Fired when the GeoJSON has finished loading (asynchronous operation!). `map` contains the loaded data, `features` contains all document features|
+| geojson-feature-selected | `{ feature }`| The selected feature by the raycaster if the _featureEventName_ parameter is given.  |
 
 #### `geojson-canvas` component
 
@@ -53,7 +53,7 @@ This component so far can be just used as a texture for a geometry object (plane
 ##### Events
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
-| geojson-canvas-generated | _None_| |
+| geojson-canvas-generated | _None_| Fired when the GeoJSON has finished loading (asynchronous operation!). |
 
 
 ##### API
