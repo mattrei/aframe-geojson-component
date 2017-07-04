@@ -3,7 +3,6 @@
     <title>A-Frame Geojson Component - Basic</title>
     <meta name="description" content="Basic example for Geojson component."></meta>
     <script src="../build.js"></script>
-    <script src="./selection-to-text.js"></script>
   </head>
   <body>
     <a-scene>
@@ -12,8 +11,8 @@
         <a-asset-item id="json-plates-stitched" src="assets/PB2002_plates.stitched.json" />        
       </a-assets>
 
-      <a-entity position="-2 0 -4">
-          <a-text value="Not Stiched :(" color="black" position="-0.5 1.5 0"></a-text>
+      <a-entity position="-2 2 -4">
+          <a-text value="Original Geojson" color="black" position="-0.5 1.5 0"></a-text>
           <a-entity
             geometry="primitive: sphere; radius: 1;"
             material="color: #a50; transparent: true;"
@@ -24,8 +23,8 @@
           </a-entity>
       </a-entity>
 
-        <a-entity position="2 0 -4">
-          <a-text value="Stiched :)" color="black" position="-0.5 1.5 0"></a-text>
+        <a-entity position="2 2 -4">
+          <a-text value="Stitched Geojson" color="black" position="-0.5 1.5 0"></a-text>
           <a-entity
             
             geometry="primitive: sphere; radius: 1;"
@@ -37,13 +36,6 @@
           </a-entity>
         </a-entity>
 
-
-        <a-camera id="camera"  user-height="0">
-
-          <a-text id="infoText" color="black" value="" position="0.5 0 -0.8" scale="0.4 0.4 0.4"></a-text>
-
-          <a-cursor fuse objects=".gazeactivated" interval="2000"></a-cursor>
-        </a-camera>
     </a-scene>
   </body>
 </html>

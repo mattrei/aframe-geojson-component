@@ -13,6 +13,9 @@ AFRAME.registerComponent('geojson-canvas', {
         src: {
             type: 'asset'
         },
+        topologyObject: {
+            default: ''
+        },
         canvas: {
             default: '',
             type: 'selector'
@@ -26,7 +29,7 @@ AFRAME.registerComponent('geojson-canvas', {
             type: 'color'
         },
         lineColor: {
-            default: '#fff',
+            default: '#000',
             type: 'color'
         },
         lineWidth: {
@@ -45,9 +48,6 @@ AFRAME.registerComponent('geojson-canvas', {
         rotation: {
             default: [0, 0],
             type: 'array'
-        },
-        topologyObject: {
-            default: undefined
         }
     },
 
@@ -67,7 +67,6 @@ AFRAME.registerComponent('geojson-canvas', {
             .scale(height / Math.PI)
             .translate([width / 2, height / 2]);
         this.mapPath = d3.geoPath(this.projection);
-        console.log(data.rotation)
         this.projection.rotate(data.rotation);
         this.projection.center(data.center);
 
@@ -80,7 +79,7 @@ AFRAME.registerComponent('geojson-canvas', {
 
         this.ctx = data.canvas.getContext('2d');
 
-        this.draw();
+        this.redraw();
     },
     onGeojsonLoaded: function(file) {
         const json = JSON.parse(file);
@@ -90,7 +89,7 @@ AFRAME.registerComponent('geojson-canvas', {
         var isTopojson = json.features === undefined;
         if (isTopojson) {
             var topologyObjectName = data.topologyObject;
-            if (!data.topologyObject) {
+            if (data.topologyObject !== '') {
                 topologyObjectName = Object.keys(json.objects)[0];
             }
             this.features = topojson.feature(json, json.objects[topologyObjectName]).features;
@@ -98,30 +97,9 @@ AFRAME.registerComponent('geojson-canvas', {
             this.features = json.features;
         }
 
-        this.draw();
+        this.redraw();
 
         this.el.emit(CANVAS_GENERATED_EVENT, {});
-    },
-    draw: function() {
-        if (!this.features) return;
-
-        const data = this.data;
-        var context = this.ctx;
-        var contextPath = this.mapPath.context(context);
-
-        context.clearRect(0, 0, data.canvas.width, data.canvas.height);
-        this.features.forEach((feature, i) => {
-            const strokeColor = this._getStrokeColorOr(feature)
-            const fillColor = this._getFillColorOr(feature)
-
-            context.beginPath();
-            contextPath(feature);
-            context.lineWidth = feature.properties["stroke-width"] || data.lineWidth;
-            context.strokeStyle = strokeColor;
-            context.stroke();
-            context.fillStyle = fillColor;
-            context.fill();
-        });
     },
     _getStrokeColorOr: function(feature) {
         if (feature.properties.stroke) {
@@ -144,14 +122,38 @@ AFRAME.registerComponent('geojson-canvas', {
     _getColorStyle: function(color, opacity) {
         return `rgba( ${((color.r * 255) | 0)}, ${((color.g * 255) | 0)},${((color.b * 255) | 0)}, ${opacity})`;
     },
+    redraw: function() {
+        if (!this.features) return;
+
+        const data = this.data;
+        var context = this.ctx;
+        var contextPath = this.mapPath.context(context);
+
+        context.clearRect(0, 0, data.canvas.width, data.canvas.height);
+        this.features.forEach((feature, i) => {
+            const strokeColor = this._getStrokeColorOr(feature)
+            const fillColor = this._getFillColorOr(feature)
+
+            context.beginPath();
+            contextPath(feature);
+            context.lineWidth = feature.properties["stroke-width"] || data.lineWidth;
+            context.strokeStyle = strokeColor;
+            context.stroke();
+            context.fillStyle = fillColor;
+            context.fill();
+        });
+    },
     getProjection: function() {
         return this.projection;
     },
+
+
+    // TODO -  remove the following methods from here to the example that needs it
     xyFromLatLon: function(lat, lon) {
-        // lat lon are in rad, but d3 needs them in degrees
-        // TODO use THREEJS Math.DEG_RAD
+        
         const data = this.data;
 
+        // lat lon are in rad, but d3 needs them in degrees
         var point = this.projection(this._degFromRad([lon, lat]));
         return {
             x: point[0] / data.canvas.width,
@@ -160,12 +162,11 @@ AFRAME.registerComponent('geojson-canvas', {
     },
     rotateToLatLon: function(lat, lon) {
         var lonLat = this._degFromRad([lon, lat]);
-        // console.log(lonLat)
 
         this.projection.rotate([-lonLat[0], -lonLat[1]]);
-        this.draw();
+        this.redraw();
     },
     _degFromRad: function(lonLat) {
-        return [lonLat[0] / Math.PI * 180, lonLat[1] / (PI_2) * 90];
+        return [lonLat[0] * THREE.Math.RAD2DEG, lonLat[1] * THREE.Math.RAD2DEG];
     }
 });

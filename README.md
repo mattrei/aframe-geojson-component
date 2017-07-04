@@ -12,33 +12,53 @@ This library provides two components working with Geojson/Topojson files
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
 | src | The geojson/topojson asset | "" |
+| topologyObjct | *Only for Topojson*: Specifies the Topojson object to use. If empty then the first will be taken. Mainly probably used for the world-atlas topojso to choose between country or state borders. | "" |
 | featureKey | The unique id of the Geojson feature properties. Must be given and unique. For Topojson this is always _id_ | id |
-| dataSrc | The additional data that should be used emitted when selecting a feature | "" |
+| dataSrc | The meta data that should be used emitted when selecting a feature | "" |
 | dataType | The data type of the dataSrc attribute. Either csv or tsv. | csv |
-| dataKey | The property of the data that is matched to the Geojson feature. | id |
-| topologyObjct | *Only for Topojson*: Specifies the object to use. If `undefined` then the first will be taken. Mainly probably used for the world-atlas topojson. | `undefined` |
+| dataKey | The property of the data that is matched to the Geojson's primary key. | id |
 | raycastResolution | The "resolution" of the raycaster selection. The smaller the closer you have to point with raycaster on the feature to be selected. Set smaller if you have many features close by, higher otherwise. Normalized to a generally good working condition. | 1 |
 
 ##### Events
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
 | geojson-generated | { map, features }| map: the loaded data, features contains all geojson/topojson features|
-| geojson-feature-selected | { feature }| The selected feature |
+| geojson-feature-selected | { feature }| The selected feature when  |
 
 #### `geojson-canvas` component
+
+This component so far can be just used as a texture for a geometry object (plane, sphere, etc). No feature selection event are fired. This may be implemented in future releases.
 
 ##### Schema
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
 | src | The geojson/topojson asset | "" |
+| topologyObjct | *Only for Topojson*: Specifies the Topojson object to use. If empty then the first will be taken. | '' |
+| canvas | The DOM canvas to use as the texture | "" |
 | projection | One of [D3's projection](https://github.com/d3/d3-geo/blob/master/README.md#projections). Use the function name, like "geoEquirectangular" or "geoOrthographic". Use "geoEquirectangular" if you want to wrap it around a sphere. | "geoEquirectangular" |
+| fillColor | Polygon filling color | "#fff" |
+| fillOpacity | Opacity of the polygons | "1" |
+| lineColor | Line color | "#fff" |
+| lineOpacity | Line opacity | "1" |
+| center | The center of the projection. See the D3 documentation for details and use cases. | "0 0" |
+| rotation | The rotation of the projection. See the D3 documentation for details and use cases. | "0 0" |
+
+
+
 | featureProperty | The geojson feature attribute that is used for matching with the generated hit mask. All Topojson documents have an id, most Geojson also in the feature description.  | "id" |
-| topologyObjct | *Only for Topojson*: Specifies the object to use. If `undefined` then the first will be taken. | `undefined` |
+
 
 ##### Events
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
 | geojson-canvas-generated | _None_| |
+
+
+##### API
+| Name | Data | Description |
+| -------- | ----------- | ------------- |
+| getProjection | _None_| Returns the referenced `D3 projection` object that may be used for calculations or transformations. |
+| draw | _None_| Redraws the canvas. |
 
 ### Styling
 The library respects the commonly used [Geojson Styling Spec](https://github.com/mapbox/simplestyle-spec)
@@ -88,6 +108,16 @@ Then require and use.
 require('aframe');
 require('aframe-geojson-component');
 ```
+
+### Antimeridian Cutting
+Most GeoJSON objects might show a line on the antimeridian when projected on a sphere with the equirectangular projection.
+
+To prevent this the original GeoJSON object has to be stitched manually beforehand.
+
+See
+* https://github.com/d3/d3-geo-projection#geostitch
+* https://bl.ocks.org/mbostock/3788999
+for details from the great @mbostock himself.
 
 
 ### Implementation details

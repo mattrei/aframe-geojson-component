@@ -7,9 +7,6 @@ var d3 = require('d3');
 var topojson = require('topojson-client');
 
 const FEATURE_SELECTED_EVENT = 'geojson-feature-selected';
-
-const CANVAS_DATA_FACTOR = 10;
-
 const GEOJSON_GENERATED_EVENT = 'geojson-generated';
 
 AFRAME.registerComponent('geojson', {
@@ -33,7 +30,7 @@ AFRAME.registerComponent('geojson', {
     },
     // for a topojson, else first will be taken
     topologyObject: {
-      default: undefined
+      default: ''
     },
     lineWidth: {
       default: 1
@@ -81,7 +78,7 @@ AFRAME.registerComponent('geojson', {
     var features;
     if (isTopojson) {
       var topologyObjectName = data.topologyObject;
-      if (!data.topologyObject) {
+      if (data.topologyObject !== '') {
         topologyObjectName = Object.keys(json.objects)[0];
       }
       features = topojson.feature(json, json.objects[topologyObjectName]).features;
@@ -130,7 +127,7 @@ AFRAME.registerComponent('geojson', {
     layer.add(linesMesh);
 
     this.el.setObject3D('mesh', layer);
-    // this.el.addEventListener('click', this.select.bind(this))
+    //this.el.addEventListener('click', this.select.bind(this))
     this.el.addEventListener('raycaster-intersected', this.select.bind(this));
 
     this.el.emit(GEOJSON_GENERATED_EVENT);
@@ -407,7 +404,6 @@ AFRAME.registerComponent('geojson', {
     if (geomComponent.data.primitive === 'sphere') {
       return this._sphericalLatLngToVec3(lat, lon);
     } else if (geomComponent.data.primitive === 'plane') {
-      // TODO
       return this._planarLatLngToVec3(lat, lon);
     }
   },
@@ -416,7 +412,7 @@ AFRAME.registerComponent('geojson', {
 
     return new THREE.Vector3(
       lon / 360 * geomComponent.data.width,
-      lat / 180 * geomComponent.data.height, 
+      -lat / 180 * geomComponent.data.height, 
       0);
   },
   _sphericalLatLngToVec3: function (lat, lon) {
@@ -480,7 +476,7 @@ AFRAME.registerComponent('geojson', {
       resolve(res);
     });
   },
-  select: (function (e) {
+  select: (function (evt) {
     var dummy = new THREE.Object3D();
 
     return function () {
@@ -490,7 +486,10 @@ AFRAME.registerComponent('geojson', {
       var raycaster = entity.components.raycaster.raycaster;
 
       var intersections = raycaster.intersectObject(this.maskMesh);
+      console.log(this.maskMesh)
+      console.log(intersections)
       if (intersections.length > 0) {
+        console.log("Inter")
         this.isSelecting = true;
         var p = intersections[0].point;
 
@@ -504,6 +503,9 @@ AFRAME.registerComponent('geojson', {
     };
   }()),
   generateMask: function (features) {
+
+    const CANVAS_DATA_FACTOR = 10;
+
     const width = 512 * 2;
     const height = 256 * 2;
 
@@ -570,7 +572,7 @@ AFRAME.registerComponent('geojson', {
     mesh.scale.y = scale.y ; // was minus
     mesh.scale.z = scale.z;
 
-    console.log(mesh)
+    //console.log(mesh)
 
     this.hitScene.add(mesh);
 
