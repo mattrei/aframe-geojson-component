@@ -1,19 +1,21 @@
 ## aframe-geojson-component
 
-A Geojson/Topojson component for [A-Frame](https://aframe.io).
+A GeoJSON/TopoJSON component for [A-Frame](https://aframe.io).
 
 ### API
 
-This library provides two components working with Geojson/Topojson files
+This library provides two components visualizing GeoJSON and TopoJSON documents.
 
-#### `geojson-equirectangular` component
+#### `geojson` component
+
+The geojson component has the `material` and `geometry` components as a dependency from the entity.
 
 ##### Schema
 | Property | Description | Default Value |
 | -------- | ----------- | ------------- |
 | src | The geojson/topojson asset | "" |
 | topologyObjct | *Only for Topojson*: Specifies the Topojson object to use. If empty then the first will be taken. Mainly probably used for the world-atlas topojso to choose between country or state borders. | "" |
-| featureKey | The unique id of the Geojson feature properties. Must be given and unique. For Topojson this is always _id_ | id |
+| featureKey | The unique id of the GeoJSON feature properties. Must be given and unique. For TopoJSON this is by definition always _id_ . For GeoJSON you have to select the _primary key_ | id |
 | dataSrc | The meta data that should be used emitted when selecting a feature | "" |
 | dataType | The data type of the dataSrc attribute. Either csv or tsv. | csv |
 | dataKey | The property of the data that is matched to the Geojson's primary key. | id |
@@ -63,6 +65,27 @@ This component so far can be just used as a texture for a geometry object (plane
 
 ### Styling
 The library respects the commonly used [Geojson Styling Spec](https://github.com/mapbox/simplestyle-spec)
+
+### Example
+See the many examples for how to use this component.
+
+To show the world country borders on a sphere:
+```html
+<a-assets>
+  <a-asset-item id="world-geojson" src="assets/world-50m.v1.json" />
+</a-assets>        
+
+<a-entity
+  geometry="primitive: sphere; radius: 1;"
+  material="color: #000;"
+  geojson="
+    src: #world-geojson; 
+    topologyObject: countries;
+    lineWidth: 1;
+    "
+  >
+</a-entity>
+```
 
 ### Installation
 
@@ -140,7 +163,3 @@ and finally for line geometries
 Those various masks that are generated depending on the GeoJSON contents get then laid over onto a mesh.
 
 I have seen this idea and method implemented by the wonderful @thespite and enhanced it for more use cases.
-
-
-
-https://gamedev.stackexchange.com/questions/131012/how-can-i-rotate-the-camera-for-a-player-walking-around-the-surface-of-a-sphere
