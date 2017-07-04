@@ -42,6 +42,9 @@ AFRAME.registerComponent('geojson', {
     },
     projection: {
       default: 'geoEquirectangular'
+    },
+    featureEventName: {
+      default: ''
     }
   },
 
@@ -128,7 +131,10 @@ AFRAME.registerComponent('geojson', {
 
     this.el.setObject3D('mesh', layer);
     //this.el.addEventListener('click', this.select.bind(this))
-    this.el.addEventListener('raycaster-intersected', this.select.bind(this));
+    //this.el.addEventListener('raycaster-intersected', this.select.bind(this));
+    if (data.featureEventName !== '') {
+      this.el.addEventListener(data.featureEventName, this.select.bind(this));
+    }
 
     this.el.emit(GEOJSON_GENERATED_EVENT);
   },
@@ -433,8 +439,6 @@ AFRAME.registerComponent('geojson', {
   selectFeature: function (feature) {
 
     const data = this.data
-    console.log(feature)
-
     this.isSelecting = false;
     if (!feature) return;
 
@@ -450,6 +454,7 @@ AFRAME.registerComponent('geojson', {
         !== (selected[data.featureKey] || selected[data.dataKey]))) {
 
       this._selectedFeature = selected;
+    
       this.el.emit(FEATURE_SELECTED_EVENT, selected);
     }
   },
@@ -477,8 +482,7 @@ AFRAME.registerComponent('geojson', {
     });
   },
   select: (function (evt) {
-    var dummy = new THREE.Object3D();
-
+    const dummy = new THREE.Object3D();
     return function () {
       if (this.isSelecting) return;
 
@@ -486,10 +490,7 @@ AFRAME.registerComponent('geojson', {
       var raycaster = entity.components.raycaster.raycaster;
 
       var intersections = raycaster.intersectObject(this.maskMesh);
-      console.log(this.maskMesh)
-      console.log(intersections)
       if (intersections.length > 0) {
-        console.log("Inter")
         this.isSelecting = true;
         var p = intersections[0].point;
 
@@ -569,10 +570,8 @@ AFRAME.registerComponent('geojson', {
 
     var scale = this.el.object3D.getWorldScale();
     mesh.scale.x = scale.x;
-    mesh.scale.y = scale.y ; // was minus
+    mesh.scale.y = scale.y;
     mesh.scale.z = scale.z;
-
-    //console.log(mesh)
 
     this.hitScene.add(mesh);
 

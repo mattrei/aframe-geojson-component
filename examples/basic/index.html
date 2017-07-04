@@ -6,7 +6,7 @@
     <script src="./selection-to-text.js"></script>
   </head>
   <body>
-    <a-scene stats>
+    <a-scene>
       <a-assets>
         <a-asset-item id="json-world-50m" src="assets/world-50m.v1.json" />
         <a-asset-item id="tsv-world-50m" src="assets/world-50m.v1.tsv" />
@@ -19,13 +19,45 @@
         <a-asset-item id="json-places" src="assets/ne_110m_populated_places_simple.geojson" />
       </a-assets>
 
-      <a-entity scale="-1.1 1.1 1.1">
+      <a-entity scale="-1 1 1">
 
+        <a-entity id="countries-globe"
+          class="gazeactivated"
+          geometry="primitive: sphere; radius: 2.1;"
+          material="color: #000; transparent: true; side: back;"
+          geojson="src: #json-world-110m; topologyObject: countries;
+            lineWidth: 1; 
+            dataSrc: #tsv-world-110m; dataType: tsv; dataKey: iso_n3;
+            featureEventName: click;"
+          selection-to-text
+          >
+        </a-entity>
 
+        <a-entity id="rivers-globe"
+          class="gazeactivated"
+          geometry="primitive: sphere; radius: 2;"
+          material="color: #0AF; transparent: true; side: back;"
+          geojson="src: #json-rivers; featureKey: name; featureEventName: click;"
+          visible="true"
+          selection-to-text
+          >
+          </a-entity>
+          
+
+        <a-entity id="places-globe"
+          class="gazeactivated"
+          geometry="primitive: sphere; radius: 2;"
+          material="color: #F0A; transparent: true; side: back;"
+          geojson="src: #json-places; featureKey: name; featureEventName: raycaster-intersected;"
+          selection-to-text
+          >
+          </a-entity>
+
+<!--
         <a-entity id="plates-globe"
           class="gazeactivated"
           geometry="primitive: sphere; radius: 2;"
-          material="color: #0f0; transparent: true;"
+          material="color: #0f0; transparent: true; side: back;"
           geojson="src: #json-plates;
             lineWidth: 2;
             featureKey: Code;
@@ -33,42 +65,7 @@
           selection-to-text="featureProperty: PlateName"
           >
         </a-entity>
-        
-        
-
-
-        <a-entity id="countries-globe"
-          class="gazeactivated"
-          geometry="primitive: sphere; radius: 1.1;"
-          material="color: #000; transparent: true;"
-          geojson="src: #json-world-110m; topologyObject: countries;
-            lineWidth: 1; 
-            dataSrc: #tsv-world-110m; dataType: tsv; dataKey: iso_n3;"
-          visible="true"
-          selection-to-text
-          >
-        </a-entity>
-
-
-
-        <a-entity id="rivers-globe"
-          class="gazeactivated"
-          geometry="primitive: sphere; radius: 1;"
-          material="color: #0AF; transparent: true;"
-          geojson="src: #json-rivers;"
-          visible="true"
-          selection-to-text
-          >
-          </a-entity>
-
-        <a-entity id="places-globe"
-          class="gazeactivated"
-          geometry="primitive: sphere; radius: 1;"
-          material="color: #F0A; transparent: true;"
-          geojson="src: #json-places;"
-          selection-to-text
-          >
-          </a-entity>
+-->
 
 
       </a-entity>

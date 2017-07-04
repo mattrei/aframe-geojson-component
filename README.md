@@ -18,6 +18,7 @@ This library provides two components working with Geojson/Topojson files
 | dataType | The data type of the dataSrc attribute. Either csv or tsv. | csv |
 | dataKey | The property of the data that is matched to the Geojson's primary key. | id |
 | raycastResolution | The "resolution" of the raycaster selection. The smaller the closer you have to point with raycaster on the feature to be selected. Set smaller if you have many features close by, higher otherwise. Normalized to a generally good working condition. | 1 |
+| featureEventName | The event name that should be added as a listener, for example `click` or `raycaster-intersected`. | '' |
 
 ##### Events
 | Name | Data | Description |
