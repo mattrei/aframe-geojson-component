@@ -1,5 +1,10 @@
 /* globals AFRAME, THREE */
 
+if (typeof AFRAME === 'undefined') {
+  throw new Error('Component attempted to register before AFRAME was available.');
+}
+
+
 var d3 = require('d3');
 var topojson = require('topojson-client');
 
@@ -54,23 +59,37 @@ AFRAME.registerComponent('geojson-canvas', {
     update: function(oldData) {
         const data = this.data;
 
-        this._lineColor = this._getColorStyle(new THREE.Color(data.lineColor), data.lineOpacity);
-        this._fillColor = this._getColorStyle(new THREE.Color(data.fillColor), data.fillOpacity);
+        // Nothing changed
+        if (AFRAME.utils.deepEqual(oldData, data)) {
+            return;
+        }
 
-        const width = data.canvas.width;
-        const height = data.canvas.height;
-        this.projection = d3[data.projection]()
-            .scale(height / Math.PI)
-            .translate([width / 2, height / 2]);
-        this.mapPath = d3.geoPath(this.projection);
-        this.projection.rotate(this._vec2ToArray(data.rotation));
-        this.projection.center(this._vec2ToArray(data.center));
+        if (oldData.lineColor !== data.lineColor) {
+            this._lineColor = this._getColorStyle(new THREE.Color(data.lineColor), data.lineOpacity);
+        }
+        if (oldData.fillColor !== data.fillColor) {
+            this._fillColor = this._getColorStyle(new THREE.Color(data.fillColor), data.fillOpacity);
+        }
 
+        if (oldData.projection !== data.projection) {
+            const width = data.canvas.width;
+            const height = data.canvas.height;
+            this.projection = d3[data.projection]()
+                .scale(height / Math.PI)
+                .translate([width / 2, height / 2]);
+            this.mapPath = d3.geoPath(this.projection);
+        }
+        if (oldData.rotation !== data.rotation) {
+            this.projection.rotate(this._vec2ToArray(data.rotation));
+        }
+        if (oldData.center !== data.center) {
+            this.projection.center(this._vec2ToArray(data.center));
+        }
         this.redraw();
 
-        const src = this.data.src;
-        if (src && src !== oldData.src) {
-            this.loader.load(this.data.src, this.onGeojsonLoaded.bind(this));
+        if (data.src && data.src !== oldData.src) {
+            console.log("Loading")
+            this.loader.load(data.src, this.onGeojsonLoaded.bind(this));
         }
     },
     _vec2ToArray: function(vec2) {
@@ -118,6 +137,7 @@ AFRAME.registerComponent('geojson-canvas', {
         return `rgba( ${((color.r * 255) | 0)}, ${((color.g * 255) | 0)},${((color.b * 255) | 0)}, ${opacity})`;
     },
     redraw: function() {
+        // a very expensive operation, takes around 100 ms!
         if (!this.features) return;
 
         const data = this.data;
@@ -145,7 +165,7 @@ AFRAME.registerComponent('geojson-canvas', {
 
     // TODO -  remove the following methods from here to the example that needs it
     xyFromLatLon: function(lat, lon) {
-        
+
         const data = this.data;
 
         // lat lon are in rad, but d3 needs them in degrees

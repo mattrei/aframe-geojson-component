@@ -8,7 +8,7 @@ A GeoJSON/TopoJSON component for [A-Frame](https://aframe.io).
 
 ### API
 
-This library provides two components visualizing GeoJSON and TopoJSON documents.
+This library provides two components visualizing GeoJSON and TopoJSON documents. It can visualize _MultiPoints_/_Points_ as a point cloud, _MultiLineStrings_/_LineStrings_ as lines and _MultiPolygons_/_Polygons_ as an outline (no triangulated meshes!).
 
 #### `geojson` component
 
@@ -65,7 +65,13 @@ This component so far can be just used as a texture for a geometry object (plane
 | draw | _None_| Redraws the canvas. |
 
 ### Styling
-The library respects the commonly used [Geojson Styling Spec](https://github.com/mapbox/simplestyle-spec)
+The library (trys to) respects the commonly used [Geojson Styling Spec](https://github.com/mapbox/simplestyle-spec)
+
+### Further Styling
+To change the the appearnance of the points or lines just [register custom material](https://aframe.io/docs/0.6.0/components/material.html#register-a-custom-material)
+
+* Polygons and Lines need a `THREE.LineBasicMaterial`
+* Points need a  `THREE.PointsMaterial`
 
 ### Installation
 
