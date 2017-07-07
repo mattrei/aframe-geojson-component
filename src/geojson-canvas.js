@@ -138,20 +138,21 @@ AFRAME.registerComponent('geojson-canvas', {
         const b = (color.b * 255) | 0
 
         return "rgba(" + r + "," + g + "," + b + "," + opacity + ")";
-        //return `rgba( ${((color.r * 255) | 0)}, ${((color.g * 255) | 0)},${((color.b * 255) | 0)}, ${opacity})`;
     },
     redraw: function() {
         // a very expensive operation, takes around 100 ms!
         if (!this.features) return;
+
+        var self = this
 
         const data = this.data;
         var context = this.ctx;
         var contextPath = this.mapPath.context(context);
 
         context.clearRect(0, 0, data.canvas.width, data.canvas.height);
-        this.features.forEach((feature, i) => {
-            const strokeColor = this._getStrokeColorOr(feature)
-            const fillColor = this._getFillColorOr(feature)
+        this.features.forEach(function(feature, i) {
+            const strokeColor = self._getStrokeColorOr(feature)
+            const fillColor = self._getFillColorOr(feature)
 
             context.beginPath();
             contextPath(feature);
