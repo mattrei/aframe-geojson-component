@@ -318,7 +318,7 @@ AFRAME.registerComponent('geojson', {
         pointsGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
         pointsGeometry.computeBoundingSphere();
 
-        let pointsMaterial = new THREE.PointsMaterial({
+        const pointsMaterial = new THREE.PointsMaterial({
             size: 0.02,
             sizeAttenuation: true,
             transparent: this.matComponent.data.transparent,
@@ -326,7 +326,7 @@ AFRAME.registerComponent('geojson', {
             opacity: this.matComponent.data.opacity
         });
 
-        let pointsMesh = new THREE.Points(
+        const pointsMesh = new THREE.Points(
             pointsGeometry,
             pointsMaterial
         );
