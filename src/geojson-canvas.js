@@ -88,7 +88,6 @@ AFRAME.registerComponent('geojson-canvas', {
         this.redraw();
 
         if (data.src && data.src !== oldData.src) {
-            console.log("Loading")
             this.loader.load(data.src, this.onGeojsonLoaded.bind(this));
         }
     },
@@ -134,7 +133,12 @@ AFRAME.registerComponent('geojson-canvas', {
         return this._fillColor
     },
     _getColorStyle: function(color, opacity) {
-        return `rgba( ${((color.r * 255) | 0)}, ${((color.g * 255) | 0)},${((color.b * 255) | 0)}, ${opacity})`;
+        const r = (color.r * 255) | 0
+        const g = (color.g * 255) | 0
+        const b = (color.b * 255) | 0
+
+        return "rgba(" + r + "," + g + "," + b + "," + opacity + ")";
+        //return `rgba( ${((color.r * 255) | 0)}, ${((color.g * 255) | 0)},${((color.b * 255) | 0)}, ${opacity})`;
     },
     redraw: function() {
         // a very expensive operation, takes around 100 ms!
