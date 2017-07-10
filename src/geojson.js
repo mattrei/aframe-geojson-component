@@ -8,6 +8,7 @@ if (typeof AFRAME === 'undefined') {
 require('pathseg'); // polyfill
 
 var d3 = require('d3');
+var d3Geo = require('d3-geo-projection');
 
 var topojson = require('topojson-client');
 
@@ -86,6 +87,7 @@ AFRAME.registerComponent('geojson', {
                 height / 2
             ]);
         const path = d3.geoPath(projection).pointRadius(0.1);
+        
 
         var svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
 
@@ -98,12 +100,25 @@ AFRAME.registerComponent('geojson', {
                 topologyObjectName = Object.keys(json.objects)[0];
             }
             features = topojson.feature(json, json.objects[topologyObjectName]).features;
+            /*
+            features.forEach(function(f) {
+                f.geometry = d3Geo.geoStitch(f.geometry)
+            })
+            */
         } else {
             features = json.features;
+            /*
+            features.forEach(function(f) {
+                f.geometry = d3Geo.geoStitch(f.geometry)
+            })
+            */
         }
 
         var paths = svg.append('g').attr('class', 'features');
-        paths.selectAll('path').data(features).enter().append('path')
+        paths.selectAll('path')
+            .data(features)
+            .enter()
+            .append('path')
             /*.attr('id', d => isTopojson
             ? d.id
             : d.properties[data.featureProperty])*/
@@ -228,12 +243,11 @@ AFRAME.registerComponent('geojson', {
                         ox = x;
                         oy = y;
 
-                        if (!type.includes('Point')) {
-                            // add line
-                            territory.lines.push(line);
-                            line = [];
-                            line.push(new THREE.Vector2(x, y));
-                        }
+                        
+                        territory.lines.push(line);
+                        line = [];
+                        line.push(new THREE.Vector2(x, y));
+                    
                     }
                     if (segment instanceof SVGPathSegLinetoRel) {
                         x = px + segment.x;
