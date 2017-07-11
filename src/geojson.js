@@ -100,18 +100,8 @@ AFRAME.registerComponent('geojson', {
                 topologyObjectName = Object.keys(json.objects)[0];
             }
             features = topojson.feature(json, json.objects[topologyObjectName]).features;
-            /*
-            features.forEach(function(f) {
-                f.geometry = d3Geo.geoStitch(f.geometry)
-            })
-            */
         } else {
             features = json.features;
-            /*
-            features.forEach(function(f) {
-                f.geometry = d3Geo.geoStitch(f.geometry)
-            })
-            */
         }
 
         var paths = svg.append('g').attr('class', 'features');
@@ -125,7 +115,7 @@ AFRAME.registerComponent('geojson', {
             .attr('d', path).attr('fill', 'none')
             .style('stroke', 'black'); // important for lines!
 
-        const linesMap = this.generateLinesMap(svg.selectAll('path'));
+        const linesMap = this.generateLinesMap(svg.selectAll('path'), isTopojson);
         const pointsMap = this.generatePointsMap(svg.selectAll('path'));
 
         svg.remove();
@@ -202,7 +192,7 @@ AFRAME.registerComponent('geojson', {
 
         return map
     },
-    generateLinesMap: function(paths) {
+    generateLinesMap: function(paths, isTopojson) {
         var self = this;
         var map = new Map();
 
@@ -222,6 +212,8 @@ AFRAME.registerComponent('geojson', {
             // var vertices = line.vertices
             var x,
                 y;
+
+            // origin coorindates when closing the path
             var ox,
                 oy;
             var px,
@@ -231,8 +223,8 @@ AFRAME.registerComponent('geojson', {
             for (var i = 0; i < segments.numberOfItems; i++) {
                 var segment = segments.getItem(i);
 
-                if (((segment.x >= 359 || segment.x <= 1) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
-                    // console.log(segment)
+                if (((segment.x >= 359.9 || segment.x <= 0.1) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
+                    //console.log(segment)
                     // some GeoJSON files have a border around them
                     // to avoid having a frame aroudn the plane we omit
                     // the top-, left, right-, bottomost lines
@@ -279,13 +271,14 @@ AFRAME.registerComponent('geojson', {
                         y = segment.y;
                         line.push(new THREE.Vector2(x, y));
                     }
+                    
                     if (segment instanceof SVGPathSegClosePath || i + 1 === segments.numberOfItems) {
                         x = ox
                         y = oy
-                        if (type.includes("Polygon")) { // do not close line geometries, just polygons
+                        if (type.includes("Polygon") && isTopojson) { // do not close line geometries, just polygons
+                            // close the segment only if it is a topojson
                             line.push(new THREE.Vector2(x, y))
                         }
-
                         territory.lines.push(line);
                         line = [];
                     }

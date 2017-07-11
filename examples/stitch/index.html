@@ -11,6 +11,7 @@
         <a-asset-item id="json-plates-stitched" src="assets/PB2002_plates.stitched.json" />        
       </a-assets>
 
+
       <a-entity position="-2 2 -4">
           <a-text value="Original Geojson" color="black" position="-0.5 1.5 0"></a-text>
           <a-entity
@@ -18,11 +19,11 @@
             material="color: #a50; transparent: true;"
             geojson="src: #json-plates-orig;
               lineWidth: 3;"
-            visible="true"
             >
           </a-entity>
       </a-entity>
 
+    
         <a-entity position="2 2 -4">
           <a-text value="Stitched Geojson" color="black" position="-0.5 1.5 0"></a-text>
           <a-entity
@@ -31,7 +32,6 @@
             material="color: #0a5; transparent: true;"
             geojson="src: #json-plates-stitched;
               lineWidth: 3;"
-            visible="true"
             >
           </a-entity>
         </a-entity>
