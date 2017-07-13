@@ -20,7 +20,7 @@ The geojson component has the `material` and `geometry` components as a dependen
 | src | The GeoJSON/TopoJSON asset. | "" |
 | projection | One of [D3's projection](https://github.com/d3/d3-geo/blob/master/README.md#projections). Use the function name, like "geoEquirectangular" or "geoOrthographic". Use "geoEquirectangular" if you have global data and want to wrap it around a sphere. | "geoEquirectangular" |
 | topologyObjct | *Only for TopoJSON*: Specifies the TopoJSON object to use (see [specification](https://github.com/topojson/topojson-specification#2-topojson-objects) for details). If empty then the first will be taken. | "" |
-| featureKey | The primary key of the GeoJSON feature properties. Must be given and unique. For TopoJSON this is by specification always the _id_ property . For GeoJSON you have to select the _primary key_ | id |
+| featureKey | The primary key of the GeoJSON feature properties. Choose as key the property that has unique values. *Must be given*, otherwise nothing will be shown. For TopoJSON this is by specification always the _id_ property . For GeoJSON you have to select the _primary key_ | id |
 | dataSrc | The optional metadata that of this GeoJSON document. Mostly GeoJSON contains already all the associated data, however TopoJSON have always associated data sources. | "" |
 | dataType | The data type of the dataSrc attribute. Can be either *csv* or *tsv*. | csv |
 | dataKey | The name of the property of the metadata that is matched to the GeoJSON's _featureKey_ attribute. | id |

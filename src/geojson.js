@@ -41,6 +41,9 @@ AFRAME.registerComponent('geojson', {
         lineWidth: {
             default: 1
         },
+        pointSize: {
+            default: 0.1
+        },
         // setting the resolution of the data raycasting resolution; set lower if data is very dense; set higher if you have not much data
         raycastResolution: {
             default: 1,
@@ -327,7 +330,7 @@ AFRAME.registerComponent('geojson', {
         pointsGeometry.computeBoundingSphere();
 
         const pointsMaterial = new THREE.PointsMaterial({
-            size: 0.02,
+            size: this.data.pointSize,
             sizeAttenuation: true,
             transparent: this.matComponent.data.transparent,
             color: this.matComponent.data.color,

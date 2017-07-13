@@ -19,15 +19,14 @@
           geojson="
             src: #json-world-110m; 
             topologyObject: countries;
-            lineWidth: 1;"
+            lineWidth: 1 ;"
           ></a-entity>
 
 
         <a-entity 
           geometry="primitive: sphere; radius: 1;"
           material="color: #F0A;"
-          geojson="src: #json-places; featureKey: name;"
-          visible="false"
+          geojson="src: #json-places; featureKey: name; pointSize: 0.02;"
           ></a-entity>
         </a-entity>
     </a-scene>

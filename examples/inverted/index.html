@@ -50,7 +50,9 @@
           class="gazeactivated"
           geometry="primitive: sphere; radius: 2;"
           material="color: #F0A; transparent: true; side: back;"
-          geojson="src: #json-places; featureKey: name; featureEventName: raycaster-intersected;"
+          geojson="src: #json-places; 
+          pointSize: 0.02;
+          featureKey: name; featureEventName: raycaster-intersected;"
           selection-to-text
           >
           </a-entity>
