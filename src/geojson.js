@@ -179,6 +179,7 @@ AFRAME.registerComponent('geojson', {
             const key = p.__data__.properties[self.data.featureKey]; // p.id
             const type = p.__data__.geometry.type; // Point, String, Polygon
 
+
             var segments = p.pathSegList;
             for (var i = 0; i < segments.numberOfItems; i++) {
                 var segment = segments.getItem(i);

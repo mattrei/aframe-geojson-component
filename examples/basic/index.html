@@ -8,19 +8,28 @@
     <a-scene>
       <a-assets>
         <a-asset-item id="json-world-110m" src="assets/world-110m.v1.json" />
-        <a-asset-item id="json-world-50m" src="assets/50m.json" />
         <a-asset-item id="tsv-world-110m" src="assets/world-110m.v1.tsv" />
+        <a-asset-item id="json-places" src="assets/ne_110m_populated_places_simple.geojson" />
       </a-assets>
 
+      <a-entity position="0 2 0">
         <a-entity 
-          position="0 2 0"
           geometry="primitive: sphere; radius: 1;"
           material="color: #000;"
           geojson="
             src: #json-world-110m; 
             topologyObject: countries;
             lineWidth: 1;"
-          />
+          ></a-entity>
+
+
+        <a-entity 
+          geometry="primitive: sphere; radius: 1;"
+          material="color: #F0A;"
+          geojson="src: #json-places; featureKey: name;"
+          visible="false"
+          ></a-entity>
+        </a-entity>
     </a-scene>
   </body>
 </html>
