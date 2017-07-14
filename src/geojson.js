@@ -1,14 +1,12 @@
 /* globals AFRAME, THREE, SVGPathSegMovetoAbs, SVGPathSegLinetoRel, SVGPathSegLinetoVerticalRel, SVGPathSegLinetoHorizontalRel, SVGPathSegLinetoHorizontalAbs, SVGPathSegLinetoVerticalAbs, SVGPathSegClosePath, SVGPathSegLinetoAbs */
 
-
 if (typeof AFRAME === 'undefined') {
-    throw new Error('Component attempted to register before AFRAME was available.');
+  throw new Error('Component attempted to register before AFRAME was available.');
 }
 
 require('pathseg'); // polyfill
 
 var d3 = require('d3');
-var d3Geo = require('d3-geo-projection');
 
 var topojson = require('topojson-client');
 
@@ -16,644 +14,623 @@ const FEATURE_SELECTED_EVENT = 'geojson-feature-selected';
 const GEOJSON_GENERATED_EVENT = 'geojson-generated';
 
 AFRAME.registerComponent('geojson', {
-    schema: {
-        src: {
-            type: 'asset'
-        },
-        featureKey: {
-            default: 'id'
-        },
+  schema: {
+    src: {
+      type: 'asset'
+    },
+    featureKey: {
+      default: 'id'
+    },
         // the data that holds the data; if not set then it is supposed to be already included
-        dataSrc: {
-            type: 'asset'
-        },
-        dataType: {
-            default: 'tsv',
-            oneOf: ['csv', 'tsv']
-        },
-        dataKey: {
-            default: 'id'
-        },
+    dataSrc: {
+      type: 'asset'
+    },
+    dataType: {
+      default: 'tsv',
+      oneOf: ['csv', 'tsv']
+    },
+    dataKey: {
+      default: 'id'
+    },
         // for a topojson, else first will be taken
-        topologyObject: {
-            default: ''
-        },
-        lineWidth: {
-            default: 1
-        },
-        pointSize: {
-            default: 0.1
-        },
+    topologyObject: {
+      default: ''
+    },
+    lineWidth: {
+      default: 1
+    },
+    pointSize: {
+      default: 0.1
+    },
         // setting the resolution of the data raycasting resolution; set lower if data is very dense; set higher if you have not much data
-        raycastResolution: {
-            default: 1,
-            type: 'int'
-        },
-        projection: {
-            default: 'geoEquirectangular'
-        },
-        featureEventName: {
-            default: ''
-        }
+    raycastResolution: {
+      default: 1,
+      type: 'int'
     },
+    projection: {
+      default: 'geoEquirectangular'
+    },
+    featureEventName: {
+      default: ''
+    }
+  },
 
-    init: function() {
-        this.loader = new THREE.FileLoader();
-    },
-    update: function(oldData) {
-        const data = this.data
+  init: function () {
+    this.loader = new THREE.FileLoader();
+  },
+  update: function (oldData) {
+    const data = this.data;
 
         // Nothing changed
-        if (AFRAME.utils.deepEqual(oldData, data)) {
-            return;
-        }
+    if (AFRAME.utils.deepEqual(oldData, data)) {
+      return;
+    }
 
+    const src = data.src;
+    if (src && src !== oldData.src) {
+      this.loader.load(src, this.onGeojsonLoaded.bind(this));
+    }
+  },
+  onGeojsonLoaded: function (file) {
+    const json = JSON.parse(file);
 
-        const src = data.src;
-        if (src && src !== oldData.src) {
-            this.loader.load(src, this.onGeojsonLoaded.bind(this));
-        }
-    },
-    onGeojsonLoaded: function(file) {
-        const json = JSON.parse(file);
+    const data = this.data;
 
-        const data = this.data;
-        const el = this.el;
+    const width = 360; // corresponds to longitude
+    const height = 180; // corresponds to positive scaled latitude
 
-        const width = 360; // corresponds to longitude
-        const height = 180; // corresponds to positive scaled latitude 
-
-        const projection = d3[data.projection]().scale(height / Math.PI)
+    const projection = d3[data.projection]().scale(height / Math.PI)
             // http://bl.ocks.org/mbostock/3757119
             .translate([
-                width / 2,
-                height / 2
+              width / 2,
+              height / 2
             ]);
-        const path = d3.geoPath(projection).pointRadius(0.1);
-        
+    const path = d3.geoPath(projection).pointRadius(0.1);
 
-        var svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
+    var svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
 
-        var isTopojson = json.features === undefined;
+    var isTopojson = json.features === undefined;
 
-        var features;
-        if (isTopojson) {
-            var topologyObjectName = data.topologyObject;
-            if (data.topologyObject !== '') {
-                topologyObjectName = Object.keys(json.objects)[0];
-            }
-            features = topojson.feature(json, json.objects[topologyObjectName]).features;
-        } else {
-            features = json.features;
-        }
+    var features;
+    if (isTopojson) {
+      var topologyObjectName = data.topologyObject;
+      if (data.topologyObject !== '') {
+        topologyObjectName = Object.keys(json.objects)[0];
+      }
+      features = topojson.feature(json, json.objects[topologyObjectName]).features;
+    } else {
+      features = json.features;
+    }
 
-        var paths = svg.append('g').attr('class', 'features');
-        paths.selectAll('path')
+    var paths = svg.append('g').attr('class', 'features');
+    paths.selectAll('path')
             .data(features)
             .enter()
             .append('path')
-            /*.attr('id', d => isTopojson
+            /* .attr('id', d => isTopojson
             ? d.id
             : d.properties[data.featureProperty])*/
             .attr('d', path).attr('fill', 'none')
             .style('stroke', 'black'); // important for lines!
 
-        const linesMap = this.generateLinesMap(svg.selectAll('path'), isTopojson);
-        const pointsMap = this.generatePointsMap(svg.selectAll('path'));
+    const linesMap = this.generateLinesMap(svg.selectAll('path'), isTopojson);
+    const pointsMap = this.generatePointsMap(svg.selectAll('path'));
 
-        svg.remove();
+    svg.remove();
 
-        this.matComponent = this.el.components.material;
+    this.matComponent = this.el.components.material;
 
-        this._selectedFeature = null;
-        this.isSelecting = false;
+    this._selectedFeature = null;
+    this.isSelecting = false;
 
-        this.codes = new Map(); // country color codes for selecting
-        this.hitScene = new THREE.Scene();
-        this.hitCamera = new THREE.PerspectiveCamera(0.001, 1, 0.01, 3000);
-        this.hitTexture = new THREE.WebGLRenderTarget(1, 1);
-        this.hitTexture.texture.minFilter = THREE.NearestFilter;
-        this.hitTexture.texture.magFilter = THREE.NearestFilter;
-        this.hitTexture.generateMipMaps = false;
-        this.hitTexture.setSize(100, 100);
+    this.codes = new Map(); // country color codes for selecting
+    this.hitScene = new THREE.Scene();
+    this.hitCamera = new THREE.PerspectiveCamera(0.001, 1, 0.01, 3000);
+    this.hitTexture = new THREE.WebGLRenderTarget(1, 1);
+    this.hitTexture.texture.minFilter = THREE.NearestFilter;
+    this.hitTexture.texture.magFilter = THREE.NearestFilter;
+    this.hitTexture.generateMipMaps = false;
+    this.hitTexture.setSize(100, 100);
 
-        this.dataMap = new Map();
-        if (data.dataSrc) {
-            this.loader.load(data.dataSrc, this.onDataLoaded.bind(this));
-        }
-        this.shapesMap = new Map();
-        const mesh = linesMap.size > 0 ? this.generateLines(linesMap) :
-            this.generatePoints(pointsMap)
+    this.dataMap = new Map();
+    if (data.dataSrc) {
+      this.loader.load(data.dataSrc, this.onDataLoaded.bind(this));
+    }
+    this.shapesMap = new Map();
+    const mesh = linesMap.size > 0 ? this.generateLines(linesMap) : this.generatePoints(pointsMap);
         // TODO store shapesMap
 
+    this.el.setObject3D('mesh', mesh);
 
-        this.el.setObject3D('mesh', mesh);
+    this.maskMesh = this.generateMask(features);
 
-        this.maskMesh = this.generateMask(features);
+        // this.el.addEventListener('click', this.select.bind(this))
+        // this.el.addEventListener('raycaster-intersected', this.select.bind(this));
+    if (data.featureEventName !== '') {
+      this.el.addEventListener(data.featureEventName, this.select.bind(this));
+    }
 
+    this.el.emit(GEOJSON_GENERATED_EVENT);
+  },
+  onDataLoaded: function (file) {
+    var self = this;
+    const data = this.data;
 
+    const contents = data.dataType === 'tsv' ? d3.tsvParse(file) : d3.csvParse(file);
 
+    contents.forEach(function (e) {
+      self.dataMap.set(e[data.dataKey], e);
+    });
+  },
+  generatePointsMap: function (paths) {
+    var self = this;
+    var map = new Map();
 
-        //this.el.addEventListener('click', this.select.bind(this))
-        //this.el.addEventListener('raycaster-intersected', this.select.bind(this));
-        if (data.featureEventName !== '') {
-            this.el.addEventListener(data.featureEventName, this.select.bind(this));
+    var pathNodes = paths.nodes();
+
+    pathNodes.forEach(function (p) {
+      const key = p.__data__.properties[self.data.featureKey]; // p.id
+      const type = p.__data__.geometry.type; // Point, String, Polygon
+
+      var segments = p.pathSegList;
+      for (var i = 0; i < segments.numberOfItems; i++) {
+        var segment = segments.getItem(i);
+        if (segment instanceof SVGPathSegMovetoAbs) {
+          if (type.includes('Point')) {
+            map.set(key, new THREE.Vector2(segment.x, segment.y));
+          }
         }
+      }
+    });
 
-        this.el.emit(GEOJSON_GENERATED_EVENT);
-    },
-    onDataLoaded: function(file) {
+    return map;
+  },
+  generateLinesMap: function (paths, isTopojson) {
+    var self = this;
+    var map = new Map();
 
-        var self = this;
-        const data = this.data
+    var pathNodes = paths.nodes();
 
-        const contents = data.dataType === 'tsv' ? d3.tsvParse(file) : d3.csvParse(file)
+    pathNodes.forEach(function (p) {
+      const key = p.__data__.properties[self.data.featureKey]; // p.id
+      const type = p.__data__.geometry.type; // Point, String, Polygon
 
-        contents.forEach(function(e) {
-            self.dataMap.set(e[data.dataKey], e);
-        });
+      if (type.includes('Point')) return;
 
-    },
-    generatePointsMap: function(paths) {
-
-        var self = this;
-        var map = new Map();
-
-        var pathNodes = paths.nodes();
-
-        pathNodes.forEach(function(p) {
-            const key = p.__data__.properties[self.data.featureKey]; // p.id
-            const type = p.__data__.geometry.type; // Point, String, Polygon
-
-
-            var segments = p.pathSegList;
-            for (var i = 0; i < segments.numberOfItems; i++) {
-                var segment = segments.getItem(i);
-                if (segment instanceof SVGPathSegMovetoAbs) {
-                    if (type.includes('Point')) {
-                        map.set(key, new THREE.Vector2(segment.x, segment.y))
-                    }
-                }
-            }
-        })
-
-        return map
-    },
-    generateLinesMap: function(paths, isTopojson) {
-        var self = this;
-        var map = new Map();
-
-        var pathNodes = paths.nodes();
-
-        pathNodes.forEach(function(p) {
-            const key = p.__data__.properties[self.data.featureKey]; // p.id
-            const type = p.__data__.geometry.type; // Point, String, Polygon
-
-            if (type.includes("Point")) return
-
-            const territory = {
-                id: key,
-                lines: []
-            };
-            var line = [];
+      const territory = {
+        id: key,
+        lines: []
+      };
+      var line = [];
             // var vertices = line.vertices
-            var x,
-                y;
+      var x,
+        y;
 
             // origin coorindates when closing the path
-            var ox,
-                oy;
-            var px,
-                py;
+      var ox,
+        oy;
+      var px,
+        py;
 
-            var segments = p.pathSegList;
-            for (var i = 0; i < segments.numberOfItems; i++) {
-                var segment = segments.getItem(i);
+      var segments = p.pathSegList;
+      for (var i = 0; i < segments.numberOfItems; i++) {
+        var segment = segments.getItem(i);
 
-                if (((segment.x >= 359.9 || segment.x <= 0.1) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
-                    //console.log(segment)
+        if (((segment.x >= 359.9 || segment.x <= 0.1) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
+                    // console.log(segment)
                     // some GeoJSON files have a border around them
                     // to avoid having a frame aroudn the plane we omit
                     // the top-, left, right-, bottomost lines
-                } else {
-                    if (segment instanceof SVGPathSegMovetoAbs) {
-                        x = segment.x;
-                        y = segment.y;
-                        ox = x;
-                        oy = y;
+        } else {
+          if (segment instanceof SVGPathSegMovetoAbs) {
+            x = segment.x;
+            y = segment.y;
+            ox = x;
+            oy = y;
 
-                        
-                        territory.lines.push(line);
-                        line = [];
-                        line.push(new THREE.Vector2(x, y));
-                    
-                    }
-                    if (segment instanceof SVGPathSegLinetoRel) {
-                        x = px + segment.x;
-                        y = py + segment.y;
-                        line.push(new THREE.Vector2(x, y));
-                    }
-                    if (segment instanceof SVGPathSegLinetoAbs) {
-                        x = segment.x;
-                        y = segment.y;
-                        line.push(new THREE.Vector2(x, y));
-                    }
-                    if (segment instanceof SVGPathSegLinetoVerticalRel) {
-                        x = px;
-                        y = py + segment.y;
-                        line.push(new THREE.Vector2(x, y));
-                    }
-                    if (segment instanceof SVGPathSegLinetoHorizontalRel) {
-                        x = px + segment.x;
-                        y = py;
-                        line.push(new THREE.Vector2(x, y));
-                    }
-                    if (segment instanceof SVGPathSegLinetoHorizontalAbs) {
-                        x = segment.x;
-                        y = py;
-                        line.push(new THREE.Vector2(x, y));
-                    }
-                    if (segment instanceof SVGPathSegLinetoVerticalAbs) {
-                        x = px;
-                        y = segment.y;
-                        line.push(new THREE.Vector2(x, y));
-                    }
-                    
-                    if (segment instanceof SVGPathSegClosePath || i + 1 === segments.numberOfItems) {
-                        x = ox
-                        y = oy
-                        if (type.includes("Polygon") && isTopojson) { // do not close line geometries, just polygons
+            territory.lines.push(line);
+            line = [];
+            line.push(new THREE.Vector2(x, y));
+          }
+          if (segment instanceof SVGPathSegLinetoRel) {
+            x = px + segment.x;
+            y = py + segment.y;
+            line.push(new THREE.Vector2(x, y));
+          }
+          if (segment instanceof SVGPathSegLinetoAbs) {
+            x = segment.x;
+            y = segment.y;
+            line.push(new THREE.Vector2(x, y));
+          }
+          if (segment instanceof SVGPathSegLinetoVerticalRel) {
+            x = px;
+            y = py + segment.y;
+            line.push(new THREE.Vector2(x, y));
+          }
+          if (segment instanceof SVGPathSegLinetoHorizontalRel) {
+            x = px + segment.x;
+            y = py;
+            line.push(new THREE.Vector2(x, y));
+          }
+          if (segment instanceof SVGPathSegLinetoHorizontalAbs) {
+            x = segment.x;
+            y = py;
+            line.push(new THREE.Vector2(x, y));
+          }
+          if (segment instanceof SVGPathSegLinetoVerticalAbs) {
+            x = px;
+            y = segment.y;
+            line.push(new THREE.Vector2(x, y));
+          }
+
+          if (segment instanceof SVGPathSegClosePath || i + 1 === segments.numberOfItems) {
+            x = ox;
+            y = oy;
+            if (type.includes('Polygon') && isTopojson) { // do not close line geometries, just polygons
                             // close the segment only if it is a topojson
-                            line.push(new THREE.Vector2(x, y))
-                        }
-                        territory.lines.push(line);
-                        line = [];
-                    }
-
-                    px = x;
-                    py = y;
-                }
+              line.push(new THREE.Vector2(x, y));
             }
+            territory.lines.push(line);
+            line = [];
+          }
 
-            territory.lines = territory.lines.filter(function (l) {
-                return l.length > 0;
-            });
+          px = x;
+          py = y;
+        }
+      }
+
+      territory.lines = territory.lines.filter(function (l) {
+        return l.length > 0;
+      });
             // countries.push( territory )
 
-            if (!map.has(key)) {
-                map.set(key, []);
-            }
-            map.get(key).push(territory);
-        });
+      if (!map.has(key)) {
+        map.set(key, []);
+      }
+      map.get(key).push(territory);
+    });
 
-        return map
-    },
-    generatePoints: function(mapData) {
-        var self = this;
-        const data = this.data;
+    return map;
+  },
+  generatePoints: function (mapData) {
+    var self = this;
 
-        const pointsGeometry = new THREE.BufferGeometry();
-        const positions = new Float32Array(mapData.size * 3);
+    const pointsGeometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(mapData.size * 3);
 
         // TODO?
         // const sizes = new Float32Array(points)
         // const colors = new Float32Array(points)
 
-        var ptr = 0;
-        mapData.forEach(function(point, id) {
-            const res = self.latLngToVec3(point.y, point.x);
+    var ptr = 0;
+    mapData.forEach(function (point, id) {
+      const res = self.latLngToVec3(point.y, point.x);
 
-            positions[ptr] = res.x;
-            positions[ptr + 1] = res.y;
-            positions[ptr + 2] = res.z;
-            ptr += 3;
-        });
+      positions[ptr] = res.x;
+      positions[ptr + 1] = res.y;
+      positions[ptr + 2] = res.z;
+      ptr += 3;
+    });
 
-        pointsGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
-        pointsGeometry.computeBoundingSphere();
+    pointsGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+    pointsGeometry.computeBoundingSphere();
 
-        const pointsMaterial = new THREE.PointsMaterial({
-            size: this.data.pointSize,
-            sizeAttenuation: true,
-            transparent: this.matComponent.data.transparent,
-            color: this.matComponent.data.color,
-            opacity: this.matComponent.data.opacity
-        });
+    const pointsMaterial = new THREE.PointsMaterial({
+      size: this.data.pointSize,
+      sizeAttenuation: true,
+      transparent: this.matComponent.data.transparent,
+      color: this.matComponent.data.color,
+      opacity: this.matComponent.data.opacity
+    });
 
-        const pointsMesh = new THREE.Points(
+    const pointsMesh = new THREE.Points(
             pointsGeometry,
             pointsMaterial
         );
 
-        return pointsMesh;
-    },
-    generateLines: function(mapData) {
-        var self = this
-        const data = this.data;
+    return pointsMesh;
+  },
+  generateLines: function (mapData) {
+    var self = this;
+    const data = this.data;
 
-        var layer = new THREE.Object3D();   // TODO is a layer needed?
+    var layer = new THREE.Object3D();   // TODO is a layer needed?
 
-        var min = 10000000,
-            max = -10000000;
+    var min = 10000000;
+    var max = -10000000;
 
-        var lines = 0;
-        mapData.forEach(function (territory) {
-            territory.forEach(function(path) {
-                path.lines.forEach(function(line) {
-                    lines += line.length;
-                });
-            });
+    var lines = 0;
+    mapData.forEach(function (territory) {
+      territory.forEach(function (path) {
+        path.lines.forEach(function (line) {
+          lines += line.length;
         });
+      });
+    });
 
-        var lineGeometry = new THREE.BufferGeometry();
-        var positions = new Float32Array(lines * 2 * 3);
-        var gptr = 0;
+    var lineGeometry = new THREE.BufferGeometry();
+    var positions = new Float32Array(lines * 2 * 3);
+    var gptr = 0;
 
-        const shapesMaterial = new THREE.LineBasicMaterial({
-            transparent: true,
-            linewidth: 2,
-            opacity: this.matComponent.data.opacity,
-            color: 0xff0000
+    const shapesMaterial = new THREE.LineBasicMaterial({
+      transparent: true,
+      linewidth: 2,
+      opacity: this.matComponent.data.opacity,
+      color: 0xff0000
+    });
+
+    mapData.forEach(function (territory, id) {
+      var territoryGeometry = new THREE.BufferGeometry();
+      var parts = [];
+
+      territory.forEach(function (path) {
+        path.lines.forEach(function (line) {
+          var partPositions = new Float32Array(line.length * 2 * 3);
+          var ptr = 0;
+
+          for (var j = 0; j < line.length - 1; j++) {
+            var p = line[j];
+            if (p.y < min) min = p.y;
+            if (p.y > max) max = p.x;
+
+            var res = self.latLngToVec3(p.y, p.x);
+
+            partPositions[ptr] = res.x;
+            partPositions[ptr + 1] = res.y;
+            partPositions[ptr + 2] = res.z;
+
+            ptr += 3;
+
+            p = line[j + 1];
+
+            res = self.latLngToVec3(p.y, p.x);
+
+            partPositions[ptr] = res.x;
+            partPositions[ptr + 1] = res.y;
+            partPositions[ptr + 2] = res.z;
+
+            ptr += 3;
+          }
+
+          parts.push(partPositions);
+
+          memcpy(partPositions, 0, positions, gptr, partPositions.length);
+          gptr += ptr;
         });
-
-        mapData.forEach(function (territory, id) {
-            var territoryGeometry = new THREE.BufferGeometry();
-            var parts = [];
-
-            territory.forEach(function(path) {
-                path.lines.forEach(function(line) {
-                    var partPositions = new Float32Array(line.length * 2 * 3);
-                    var ptr = 0;
-
-                    for (var j = 0; j < line.length - 1; j++) {
-                        var p = line[j];
-                        if (p.y < min) min = p.y;
-                        if (p.y > max) max = p.x;
-
-                        var res = self.latLngToVec3(p.y, p.x);
-
-                        partPositions[ptr] = res.x;
-                        partPositions[ptr + 1] = res.y;
-                        partPositions[ptr + 2] = res.z;
-
-                        ptr += 3;
-
-                        var p = line[j + 1];
-
-                        var res = self.latLngToVec3(p.y, p.x);
-
-                        partPositions[ptr] = res.x;
-                        partPositions[ptr + 1] = res.y;
-                        partPositions[ptr + 2] = res.z;
-
-                        ptr += 3;
-                    }
-
-                    parts.push(partPositions);
-
-                    memcpy(partPositions, 0, positions, gptr, partPositions.length);
-                    gptr += ptr;
-                });
-            });
+      });
 
             // the positions only of the curent polygon or line
-            var partPositions = new Float32Array(parts.reduce(function(a, b) {
-                return a + b.length
-            }, 0));
+      var partPositions = new Float32Array(parts.reduce(function (a, b) {
+        return a + b.length;
+      }, 0));
 
-            var tPtr = 0;
-            parts.forEach(function(p) {
-                memcpy(p, 0, partPositions, tPtr, p.length);
-                tPtr += p.length;
-            });
+      var tPtr = 0;
+      parts.forEach(function (p) {
+        memcpy(p, 0, partPositions, tPtr, p.length);
+        tPtr += p.length;
+      });
 
-            var partGeometry = new THREE.BufferGeometry();
-            partGeometry.addAttribute('position', new THREE.BufferAttribute(partPositions, 3));
-            partGeometry.computeBoundingSphere();
+      var partGeometry = new THREE.BufferGeometry();
+      partGeometry.addAttribute('position', new THREE.BufferAttribute(partPositions, 3));
+      partGeometry.computeBoundingSphere();
 
-            var mesh = new THREE.LineSegments(partGeometry, shapesMaterial);
-            mesh.fustrumCulled = false;
-            mesh.visible = false;
+      var mesh = new THREE.LineSegments(partGeometry, shapesMaterial);
+      mesh.fustrumCulled = false;
+      mesh.visible = false;
 
-            //TODO
+            // TODO
             // make shape visible or change color when selected
-            territory.shape = mesh;
-            //this.shapesMap.add(mesh)
-        });
+      territory.shape = mesh;
+            // this.shapesMap.add(mesh)
+    });
 
-        lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
-        lineGeometry.computeBoundingSphere();
+    lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+    lineGeometry.computeBoundingSphere();
 
-        const bordersMaterial = new THREE.LineBasicMaterial({
-            transparent: this.matComponent.data.transparent,
-            linewidth: data.lineWidth,
-            opacity: this.matComponent.data.opacity,
-            color: this.matComponent.data.color,
-            side: THREE.DoubleSide
-        });
+    const bordersMaterial = new THREE.LineBasicMaterial({
+      transparent: this.matComponent.data.transparent,
+      linewidth: data.lineWidth,
+      opacity: this.matComponent.data.opacity,
+      color: this.matComponent.data.color,
+      side: THREE.DoubleSide
+    });
 
-        var bordersMesh = new THREE.LineSegments(lineGeometry, bordersMaterial);
-        bordersMesh.fustrumCulled = false;
+    var bordersMesh = new THREE.LineSegments(lineGeometry, bordersMaterial);
+    bordersMesh.fustrumCulled = false;
 
-        //layer.add(bordersMesh);
-        //return layer;
-        return bordersMesh;
-    },
-    latLngToVec3: function(lat, lon) {
-        const geomComponent = this.el.components.geometry;
-        if (geomComponent.data.primitive === 'sphere') {
-            return this._sphericalLatLngToVec3(lat, lon);
-        } else if (geomComponent.data.primitive === 'plane') {
-            return this._planarLatLngToVec3(lat, lon);
-        }
-    },
-    _planarLatLngToVec3: function(lat, lon) {
-        const geomComponent = this.el.components.geometry;
+        // layer.add(bordersMesh);
+        // return layer;
+    return bordersMesh;
+  },
+  latLngToVec3: function (lat, lon) {
+    const geomComponent = this.el.components.geometry;
+    if (geomComponent.data.primitive === 'sphere') {
+      return this._sphericalLatLngToVec3(lat, lon);
+    } else if (geomComponent.data.primitive === 'plane') {
+      return this._planarLatLngToVec3(lat, lon);
+    }
+  },
+  _planarLatLngToVec3: function (lat, lon) {
+    const geomComponent = this.el.components.geometry;
 
-        return new THREE.Vector3(
+    return new THREE.Vector3(
             lon / 360 * geomComponent.data.width, -lat / 180 * geomComponent.data.height,
             0);
-    },
-    _sphericalLatLngToVec3: function(lat, lon) {
+  },
+  _sphericalLatLngToVec3: function (lat, lon) {
         // lat = Math.max(175, Math.min(5, lat))
         // lat = Math.min(160, lat)
 
-        const geomComponent = this.el.components.geometry;
-        const radius = geomComponent.data.radius;
+    const geomComponent = this.el.components.geometry;
+    const radius = geomComponent.data.radius;
 
-        const phi = lat * Math.PI / 180;
-        const theta = lon * Math.PI / 180;
-        const x = -radius * Math.sin(phi) * Math.cos(theta);
-        const y = radius * Math.cos(phi);
-        const z = radius * Math.sin(phi) * Math.sin(theta);
+    const phi = lat * Math.PI / 180;
+    const theta = lon * Math.PI / 180;
+    const x = -radius * Math.sin(phi) * Math.cos(theta);
+    const y = radius * Math.cos(phi);
+    const z = radius * Math.sin(phi) * Math.sin(theta);
 
-        return new THREE.Vector3(x, y, z);
-    },
-    selectFeature: function(feature) {
+    return new THREE.Vector3(x, y, z);
+  },
+  selectFeature: function (feature) {
+    const data = this.data;
+    this.isSelecting = false;
+    if (!feature) return;
 
-        const data = this.data
-        this.isSelecting = false;
-        if (!feature) return;
+    var selected = null;
+    if (this.dataMap.size > 0) {
+      selected = this.dataMap.get(feature.id);
+            // shape = this.shapesMap.get(feature.id);
+    } else {
+      selected = feature.properties;
+    }
 
-        var selected = null;
-        if (this.dataMap.size > 0) {
-            selected = this.dataMap.get(feature.id);
-            //shape = this.shapesMap.get(feature.id);
-        } else {
-            selected = feature.properties;
-        }
-
-        if (!this._selectedFeature ||
+    if (!this._selectedFeature ||
             (this._selectedFeature[data.featureKey] || this._selectedFeature[data.dataKey] !==
                 (selected[data.featureKey] || selected[data.dataKey]))) {
-
-            this._selectedFeature = selected;
+      this._selectedFeature = selected;
 
             // TODO also emit shape
-            this.el.emit(FEATURE_SELECTED_EVENT, selected);
-        }
-    },
-    hitTest: function(obj) {
-        var self = this
-        const pixelBuffer = new Uint8Array(4);
+      this.el.emit(FEATURE_SELECTED_EVENT, selected);
+    }
+  },
+  hitTest: function (obj) {
+    var self = this;
+    const pixelBuffer = new Uint8Array(4);
 
-        var renderer = this.el.sceneEl.renderer;
+    var renderer = this.el.sceneEl.renderer;
 
-        this.hitCamera.position.copy(obj.position);
-        this.hitCamera.rotation.copy(obj.rotation);
-        renderer.render(this.hitScene, this.hitCamera, this.hitTexture);
+    this.hitCamera.position.copy(obj.position);
+    this.hitCamera.rotation.copy(obj.rotation);
+    renderer.render(this.hitScene, this.hitCamera, this.hitTexture);
 
-        return new Promise(function(resolve, reject) {
-            var res = null;
+    return new Promise(function (resolve, reject) {
+      var res = null;
 
-            renderer.readRenderTargetPixels(self.hitTexture, 0, 0, 1, 1, pixelBuffer);
-            if (pixelBuffer[0] === 255) { // encoding test
-                var multiplicator = pixelBuffer[1];
-                var number = pixelBuffer[2];
+      renderer.readRenderTargetPixels(self.hitTexture, 0, 0, 1, 1, pixelBuffer);
+      if (pixelBuffer[0] === 255) { // encoding test
+        var multiplicator = pixelBuffer[1];
+        var number = pixelBuffer[2];
 
-                var code = multiplicator * 255 + number;
-                res = self.codes.get(code);
-            }
-            resolve(res);
+        var code = multiplicator * 255 + number;
+        res = self.codes.get(code);
+      }
+      resolve(res);
+    });
+  },
+  select: (function (evt) {
+    const dummy = new THREE.Object3D();
+    return function () {
+      var self = this;
+      if (this.isSelecting) return;
+
+      var entity = document.querySelector('[raycaster]');
+      var raycaster = entity.components.raycaster.raycaster;
+
+      var intersections = raycaster.intersectObject(this.maskMesh);
+      if (intersections.length > 0) {
+        this.isSelecting = true;
+        var p = intersections[0].point;
+
+        dummy.lookAt(p);
+        dummy.rotation.y += Math.PI;
+
+        this.hitTest(dummy).then(function (res) {
+          self.selectFeature(res);
         });
-    },
-    select: (function(evt) {
-        const dummy = new THREE.Object3D();
-        return function() {
-            var self = this
-            if (this.isSelecting) return;
-
-            var entity = document.querySelector('[raycaster]');
-            var raycaster = entity.components.raycaster.raycaster;
-
-            var intersections = raycaster.intersectObject(this.maskMesh);
-            if (intersections.length > 0) {
-                this.isSelecting = true;
-                var p = intersections[0].point;
-
-                dummy.lookAt(p);
-                dummy.rotation.y += Math.PI
-
-
-                this.hitTest(dummy).then(function(res) {
-                    self.selectFeature(res)  
-                });
-            }
+      }
             // entity.components.raycaster.refreshObjects()
-        };
-    }()),
-    generateMask: function(features) {
-        var self = this
+    };
+  }()),
+  generateMask: function (features) {
+    var self = this;
 
-        const CANVAS_DATA_FACTOR = 10;
+    const CANVAS_DATA_FACTOR = 10;
 
-        const width = 512 * 2;
-        const height = 256 * 2;
+    const width = 512 * 2;
+    const height = 256 * 2;
 
-        const projection = d3.geoEquirectangular()
+    const projection = d3.geoEquirectangular()
             .scale(height / Math.PI)
             .translate([width / 2, height / 2])
             .rotate([0, 0, 0]);
 
-        const path = d3.geoPath(projection);
+    const path = d3.geoPath(projection);
 
-        var canvas = d3
+    var canvas = d3
             .select('body')
             .append('canvas')
             .attr('id', 'mask-canvas')
             .attr('image-rendering', 'pixelated')
             .attr('width', width + 'px')
             .attr('height', height + 'px');
-        const ctx = d3.select('#mask-canvas').node().getContext('2d');
-        const ctxPath = path.context(ctx);
+    const ctx = d3.select('#mask-canvas').node().getContext('2d');
+    const ctxPath = path.context(ctx);
 
-        ctx.imageSmoothingEnabled = false;
-        ctx.globalAlpha = 1;
+    ctx.imageSmoothingEnabled = false;
+    ctx.globalAlpha = 1;
 
-        features.forEach(function(feature, i) {
-            var multiplicator = Math.floor(i / 255);
-            var number = i % 255;
+    features.forEach(function (feature, i) {
+      var multiplicator = Math.floor(i / 255);
+      var number = i % 255;
 
-            self.codes.set(multiplicator * 255 + number, feature); // feature.id
+      self.codes.set(multiplicator * 255 + number, feature); // feature.id
 
-            ctx.save();
-            ctx.beginPath();
-            ctx.fillStyle = 'rgb(255,'+ multiplicator + ',' + number + ')';
-            ctx.strokeStyle = 'rgb(255,'+ multiplicator + ',' + number + ')';
-            ctx.lineWidth = CANVAS_DATA_FACTOR * self.data.raycastResolution;
-            ctxPath(feature);
-            if (feature.geometry.type.includes('LineString')) {
-                ctx.stroke();
-            } else if (feature.geometry.type.includes('Polygon')) {
-                ctx.fill();
-            } else if (feature.geometry.type.includes('Point')) {
-                ctx.fill();
-            }
-            ctx.restore();
-        });
+      ctx.save();
+      ctx.beginPath();
+      ctx.fillStyle = 'rgb(255,' + multiplicator + ',' + number + ')';
+      ctx.strokeStyle = 'rgb(255,' + multiplicator + ',' + number + ')';
+      ctx.lineWidth = CANVAS_DATA_FACTOR * self.data.raycastResolution;
+      ctxPath(feature);
+      if (feature.geometry.type.includes('LineString')) {
+        ctx.stroke();
+      } else if (feature.geometry.type.includes('Polygon')) {
+        ctx.fill();
+      } else if (feature.geometry.type.includes('Point')) {
+        ctx.fill();
+      }
+      ctx.restore();
+    });
 
-        //console.log(canvas.node().toDataURL())
-        const texture = new THREE.CanvasTexture(canvas.node());
+        // console.log(canvas.node().toDataURL())
+    const texture = new THREE.CanvasTexture(canvas.node());
 
-        const geomComponent = this.el.components.geometry;
+    const geomComponent = this.el.components.geometry;
 
-        const radius = geomComponent.data.radius;
-        const mesh = new THREE.Mesh(
+    const mesh = new THREE.Mesh(
             geomComponent.geometry.clone(),
             new THREE.MeshBasicMaterial({
-                map: texture,
-                side: THREE.DoubleSide,
-                transparent: true,
-                opacity: 1
+              map: texture,
+              side: THREE.DoubleSide,
+              transparent: true,
+              opacity: 1
             })
         );
 
-        var scale = this.el.object3D.getWorldScale();
-        mesh.scale.x = scale.x;
-        mesh.scale.y = scale.y;
-        mesh.scale.z = scale.z;
+    var scale = this.el.object3D.getWorldScale();
+    mesh.scale.x = scale.x;
+    mesh.scale.y = scale.y;
+    mesh.scale.z = scale.z;
 
-        this.hitScene.add(mesh);
+    this.hitScene.add(mesh);
 
-        canvas.remove();
-        return mesh;
-    }
+    canvas.remove();
+    return mesh;
+  }
 
 });
 
-function memcpy(src, srcOffset, dst, dstOffset, length) {
-    var i;
-    src = src.subarray || src.slice ? src : src.buffer;
-    dst = dst.subarray || dst.slice ? dst : dst.buffer;
-    src = srcOffset ? src.subarray ?
-        src.subarray(srcOffset, length && srcOffset + length) :
-        src.slice(srcOffset, length && srcOffset + length) : src;
-    if (dst.set) {
-        dst.set(src, dstOffset);
-    } else {
-        for (i = 0; i < src.length; i++) {
-            dst[i + dstOffset] = src[i];
-        }
+function memcpy (src, srcOffset, dst, dstOffset, length) {
+  var i;
+  src = src.subarray || src.slice ? src : src.buffer;
+  dst = dst.subarray || dst.slice ? dst : dst.buffer;
+  src = srcOffset ? src.subarray ? src.subarray(srcOffset, length && srcOffset + length) : src.slice(srcOffset, length && srcOffset + length) : src;
+  if (dst.set) {
+    dst.set(src, dstOffset);
+  } else {
+    for (i = 0; i < src.length; i++) {
+      dst[i + dstOffset] = src[i];
     }
-    return dst;
+  }
+  return dst;
 }
