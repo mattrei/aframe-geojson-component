@@ -141,8 +141,11 @@ AFRAME.registerComponent('geojson', {
         if (data.dataSrc) {
             this.loader.load(data.dataSrc, this.onDataLoaded.bind(this));
         }
+        this.shapesMap = new Map();
         const mesh = linesMap.size > 0 ? this.generateLines(linesMap) :
             this.generatePoints(pointsMap)
+        // TODO store shapesMap
+
 
         this.el.setObject3D('mesh', mesh);
 
@@ -348,13 +351,13 @@ AFRAME.registerComponent('geojson', {
         var self = this
         const data = this.data;
 
-        var layer = new THREE.Object3D();
+        var layer = new THREE.Object3D();   // TODO is a layer needed?
 
         var min = 10000000,
             max = -10000000;
 
         var lines = 0;
-        mapData.forEach(function (territory, id) {
+        mapData.forEach(function (territory) {
             territory.forEach(function(path) {
                 path.lines.forEach(function(line) {
                     lines += line.length;
@@ -413,6 +416,7 @@ AFRAME.registerComponent('geojson', {
                 });
             });
 
+            // the positions only of the curent polygon or line
             var partPositions = new Float32Array(parts.reduce(function(a, b) {
                 return a + b.length
             }, 0));
@@ -431,7 +435,10 @@ AFRAME.registerComponent('geojson', {
             mesh.fustrumCulled = false;
             mesh.visible = false;
 
-            //territory.shape = mesh;
+            //TODO
+            // make shape visible or change color when selected
+            territory.shape = mesh;
+            //this.shapesMap.add(mesh)
         });
 
         lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -448,8 +455,9 @@ AFRAME.registerComponent('geojson', {
         var bordersMesh = new THREE.LineSegments(lineGeometry, bordersMaterial);
         bordersMesh.fustrumCulled = false;
 
-        layer.add(bordersMesh);
-        return layer;
+        //layer.add(bordersMesh);
+        //return layer;
+        return bordersMesh;
     },
     latLngToVec3: function(lat, lon) {
         const geomComponent = this.el.components.geometry;
@@ -490,6 +498,7 @@ AFRAME.registerComponent('geojson', {
         var selected = null;
         if (this.dataMap.size > 0) {
             selected = this.dataMap.get(feature.id);
+            //shape = this.shapesMap.get(feature.id);
         } else {
             selected = feature.properties;
         }
@@ -500,6 +509,7 @@ AFRAME.registerComponent('geojson', {
 
             this._selectedFeature = selected;
 
+            // TODO also emit shape
             this.el.emit(FEATURE_SELECTED_EVENT, selected);
         }
     },

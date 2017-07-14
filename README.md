@@ -31,7 +31,7 @@ The geojson component has the `material` and `geometry` components as a dependen
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
 | geojson-generated | `{ map, features }`| Fired when the GeoJSON has finished loading (asynchronous operation!). `map` contains the loaded data, `features` contains all document features|
-| geojson-feature-selected | `{ feature }`| The selected feature by the raycaster if the _featureEventName_ parameter is given.  |
+| geojson-feature-selected | `{ feature, shape }`| The selected feature and shape by the raycaster if the _featureEventName_ parameter is given. |
 
 #### `geojson-canvas` component
 
