@@ -358,7 +358,6 @@ AFRAME.registerComponent('geojson', {
     });
 
     mapData.forEach(function (territory, id) {
-      var territoryGeometry = new THREE.BufferGeometry();
       var parts = [];
 
       territory.forEach(function (path) {
@@ -416,7 +415,7 @@ AFRAME.registerComponent('geojson', {
       mesh.fustrumCulled = false;
       mesh.visible = true;
 
-      //territory.shape = mesh;
+      // territory.shape = mesh;
       self.shapesMap.set(territory[0].id, mesh);
     });
 
@@ -473,9 +472,7 @@ AFRAME.registerComponent('geojson', {
 
     var selected = null;
     if (this.dataMap.size > 0) {
-
       selected = this.dataMap.get(feature.id);
-            // shape = this.shapesMap.get(feature.id);
     } else {
       selected = feature.properties;
     }
