@@ -101,7 +101,7 @@ AFRAME.registerComponent('geojson-canvas', {
     var isTopojson = json.features === undefined;
     if (isTopojson) {
       var topologyObjectName = data.topologyObject;
-      if (data.topologyObject !== '') {
+      if (!data.topologyObject) {
         topologyObjectName = Object.keys(json.objects)[0];
       }
       this.features = topojson.feature(json, json.objects[topologyObjectName]).features;

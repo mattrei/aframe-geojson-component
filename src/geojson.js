@@ -94,7 +94,7 @@ AFRAME.registerComponent('geojson', {
     var features;
     if (isTopojson) {
       var topologyObjectName = data.topologyObject;
-      if (data.topologyObject !== '') {
+      if (!data.topologyObject) {
         topologyObjectName = Object.keys(json.objects)[0];
       }
       features = topojson.feature(json, json.objects[topologyObjectName]).features;
