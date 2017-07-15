@@ -14,7 +14,7 @@
         <a-asset-item id="json-world-50m" src="assets/world-50m.v1.json" />
         <a-asset-item id="json-lakes-50m" src="assets/ne_50m_lakes.geojson" />
       </a-assets>
-      <a-sky color="#000"></a-sky>
+      <a-sky color="#ccc"></a-sky>
 
       <a-entity scale="-1 1 1">
         <a-entity
@@ -22,7 +22,7 @@
           geometry="primitive: sphere; radius: 1;"
           geojson-canvas="canvas: #world-canvas;
           src: #json-world-50m;
-          projection: geoEquirectangular; fillColor: #AAA; lineColor: #000; lineWidth: 2;
+          projection: geoEquirectangular; fillColor: #fff; lineColor: #000; lineWidth: 2;
           topologyObject: countries;"
           >
         </a-entity>
