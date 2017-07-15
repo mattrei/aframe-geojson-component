@@ -13,12 +13,21 @@ AFRAME.registerComponent('selection-to-text', {
   },
 
   init: function () {
+    this.lastSelectedMesh = null
     this.el.addEventListener('geojson-feature-selected', this.setText.bind(this));
   },
   setText: function (event) {
     const data = this.data;
-    const feature = event.detail;
+    const {feature, mesh} = event.detail;
 
-    data.text.setAttribute('value', feature[data.featureProperty]);
+    console.log(mesh)
+    mesh.visible = true
+
+    if (this.lastSelectedMesh) {
+      this.el.object3D.remove(this.lastSelectedMesh)  
+    }
+    this.el.object3D.add(mesh)
+
+    //data.text.setAttribute('value', feature[data.featureProperty]);
   }
 });

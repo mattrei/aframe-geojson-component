@@ -192,7 +192,7 @@ AFRAME.registerComponent('geojson', {
     var pathNodes = paths.nodes();
 
     pathNodes.forEach(function (p) {
-      const key = p.__data__.properties[self.data.featureKey]; // p.id
+      const key = isTopojson ? p.__data__.id : p.__data__.properties[self.data.featureKey];
       const type = p.__data__.geometry.type; // Point, String, Polygon
 
       if (type.includes('Point')) return;
@@ -217,7 +217,6 @@ AFRAME.registerComponent('geojson', {
         var segment = segments.getItem(i);
 
         if (((segment.x >= 359.9 || segment.x <= 0.1) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
-                    // console.log(segment)
                     // some GeoJSON files have a border around them
                     // to avoid having a frame aroudn the plane we omit
                     // the top-, left, right-, bottomost lines
@@ -334,8 +333,6 @@ AFRAME.registerComponent('geojson', {
     var self = this;
     const data = this.data;
 
-    var layer = new THREE.Object3D();   // TODO is a layer needed?
-
     var min = 10000000;
     var max = -10000000;
 
@@ -354,9 +351,10 @@ AFRAME.registerComponent('geojson', {
 
     const shapesMaterial = new THREE.LineBasicMaterial({
       transparent: true,
-      linewidth: 2,
+      linewidth: 5,
       opacity: this.matComponent.data.opacity,
-      color: 0xff0000
+      color: 0xff0000,
+      side: THREE.DoubleSide
     });
 
     mapData.forEach(function (territory, id) {
@@ -416,12 +414,10 @@ AFRAME.registerComponent('geojson', {
 
       var mesh = new THREE.LineSegments(partGeometry, shapesMaterial);
       mesh.fustrumCulled = false;
-      mesh.visible = false;
+      mesh.visible = true;
 
-            // TODO
-            // make shape visible or change color when selected
-      territory.shape = mesh;
-            // this.shapesMap.add(mesh)
+      //territory.shape = mesh;
+      self.shapesMap.set(territory[0].id, mesh);
     });
 
     lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
@@ -438,8 +434,6 @@ AFRAME.registerComponent('geojson', {
     var bordersMesh = new THREE.LineSegments(lineGeometry, bordersMaterial);
     bordersMesh.fustrumCulled = false;
 
-        // layer.add(bordersMesh);
-        // return layer;
     return bordersMesh;
   },
   latLngToVec3: function (lat, lon) {
@@ -479,19 +473,20 @@ AFRAME.registerComponent('geojson', {
 
     var selected = null;
     if (this.dataMap.size > 0) {
+
       selected = this.dataMap.get(feature.id);
             // shape = this.shapesMap.get(feature.id);
     } else {
       selected = feature.properties;
     }
 
+    var shape = this.shapesMap.get(feature.id);
+
     if (!this._selectedFeature ||
             (this._selectedFeature[data.featureKey] || this._selectedFeature[data.dataKey] !==
                 (selected[data.featureKey] || selected[data.dataKey]))) {
       this._selectedFeature = selected;
-
-            // TODO also emit shape
-      this.el.emit(FEATURE_SELECTED_EVENT, selected);
+      this.el.emit(FEATURE_SELECTED_EVENT, {feature: selected, mesh: shape});
     }
   },
   hitTest: function (obj) {
