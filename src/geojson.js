@@ -11,7 +11,7 @@ var d3 = require('d3');
 var topojson = require('topojson-client');
 
 const FEATURE_SELECTED_EVENT = 'geojson-feature-selected';
-const GEOJSON_GENERATED_EVENT = 'geojson-generated';
+const GEOJSON_GENERATED_EVENT = 'geojson-loaded';
 
 AFRAME.registerComponent('geojson', {
   schema: {
@@ -32,7 +32,7 @@ AFRAME.registerComponent('geojson', {
     dataKey: {
       default: 'id'
     },
-        // for a topojson, else first will be taken
+    // for a topojson, else first will be taken
     topologyObject: {
       default: ''
     },
@@ -42,7 +42,11 @@ AFRAME.registerComponent('geojson', {
     pointSize: {
       default: 0.1
     },
-        // setting the resolution of the data raycasting resolution; set lower if data is very dense; set higher if you have not much data
+    pointsAs: {
+      default: 'points',
+      oneOf: ['points', 'bars']
+    },
+    // setting the resolution of the data raycasting resolution; set lower if data is very dense; set higher if you have not much data
     raycastResolution: {
       default: 1,
       type: 'int'
@@ -51,7 +55,8 @@ AFRAME.registerComponent('geojson', {
       default: 'geoEquirectangular'
     },
     featureEventName: {
-      default: ''
+      default: '',
+      oneOf: ['', 'click', 'raycaster-intersected']
     }
   },
 
@@ -75,6 +80,11 @@ AFRAME.registerComponent('geojson', {
     const json = JSON.parse(file);
 
     const data = this.data;
+
+    this.dataMap = new Map();
+    if (data.dataSrc) {
+      this.loader.load(data.dataSrc, this.onDataLoaded.bind(this));
+    }
 
     const width = 360; // corresponds to longitude
     const height = 180; // corresponds to positive scaled latitude
@@ -132,21 +142,15 @@ AFRAME.registerComponent('geojson', {
     this.hitTexture.generateMipMaps = false;
     this.hitTexture.setSize(100, 100);
 
-    this.dataMap = new Map();
-    if (data.dataSrc) {
-      this.loader.load(data.dataSrc, this.onDataLoaded.bind(this));
-    }
     this.shapesMap = new Map();
-    const mesh = linesMap.size > 0 ? this.generateLines(linesMap) : this.generatePoints(pointsMap);
-        // TODO store shapesMap
+    const mesh = linesMap.size > 0 ? this.generateLines(linesMap) :
+      (data.pointsAs === 'points' ? this.generatePoints(pointsMap) : this.generateBars(pointsMap));
 
     this.el.setObject3D('mesh', mesh);
 
     this.maskMesh = this.generateMask(features);
 
-        // this.el.addEventListener('click', this.select.bind(this))
-        // this.el.addEventListener('raycaster-intersected', this.select.bind(this));
-    if (data.featureEventName !== '') {
+    if (!data.featureEventName) {
       this.el.addEventListener(data.featureEventName, this.select.bind(this));
     }
 
@@ -294,27 +298,28 @@ AFRAME.registerComponent('geojson', {
   generatePoints: function (mapData) {
     var self = this;
 
-    const pointsGeometry = new THREE.BufferGeometry();
+    const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(mapData.size * 3);
 
-        // TODO?
-        // const sizes = new Float32Array(points)
-        // const colors = new Float32Array(points)
+    // TODO? if data defines size or color
+    // const sizes = new Float32Array(points)
+    // const colors = new Float32Array(points)
 
-    var ptr = 0;
-    mapData.forEach(function (point, id) {
+    var i = 0;
+    mapData.forEach(function (point, idx) {
       const res = self.latLngToVec3(point.y, point.x);
 
-      positions[ptr] = res.x;
-      positions[ptr + 1] = res.y;
-      positions[ptr + 2] = res.z;
-      ptr += 3;
+      positions[i * 3] = res.x;
+      positions[i * 3 + 1] = res.y;
+      positions[i * 3 + 2] = res.z;
+
+      i += 1;
     });
 
-    pointsGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
-    pointsGeometry.computeBoundingSphere();
+    geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.computeBoundingSphere();
 
-    const pointsMaterial = new THREE.PointsMaterial({
+    const material = new THREE.PointsMaterial({
       size: this.data.pointSize,
       sizeAttenuation: true,
       transparent: this.matComponent.data.transparent,
@@ -322,12 +327,58 @@ AFRAME.registerComponent('geojson', {
       opacity: this.matComponent.data.opacity
     });
 
-    const pointsMesh = new THREE.Points(
-            pointsGeometry,
-            pointsMaterial
+    const mesh = new THREE.Points(
+            geometry,
+            material
         );
 
-    return pointsMesh;
+    return mesh;
+  },
+  generateBars: function (mapData) {
+    var self = this;
+
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(mapData.size * 3 * 2);
+
+    const tmp = new THREE.Vector3();
+    console.log(mapData);
+    console.log(this.dataMap);
+    var i = 0;
+    mapData.forEach(function (point, idx) {
+      const pos = self.latLngToVec3(point.y, point.x);
+      positions[i * 6] = pos.x;
+      positions[i * 6 + 1] = pos.y;
+      positions[i * 6 + 2] = pos.z;
+
+      console.log(idx);
+      // const entry = self.dataMap.get(idx)
+      // console.log(entry)
+      console.log(pos);
+      tmp.copy(pos).multiplyScalar(1 + Math.random());
+      positions[ i * 6 + 3 ] = tmp.x;
+      positions[ i * 6 + 4 ] = tmp.y;
+      positions[ i * 6 + 5 ] = tmp.z;
+
+      i += 1;
+    });
+
+    geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.computeBoundingSphere();
+
+    const material = new THREE.LineBasicMaterial({
+      transparent: this.matComponent.data.transparent,
+      color: this.matComponent.data.color,
+      opacity: this.matComponent.data.opacity,
+      linewidth: this.data.lineWidth
+    });
+
+    const mesh = new THREE.LineSegments(
+    geometry,
+    material
+  );
+    mesh.frustumCulled = false;
+
+    return mesh;
   },
   generateLines: function (mapData) {
     var self = this;
@@ -422,7 +473,7 @@ AFRAME.registerComponent('geojson', {
     lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
     lineGeometry.computeBoundingSphere();
 
-    const bordersMaterial = new THREE.LineBasicMaterial({
+    const material = new THREE.LineBasicMaterial({
       transparent: this.matComponent.data.transparent,
       linewidth: data.lineWidth,
       opacity: this.matComponent.data.opacity,
@@ -430,10 +481,10 @@ AFRAME.registerComponent('geojson', {
       side: THREE.DoubleSide
     });
 
-    var bordersMesh = new THREE.LineSegments(lineGeometry, bordersMaterial);
-    bordersMesh.fustrumCulled = false;
+    const mesh = new THREE.LineSegments(lineGeometry, material);
+    mesh.fustrumCulled = false;
 
-    return bordersMesh;
+    return mesh;
   },
   latLngToVec3: function (lat, lon) {
     const geomComponent = this.el.components.geometry;
