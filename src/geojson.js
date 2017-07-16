@@ -39,8 +39,11 @@ AFRAME.registerComponent('geojson', {
     lineWidth: {
       default: 1
     },
-    pointSize: {
+    pointScale: {
       default: 0.1
+    },
+    pointSizeFeature: {
+      default: ''
     },
     pointsAs: {
       default: 'points',
@@ -144,7 +147,7 @@ AFRAME.registerComponent('geojson', {
 
     this.shapesMap = new Map();
     const mesh = linesMap.size > 0 ? this.generateLines(linesMap) :
-      (data.pointsAs === 'points' ? this.generatePoints(pointsMap) : this.generateBars(pointsMap));
+      (data.pointsAs === 'points' ? this.generatePoints(pointsMap) : this.generateBars(pointsMap, features));
 
     this.el.setObject3D('mesh', mesh);
 
@@ -168,20 +171,24 @@ AFRAME.registerComponent('geojson', {
   },
   generatePointsMap: function (paths) {
     var self = this;
+
+    var data = this.data;
     var map = new Map();
 
     var pathNodes = paths.nodes();
 
     pathNodes.forEach(function (p) {
-      const key = p.__data__.properties[self.data.featureKey]; // p.id
+      const key = p.__data__.properties[self.data.featureKey];
       const type = p.__data__.geometry.type; // Point, String, Polygon
+      const pointSize = p.__data__.properties[self.data.pointSizeFeature] || 1;
 
       var segments = p.pathSegList;
       for (var i = 0; i < segments.numberOfItems; i++) {
         var segment = segments.getItem(i);
         if (segment instanceof SVGPathSegMovetoAbs) {
           if (type.includes('Point')) {
-            map.set(key, new THREE.Vector2(segment.x, segment.y));
+            const xy = new THREE.Vector2(segment.x, segment.y);
+            map.set(key, {point: xy, pointSize});
           }
         }
       }
@@ -302,25 +309,29 @@ AFRAME.registerComponent('geojson', {
     const positions = new Float32Array(mapData.size * 3);
 
     // TODO? if data defines size or color
-    // const sizes = new Float32Array(points)
+    const sizes = new Float32Array(mapData.size);
     // const colors = new Float32Array(points)
 
     var i = 0;
-    mapData.forEach(function (point, idx) {
-      const res = self.latLngToVec3(point.y, point.x);
+    mapData.forEach(function (entry, idx) {
+      const res = self.latLngToVec3(entry.point.y, entry.point.x);
 
       positions[i * 3] = res.x;
       positions[i * 3 + 1] = res.y;
       positions[i * 3 + 2] = res.z;
 
+      sizes[i] = 0.01;
+
       i += 1;
     });
 
     geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+    // geometry.addAttribute('size', new THREE.BufferAttribute(sizes, 1));
+    // does not work or?
     geometry.computeBoundingSphere();
 
     const material = new THREE.PointsMaterial({
-      size: this.data.pointSize,
+      size: this.data.pointScale,
       sizeAttenuation: true,
       transparent: this.matComponent.data.transparent,
       color: this.matComponent.data.color,
@@ -334,27 +345,22 @@ AFRAME.registerComponent('geojson', {
 
     return mesh;
   },
-  generateBars: function (mapData) {
+  generateBars: function (mapData, features) {
     var self = this;
 
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(mapData.size * 3 * 2);
 
     const tmp = new THREE.Vector3();
-    console.log(mapData);
-    console.log(this.dataMap);
     var i = 0;
-    mapData.forEach(function (point, idx) {
-      const pos = self.latLngToVec3(point.y, point.x);
+    mapData.forEach(function (entry, idx) {
+      const pos = self.latLngToVec3(entry.point.y, entry.point.x);
       positions[i * 6] = pos.x;
       positions[i * 6 + 1] = pos.y;
       positions[i * 6 + 2] = pos.z;
 
-      console.log(idx);
-      // const entry = self.dataMap.get(idx)
-      // console.log(entry)
-      console.log(pos);
-      tmp.copy(pos).multiplyScalar(1 + Math.random());
+      const scalingFactor = entry.pointSize * self.data.pointScale;
+      tmp.copy(pos).multiplyScalar(1 + scalingFactor);
       positions[ i * 6 + 3 ] = tmp.x;
       positions[ i * 6 + 4 ] = tmp.y;
       positions[ i * 6 + 5 ] = tmp.z;
