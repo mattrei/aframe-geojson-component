@@ -12,7 +12,7 @@
         <a-asset-item id="json-places" src="assets/ne_110m_populated_places_simple.geojson" />
       </a-assets>
 
-      <a-entity position="0 2 0">
+      <a-entity position="0 1.8 -2">
         <a-entity 
           geometry="primitive: sphere; radius: 1;"
           material="color: #000;"
@@ -26,7 +26,7 @@
         <a-entity 
           geometry="primitive: sphere; radius: 1;"
           material="color: #F0A;"
-          geojson="src: #json-places; featureKey: name; pointScale: 0.02; pointsAs: bars; pointSizeFeature: pop_min;"
+          geojson="src: #json-places; featureKey: name; pointScale: 0.00000002; pointAs: bar; pointSizeFeature: pop_min; lineWidth: 4;"
           ></a-entity>
         </a-entity>
     </a-scene>

@@ -36,19 +36,6 @@ AFRAME.registerComponent('geojson', {
     topologyObject: {
       default: ''
     },
-    lineWidth: {
-      default: 1
-    },
-    pointScale: {
-      default: 0.1
-    },
-    pointSizeFeature: {
-      default: ''
-    },
-    pointsAs: {
-      default: 'points',
-      oneOf: ['points', 'bars']
-    },
     // setting the resolution of the data raycasting resolution; set lower if data is very dense; set higher if you have not much data
     raycastResolution: {
       default: 1,
@@ -60,6 +47,19 @@ AFRAME.registerComponent('geojson', {
     featureEventName: {
       default: '',
       oneOf: ['', 'click', 'raycaster-intersected']
+    },
+    lineWidth: {
+      default: 1
+    },
+    pointScale: {
+      default: 0.1
+    },
+    pointSizeFeature: {
+      default: ''
+    },
+    pointAs: {
+      default: 'point',
+      oneOf: ['point', 'line']
     }
   },
 
@@ -147,7 +147,7 @@ AFRAME.registerComponent('geojson', {
 
     this.shapesMap = new Map();
     const mesh = linesMap.size > 0 ? this.generateLines(linesMap) :
-      (data.pointsAs === 'points' ? this.generatePoints(pointsMap) : this.generateBars(pointsMap, features));
+      (data.pointAs === 'point' ? this.generatePoints(pointsMap) : this.generateBars(pointsMap, features));
 
     this.el.setObject3D('mesh', mesh);
 
@@ -172,7 +172,6 @@ AFRAME.registerComponent('geojson', {
   generatePointsMap: function (paths) {
     var self = this;
 
-    var data = this.data;
     var map = new Map();
 
     var pathNodes = paths.nodes();
@@ -382,7 +381,7 @@ AFRAME.registerComponent('geojson', {
     geometry,
     material
   );
-    mesh.frustumCulled = false;
+    // mesh.frustumCulled = false;
 
     return mesh;
   },

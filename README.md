@@ -26,6 +26,10 @@ The geojson component has the `material` and `geometry` components as a dependen
 | dataKey | The name of the property of the metadata that is matched to the GeoJSON's _featureKey_ attribute. | id |
 | raycastResolution | The "resolution" of the raycaster selection. The smaller the closer you have to point with raycaster on the feature to be selected. Set smaller if you have many features close by, higher otherwise. Normalized to a generally good working condition. | 1 |
 | featureEventName | The event name that should be added as a listener, for example `click` or `raycaster-intersected`. No events will be omitted if empty. | '' |
+| lineWidth | The width of the line for _Polygons_ and _Line_ elements. | 1 |
+| pointScale | The scaling factor of the _Point_ data | 0.1 |
+| pointSizeFeature | Sets the size of the point using a feature. Optional. | '' |
+| pointAs | Shows the _Point_ data either as a point cloud or as scaled line. Must be either _point_ or _line_ | 'point' |
 
 ##### Events
 | Name | Data | Description |
