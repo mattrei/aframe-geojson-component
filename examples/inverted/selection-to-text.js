@@ -19,14 +19,17 @@ AFRAME.registerComponent('selection-to-text', {
   setText: function (event) {
     const data = this.data;
     const {feature, mesh} = event.detail;
+    console.log(event.detail);
+    if (mesh) {
+      mesh.visible = true;
 
-    console.log(mesh);
-    mesh.visible = true;
-
-    if (this.lastSelectedMesh) {
-      this.el.object3D.remove(this.lastSelectedMesh);
+      if (this.lastSelectedMesh) {
+        this.lastSelectedMesh.visible = false;
+        this.el.object3D.remove(this.lastSelectedMesh);
+      }
+      this.el.object3D.add(mesh);
+      this.lastSelectedMesh = mesh;
     }
-    this.el.object3D.add(mesh);
 
     data.text.setAttribute('value', feature[data.featureProperty]);
   }

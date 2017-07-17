@@ -153,7 +153,7 @@ AFRAME.registerComponent('geojson', {
 
     this.maskMesh = this.generateMask(features);
 
-    if (!data.featureEventName) {
+    if (data.featureEventName) {
       this.el.addEventListener(data.featureEventName, this.select.bind(this));
     }
 
@@ -527,13 +527,14 @@ AFRAME.registerComponent('geojson', {
     if (!feature) return;
 
     var selected = null;
+    var featureKey = feature.properties ? feature.properties[data.featureKey] : feature[data.featureKey];
     if (this.dataMap.size > 0) {
-      selected = this.dataMap.get(feature.id);
+      selected = this.dataMap.get(featureKey);
     } else {
       selected = feature.properties;
     }
 
-    var shape = this.shapesMap.get(feature.id);
+    var shape = this.shapesMap.get(featureKey);
 
     if (!this._selectedFeature ||
             (this._selectedFeature[data.featureKey] || this._selectedFeature[data.dataKey] !==
