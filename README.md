@@ -2,6 +2,7 @@
 
 A GeoJSON/TopoJSON component for [A-Frame](https://aframe.io).
 
+> Still WIP. Will release soon!
 > Supports A-Frame 0.6.0.
 
 ![Example](doc/example.png)
