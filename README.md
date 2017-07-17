@@ -38,6 +38,11 @@ The geojson component has the `material` and `geometry` components as a dependen
 | geojson-generated | `{ map, features }`| Fired when the GeoJSON has finished loading (asynchronous operation!). `map` contains the loaded data, `features` contains all document features|
 | geojson-feature-selected | `{ feature, mesh }`| The selected feature and mesh by the raycaster if the _featureEventName_ parameter is given. To highlight the mesh you have to configure its _material_ property and add it to the scene. |
 
+##### API
+| Name | Data | Description |
+| -------- | ----------- | ------------- |
+| getMaskMesh | | Returns the mesh of the hit mask. When your geometry of the component changes (like rotation, or scaling) you must also set this changes to the mask mesh. See examples for a demonstration. |
+
 #### `geojson-canvas` component
 
 This component so far can be just used as a texture for a geometry object (plane, sphere, etc). No feature selection events are fired. A strategy may be implemented in future releases. 

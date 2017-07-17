@@ -54,6 +54,11 @@ AFRAME.registerComponent('geojson', {
     pointScale: {
       default: 0.1
     },
+    // TODO
+    pointScaling: {
+      default: 'linear',
+      oneOf: ['linear', 'exponential']
+    },
     pointSizeFeature: {
       default: ''
     },
@@ -78,6 +83,11 @@ AFRAME.registerComponent('geojson', {
     if (src && src !== oldData.src) {
       this.loader.load(src, this.onGeojsonLoaded.bind(this));
     }
+  },
+  tick: function (time, delta) {
+  },
+  getMaskMesh () {
+    return this.maskMesh;
   },
   onGeojsonLoaded: function (file) {
     const json = JSON.parse(file);
