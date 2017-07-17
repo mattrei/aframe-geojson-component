@@ -527,7 +527,8 @@ AFRAME.registerComponent('geojson', {
     if (!feature) return;
 
     var selected = null;
-    var featureKey = feature.properties ? feature.properties[data.featureKey] : feature[data.featureKey];
+    var featureKey = Object.keys(feature.properties).length === 0 ? feature[data.featureKey] : feature.properties[data.featureKey];
+  
     if (this.dataMap.size > 0) {
       selected = this.dataMap.get(featureKey);
     } else {
