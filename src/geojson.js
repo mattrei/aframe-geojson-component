@@ -173,7 +173,7 @@ AFRAME.registerComponent('geojson', {
       this.el.addEventListener(data.featureEventName, this.select.bind(this));
     }
 
-    this.el.emit(GEOJSON_GENERATED_EVENT);
+    this.el.emit(GEOJSON_GENERATED_EVENT, {data: this.geometryMap});
   },
   onDataLoaded: function (file) {
     var self = this;
