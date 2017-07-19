@@ -89,7 +89,7 @@ AFRAME.registerComponent('geojson', {
   getMaskMesh: function () {
     return this.maskMesh;
   },
-  getData: function() {
+  getData: function () {
     return this.geometryMap;
   },
   onGeojsonLoaded: function (file) {
@@ -139,14 +139,11 @@ AFRAME.registerComponent('geojson', {
             .attr('d', path).attr('fill', 'none')
             .style('stroke', 'black'); // important for lines!
 
-
-
     this.geometryMap = this.generateLinesMap(svg.selectAll('path'), isTopojson);
-    const isPointData = this.geometryMap.size === 0
+    const isPointData = this.geometryMap.size === 0;
     if (isPointData) {
       this.geometryMap = this.generatePointsMap(svg.selectAll('path'));
     }
-
 
     svg.remove();
 
@@ -164,12 +161,11 @@ AFRAME.registerComponent('geojson', {
     this.hitTexture.generateMipMaps = false;
     this.hitTexture.setSize(100, 100);
 
-    
     this.shapesMap = new Map();
     const mesh = !isPointData ? this.generateLines() :
       (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
 
-    console.log(this.geometryMap)
+    console.log(this.geometryMap);
     this.el.setObject3D('mesh', mesh);
 
     this.maskMesh = this.generateMask(features);
@@ -201,7 +197,7 @@ AFRAME.registerComponent('geojson', {
       const properties = p.__data__.properties;
       const key = properties[self.data.featureKey];
       const type = p.__data__.geometry.type; // Point, String, Polygon
-      //const pointSize = properties[self.data.pointSizeFeature] || 1;
+      // const pointSize = properties[self.data.pointSizeFeature] || 1;
 
       var segments = p.pathSegList;
       for (var i = 0; i < segments.numberOfItems; i++) {
@@ -343,9 +339,9 @@ AFRAME.registerComponent('geojson', {
       positions[i * 3 + 1] = pos.y;
       positions[i * 3 + 2] = pos.z;
 
-      entry.position = new THREE.Vector3().copy(pos)
+      entry.position = new THREE.Vector3().copy(pos);
 
-      //sizes[i] = 0.01;
+      // sizes[i] = 0.01;
 
       i += 1;
     });
@@ -385,7 +381,7 @@ AFRAME.registerComponent('geojson', {
       positions[i * 6] = pos.x;
       positions[i * 6 + 1] = pos.y;
       positions[i * 6 + 2] = pos.z;
-      entry.position = new THREE.Vector3().copy(pos)
+      entry.position = new THREE.Vector3().copy(pos);
 
       const pointSize = entry.properties[self.data.pointSizeFeature] || 1;
 
@@ -394,7 +390,7 @@ AFRAME.registerComponent('geojson', {
       positions[ i * 6 + 3 ] = tmp.x;
       positions[ i * 6 + 4 ] = tmp.y;
       positions[ i * 6 + 5 ] = tmp.z;
-      entry.endPosition = new THREE.Vector3().copy(tmp)
+      entry.endPosition = new THREE.Vector3().copy(tmp);
 
       i += 1;
     });

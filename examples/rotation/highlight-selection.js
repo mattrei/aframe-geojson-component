@@ -39,10 +39,9 @@ AFRAME.registerComponent('highlight-selection', {
     const maskMesh = this.el.components.geojson.getMaskMesh();
 
     const mesh = this.el.getObject3D('mesh');
-    var rotation = mesh.getWorldRotation();
-    var scale = mesh.getWorldScale();
     if (maskMesh) {
-      maskMesh.rotation.copy(rotation);
+      maskMesh.rotation.copy(mesh.getWorldRotation());
+      maskMesh.scale.copy(mesh.getWorldScale());
     }
 
     if (this.lastSelectedMesh) {
