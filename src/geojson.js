@@ -86,8 +86,11 @@ AFRAME.registerComponent('geojson', {
   },
   tick: function (time, delta) {
   },
-  getMaskMesh () {
+  getMaskMesh: function () {
     return this.maskMesh;
+  },
+  getData: function() {
+    return this.geometryMap;
   },
   onGeojsonLoaded: function (file) {
     const json = JSON.parse(file);
@@ -136,8 +139,14 @@ AFRAME.registerComponent('geojson', {
             .attr('d', path).attr('fill', 'none')
             .style('stroke', 'black'); // important for lines!
 
-    const linesMap = this.generateLinesMap(svg.selectAll('path'), isTopojson);
-    const pointsMap = this.generatePointsMap(svg.selectAll('path'));
+
+
+    this.geometryMap = this.generateLinesMap(svg.selectAll('path'), isTopojson);
+    const isPointData = this.geometryMap.size === 0
+    if (isPointData) {
+      this.geometryMap = this.generatePointsMap(svg.selectAll('path'));
+    }
+
 
     svg.remove();
 
@@ -155,10 +164,12 @@ AFRAME.registerComponent('geojson', {
     this.hitTexture.generateMipMaps = false;
     this.hitTexture.setSize(100, 100);
 
+    
     this.shapesMap = new Map();
-    const mesh = linesMap.size > 0 ? this.generateLines(linesMap) :
-      (data.pointAs === 'point' ? this.generatePoints(pointsMap) : this.generateBars(pointsMap, features));
+    const mesh = !isPointData ? this.generateLines() :
+      (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
 
+    console.log(this.geometryMap)
     this.el.setObject3D('mesh', mesh);
 
     this.maskMesh = this.generateMask(features);
@@ -187,9 +198,10 @@ AFRAME.registerComponent('geojson', {
     var pathNodes = paths.nodes();
 
     pathNodes.forEach(function (p) {
-      const key = p.__data__.properties[self.data.featureKey];
+      const properties = p.__data__.properties;
+      const key = properties[self.data.featureKey];
       const type = p.__data__.geometry.type; // Point, String, Polygon
-      const pointSize = p.__data__.properties[self.data.pointSizeFeature] || 1;
+      //const pointSize = properties[self.data.pointSizeFeature] || 1;
 
       var segments = p.pathSegList;
       for (var i = 0; i < segments.numberOfItems; i++) {
@@ -197,7 +209,7 @@ AFRAME.registerComponent('geojson', {
         if (segment instanceof SVGPathSegMovetoAbs) {
           if (type.includes('Point')) {
             const xy = new THREE.Vector2(segment.x, segment.y);
-            map.set(key, {point: xy, pointSize});
+            map.set(key, {point: xy, properties});
           }
         }
       }
@@ -311,25 +323,29 @@ AFRAME.registerComponent('geojson', {
 
     return map;
   },
-  generatePoints: function (mapData) {
+  generatePoints: function (features) {
     var self = this;
+
+    const mapData = this.geometryMap;
 
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(mapData.size * 3);
 
     // TODO? if data defines size or color
-    const sizes = new Float32Array(mapData.size);
+    // const sizes = new Float32Array(mapData.size);
     // const colors = new Float32Array(points)
 
     var i = 0;
     mapData.forEach(function (entry, idx) {
-      const res = self.latLngToVec3(entry.point.y, entry.point.x);
+      const pos = self.latLngToVec3(entry.point.y, entry.point.x);
 
-      positions[i * 3] = res.x;
-      positions[i * 3 + 1] = res.y;
-      positions[i * 3 + 2] = res.z;
+      positions[i * 3] = pos.x;
+      positions[i * 3 + 1] = pos.y;
+      positions[i * 3 + 2] = pos.z;
 
-      sizes[i] = 0.01;
+      entry.position = new THREE.Vector3().copy(pos)
+
+      //sizes[i] = 0.01;
 
       i += 1;
     });
@@ -354,8 +370,10 @@ AFRAME.registerComponent('geojson', {
 
     return mesh;
   },
-  generateBars: function (mapData, features) {
+  generateBars: function () {
     var self = this;
+
+    const mapData = this.geometryMap;
 
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(mapData.size * 3 * 2);
@@ -367,12 +385,16 @@ AFRAME.registerComponent('geojson', {
       positions[i * 6] = pos.x;
       positions[i * 6 + 1] = pos.y;
       positions[i * 6 + 2] = pos.z;
+      entry.position = new THREE.Vector3().copy(pos)
 
-      const scalingFactor = entry.pointSize * self.data.pointScale;
+      const pointSize = entry.properties[self.data.pointSizeFeature] || 1;
+
+      const scalingFactor = pointSize * self.data.pointScale;
       tmp.copy(pos).multiplyScalar(1 + scalingFactor);
       positions[ i * 6 + 3 ] = tmp.x;
       positions[ i * 6 + 4 ] = tmp.y;
       positions[ i * 6 + 5 ] = tmp.z;
+      entry.endPosition = new THREE.Vector3().copy(tmp)
 
       i += 1;
     });
@@ -395,16 +417,18 @@ AFRAME.registerComponent('geojson', {
 
     return mesh;
   },
-  generateLines: function (mapData) {
+  generateLines: function (features) {
     var self = this;
     const data = this.data;
+
+    const mapData = this.geometryMap;
 
     var min = 10000000;
     var max = -10000000;
 
     var lines = 0;
-    mapData.forEach(function (territory) {
-      territory.forEach(function (path) {
+    mapData.forEach(function (entry) {
+      entry.forEach(function (path) {
         path.lines.forEach(function (line) {
           lines += line.length;
         });
@@ -423,10 +447,10 @@ AFRAME.registerComponent('geojson', {
       side: THREE.DoubleSide
     });
 
-    mapData.forEach(function (territory, id) {
+    mapData.forEach(function (entry, id) {
       var parts = [];
 
-      territory.forEach(function (path) {
+      entry.forEach(function (path) {
         path.lines.forEach(function (line) {
           var partPositions = new Float32Array(line.length * 2 * 3);
           var ptr = 0;
@@ -481,8 +505,9 @@ AFRAME.registerComponent('geojson', {
       mesh.fustrumCulled = false;
       mesh.visible = true;
 
-      // territory.shape = mesh;
-      self.shapesMap.set(territory[0].id, mesh);
+      self.shapesMap.set(entry[0].id, mesh);
+
+      entry.shape = mesh;
     });
 
     lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
