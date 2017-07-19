@@ -165,7 +165,6 @@ AFRAME.registerComponent('geojson', {
     const mesh = !isPointData ? this.generateLines() :
       (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
 
-    console.log(this.geometryMap);
     this.el.setObject3D('mesh', mesh);
 
     this.maskMesh = this.generateMask(features);
@@ -673,7 +672,7 @@ AFRAME.registerComponent('geojson', {
       ctx.restore();
     });
 
-        // console.log(canvas.node().toDataURL())
+    // console.log(canvas.node().toDataURL())
     const texture = new THREE.CanvasTexture(canvas.node());
 
     const geomComponent = this.el.components.geometry;
