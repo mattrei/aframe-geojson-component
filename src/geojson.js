@@ -14,6 +14,7 @@ const FEATURE_SELECTED_EVENT = 'geojson-feature-selected';
 const GEOJSON_GENERATED_EVENT = 'geojson-loaded';
 
 AFRAME.registerComponent('geojson', {
+  dependencies: ['geometry', 'material'],
   schema: {
     src: {
       type: 'asset'
@@ -54,7 +55,6 @@ AFRAME.registerComponent('geojson', {
     pointScale: {
       default: 0.1
     },
-    // TODO
     pointScaling: {
       default: 'linear',
       oneOf: ['linear', 'exponential']
@@ -69,12 +69,26 @@ AFRAME.registerComponent('geojson', {
   },
 
   init: function () {
+    var self = this;
+
     this.loader = new THREE.FileLoader();
+
+    this.el.addEventListener('componentchanged', function (evt) {
+      if (!self.mesh) return;
+      if (evt.detail.name === 'material') {
+        if (evt.detail.oldData.color !== evt.detail.newData.color) {
+          self.mesh.material.color = new THREE.Color(evt.detail.newData.color);
+        }
+        if (evt.detail.oldData.opacity !== evt.detail.newData.opacity) {
+          self.mesh.material.opacity = evt.detail.newData.opacity;
+        }
+      }
+    });
   },
   update: function (oldData) {
     const data = this.data;
 
-        // Nothing changed
+    // Nothing changed
     if (AFRAME.utils.deepEqual(oldData, data)) {
       return;
     }
@@ -82,6 +96,15 @@ AFRAME.registerComponent('geojson', {
     const src = data.src;
     if (src && src !== oldData.src) {
       this.loader.load(src, this.onGeojsonLoaded.bind(this));
+    }
+
+    if (this.mesh) {
+      if (oldData.lineWidth !== data.lineWidth) {
+        this.mesh.material.linewidth = data.lineWidth;
+      }
+      if (oldData.pointScale !== data.pointScale) {
+        this.mesh.material.size = data.pointScale;
+      }
     }
   },
   tick: function (time, delta) {
@@ -166,6 +189,7 @@ AFRAME.registerComponent('geojson', {
       (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
 
     this.el.setObject3D('mesh', mesh);
+    this.mesh = mesh;
 
     this.maskMesh = this.generateMask(features);
 
@@ -382,7 +406,11 @@ AFRAME.registerComponent('geojson', {
       positions[i * 6 + 2] = pos.z;
       entry.position = new THREE.Vector3().copy(pos);
 
-      const pointSize = entry.properties[self.data.pointSizeFeature] || 1;
+      var pointSize = entry.properties[self.data.pointSizeFeature] || 1;
+
+      if (self.data.pointScaling === 'exp') {
+        pointSize = Math.pow(pointSize, 2);
+      }
 
       const scalingFactor = pointSize * self.data.pointScale;
       tmp.copy(pos).multiplyScalar(1 + scalingFactor);

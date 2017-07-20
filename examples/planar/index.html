@@ -18,12 +18,15 @@
           class="gazeactivated"
           geometry="primitive: plane; width: 8; height: 4;"
           material="color: #000; transparent: true;"
-          geojson="src: #json-world-110m; topologyObject: land;
+          geojson="src: #json-world-110m; topologyObject: countries;
             lineWidth: 1; 
             dataSrc: #tsv-world-110m; dataType: tsv; dataKey: iso_n3;"
           visible="true"
           selection-to-text
           >
+          <a-animation attribute="material.color" direction="alternate" from="black" to="red" dur="3000" repeat="indefinite"></a-animation>-
+          <a-animation attribute="material.opacity" direction="alternate" from="0.4" to="1" dur="1000"></a-animation>
+          <a-animation attribute="geojson.lineWidth" from="1" to="2" dur="4000"></a-animation>
         </a-entity>
 
       </a-entity>

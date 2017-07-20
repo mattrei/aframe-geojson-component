@@ -26,7 +26,8 @@
         <a-entity 
           geometry="primitive: sphere; radius: 1;"
           material="color: #F0A;"
-          geojson="src: #json-places; featureKey: name; pointScale: 0.00000002; pointAs: bar; pointSizeFeature: pop_min; lineWidth: 4;"
+          geojson="src: #json-places; featureKey: name; pointScale: 0.0000001; pointAs: bar; pointSizeFeature: pop_min; lineWidth: 4;
+          pointScaling: linear;"
           ></a-entity>
         </a-entity>
     </a-scene>
