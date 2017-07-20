@@ -408,7 +408,7 @@ AFRAME.registerComponent('geojson', {
 
       var pointSize = entry.properties[self.data.pointSizeFeature] || 1;
 
-      if (self.data.pointScaling === 'exp') {
+      if (self.data.pointScaling === 'exponential') {
         pointSize = Math.pow(pointSize, 2);
       }
 

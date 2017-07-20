@@ -19,7 +19,6 @@ AFRAME.registerComponent('selection-to-text', {
   setText: function (event) {
     const data = this.data;
     const {feature, mesh} = event.detail;
-    // console.log(event.detail);
     console.log(feature[data.featureProperty]);
     if (mesh) {
       mesh.visible = true;
