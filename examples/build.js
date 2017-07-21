@@ -3,10 +3,10 @@ require('aframe');
 require('../index.js');
 
 },{"../index.js":2,"aframe":3}],2:[function(require,module,exports){
-require('./src/geojson-canvas');
 require('./src/geojson');
+require('./src/geojson-texture');
 
-},{"./src/geojson":8,"./src/geojson-canvas":7}],3:[function(require,module,exports){
+},{"./src/geojson":8,"./src/geojson-texture":7}],3:[function(require,module,exports){
 (function (global){
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.AFRAME = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 var str = Object.prototype.toString
@@ -98989,9 +98989,9 @@ if (typeof AFRAME === 'undefined') {
 var d3 = require('d3');
 var topojson = require('topojson-client');
 
-const CANVAS_GENERATED_EVENT = 'geojson-canvas-generated';
+const CANVAS_GENERATED_EVENT = 'geojson-texture-generated';
 
-AFRAME.registerComponent('geojson-canvas', {
+AFRAME.registerComponent('geojson-texture', {
   dependencies: ['material'],
   schema: {
     src: {
@@ -99401,7 +99401,7 @@ AFRAME.registerComponent('geojson', {
         if (segment instanceof SVGPathSegMovetoAbs) {
           if (type.includes('Point')) {
             const xy = new THREE.Vector2(segment.x, segment.y);
-            map.set(key, {point: xy, properties});
+            map.set(key, {point: xy, properties: properties});
           }
         }
       }
