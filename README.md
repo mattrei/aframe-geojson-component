@@ -2,7 +2,6 @@
 
 A GeoJSON/TopoJSON component for [A-Frame](https://aframe.io).
 
-> Still WIP. Will release soon!
 > Supports A-Frame 0.6.0.
 
 ![Example](doc/example.png)
@@ -41,8 +40,8 @@ The geojson component has the `material` and `geometry` components as a dependen
 ##### API
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
-| getMaskMesh | | Returns the mesh of the hit mask. When your geometry of the component changes (like rotation, or scaling) you must also set this changes to the mask mesh. See examples for a demonstration. |
-| getData | | Returns a map the contains for each primary key the _properties_ object, the original 2D _point_ and the 3D world space _position_ and if applicable the _shape_ Mesh of polygon data types. |
+| getMaskMesh | | Returns the mesh of the hit mask. When your geometry of the component changes (like rotation, or scaling) you must also set this changes to the mask mesh. See examples for a use case. |
+| getData | | Returns a map the contains for each primary key the _properties_ object, the original 2D _point_ and the 3D world space _position_ and if applicable the _shape_ Mesh of polygon data types. May be used to display your own point visualization rather than using the default simple point visualization. |
 
 #### `geojson-texture` component
 
