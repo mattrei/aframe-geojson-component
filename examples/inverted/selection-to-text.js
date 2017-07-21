@@ -31,6 +31,6 @@ AFRAME.registerComponent('selection-to-text', {
       this.lastSelectedMesh = mesh;
     }
 
-    // data.text.setAttribute('value', feature[data.featureProperty]);
+    data.text.setAttribute('value', feature[data.featureProperty]);
   }
 });

@@ -21,7 +21,7 @@
         <a-entity s
             material="src: #equi-map-canvas;"
             geometry="primitive: plane; width: 2; height: 1;"
-            geojson-canvas="
+            geojson-texture="
             canvas: #equi-map-canvas; 
             src: #json-earth;
             projection: geoEquirectangular;
@@ -51,7 +51,7 @@
           <a-entity 
             material="src: #ortho-map-canvas;"
             geometry="primitive: plane; width: 1; height: 1;"
-            geojson-canvas="
+            geojson-texture="
             canvas: #ortho-map-canvas; 
             src: #json-earth;
             projection: geoOrthographic; 
@@ -81,7 +81,7 @@
           <a-entity
             material="src: #mercator-map-canvas;"
             geometry="primitive: plane; width: 2; height: 1;"
-            geojson-canvas="
+            geojson-texture="
             canvas: #mercator-map-canvas; 
             src: #json-earth;
             projection: geoMercator;

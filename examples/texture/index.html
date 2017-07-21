@@ -20,7 +20,7 @@
         <a-entity
           material="shader: flat; src: #world-canvas; transparent: true; opacity: 1.0;"
           geometry="primitive: sphere; radius: 1;"
-          geojson-canvas="canvas: #world-canvas;
+          geojson-texture="canvas: #world-canvas;
           src: #json-world-50m;
           projection: geoEquirectangular; fillColor: #fff; lineColor: #000; lineWidth: 2;
           topologyObject: countries;"
@@ -29,7 +29,7 @@
         <a-entity
           material="shader: flat; src: #lakes-canvas; transparent: true; opacity: 1.;"
           geometry="primitive: sphere; radius: 0.9;"
-          geojson-canvas="canvas: #lakes-canvas;
+          geojson-texture="canvas: #lakes-canvas;
           src: #json-lakes-50m;
           projection: geoEquirectangular; fillColor: #00C; lineColor: #00A; lineWidth: 1;"
           >

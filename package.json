@@ -1,7 +1,7 @@
 {
   "name": "aframe-geojson-component",
   "version": "1.0.0",
-  "description": "Mapping Geojson documents to meshes",
+  "description": "GeoJSON/TopoJSON in A-Frame using D3",
   "main": "index.js",
   "cdn": "dist/aframe-geojson-component.min.js",
   "scripts": {
@@ -28,7 +28,9 @@
     "vr",
     "mozvr",
     "webvr",
-    "geojson"
+    "geojson",
+    "topojson",
+    "d3"
   ],
   "author": "Matthias Treitler matthias.treitler@gmail.com",
   "license": "MIT",

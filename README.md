@@ -44,7 +44,7 @@ The geojson component has the `material` and `geometry` components as a dependen
 | getMaskMesh | | Returns the mesh of the hit mask. When your geometry of the component changes (like rotation, or scaling) you must also set this changes to the mask mesh. See examples for a demonstration. |
 | getData | | Returns a map the contains for each primary key the _properties_ object, the original 2D _point_ and the 3D world space _position_ and if applicable the _shape_ Mesh of polygon data types. |
 
-#### `geojson-canvas` component
+#### `geojson-texture` component
 
 This component so far can be just used as a texture for a geometry object (plane, sphere, etc). No feature selection events are fired. A strategy may be implemented in future releases. 
 
@@ -66,7 +66,7 @@ This component so far can be just used as a texture for a geometry object (plane
 ##### Events
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
-| geojson-canvas-generated | _None_| Fired when the GeoJSON has finished loading (asynchronous operation!). |
+| geojson-texture-generated | _None_| Fired when the GeoJSON has finished loading (asynchronous operation!). |
 
 
 ##### API

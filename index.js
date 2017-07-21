@@ -1,2 +1,2 @@
-require('./src/geojson-canvas');
 require('./src/geojson');
+require('./src/geojson-texture');

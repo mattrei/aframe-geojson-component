@@ -7,9 +7,9 @@ if (typeof AFRAME === 'undefined') {
 var d3 = require('d3');
 var topojson = require('topojson-client');
 
-const CANVAS_GENERATED_EVENT = 'geojson-canvas-generated';
+const CANVAS_GENERATED_EVENT = 'geojson-texture-generated';
 
-AFRAME.registerComponent('geojson-canvas', {
+AFRAME.registerComponent('geojson-texture', {
   dependencies: ['material'],
   schema: {
     src: {
