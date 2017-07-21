@@ -228,7 +228,7 @@ AFRAME.registerComponent('geojson', {
         if (segment instanceof SVGPathSegMovetoAbs) {
           if (type.includes('Point')) {
             const xy = new THREE.Vector2(segment.x, segment.y);
-            map.set(key, {point: xy, properties});
+            map.set(key, {point: xy, properties: properties});
           }
         }
       }
