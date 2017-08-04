@@ -22,9 +22,9 @@ The geojson component has the `material` and `geometry` components as a dependen
 | topologyObjct | *Only for TopoJSON*: Specifies the TopoJSON object to use (see [specification](https://github.com/topojson/topojson-specification#2-topojson-objects) for details). If empty then the first will be taken. | "" |
 | featureKey | The primary key of the GeoJSON feature properties. Choose as key the property that has unique values. *Must be given*, otherwise nothing will be shown. For TopoJSON this is by specification always the _id_ property . For GeoJSON you have to select the _primary key_ | id | |
 | dataSrc | The optional metadata that of this GeoJSON document. Mostly GeoJSON contains already all the associated data, however TopoJSON have always associated data sources. |  | |
-| dataType | The data type of the dataSrc attribute. | csv | csv, tsv |
-| dataKey | The name of the property of the metadata that is matched to the GeoJSON's _featureKey_ attribute. | id | |
-| raycastResolution | The "resolution" of the raycaster selection. The smaller the closer you have to point with raycaster on the feature to be selected. Set smaller if you have many features close by, higher otherwise. Normalized to a generally good working condition. | 1 | |
+| dataType | The data type of the dataSrc attribute. Only needed if _dataSrc_ is specified. | csv | csv, tsv |
+| dataKey | The name of the property of the metadata that is matched to the GeoJSON's _featureKey_ attribute. Only needed if _dataSrc_ is specified. | id | |
+| raycasterAccuracy | The "accuracy" of the raycaster selection. The smaller the closer you have to point with raycaster on the feature to be selected. Set smaller if you have many features close by, higher otherwise. Normalized to a generally good working condition. | 1 | |
 | featureEventName | The event name that should be added as a listener. No events will be omitted if empty. |  | click, raycaster-intersected |
 | lineWidth | The width of the line for _Polygons_ and _Line_ elements. | 1 | |
 | pointScale | The scaling factor of the _Point_ data | 0.1 | |

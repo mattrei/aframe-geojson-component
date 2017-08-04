@@ -22,7 +22,6 @@ AFRAME.registerComponent('geojson', {
     featureKey: {
       default: 'id'
     },
-        // the data that holds the data; if not set then it is supposed to be already included
     dataSrc: {
       type: 'asset'
     },
@@ -37,8 +36,7 @@ AFRAME.registerComponent('geojson', {
     topologyObject: {
       default: ''
     },
-    // setting the resolution of the data raycasting resolution; set lower if data is very dense; set higher if you have not much data
-    raycastResolution: {
+    raycasterAccuracy: {
       default: 1,
       type: 'int'
     },
@@ -699,7 +697,7 @@ AFRAME.registerComponent('geojson', {
       ctx.beginPath();
       ctx.fillStyle = 'rgb(255,' + multiplicator + ',' + number + ')';
       ctx.strokeStyle = 'rgb(255,' + multiplicator + ',' + number + ')';
-      ctx.lineWidth = CANVAS_DATA_FACTOR * self.data.raycastResolution;
+      ctx.lineWidth = CANVAS_DATA_FACTOR * self.data.raycasterAccuracy;
       ctxPath(feature);
       if (feature.geometry.type.includes('LineString')) {
         ctx.stroke();
