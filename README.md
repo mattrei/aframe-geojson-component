@@ -30,6 +30,7 @@ The geojson component has the `material` and `geometry` components as a dependen
 | pointScale | The scaling factor of the _Point_ data | 0.1 | |
 | pointSizeFeature | Sets the size of the point using a feature. Optional. | | |
 | pointAs | Shows the _Point_ data either as a point cloud or as scaled line. | point | point, line |
+| omitBoundingBox | Some GeoJSON files have a bounding box border around that gives a straight line when projected on a sphere. When _true_ then this border will be ignored. | false |  |
 
 ##### Events
 | Name | Data | Description |
