@@ -99195,7 +99195,6 @@ AFRAME.registerComponent('geojson', {
     featureKey: {
       default: 'id'
     },
-        // the data that holds the data; if not set then it is supposed to be already included
     dataSrc: {
       type: 'asset'
     },
@@ -99210,8 +99209,7 @@ AFRAME.registerComponent('geojson', {
     topologyObject: {
       default: ''
     },
-    // setting the resolution of the data raycasting resolution; set lower if data is very dense; set higher if you have not much data
-    raycastResolution: {
+    raycasterAccuracy: {
       default: 1,
       type: 'int'
     },
@@ -99238,6 +99236,10 @@ AFRAME.registerComponent('geojson', {
     pointAs: {
       default: 'point',
       oneOf: ['point', 'line']
+    },
+    omitBoundingBox: {
+      default: false,
+      type: 'boolean'
     }
   },
 
@@ -99440,10 +99442,17 @@ AFRAME.registerComponent('geojson', {
       for (var i = 0; i < segments.numberOfItems; i++) {
         var segment = segments.getItem(i);
 
-        if (((segment.x >= 359.9 || segment.x <= 0.1) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
+        // if (((segment.x >= 359.9999 || segment.x <= 0.001) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
+        if (self.data.omitBoundingBox &&
+              (
+              (segment.x >= 359.9 || segment.x <= 0.1) ||
+              (segment.y >= 179.9 || segment.y <= 0.1)
+              )
+            && segment instanceof SVGPathSegLinetoAbs) {
                     // some GeoJSON files have a border around them
                     // to avoid having a frame aroudn the plane we omit
                     // the top-, left, right-, bottomost lines
+                    // console.log(segment.x + ' ' + segment.y)
         } else {
           if (segment instanceof SVGPathSegMovetoAbs) {
             x = segment.x;
@@ -99861,7 +99870,7 @@ AFRAME.registerComponent('geojson', {
       ctx.beginPath();
       ctx.fillStyle = 'rgb(255,' + multiplicator + ',' + number + ')';
       ctx.strokeStyle = 'rgb(255,' + multiplicator + ',' + number + ')';
-      ctx.lineWidth = CANVAS_DATA_FACTOR * self.data.raycastResolution;
+      ctx.lineWidth = CANVAS_DATA_FACTOR * self.data.raycasterAccuracy;
       ctxPath(feature);
       if (feature.geometry.type.includes('LineString')) {
         ctx.stroke();

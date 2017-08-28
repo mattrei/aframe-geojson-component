@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>A-Frame Geojson Component - Basic</title>
+    <meta name="description" content="Basic example for Geojson component."></meta>
+    <script src="../build.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="topo-europe" src="assets/europe.topojson
+        " />
+        <a-asset-item id="geo-graticules" src="assets/ne_110m_graticules_30.geojson
+        " />
+      </a-assets>
+
+      <a-entity position="0 1.2 -10.5" rotation="0 -110 -40">
+        <a-entity 
+          geometry="primitive: sphere; radius: 10;"
+          material="color: #000;"
+          geojson="
+            src: #geo-graticules; 
+            lineWidth: 1 ;"
+          ></a-entity>
+        </a-entity>
+    </a-scene>
+  </body>
+</html>

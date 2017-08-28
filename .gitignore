@@ -1,5 +1,3 @@
-dist/
-lib/
 cert.pem
 key.pem
 
