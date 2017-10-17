@@ -1,6 +1,6 @@
 ## aframe-geojson-component
 
-A GeoJSON/TopoJSON component for [A-Frame](https://aframe.io).
+A GeoJSON/TopoJSON component for easily building an orthographic globe in [A-Frame](https://aframe.io).
 
 > Supports A-Frame 0.6.0.
 
@@ -8,7 +8,7 @@ A GeoJSON/TopoJSON component for [A-Frame](https://aframe.io).
 
 ### API
 
-This library provides two components visualizing GeoJSON and TopoJSON documents. It can visualize _MultiPoints_/_Points_ as a point cloud, _MultiLineStrings_/_LineStrings_ as lines and _MultiPolygons_/_Polygons_ as an outline (no triangulated meshes!).
+This library provides two components visualizing GeoJSON and TopoJSON documents as an orthographic globe. It can visualize _MultiPoints_/_Points_ as a point cloud, _MultiLineStrings_/_LineStrings_ as lines and _MultiPolygons_/_Polygons_ as an outline (no triangulated meshes!).
 
 #### `geojson` component
 
@@ -140,6 +140,10 @@ Then require and use.
 require('aframe');
 require('aframe-geojson-component');
 ```
+
+### Large scale geometry data
+If you have a GeoJSON where the geometry bounds are on a large scale, then the output will be very tiny. You have to rotate the entity and scale it up so that you can see your local data. See the _europe_ example for instance for a larger scale geometry. 
+However this component is primarly for displaying orthographic low scale data (which covers the whole world). For other data its probably wiser to use a different component, like the [Mapbox component] (https://github.com/jesstelford/aframe-map/) or [Tangram component] (https://github.com/mattrei/aframe-tangram-component).
 
 ### Antimeridian Cutting
 Most GeoJSON objects might show a line on the antimeridian when projected on a sphere with the equirectangular projection.
