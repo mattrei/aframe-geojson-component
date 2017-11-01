@@ -3,13 +3,14 @@
     <title>A-Frame Geojson Component - Airplane</title>
     <meta name="description" content="Airplane example."></meta>
     <script src="../build.js"></script>
+    <script src="./mercator-set-scale.js"></script>
   </head>
   <body>
     <a-scene >
       <a-assets>
         <canvas id="equi-map-canvas" crossOrigin="anonymous" width="720" height="360"></canvas>
         <canvas id="ortho-map-canvas" crossOrigin="anonymous" width="360" height="360"></canvas>
-        <canvas id="mercator-map-canvas" crossOrigin="anonymous" width="720" height="360"></canvas>
+        <canvas id="mercator-map-canvas" crossOrigin="anonymous" width="720" height="720"></canvas>
       </a-assets>
       <a-assets>
         <a-asset-item id="json-earth" src="assets/110m.json" />
@@ -80,7 +81,7 @@
         <a-entity position="2 0 0">
           <a-entity
             material="src: #mercator-map-canvas;"
-            geometry="primitive: plane; width: 2; height: 1;"
+            geometry="primitive: plane; width: 2; height: 2;"
             geojson-texture="
             canvas: #mercator-map-canvas; 
             src: #json-earth;
@@ -92,9 +93,11 @@
             lineWidth: 2;
             topologyObject: countries;
             "
+            mercator-set-scale
             >
           </a-entity>
         </a-entity>
+        
       </a-entity>
           
     </a-scene>
