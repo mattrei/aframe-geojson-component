@@ -187,8 +187,8 @@ AFRAME.registerComponent('geojson', {
     this.hitTexture.setSize(100, 100);
 
     this.shapesMap = new Map();
-    const mesh = !isPointData ? this.generateLines() :
-      (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
+    const mesh = !isPointData ? this.generateLines()
+      : (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
 
     this.el.setObject3D('mesh', mesh);
     this.mesh = mesh;
@@ -269,13 +269,11 @@ AFRAME.registerComponent('geojson', {
       for (var i = 0; i < segments.numberOfItems; i++) {
         var segment = segments.getItem(i);
 
-        // if (((segment.x >= 359.9999 || segment.x <= 0.001) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
         if (self.data.omitBoundingBox &&
               (
               (segment.x >= 359.9 || segment.x <= 0.1) ||
               (segment.y >= 179.9 || segment.y <= 0.1)
-              )
-            && segment instanceof SVGPathSegLinetoAbs) {
+              ) && segment instanceof SVGPathSegLinetoAbs) {
                     // some GeoJSON files have a border around them
                     // to avoid having a frame aroudn the plane we omit
                     // the top-, left, right-, bottomost lines

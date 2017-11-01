@@ -58,7 +58,6 @@ AFRAME.registerComponent('geojson-texture', {
   update: function (oldData) {
     const data = this.data;
 
-        // Nothing changed
     if (AFRAME.utils.deepEqual(oldData, data)) {
       return;
     }
@@ -139,7 +138,6 @@ AFRAME.registerComponent('geojson-texture', {
     return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
   },
   redraw: function () {
-        // a very expensive operation, takes around 100 ms!
     if (!this.features) return;
 
     var self = this;
@@ -149,7 +147,8 @@ AFRAME.registerComponent('geojson-texture', {
     var contextPath = this.mapPath.context(context);
 
     context.clearRect(0, 0, data.canvas.width, data.canvas.height);
-    this.features.forEach(function (feature, i) {
+    for (var i = 0; i < this.features.length; i++) {
+      const feature = this.features[i];
       const strokeColor = self._getStrokeColorOr(feature);
       const fillColor = self._getFillColorOr(feature);
 
@@ -160,7 +159,7 @@ AFRAME.registerComponent('geojson-texture', {
       context.stroke();
       context.fillStyle = fillColor;
       context.fill();
-    });
+    }
   },
   getProjection: function () {
     return this.projection;
