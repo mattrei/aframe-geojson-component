@@ -99040,7 +99040,6 @@ AFRAME.registerComponent('geojson-texture', {
   update: function (oldData) {
     const data = this.data;
 
-        // Nothing changed
     if (AFRAME.utils.deepEqual(oldData, data)) {
       return;
     }
@@ -99121,7 +99120,6 @@ AFRAME.registerComponent('geojson-texture', {
     return 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
   },
   redraw: function () {
-        // a very expensive operation, takes around 100 ms!
     if (!this.features) return;
 
     var self = this;
@@ -99131,7 +99129,8 @@ AFRAME.registerComponent('geojson-texture', {
     var contextPath = this.mapPath.context(context);
 
     context.clearRect(0, 0, data.canvas.width, data.canvas.height);
-    this.features.forEach(function (feature, i) {
+    for (var i = 0; i < this.features.length; i++) {
+      const feature = this.features[i];
       const strokeColor = self._getStrokeColorOr(feature);
       const fillColor = self._getFillColorOr(feature);
 
@@ -99142,31 +99141,10 @@ AFRAME.registerComponent('geojson-texture', {
       context.stroke();
       context.fillStyle = fillColor;
       context.fill();
-    });
+    }
   },
   getProjection: function () {
     return this.projection;
-  },
-
-    // TODO -  remove the following methods from here to the example that needs it
-  xyFromLatLon: function (lat, lon) {
-    const data = this.data;
-
-        // lat lon are in rad, but d3 needs them in degrees
-    var point = this.projection(this._degFromRad([lon, lat]));
-    return {
-      x: point[0] / data.canvas.width,
-      y: point[1] / data.canvas.height
-    };
-  },
-  rotateToLatLon: function (lat, lon) {
-    var lonLat = this._degFromRad([lon, lat]);
-
-    this.projection.rotate([-lonLat[0], -lonLat[1]]);
-    this.redraw();
-  },
-  _degFromRad: function (lonLat) {
-    return [lonLat[0] * THREE.Math.RAD2DEG, lonLat[1] * THREE.Math.RAD2DEG];
   }
 });
 
@@ -99360,8 +99338,8 @@ AFRAME.registerComponent('geojson', {
     this.hitTexture.setSize(100, 100);
 
     this.shapesMap = new Map();
-    const mesh = !isPointData ? this.generateLines() :
-      (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
+    const mesh = !isPointData ? this.generateLines()
+      : (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
 
     this.el.setObject3D('mesh', mesh);
     this.mesh = mesh;
@@ -99442,13 +99420,11 @@ AFRAME.registerComponent('geojson', {
       for (var i = 0; i < segments.numberOfItems; i++) {
         var segment = segments.getItem(i);
 
-        // if (((segment.x >= 359.9999 || segment.x <= 0.001) || (segment.y === 180 || segment.y === 0)) && segment instanceof SVGPathSegLinetoAbs) {
         if (self.data.omitBoundingBox &&
               (
               (segment.x >= 359.9 || segment.x <= 0.1) ||
               (segment.y >= 179.9 || segment.y <= 0.1)
-              )
-            && segment instanceof SVGPathSegLinetoAbs) {
+              ) && segment instanceof SVGPathSegLinetoAbs) {
                     // some GeoJSON files have a border around them
                     // to avoid having a frame aroudn the plane we omit
                     // the top-, left, right-, bottomost lines
