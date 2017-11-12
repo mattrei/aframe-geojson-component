@@ -17,7 +17,7 @@ AFRAME.registerComponent('selection-to-text', {
   },
   setText: function (event) {
     const data = this.data;
-    const feature = event.detail;
+    const {feature} = event.detail;
 
     data.text.setAttribute('value', feature[data.featureProperty]);
   }

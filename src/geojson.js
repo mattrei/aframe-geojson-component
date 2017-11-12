@@ -245,7 +245,7 @@ AFRAME.registerComponent('geojson', {
     var self = this;
     var map = new Map();
 
-    var pathNodes = paths.nodes();
+    const pathNodes = paths.nodes();
 
     pathNodes.forEach(function (p) {
       const key = isTopojson ? p.__data__.id : p.__data__.properties[self.data.featureKey];
@@ -365,7 +365,7 @@ AFRAME.registerComponent('geojson', {
     // const colors = new Float32Array(points)
 
     var i = 0;
-    for (var [, value] of mapData) {
+    for (var [key, value] of mapData) {
       const pos = self.latLngToVec3(value.point.y, value.point.x);
 
       positions[i * 3] = pos.x;
@@ -571,8 +571,12 @@ AFRAME.registerComponent('geojson', {
   _planarLatLngToVec3: function (lat, lon) {
     const geomComponent = this.el.components.geometry;
 
+    const width = geomComponent.data.width;
+    const height = geomComponent.data.height;
+
     return new THREE.Vector3(
-            lon / 360 * geomComponent.data.width, -lat / 180 * geomComponent.data.height,
+            lon / 360 * width - (width / 2),
+            -lat / 180 * height + (height / 2),
             0);
   },
   _sphericalLatLngToVec3: function (lat, lon) {
@@ -610,6 +614,7 @@ AFRAME.registerComponent('geojson', {
             (this._selectedFeature[data.featureKey] || this._selectedFeature[data.dataKey] !==
                 (selected[data.featureKey] || selected[data.dataKey]))) {
       this._selectedFeature = selected;
+
       this.el.emit(FEATURE_SELECTED_EVENT, {feature: selected, mesh: shape});
     }
   },
@@ -727,10 +732,9 @@ AFRAME.registerComponent('geojson', {
             })
         );
 
-    var scale = this.el.object3D.getWorldScale();
-    mesh.scale.x = scale.x;
-    mesh.scale.y = scale.y;
-    mesh.scale.z = scale.z;
+    mesh.scale.copy(this.el.object3D.getWorldScale());
+    mesh.rotation.copy(this.el.object3D.getWorldRotation());
+    mesh.position.copy(this.el.object3D.getWorldPosition());
 
     this.hitScene.add(mesh);
 
