@@ -207,9 +207,10 @@ AFRAME.registerComponent('geojson', {
 
     const contents = data.dataType === 'tsv' ? d3.tsvParse(file) : d3.csvParse(file);
 
-    contents.forEach(function (e) {
-      self.dataMap.set(e[data.dataKey], e);
-    });
+    for (var i = 0; i < contents.length; i++) {
+      const content = contents[i];
+      self.dataMap.set(content[data.dataKey], content);
+    }
   },
   generatePointsMap: function (paths) {
     var self = this;
@@ -218,15 +219,17 @@ AFRAME.registerComponent('geojson', {
 
     var pathNodes = paths.nodes();
 
-    pathNodes.forEach(function (p) {
+    for (var i = 0; i < pathNodes.length; i++) {
+      const p = pathNodes[i];
+
       const properties = p.__data__.properties;
       const key = properties[self.data.featureKey];
       const type = p.__data__.geometry.type; // Point, String, Polygon
       // const pointSize = properties[self.data.pointSizeFeature] || 1;
 
       var segments = p.pathSegList;
-      for (var i = 0; i < segments.numberOfItems; i++) {
-        var segment = segments.getItem(i);
+      for (var j = 0; j < segments.numberOfItems; j++) {
+        var segment = segments.getItem(j);
         if (segment instanceof SVGPathSegMovetoAbs) {
           if (type.includes('Point')) {
             const xy = new THREE.Vector2(segment.x, segment.y);
@@ -234,7 +237,7 @@ AFRAME.registerComponent('geojson', {
           }
         }
       }
-    });
+    }
 
     return map;
   },
@@ -362,19 +365,19 @@ AFRAME.registerComponent('geojson', {
     // const colors = new Float32Array(points)
 
     var i = 0;
-    mapData.forEach(function (entry, idx) {
-      const pos = self.latLngToVec3(entry.point.y, entry.point.x);
+    for (var [, value] of mapData) {
+      const pos = self.latLngToVec3(value.point.y, value.point.x);
 
       positions[i * 3] = pos.x;
       positions[i * 3 + 1] = pos.y;
       positions[i * 3 + 2] = pos.z;
 
-      entry.position = new THREE.Vector3().copy(pos);
+      value.position = new THREE.Vector3().copy(pos);
 
       // sizes[i] = 0.01;
 
       i += 1;
-    });
+    }
 
     geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
     // geometry.addAttribute('size', new THREE.BufferAttribute(sizes, 1));
@@ -457,13 +460,14 @@ AFRAME.registerComponent('geojson', {
     var max = -10000000;
 
     var lines = 0;
-    mapData.forEach(function (entry) {
-      entry.forEach(function (path) {
-        path.lines.forEach(function (line) {
-          lines += line.length;
-        });
-      });
-    });
+    for (var [, value] of mapData) {
+      for (var i = 0; i < value.length; i++) {
+        const path = value[i];
+        for (var j = 0; j < path.lines.length; j++) {
+          lines += path.lines[j].length;
+        }
+      }
+    }
 
     var lineGeometry = new THREE.BufferGeometry();
     var positions = new Float32Array(lines * 2 * 3);
@@ -685,7 +689,8 @@ AFRAME.registerComponent('geojson', {
     ctx.imageSmoothingEnabled = false;
     ctx.globalAlpha = 1;
 
-    features.forEach(function (feature, i) {
+    for (var i = 0; i < features.length; i++) {
+      const feature = features[i];
       var multiplicator = Math.floor(i / 255);
       var number = i % 255;
 
@@ -705,7 +710,7 @@ AFRAME.registerComponent('geojson', {
         ctx.fill();
       }
       ctx.restore();
-    });
+    }
 
     // console.log(canvas.node().toDataURL())
     const texture = new THREE.CanvasTexture(canvas.node());
