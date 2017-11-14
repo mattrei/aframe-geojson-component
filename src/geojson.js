@@ -365,19 +365,19 @@ AFRAME.registerComponent('geojson', {
     // const colors = new Float32Array(points)
 
     var i = 0;
-    for (var [key, value] of mapData) {
-      const pos = self.latLngToVec3(value.point.y, value.point.x);
+    mapData.forEach(function (entry, idx) {
+      const pos = self.latLngToVec3(entry.point.y, entry.point.x);
 
       positions[i * 3] = pos.x;
       positions[i * 3 + 1] = pos.y;
       positions[i * 3 + 2] = pos.z;
 
-      value.position = new THREE.Vector3().copy(pos);
+      entry.position = new THREE.Vector3().copy(pos);
 
       // sizes[i] = 0.01;
 
       i += 1;
-    }
+    })
 
     geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
     // geometry.addAttribute('size', new THREE.BufferAttribute(sizes, 1));
@@ -460,14 +460,14 @@ AFRAME.registerComponent('geojson', {
     var max = -10000000;
 
     var lines = 0;
-    for (var [, value] of mapData) {
-      for (var i = 0; i < value.length; i++) {
-        const path = value[i];
+    mapData.forEach(function (entry, idx) {
+      for (var i = 0; i < entry.length; i++) {
+        const path = entry[i];
         for (var j = 0; j < path.lines.length; j++) {
           lines += path.lines[j].length;
         }
       }
-    }
+    })
 
     var lineGeometry = new THREE.BufferGeometry();
     var positions = new Float32Array(lines * 2 * 3);

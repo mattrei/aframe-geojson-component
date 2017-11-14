@@ -1,6 +1,6 @@
 {
   "name": "aframe-geojson-component",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "GeoJSON/TopoJSON in A-Frame using D3",
   "main": "index.js",
   "cdn": "dist/aframe-geojson-component.min.js",
@@ -61,7 +61,7 @@
     "sinon": "^1.17.5",
     "sinon-chai": "^2.14.0",
     "snazzy": "^4.0.0",
-    "webpack": "^1.13.0"
+    "webpack": "^2.0.0"
   },
   "dependencies": {
     "d3": "^4.11.0",

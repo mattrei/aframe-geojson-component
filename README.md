@@ -2,7 +2,7 @@
 
 A GeoJSON/TopoJSON component for easily building an orthographic globe in [A-Frame](https://aframe.io).
 
-> Supports A-Frame 0.6.0.
+> Supports A-Frame 0.7.0.
 
 ![Example](doc/example.png)
 
