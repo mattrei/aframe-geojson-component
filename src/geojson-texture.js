@@ -112,23 +112,29 @@ AFRAME.registerComponent('geojson-texture', {
 
     this.el.emit(CANVAS_GENERATED_EVENT, {});
   },
-  _getStrokeColorOr: function (feature) {
+  getStrokeColorOr: function (feature, defaultColor) {
     if (feature.properties.stroke) {
       const color = feature.properties['stroke'];
       const opacity = feature.properties['stroke-opacity'] || 1.0;
 
       return this._getColorStyle(new THREE.Color(color), opacity);
     }
-    return this._lineColor;
+    return defaultColor;
   },
-  _getFillColorOr: function (feature) {
+  getFillColorOr: function (feature, defaultColor) {
     if (feature.properties.stroke) {
       const color = feature.properties['fill'];
       const opacity = feature.properties['fill-opacity'] || 0.6;
 
       return this._getColorStyle(new THREE.Color(color), opacity);
     }
-    return this._fillColor;
+    return defaultColor;
+  },
+  getLineWidthOr: function (feature, defaultWidth) {
+    if (feature.properties.stroke) {
+      return feature.properties['stroke-width'] || defaultWidth;
+    }
+    return defaultWidth;
   },
   _getColorStyle: function (color, opacity) {
     const r = (color.r * 255) | 0;
@@ -149,12 +155,13 @@ AFRAME.registerComponent('geojson-texture', {
     context.clearRect(0, 0, data.canvas.width, data.canvas.height);
     for (var i = 0; i < this.features.length; i++) {
       const feature = this.features[i];
-      const strokeColor = self._getStrokeColorOr(feature);
-      const fillColor = self._getFillColorOr(feature);
+      const strokeColor = self.getStrokeColorOr(feature, this._lineColor);
+      const fillColor = self.getFillColorOr(feature, this._fillColor);
+      const lineWidth = self.getLineWidthOr(feature, data.lineWidth);
 
       context.beginPath();
       contextPath(feature);
-      context.lineWidth = feature.properties['stroke-width'] || data.lineWidth;
+      context.lineWidth = lineWidth;
       context.strokeStyle = strokeColor;
       context.stroke();
       context.fillStyle = fillColor;

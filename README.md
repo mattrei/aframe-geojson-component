@@ -75,8 +75,9 @@ This component so far can be just used as a texture for a geometry object (plane
 | getProjection | _None_| Returns the referenced `D3 projection` object that may be used for calculations or transformations. |
 | draw | _None_| Redraws the canvas. |
 
+
 ### Styling
-The library (trys to) respects the commonly used [Geojson Styling Spec](https://github.com/mapbox/simplestyle-spec)
+The library (trys to) respects the commonly used [GeoJSON Styling Spec](https://github.com/mapbox/simplestyle-spec)
 
 ### Further Styling
 To change the the appearnance of the points or lines just [register custom material](https://aframe.io/docs/0.6.0/components/material.html#register-a-custom-material)
