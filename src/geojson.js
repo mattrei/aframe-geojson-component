@@ -190,8 +190,14 @@ AFRAME.registerComponent('geojson', {
     const mesh = !isPointData ? this.generateLines(features)
       : (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
 
-    this.el.setObject3D('mesh', mesh);
+    //this.el.setObject3D('mesh', mesh);
     this.mesh = mesh;
+
+    const compoundMesh = new THREE.Object3D();
+    for (let shape of this.shapesMap.values()) {
+      compoundMesh.add(shape)
+    }
+    this.el.setObject3D('mesh', compoundMesh);
 
     this.maskMesh = this.generateMask(features);
 
@@ -488,6 +494,7 @@ AFRAME.registerComponent('geojson', {
     mapData.forEach(function (entry, id) {
       var parts = [];
 
+      console.log(entry)
       entry.forEach(function (path) {
         path.lines.forEach(function (line) {
           var partPositions = new Float32Array(line.length * 2 * 3);
@@ -539,15 +546,16 @@ AFRAME.registerComponent('geojson', {
       partGeometry.addAttribute('position', new THREE.BufferAttribute(partPositions, 3));
       partGeometry.computeBoundingSphere();
 
-      console.log(entry)
       let partMaterial = defaultPartMaterial;
       // set simplestyle properties if available
-      if (entry.properties) {
+      
+      if (entry[0].properties) {
+        const properties = entry[0].properties
         partMaterial = new THREE.LineBasicMaterial({
           transparent: true,
-          linewidth: self._getLineWidthOr(entry.properties, data.lineWidth),
-          opacity: self._getOpacityOr(entry.properties, self.matComponent.data.opacity),
-          color: self._getStrokeColorOr(entry.properties, data.color),
+          linewidth: self._getLineWidthOr(properties, data.lineWidth),
+          opacity: self._getOpacityOr(properties, self.matComponent.data.opacity),
+          color: self._getStrokeColorOr(properties, self.matComponent.data.color),
           side: THREE.DoubleSide
         });
       }
@@ -578,21 +586,21 @@ AFRAME.registerComponent('geojson', {
 
     return mesh;
   },
-  _getLineWidthOr: function (feature, defaultWidth) {
-    if (feature.properties.stroke) {
-      return feature.properties['stroke-width'] || defaultWidth;
+  _getLineWidthOr: function (properties, defaultWidth) {
+    if (properties.stroke) {
+      return properties['stroke-width'] || defaultWidth;
     }
     return defaultWidth;
   },
-  _getOpacityOr: function (feature, defaultOpacity) {
-    if (feature.properties.stroke) {
-      return feature.properties['stroke-opacity'] || defaultOpacity;
+  _getOpacityOr: function (properties, defaultOpacity) {
+    if (properties.stroke) {
+      return properties['stroke-opacity'] || defaultOpacity;
     }
     return defaultOpacity;
   },
-  _getStrokeColorOr: function (feature, defaultColor) {
-    if (feature.properties.stroke) {
-      const color = feature.properties['stroke'];
+  _getStrokeColorOr: function (properties, defaultColor) {
+    if (properties.stroke) {
+      const color = properties['stroke'];
       return new THREE.Color(color);
     }
     return defaultColor;
