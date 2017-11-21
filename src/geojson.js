@@ -187,7 +187,7 @@ AFRAME.registerComponent('geojson', {
     this.hitTexture.setSize(100, 100);
 
     this.shapesMap = new Map();
-    const mesh = !isPointData ? this.generateLines()
+    const mesh = !isPointData ? this.generateLines(features)
       : (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
 
     this.el.setObject3D('mesh', mesh);
@@ -255,7 +255,8 @@ AFRAME.registerComponent('geojson', {
 
       const territory = {
         id: key,
-        lines: []
+        lines: [],
+        properties: null
       };
       var line = [];
             // var vertices = line.vertices
@@ -342,7 +343,10 @@ AFRAME.registerComponent('geojson', {
       territory.lines = territory.lines.filter(function (l) {
         return l.length > 0;
       });
-            // countries.push( territory )
+
+      if (!isTopojson) {
+        territory.properties = p.__data__.properties
+      }
 
       if (!map.has(key)) {
         map.set(key, []);
@@ -473,10 +477,10 @@ AFRAME.registerComponent('geojson', {
     var positions = new Float32Array(lines * 2 * 3);
     var gptr = 0;
 
-    const shapesMaterial = new THREE.LineBasicMaterial({
+    const defaultPartMaterial = new THREE.LineBasicMaterial({
       transparent: true,
-      linewidth: 5,
-      opacity: this.matComponent.data.opacity,
+      linewidth: 2,
+      opacity: self.matComponent.data.opacity,
       color: 0xff0000,
       side: THREE.DoubleSide
     });
@@ -520,7 +524,7 @@ AFRAME.registerComponent('geojson', {
         });
       });
 
-            // the positions only of the curent polygon or line
+      // the positions only of the curent polygon or line
       var partPositions = new Float32Array(parts.reduce(function (a, b) {
         return a + b.length;
       }, 0));
@@ -535,7 +539,20 @@ AFRAME.registerComponent('geojson', {
       partGeometry.addAttribute('position', new THREE.BufferAttribute(partPositions, 3));
       partGeometry.computeBoundingSphere();
 
-      var mesh = new THREE.LineSegments(partGeometry, shapesMaterial);
+      console.log(entry)
+      let partMaterial = defaultPartMaterial;
+      // set simplestyle properties if available
+      if (entry.properties) {
+        partMaterial = new THREE.LineBasicMaterial({
+          transparent: true,
+          linewidth: self._getLineWidthOr(entry.properties, data.lineWidth),
+          opacity: self._getOpacityOr(entry.properties, self.matComponent.data.opacity),
+          color: self._getStrokeColorOr(entry.properties, data.color),
+          side: THREE.DoubleSide
+        });
+      }
+
+      var mesh = new THREE.LineSegments(partGeometry, partMaterial);
       mesh.fustrumCulled = false;
       mesh.visible = true;
 
@@ -543,6 +560,7 @@ AFRAME.registerComponent('geojson', {
 
       entry.shape = mesh;
     });
+
 
     lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
     lineGeometry.computeBoundingSphere();
@@ -560,6 +578,26 @@ AFRAME.registerComponent('geojson', {
 
     return mesh;
   },
+  _getLineWidthOr: function (feature, defaultWidth) {
+    if (feature.properties.stroke) {
+      return feature.properties['stroke-width'] || defaultWidth;
+    }
+    return defaultWidth;
+  },
+  _getOpacityOr: function (feature, defaultOpacity) {
+    if (feature.properties.stroke) {
+      return feature.properties['stroke-opacity'] || defaultOpacity;
+    }
+    return defaultOpacity;
+  },
+  _getStrokeColorOr: function (feature, defaultColor) {
+    if (feature.properties.stroke) {
+      const color = feature.properties['stroke'];
+      return new THREE.Color(color);
+    }
+    return defaultColor;
+  },
+
   latLngToVec3: function (lat, lon) {
     const geomComponent = this.el.components.geometry;
     if (geomComponent.data.primitive === 'sphere') {

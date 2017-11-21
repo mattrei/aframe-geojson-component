@@ -10,9 +10,12 @@
         <a-asset-item id="json-world-110m" src="assets/world-110m.v1.json" />
         <a-asset-item id="tsv-world-110m" src="assets/world-110m.v1.tsv" />
         <a-asset-item id="json-places" src="assets/ne_110m_populated_places_simple.geojson" />
+        <a-asset-item id="json-geographiclines" src="assets/geographiclines.geojson" />
       </a-assets>
 
       <a-entity position="0 1.8 -2">
+        
+        <!--
         <a-entity 
           geometry="primitive: sphere; radius: 1;"
           material="color: #000;"
@@ -29,7 +32,21 @@
           geojson="src: #json-places; featureKey: name; pointScale: 0.0000001; pointAs: bar; pointSizeFeature: pop_min; lineWidth: 4;
           pointScaling: linear;"
           ></a-entity>
+      -->
+
+
+          <a-entity 
+          geometry="primitive: sphere; radius: 1;"
+          material="color: #000;"
+          geojson="
+            src: #json-geographiclines; 
+            featureKey: name;
+            lineWidth: 1 ;"
+          ></a-entity>
         </a-entity>
+      
+
+
     </a-scene>
   </body>
 </html>
