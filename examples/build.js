@@ -108535,43 +108535,45 @@ Object.defineProperty(exports, "event", {get: function() { return d3Selection.ev
 }());
 
 },{}],74:[function(require,module,exports){
-// https://github.com/topojson/topojson-client Version 2.1.0. Copyright 2016 Mike Bostock.
+// https://github.com/topojson/topojson-client Version 3.0.0. Copyright 2017 Mike Bostock.
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-  typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.topojson = global.topojson || {})));
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.topojson = global.topojson || {})));
 }(this, (function (exports) { 'use strict';
 
 var identity = function(x) {
   return x;
 };
 
-var transform = function(topology) {
-  if ((transform = topology.transform) == null) return identity;
-  var transform,
-      x0,
+var transform = function(transform) {
+  if (transform == null) return identity;
+  var x0,
       y0,
       kx = transform.scale[0],
       ky = transform.scale[1],
       dx = transform.translate[0],
       dy = transform.translate[1];
-  return function(point, i) {
+  return function(input, i) {
     if (!i) x0 = y0 = 0;
-    point[0] = (x0 += point[0]) * kx + dx;
-    point[1] = (y0 += point[1]) * ky + dy;
-    return point;
+    var j = 2, n = input.length, output = new Array(n);
+    output[0] = (x0 += input[0]) * kx + dx;
+    output[1] = (y0 += input[1]) * ky + dy;
+    while (j < n) output[j] = input[j], ++j;
+    return output;
   };
 };
 
 var bbox = function(topology) {
-  var bbox = topology.bbox;
+  var t = transform(topology.transform), key,
+      x0 = Infinity, y0 = x0, x1 = -x0, y1 = -x0;
 
-  function bboxPoint(p0) {
-    p1[0] = p0[0], p1[1] = p0[1], t(p1);
-    if (p1[0] < x0) x0 = p1[0];
-    if (p1[0] > x1) x1 = p1[0];
-    if (p1[1] < y0) y0 = p1[1];
-    if (p1[1] > y1) y1 = p1[1];
+  function bboxPoint(p) {
+    p = t(p);
+    if (p[0] < x0) x0 = p[0];
+    if (p[0] > x1) x1 = p[0];
+    if (p[1] < y0) y0 = p[1];
+    if (p[1] > y1) y1 = p[1];
   }
 
   function bboxGeometry(o) {
@@ -108582,29 +108584,22 @@ var bbox = function(topology) {
     }
   }
 
-  if (!bbox) {
-    var t = transform(topology), p0, p1 = new Array(2), name,
-        x0 = Infinity, y0 = x0, x1 = -x0, y1 = -x0;
-
-    topology.arcs.forEach(function(arc) {
-      var i = -1, n = arc.length;
-      while (++i < n) {
-        p0 = arc[i], p1[0] = p0[0], p1[1] = p0[1], t(p1, i);
-        if (p1[0] < x0) x0 = p1[0];
-        if (p1[0] > x1) x1 = p1[0];
-        if (p1[1] < y0) y0 = p1[1];
-        if (p1[1] > y1) y1 = p1[1];
-      }
-    });
-
-    for (name in topology.objects) {
-      bboxGeometry(topology.objects[name]);
+  topology.arcs.forEach(function(arc) {
+    var i = -1, n = arc.length, p;
+    while (++i < n) {
+      p = t(arc[i], i);
+      if (p[0] < x0) x0 = p[0];
+      if (p[0] > x1) x1 = p[0];
+      if (p[1] < y0) y0 = p[1];
+      if (p[1] > y1) y1 = p[1];
     }
+  });
 
-    bbox = topology.bbox = [x0, y0, x1, y1];
+  for (key in topology.objects) {
+    bboxGeometry(topology.objects[key]);
   }
 
-  return bbox;
+  return [x0, y0, x1, y1];
 };
 
 var reverse = function(array, n) {
@@ -108629,31 +108624,31 @@ function feature$1(topology, o) {
 }
 
 function object(topology, o) {
-  var transformPoint = transform(topology),
+  var transformPoint = transform(topology.transform),
       arcs = topology.arcs;
 
   function arc(i, points) {
     if (points.length) points.pop();
     for (var a = arcs[i < 0 ? ~i : i], k = 0, n = a.length; k < n; ++k) {
-      points.push(transformPoint(a[k].slice(), k));
+      points.push(transformPoint(a[k], k));
     }
     if (i < 0) reverse(points, n);
   }
 
   function point(p) {
-    return transformPoint(p.slice());
+    return transformPoint(p);
   }
 
   function line(arcs) {
     var points = [];
     for (var i = 0, n = arcs.length; i < n; ++i) arc(arcs[i], points);
-    if (points.length < 2) points.push(points[0].slice());
+    if (points.length < 2) points.push(points[0]); // This should never happen per the specification.
     return points;
   }
 
   function ring(arcs) {
     var points = line(arcs);
-    while (points.length < 4) points.push(points[0].slice());
+    while (points.length < 4) points.push(points[0]); // This may happen if an arc has only two points.
     return points;
   }
 
@@ -108957,85 +108952,77 @@ var neighbors = function(objects) {
   return neighbors;
 };
 
-var quantize = function(topology, n) {
-  if (!((n = Math.floor(n)) >= 2)) throw new Error("n must be ≥2");
-  if (topology.transform) throw new Error("already quantized");
-  var bb = bbox(topology), name,
-      dx = bb[0], kx = (bb[2] - dx) / (n - 1) || 1,
-      dy = bb[1], ky = (bb[3] - dy) / (n - 1) || 1;
-
-  function quantizePoint(p) {
-    p[0] = Math.round((p[0] - dx) / kx);
-    p[1] = Math.round((p[1] - dy) / ky);
-  }
-
-  function quantizeGeometry(o) {
-    switch (o.type) {
-      case "GeometryCollection": o.geometries.forEach(quantizeGeometry); break;
-      case "Point": quantizePoint(o.coordinates); break;
-      case "MultiPoint": o.coordinates.forEach(quantizePoint); break;
-    }
-  }
-
-  topology.arcs.forEach(function(arc) {
-    var i = 1,
-        j = 1,
-        n = arc.length,
-        pi = arc[0],
-        x0 = pi[0] = Math.round((pi[0] - dx) / kx),
-        y0 = pi[1] = Math.round((pi[1] - dy) / ky),
-        pj,
-        x1,
-        y1;
-
-    for (; i < n; ++i) {
-      pi = arc[i];
-      x1 = Math.round((pi[0] - dx) / kx);
-      y1 = Math.round((pi[1] - dy) / ky);
-      if (x1 !== x0 || y1 !== y0) {
-        pj = arc[j++];
-        pj[0] = x1 - x0, x0 = x1;
-        pj[1] = y1 - y0, y0 = y1;
-      }
-    }
-
-    if (j < 2) {
-      pj = arc[j++];
-      pj[0] = 0;
-      pj[1] = 0;
-    }
-
-    arc.length = j;
-  });
-
-  for (name in topology.objects) {
-    quantizeGeometry(topology.objects[name]);
-  }
-
-  topology.transform = {
-    scale: [kx, ky],
-    translate: [dx, dy]
-  };
-
-  return topology;
-};
-
-var untransform = function(topology) {
-  if ((transform = topology.transform) == null) return identity;
-  var transform,
-      x0,
+var untransform = function(transform) {
+  if (transform == null) return identity;
+  var x0,
       y0,
       kx = transform.scale[0],
       ky = transform.scale[1],
       dx = transform.translate[0],
       dy = transform.translate[1];
-  return function(point, i) {
+  return function(input, i) {
     if (!i) x0 = y0 = 0;
-    var x1 = Math.round((point[0] - dx) / kx),
-        y1 = Math.round((point[1] - dy) / ky);
-    point[0] = x1 - x0, x0 = x1;
-    point[1] = y1 - y0, y0 = y1;
-    return point;
+    var j = 2,
+        n = input.length,
+        output = new Array(n),
+        x1 = Math.round((input[0] - dx) / kx),
+        y1 = Math.round((input[1] - dy) / ky);
+    output[0] = x1 - x0, x0 = x1;
+    output[1] = y1 - y0, y0 = y1;
+    while (j < n) output[j] = input[j], ++j;
+    return output;
+  };
+};
+
+var quantize = function(topology, transform) {
+  if (topology.transform) throw new Error("already quantized");
+
+  if (!transform || !transform.scale) {
+    if (!((n = Math.floor(transform)) >= 2)) throw new Error("n must be ≥2");
+    box = topology.bbox || bbox(topology);
+    var x0 = box[0], y0 = box[1], x1 = box[2], y1 = box[3], n;
+    transform = {scale: [x1 - x0 ? (x1 - x0) / (n - 1) : 1, y1 - y0 ? (y1 - y0) / (n - 1) : 1], translate: [x0, y0]};
+  } else {
+    box = topology.bbox;
+  }
+
+  var t = untransform(transform), box, key, inputs = topology.objects, outputs = {};
+
+  function quantizePoint(point) {
+    return t(point);
+  }
+
+  function quantizeGeometry(input) {
+    var output;
+    switch (input.type) {
+      case "GeometryCollection": output = {type: "GeometryCollection", geometries: input.geometries.map(quantizeGeometry)}; break;
+      case "Point": output = {type: "Point", coordinates: quantizePoint(input.coordinates)}; break;
+      case "MultiPoint": output = {type: "MultiPoint", coordinates: input.coordinates.map(quantizePoint)}; break;
+      default: return input;
+    }
+    if (input.id != null) output.id = input.id;
+    if (input.bbox != null) output.bbox = input.bbox;
+    if (input.properties != null) output.properties = input.properties;
+    return output;
+  }
+
+  function quantizeArc(input) {
+    var i = 0, j = 1, n = input.length, p, output = new Array(n); // pessimistic
+    output[0] = t(input[0], 0);
+    while (++i < n) if ((p = t(input[i], i))[0] || p[1]) output[j++] = p; // non-coincident points
+    if (j === 1) output[j++] = [0, 0]; // an arc must have at least two points
+    output.length = j;
+    return output;
+  }
+
+  for (key in inputs) outputs[key] = quantizeGeometry(inputs[key]);
+
+  return {
+    type: "Topology",
+    bbox: box,
+    transform: transform,
+    objects: outputs,
+    arcs: topology.arcs.map(quantizeArc)
   };
 };
 
@@ -109793,23 +109780,29 @@ AFRAME.registerComponent('geojson-texture', {
 
     this.el.emit(CANVAS_GENERATED_EVENT, {});
   },
-  _getStrokeColorOr: function (feature) {
+  getStrokeColorOr: function (feature, defaultColor) {
     if (feature.properties.stroke) {
       const color = feature.properties['stroke'];
       const opacity = feature.properties['stroke-opacity'] || 1.0;
 
       return this._getColorStyle(new THREE.Color(color), opacity);
     }
-    return this._lineColor;
+    return defaultColor;
   },
-  _getFillColorOr: function (feature) {
+  getFillColorOr: function (feature, defaultColor) {
     if (feature.properties.stroke) {
       const color = feature.properties['fill'];
       const opacity = feature.properties['fill-opacity'] || 0.6;
 
       return this._getColorStyle(new THREE.Color(color), opacity);
     }
-    return this._fillColor;
+    return defaultColor;
+  },
+  getLineWidthOr: function (feature, defaultWidth) {
+    if (feature.properties.stroke) {
+      return feature.properties['stroke-width'] || defaultWidth;
+    }
+    return defaultWidth;
   },
   _getColorStyle: function (color, opacity) {
     const r = (color.r * 255) | 0;
@@ -109830,12 +109823,13 @@ AFRAME.registerComponent('geojson-texture', {
     context.clearRect(0, 0, data.canvas.width, data.canvas.height);
     for (var i = 0; i < this.features.length; i++) {
       const feature = this.features[i];
-      const strokeColor = self._getStrokeColorOr(feature);
-      const fillColor = self._getFillColorOr(feature);
+      const strokeColor = self.getStrokeColorOr(feature, this._lineColor);
+      const fillColor = self.getFillColorOr(feature, this._fillColor);
+      const lineWidth = self.getLineWidthOr(feature, data.lineWidth);
 
       context.beginPath();
       contextPath(feature);
-      context.lineWidth = feature.properties['stroke-width'] || data.lineWidth;
+      context.lineWidth = lineWidth;
       context.strokeStyle = strokeColor;
       context.stroke();
       context.fillStyle = fillColor;
@@ -110008,9 +110002,6 @@ AFRAME.registerComponent('geojson', {
             .data(features)
             .enter()
             .append('path')
-            /* .attr('id', d => isTopojson
-            ? d.id
-            : d.properties[data.featureProperty])*/
             .attr('d', path).attr('fill', 'none')
             .style('stroke', 'black'); // important for lines!
 
@@ -110037,11 +110028,22 @@ AFRAME.registerComponent('geojson', {
     this.hitTexture.setSize(100, 100);
 
     this.shapesMap = new Map();
-    const mesh = !isPointData ? this.generateLines()
+
+    const mesh = !isPointData ? this.generateLines(features)
       : (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
 
-    this.el.setObject3D('mesh', mesh);
     this.mesh = mesh;
+
+    const compoundMesh = new THREE.Object3D();
+    this.shapesMap.forEach(function (shape) {
+      compoundMesh.add(shape);
+    });
+
+    if (isTopojson || isPointData) {
+      this.el.setObject3D('mesh', mesh);
+    } else {
+      this.el.setObject3D('mesh', compoundMesh);
+    }
 
     this.maskMesh = this.generateMask(features);
 
@@ -110105,7 +110107,8 @@ AFRAME.registerComponent('geojson', {
 
       const territory = {
         id: key,
-        lines: []
+        lines: [],
+        properties: null
       };
       var line = [];
             // var vertices = line.vertices
@@ -110192,7 +110195,10 @@ AFRAME.registerComponent('geojson', {
       territory.lines = territory.lines.filter(function (l) {
         return l.length > 0;
       });
-            // countries.push( territory )
+
+      if (!isTopojson) {
+        territory.properties = p.__data__.properties;
+      }
 
       if (!map.has(key)) {
         map.set(key, []);
@@ -110227,7 +110233,7 @@ AFRAME.registerComponent('geojson', {
       // sizes[i] = 0.01;
 
       i += 1;
-    })
+    });
 
     geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
     // geometry.addAttribute('size', new THREE.BufferAttribute(sizes, 1));
@@ -110317,16 +110323,16 @@ AFRAME.registerComponent('geojson', {
           lines += path.lines[j].length;
         }
       }
-    })
+    });
 
     var lineGeometry = new THREE.BufferGeometry();
     var positions = new Float32Array(lines * 2 * 3);
     var gptr = 0;
 
-    const shapesMaterial = new THREE.LineBasicMaterial({
+    const defaultPartMaterial = new THREE.LineBasicMaterial({
       transparent: true,
-      linewidth: 5,
-      opacity: this.matComponent.data.opacity,
+      linewidth: 2,
+      opacity: self.matComponent.data.opacity,
       color: 0xff0000,
       side: THREE.DoubleSide
     });
@@ -110370,7 +110376,7 @@ AFRAME.registerComponent('geojson', {
         });
       });
 
-            // the positions only of the curent polygon or line
+      // the positions only of the curent polygon or line
       var partPositions = new Float32Array(parts.reduce(function (a, b) {
         return a + b.length;
       }, 0));
@@ -110385,7 +110391,21 @@ AFRAME.registerComponent('geojson', {
       partGeometry.addAttribute('position', new THREE.BufferAttribute(partPositions, 3));
       partGeometry.computeBoundingSphere();
 
-      var mesh = new THREE.LineSegments(partGeometry, shapesMaterial);
+      var partMaterial = defaultPartMaterial;
+      // set simplestyle properties if available
+
+      if (entry[0].properties) {
+        const properties = entry[0].properties;
+        partMaterial = new THREE.LineBasicMaterial({
+          transparent: true,
+          linewidth: self._getLineWidthOr(properties, data.lineWidth),
+          opacity: self._getOpacityOr(properties, self.matComponent.data.opacity),
+          color: self._getStrokeColorOr(properties, self.matComponent.data.color),
+          side: THREE.DoubleSide
+        });
+      }
+
+      var mesh = new THREE.LineSegments(partGeometry, partMaterial);
       mesh.fustrumCulled = false;
       mesh.visible = true;
 
@@ -110410,6 +110430,26 @@ AFRAME.registerComponent('geojson', {
 
     return mesh;
   },
+  _getLineWidthOr: function (properties, defaultWidth) {
+    if (properties.stroke) {
+      return properties['stroke-width'] || defaultWidth;
+    }
+    return defaultWidth;
+  },
+  _getOpacityOr: function (properties, defaultOpacity) {
+    if (properties.stroke) {
+      return properties['stroke-opacity'] || defaultOpacity;
+    }
+    return defaultOpacity;
+  },
+  _getStrokeColorOr: function (properties, defaultColor) {
+    if (properties.stroke) {
+      const color = properties['stroke'];
+      return new THREE.Color(color);
+    }
+    return defaultColor;
+  },
+
   latLngToVec3: function (lat, lon) {
     const geomComponent = this.el.components.geometry;
     if (geomComponent.data.primitive === 'sphere') {

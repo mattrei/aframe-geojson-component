@@ -61,13 +61,13 @@
     "sinon": "^1.17.5",
     "sinon-chai": "^2.14.0",
     "snazzy": "^4.0.0",
-    "webpack": "^2.0.0"
+    "webpack": "^3.0.0"
   },
   "dependencies": {
     "d3": "^4.11.0",
     "d3-geo-projection": "^2.3.1",
     "pathseg": "^1.1.0",
-    "topojson-client": "^2.1.0"
+    "topojson-client": "^3.0.0"
   },
   "semistandard": {
     "ignore": [

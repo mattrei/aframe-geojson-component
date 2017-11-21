@@ -158,9 +158,6 @@ AFRAME.registerComponent('geojson', {
             .data(features)
             .enter()
             .append('path')
-            /* .attr('id', d => isTopojson
-            ? d.id
-            : d.properties[data.featureProperty])*/
             .attr('d', path).attr('fill', 'none')
             .style('stroke', 'black'); // important for lines!
 
@@ -187,17 +184,22 @@ AFRAME.registerComponent('geojson', {
     this.hitTexture.setSize(100, 100);
 
     this.shapesMap = new Map();
+
     const mesh = !isPointData ? this.generateLines(features)
       : (data.pointAs === 'point' ? this.generatePoints() : this.generateBars());
 
-    //this.el.setObject3D('mesh', mesh);
     this.mesh = mesh;
 
     const compoundMesh = new THREE.Object3D();
-    for (let shape of this.shapesMap.values()) {
-      compoundMesh.add(shape)
+    this.shapesMap.forEach(function (shape) {
+      compoundMesh.add(shape);
+    });
+
+    if (isTopojson || isPointData) {
+      this.el.setObject3D('mesh', mesh);
+    } else {
+      this.el.setObject3D('mesh', compoundMesh);
     }
-    this.el.setObject3D('mesh', compoundMesh);
 
     this.maskMesh = this.generateMask(features);
 
@@ -351,7 +353,7 @@ AFRAME.registerComponent('geojson', {
       });
 
       if (!isTopojson) {
-        territory.properties = p.__data__.properties
+        territory.properties = p.__data__.properties;
       }
 
       if (!map.has(key)) {
@@ -387,7 +389,7 @@ AFRAME.registerComponent('geojson', {
       // sizes[i] = 0.01;
 
       i += 1;
-    })
+    });
 
     geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
     // geometry.addAttribute('size', new THREE.BufferAttribute(sizes, 1));
@@ -477,7 +479,7 @@ AFRAME.registerComponent('geojson', {
           lines += path.lines[j].length;
         }
       }
-    })
+    });
 
     var lineGeometry = new THREE.BufferGeometry();
     var positions = new Float32Array(lines * 2 * 3);
@@ -494,7 +496,6 @@ AFRAME.registerComponent('geojson', {
     mapData.forEach(function (entry, id) {
       var parts = [];
 
-      console.log(entry)
       entry.forEach(function (path) {
         path.lines.forEach(function (line) {
           var partPositions = new Float32Array(line.length * 2 * 3);
@@ -546,11 +547,11 @@ AFRAME.registerComponent('geojson', {
       partGeometry.addAttribute('position', new THREE.BufferAttribute(partPositions, 3));
       partGeometry.computeBoundingSphere();
 
-      let partMaterial = defaultPartMaterial;
+      var partMaterial = defaultPartMaterial;
       // set simplestyle properties if available
-      
+
       if (entry[0].properties) {
-        const properties = entry[0].properties
+        const properties = entry[0].properties;
         partMaterial = new THREE.LineBasicMaterial({
           transparent: true,
           linewidth: self._getLineWidthOr(properties, data.lineWidth),
@@ -568,7 +569,6 @@ AFRAME.registerComponent('geojson', {
 
       entry.shape = mesh;
     });
-
 
     lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
     lineGeometry.computeBoundingSphere();
