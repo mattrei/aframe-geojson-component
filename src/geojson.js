@@ -552,13 +552,7 @@ AFRAME.registerComponent('geojson', {
 
       if (entry[0].properties) {
         const properties = entry[0].properties;
-        partMaterial = new THREE.LineBasicMaterial({
-          transparent: true,
-          linewidth: self._getLineWidthOr(properties, data.lineWidth),
-          opacity: self._getOpacityOr(properties, self.matComponent.data.opacity),
-          color: self._getStrokeColorOr(properties, self.matComponent.data.color),
-          side: THREE.DoubleSide
-        });
+        partMaterial = self._getLineMaterial(properties);
       }
 
       var mesh = new THREE.LineSegments(partGeometry, partMaterial);
@@ -573,13 +567,7 @@ AFRAME.registerComponent('geojson', {
     lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
     lineGeometry.computeBoundingSphere();
 
-    const material = new THREE.LineBasicMaterial({
-      transparent: this.matComponent.data.transparent,
-      linewidth: data.lineWidth,
-      opacity: this.matComponent.data.opacity,
-      color: this.matComponent.data.color,
-      side: THREE.DoubleSide
-    });
+    const material = this._getLineMaterial();
 
     const mesh = new THREE.LineSegments(lineGeometry, material);
     mesh.fustrumCulled = false;
@@ -587,16 +575,10 @@ AFRAME.registerComponent('geojson', {
     return mesh;
   },
   _getLineWidthOr: function (properties, defaultWidth) {
-    if (properties.stroke) {
-      return properties['stroke-width'] || defaultWidth;
-    }
-    return defaultWidth;
+    return properties['stroke-width'] || defaultWidth;
   },
   _getOpacityOr: function (properties, defaultOpacity) {
-    if (properties.stroke) {
       return properties['stroke-opacity'] || defaultOpacity;
-    }
-    return defaultOpacity;
   },
   _getStrokeColorOr: function (properties, defaultColor) {
     if (properties.stroke) {
@@ -604,6 +586,16 @@ AFRAME.registerComponent('geojson', {
       return new THREE.Color(color);
     }
     return defaultColor;
+  },
+  _getLineMaterial: function (properties = {}) {
+    
+      return new THREE.LineBasicMaterial({
+        transparent: this.matComponent.data.transparent || false,
+        linewidth: this._getLineWidthOr(properties, this.data.lineWidth),
+        opacity: this._getOpacityOr(properties, this.matComponent.data.opacity),
+        color: this._getStrokeColorOr(properties, this.matComponent.data.color),
+        side: this.matComponent.data.side || THREE.DoubleSide
+      });
   },
 
   latLngToVec3: function (lat, lon) {

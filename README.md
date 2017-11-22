@@ -77,7 +77,8 @@ This component so far can be just used as a texture for a geometry object (plane
 
 
 ### Styling
-The library (trys to) respects the commonly used [GeoJSON Styling Spec](https://github.com/mapbox/simplestyle-spec)
+The library respects the commonly used [GeoJSON Styling Spec](https://github.com/mapbox/simplestyle-spec).
+Although the spec above does not support dashed lines, it would not work anyway, because dashed lines do not work with _BufferGeometry_'s.
 
 ### Further Styling
 To change the the appearnance of the points or lines just [register custom material](https://aframe.io/docs/0.6.0/components/material.html#register-a-custom-material)
