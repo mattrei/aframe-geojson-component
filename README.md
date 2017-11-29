@@ -160,9 +160,9 @@ for details from the great @mbostock himself.
 
 ### Implementation details
 The componenet uses the D3 library to convert the GeoJSON/TopoJSON into a SVG.
-The SVG is then converted into THREE.Js lines and point geometries. 
+The SVG is then converted into line and point _BufferGeometry_s. 
 
-To be able to interact with the generated geometires an invisble hit mask is generated for all GeoJSON polygon, line and points to obtain the selected geojson feature via raycasting (much faster than via meshes).
+To be able to interact with the generated geometires an invisble hit mask is generated for all GeoJSON polygon, line and points to obtain the selected geojson feature via *GPU Picking* technique (much faster than raycasting).
 
 ![Polygon hitmask](doc/polygon-mask.png)
 
@@ -174,6 +174,7 @@ and finally for line geometries
 
 ![Line hitmask](doc/line-mask.png)
 
-Those various masks that are generated depending on the GeoJSON contents get then laid over onto a mesh.
+Those various masks that are generated depending on the GeoJSON contents get then rendered off-scene and picked by the GPU.
 
-I have seen this idea and method implemented by the great @thespite and enhanced it for more use cases.
+
+I have seen this use case implemented by the great @thespite and enhanced it for more use cases.
