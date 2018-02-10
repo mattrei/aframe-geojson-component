@@ -596,6 +596,9 @@ AFRAME.registerComponent('geojson', {
     return defaultColor;
   },
   _getLineMaterial: function (properties) {
+    if (!properties) { 
+      properties = {}
+    }
     return new THREE.LineBasicMaterial({
       transparent: this.matComponent.data.transparent || false,
       linewidth: this._getLineWidthOr(properties, this.data.lineWidth),
