@@ -10201,6 +10201,14 @@ AFRAME.registerComponent('geojson', {
     }
   },
   tick: function (time, delta) {
+    if (this.data.featureEventName === 'raycaster-intersected') {
+        // https://github.com/aframevr/aframe/issues/3248
+      const raycasterEl = document.querySelector('[raycaster]');
+      const intersectedEls = raycasterEl.components.raycaster.intersectedEls;
+      if (intersectedEls.length > 0 && intersectedEls[intersectedEls.length - 1] === this.el) {
+        this.select();
+      }
+    }
   },
   getMaskMesh: function () {
     return this.maskMesh;
@@ -10643,13 +10651,7 @@ AFRAME.registerComponent('geojson', {
 
       if (entry[0].properties) {
         const properties = entry[0].properties;
-        partMaterial = new THREE.LineBasicMaterial({
-          transparent: true,
-          linewidth: self._getLineWidthOr(properties, data.lineWidth),
-          opacity: self._getOpacityOr(properties, self.matComponent.data.opacity),
-          color: self._getStrokeColorOr(properties, self.matComponent.data.color),
-          side: THREE.DoubleSide
-        });
+        partMaterial = self._getLineMaterial(properties);
       }
 
       var mesh = new THREE.LineSegments(partGeometry, partMaterial);
@@ -10664,13 +10666,7 @@ AFRAME.registerComponent('geojson', {
     lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
     lineGeometry.computeBoundingSphere();
 
-    const material = new THREE.LineBasicMaterial({
-      transparent: this.matComponent.data.transparent,
-      linewidth: data.lineWidth,
-      opacity: this.matComponent.data.opacity,
-      color: this.matComponent.data.color,
-      side: THREE.DoubleSide
-    });
+    const material = this._getLineMaterial();
 
     const mesh = new THREE.LineSegments(lineGeometry, material);
     mesh.fustrumCulled = false;
@@ -10678,16 +10674,10 @@ AFRAME.registerComponent('geojson', {
     return mesh;
   },
   _getLineWidthOr: function (properties, defaultWidth) {
-    if (properties.stroke) {
-      return properties['stroke-width'] || defaultWidth;
-    }
-    return defaultWidth;
+    return properties['stroke-width'] || defaultWidth;
   },
   _getOpacityOr: function (properties, defaultOpacity) {
-    if (properties.stroke) {
-      return properties['stroke-opacity'] || defaultOpacity;
-    }
-    return defaultOpacity;
+    return properties['stroke-opacity'] || defaultOpacity;
   },
   _getStrokeColorOr: function (properties, defaultColor) {
     if (properties.stroke) {
@@ -10695,6 +10685,15 @@ AFRAME.registerComponent('geojson', {
       return new THREE.Color(color);
     }
     return defaultColor;
+  },
+  _getLineMaterial: function (properties) {
+    return new THREE.LineBasicMaterial({
+      transparent: this.matComponent.data.transparent || false,
+      linewidth: this._getLineWidthOr(properties, this.data.lineWidth),
+      opacity: this._getOpacityOr(properties, this.matComponent.data.opacity),
+      color: this._getStrokeColorOr(properties, this.matComponent.data.color),
+      side: this.matComponent.data.side || THREE.DoubleSide
+    });
   },
 
   latLngToVec3: function (lat, lon) {
@@ -10779,11 +10778,11 @@ AFRAME.registerComponent('geojson', {
       resolve(res);
     });
   },
-  select: (function (evt) {
+  select: (function () {
     const dummy = new THREE.Object3D();
     return function () {
       var self = this;
-      if (this.isSelecting) return;
+      if (this.isSelecting || !this.maskMesh) return;
 
       var entity = document.querySelector('[raycaster]');
       var raycaster = entity.components.raycaster.raycaster;
