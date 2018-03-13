@@ -18,7 +18,7 @@
 
       <a-entity scale="-1 1 1">
         <a-entity
-          material="shader: flat; src: #world-canvas; transparent: true; opacity: 1.0;"
+          material="shader: flat; src: #world-canvas; transparent: true; opacity: 1.0; side:back"
           geometry="primitive: sphere; radius: 1;"
           geojson-texture="canvas: #world-canvas;
           src: #json-world-50m;
@@ -27,7 +27,7 @@
           >
         </a-entity>
         <a-entity
-          material="shader: flat; src: #lakes-canvas; transparent: true; opacity: 1.;"
+          material="shader: flat; src: #lakes-canvas; transparent: true; opacity: 1.; side:back"
           geometry="primitive: sphere; radius: 0.9;"
           geojson-texture="canvas: #lakes-canvas;
           src: #json-lakes-50m;
