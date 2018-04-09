@@ -77,7 +77,6 @@ AFRAME.registerComponent('geojson', {
     const data = this.data;
     var self = this;
 
-
     this.loader = new THREE.FileLoader();
 
     this.el.addEventListener('componentchanged', function (evt) {
@@ -603,8 +602,8 @@ AFRAME.registerComponent('geojson', {
     return defaultColor;
   },
   _getLineMaterial: function (properties) {
-    if (!properties) { 
-      properties = {}
+    if (!properties) {
+      properties = {};
     }
     return new THREE.LineBasicMaterial({
       transparent: this.matComponent.data.transparent || false,
