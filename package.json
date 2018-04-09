@@ -1,6 +1,6 @@
 {
   "name": "aframe-geojson-component",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "GeoJSON/TopoJSON in A-Frame using D3",
   "main": "index.js",
   "cdn": "dist/aframe-geojson-component.min.js",

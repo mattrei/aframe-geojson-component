@@ -674,7 +674,11 @@ AFRAME.registerComponent('geojson', {
 
     this.hitCamera.position.copy(obj.position);
     this.hitCamera.rotation.copy(obj.rotation);
+
+    const isVREnabled = renderer.vr.enabled;
+    renderer.vr.enabled = false;
     renderer.render(this.hitScene, this.hitCamera, this.hitTexture);
+    renderer.vr.enabled = isVREnabled;
 
     return new Promise(function (resolve, reject) {
       var res = null;
