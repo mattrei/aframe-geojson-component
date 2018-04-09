@@ -67,11 +67,16 @@ AFRAME.registerComponent('geojson', {
     omitBoundingBox: {
       default: false,
       type: 'boolean'
+    },
+    selectLatency: {
+      default: 500
     }
   },
 
   init: function () {
+    const data = this.data;
     var self = this;
+
 
     this.loader = new THREE.FileLoader();
 
@@ -86,6 +91,8 @@ AFRAME.registerComponent('geojson', {
         }
       }
     });
+
+    this.tick = AFRAME.utils.throttleTick(this.tick, data.selectLatency, this);
   },
   update: function (oldData) {
     const data = this.data;
@@ -659,8 +666,8 @@ AFRAME.registerComponent('geojson', {
     var shape = this.shapesMap.get(featureKey);
 
     if (!this._selectedFeature ||
-            (this._selectedFeature[data.featureKey] || this._selectedFeature[data.dataKey] !==
-                (selected[data.featureKey] || selected[data.dataKey]))) {
+            (this._selectedFeature[data.featureKey] || this._selectedFeature[data.dataKey]) !==
+                (selected[data.featureKey] || selected[data.dataKey])) {
       this._selectedFeature = selected;
 
       this.el.emit(FEATURE_SELECTED_EVENT, {feature: selected, mesh: shape});

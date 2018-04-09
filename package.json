@@ -64,9 +64,9 @@
     "webpack": "^3.11.0"
   },
   "dependencies": {
-    "d3": "^4.13.0",
-    "d3-geo-projection": "^2.3.2",
-    "pathseg": "^1.1.0",
+    "d3": "^5.0.0",
+    "d3-geo-projection": "^2.4.0",
+    "pathseg": "^1.2.0",
     "topojson-client": "^3.0.0"
   },
   "semistandard": {
