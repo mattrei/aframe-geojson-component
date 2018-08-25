@@ -5,8 +5,11 @@
   "main": "index.js",
   "unpkg": "dist/aframe-geojson-component.min.js",
   "scripts": {
-    "dev": "budo index.js:dist/aframe-geojson-component.min.js --port 7000 --live",
-    "dist": "npm run rollup && uglifyjs dist/aframe-geojson-component.js > dist/aframe-geojson-component.min.js",
+    "build": "webpack index.js dist/aframe-geojson-component.js",
+    "dev": "budo index.js:dist/aframe-geojson-component.min.js --port 7000 --live --open",
+    "dist": "npm run build && uglifyjs dist/aframe-geojson-component.js > dist/aframe-geojson-component.min.js",
+    "dev2": "budo index.js:dist/aframe-geojson-component.min.js --port 7000 --live",
+    "dist2": "npm run rollup && uglifyjs dist/aframe-geojson-component.js > dist/aframe-geojson-component.min.js",
     "lint": "semistandard -v --fix | snazzy",
     "prepublish": "npm run dist",
     "ghpages": "ghpages",

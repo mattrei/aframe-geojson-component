@@ -981,3 +981,4 @@ AFRAME.registerComponent('geojson-texture', {
     return this.projection;
   }
 });
+
