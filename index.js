@@ -92,6 +92,7 @@ AFRAME.registerComponent('geojson', {
 
     this.tick = AFRAME.utils.throttleTick(this.tick, data.selectLatency, this);
   },
+
   update: function (oldData) {
     const data = this.data;
 
@@ -104,6 +105,15 @@ AFRAME.registerComponent('geojson', {
     if (src && src !== oldData.src) {
       this.loader.load(src, this.onGeojsonLoaded.bind(this));
     }
+    // remove visualisation if src is not set
+    if (!src) {
+      this.el.removeObject3D('mesh');
+      if (this.hitScene) {
+        this.hitScene.remove(this.maskMesh);
+      }
+      this.maskMesh = null;
+      this.geometryMap = null;
+    }
 
     if (this.mesh) {
       if (oldData.lineWidth !== data.lineWidth) {
@@ -114,6 +124,11 @@ AFRAME.registerComponent('geojson', {
       }
     }
   },
+
+  remove: function() {
+
+  },
+
   tick: function (time, delta) {
     if (this.data.featureEventName === 'raycaster-intersected') {
         // https://github.com/aframevr/aframe/issues/3248
