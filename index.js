@@ -805,8 +805,8 @@ AFRAME.registerComponent('geojson', {
         );
 
     mesh.scale.copy(this.el.object3D.getWorldScale());
-    mesh.rotation.copy(this.el.object3D.getWorldRotation());
-    mesh.position.copy(this.el.object3D.getWorldPosition());
+    this.el.object3D.getWorldQuaternion(mesh.quaternion);
+    this.el.object3D.getWorldPosition(mesh.position);
 
     this.hitScene.add(mesh);
 
