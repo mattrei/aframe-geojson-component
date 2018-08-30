@@ -11,9 +11,9 @@
   <body>
     <a-scene >
       <a-assets>
-        <canvas id="equi-map-canvas" crossOrigin="anonymous" width="720" height="360"></canvas>
-        <canvas id="ortho-map-canvas" crossOrigin="anonymous" width="360" height="360"></canvas>
-        <canvas id="mercator-map-canvas" crossOrigin="anonymous" width="720" height="720"></canvas>
+        <canvas id="equi-map-canvas" crossOrigin="anonymous" width="512" height="256"></canvas>
+        <canvas id="ortho-map-canvas" crossOrigin="anonymous" width="256" height="256"></canvas>
+        <canvas id="mercator-map-canvas" crossOrigin="anonymous" width="512" height="512"></canvas>
       </a-assets>
       <a-assets>
         <a-asset-item id="json-earth" src="assets/110m.json" />
@@ -21,7 +21,7 @@
       </a-assets>
 
  
-    <a-entity position="0 2 -4">
+    <a-entity position="0 0 -2">
       <a-entity position="-2 0 0">
         <a-entity s
             material="src: #equi-map-canvas;"
