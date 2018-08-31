@@ -2,9 +2,10 @@
   <head>
     <title>A-Frame Geojson Component - Airplane</title>
     <meta name="description" content="Airplane example."></meta>
-    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <!--    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>-->
+    <script src="https://rawgit.com/aframevr/aframe/d611e70/dist/aframe-master.js"></script>
     <script src="../../dist/aframe-geojson-component.min.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="./mercator-set-scale.js"></script>
     <script src="./draw-path.js"></script>
   </head>
@@ -23,7 +24,7 @@
  
     <a-entity position="0 0 -2">
       <a-entity position="-2 0 0">
-        <a-entity s
+        <a-entity 
             material="src: #equi-map-canvas;"
             geometry="primitive: plane; width: 2; height: 1;"
             geojson-texture="
@@ -92,7 +93,7 @@
             projection: geoMercator;
             fillColor: #aa2;
             lineColor: #0ff;
-            fillOpacity: 1;
+            fillOpacity: 0;
             lineOpacity: 1;
             lineWidth: 2;
             topologyObject: countries;
