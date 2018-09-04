@@ -74,19 +74,15 @@ AFRAME.registerComponent('geojson', {
 
   init: function () {
     const data = this.data;
-    var self = this;
 
     this.loader = new THREE.FileLoader();
 
-    this.el.addEventListener('componentchanged', function (evt) {
-      if (!self.mesh) return;
+    this.el.addEventListener('componentchanged', (evt) => {
+      const mesh = this.el.getObject3D('mesh');
       if (evt.detail.name === 'material') {
-        if (evt.detail.oldData.color !== evt.detail.newData.color) {
-          self.mesh.material.color = new THREE.Color(evt.detail.newData.color);
-        }
-        if (evt.detail.oldData.opacity !== evt.detail.newData.opacity) {
-          self.mesh.material.opacity = evt.detail.newData.opacity;
-        }
+        const matData = evt.target.getAttribute('material');
+        mesh.material.color = new THREE.Color(matData.color);
+        mesh.material.opacity = matData.opacity;
       }
     });
 
