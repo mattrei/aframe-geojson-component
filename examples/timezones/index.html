@@ -18,8 +18,8 @@
 
 
         <a-entity id="countries-plate"
-          position="0 0 -3"
-          class="gazeactivated"
+          class="globeObject"
+          position="0 0 -2"
           geometry="primitive: sphere; radius: 1.6;"
           material="shader: flat; color: #000; transparent: true; side: front;"
           geojson="src: #json-timezones;
@@ -37,7 +37,10 @@
 
         <a-camera id="camera" position="0 0 1"  wasd-controls-enabled="true" look-controls-enabled="true">
 
-          <a-cursor cursor="rayOrigin: mouse" visible="true" objects=".gazeactivated" interval="500" raycaster="showLine: true"></a-cursor>
+          <a-entity raycaster="showLine: true; objects: .globeObject" position="0 -0.01 0"></a-entity>
+          <a-cursor 
+            cursor="rayOrigin: mouse" objects=".otherObject" visible="true">
+          </a-cursor>
         </a-camera>
 
     </a-scene>
