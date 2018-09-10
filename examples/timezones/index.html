@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>A-Frame Geojson Component - Basic</title>
+    <meta name="description" content="Basic example for Geojson component."></meta>
+    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="../../dist/aframe-geojson-component.min.js"></script>
+    <script src="./selection-to-text.js"></script>
+  </head>
+  <body>
+    <a-scene>
+
+        
+      <a-assets>
+        <a-asset-item id="json-world-110m" src="assets/world-110m.v1.json" />
+        <a-asset-item id="tsv-world-110m" src="assets/world-110m.v1.tsv" />
+      </a-assets>
+
+
+        <a-entity id="countries-plate"
+          position="0 0 -5"
+          class="gazeactivated"
+          geometry="primitive: sphere; radius: 1.6;"
+          material="shader: flat; color: #000; transparent: true; side: front;"
+          geojson="src: #json-world-110m; topologyObject: countries;
+            lineWidth: 1; 
+            dataSrc: #tsv-world-110m; dataType: tsv; dataKey: iso_n3;
+            featureEventName: raycaster-intersected;"
+          visible="true"
+          selection-to-text
+          >
+          
+        </a-entity>
+
+      </a-entity>
+
+
+        <a-camera id="camera" position="0 0 1"  wasd-controls-enabled="true" look-controls-enabled="true">
+
+          <a-cursor cursor="rayOrigin: mouse" visible="true" objects=".gazeactivated" interval="500" raycaster="showLine: true"></a-cursor>
+        </a-camera>
+
+    </a-scene>
+  </body>
+</html>
