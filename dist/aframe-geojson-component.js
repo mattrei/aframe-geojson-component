@@ -138,8 +138,9 @@ AFRAME.registerComponent('geojson', {
       let i;
       for (i=0; i < raycasterEls.length; i++) {
         const raycasterEl = raycasterEls[i];
-        const intersectedEls = raycasterEl.components.raycaster.intersectedEls;
-        if (intersectedEls.length > 0 && intersectedEls[intersectedEls.length - 1] === this.el) {
+        //raycasterEl.components.raycaster.updateOriginDirection();
+        const detail = raycasterEl.components.raycaster.getIntersection(this.el);
+        if (detail) {
           this.select(raycasterEl);
         }
       }
@@ -738,7 +739,7 @@ AFRAME.registerComponent('geojson', {
 
         // needed if its a sphere
         if (this.el.components.geometry.data.primitive === 'sphere') {
-           dummy.position.copy(this.el.object3D.getWorldPosition());
+           this.el.object3D.getWorldPosition(dummy.position);
         } 
         dummy.lookAt(p);
         dummy.rotation.y += Math.PI;

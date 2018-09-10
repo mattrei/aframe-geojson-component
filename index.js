@@ -128,7 +128,6 @@ AFRAME.registerComponent('geojson', {
   tick: function (time, delta) {
     if (this.data.featureEventName === 'raycaster-intersected') {
         // https://github.com/aframevr/aframe/issues/3248
-      // query all raycasters for intersections with this element
       const raycasterEls = document.querySelectorAll('[raycaster]');
       let i;
       for (i=0; i < raycasterEls.length; i++) {
