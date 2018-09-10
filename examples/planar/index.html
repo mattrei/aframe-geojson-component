@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>A-Frame Geojson Component - Basic</title>
+    <title>A-Frame Geojson Component - Planar</title>
     <meta name="description" content="Basic example for Geojson component."></meta>
     <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
     <script src="../../dist/aframe-geojson-component.min.js"></script>
@@ -36,10 +36,10 @@
       </a-entity>
 
 
-        <a-camera id="camera" position="0 0 1"  user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
+        <a-camera id="camera" position="0 0 1"  wasd-controls-enabled="true" look-controls-enabled="true">
           <a-text id="infoText" color="black" value="" position="0 -0.2 -1" scale="0.4 0.4 0.4"></a-text>
 
-          <a-cursor fuse objects=".gazeactivated" interval="1000"></a-cursor>
+          <a-cursor cursor="rayOrigin: mouse" visible="false" objects=".gazeactivated" interval="1000"></a-cursor>
         </a-camera>
     </a-scene>
   </body>
