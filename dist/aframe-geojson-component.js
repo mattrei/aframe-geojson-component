@@ -132,13 +132,16 @@ AFRAME.registerComponent('geojson', {
   },
 
   tick: function (time, delta) {
-    debugger;
     if (this.data.featureEventName === 'raycaster-intersected') {
         // https://github.com/aframevr/aframe/issues/3248
-      const raycasterEl = document.querySelector('[raycaster]');
-      const intersectedEls = raycasterEl.components.raycaster.intersectedEls;
-      if (intersectedEls.length > 0 && intersectedEls[intersectedEls.length - 1] === this.el) {
-        this.select();
+      const raycasterEls = document.querySelectorAll('[raycaster]');
+      let i;
+      for (i=0; i < raycasterEls.length; i++) {
+        const raycasterEl = raycasterEls[i];
+        const intersectedEls = raycasterEl.components.raycaster.intersectedEls;
+        if (intersectedEls.length > 0 && intersectedEls[intersectedEls.length - 1] === this.el) {
+          this.select(raycasterEl);
+        }
       }
     }
   },
@@ -234,7 +237,7 @@ AFRAME.registerComponent('geojson', {
 
     this.maskMesh = this.generateMask(features);
 
-    if (data.featureEventName) {
+    if (data.featureEventName === 'click') {
       this.el.addEventListener(data.featureEventName, this.select.bind(this));
     }
 
@@ -719,18 +722,24 @@ AFRAME.registerComponent('geojson', {
   },
   select: (function () {
     const dummy = new THREE.Object3D();
-    return function () {
+    return function (raycasterEl) {
       var self = this;
       if (this.isSelecting || !this.maskMesh) return;
 
-      var entity = document.querySelector('[raycaster]');
-      var raycaster = entity.components.raycaster.raycaster;
+      if (!raycasterEl || !raycasterEl.components) {
+        raycasterEl = document.querySelector('[raycaster]');
+      }
+      const raycaster = raycasterEl.components.raycaster.raycaster;
 
-      var intersections = raycaster.intersectObject(this.maskMesh);
+      const intersections = raycaster.intersectObject(this.maskMesh);
       if (intersections.length > 0) {
         this.isSelecting = true;
-        var p = intersections[0].point;
+        var p = intersections[0].point.clone();
 
+        // needed if its a sphere
+        if (this.el.components.geometry.data.primitive === 'sphere') {
+           dummy.position.copy(this.el.object3D.getWorldPosition());
+        } 
         dummy.lookAt(p);
         dummy.rotation.y += Math.PI;
 
@@ -792,7 +801,7 @@ AFRAME.registerComponent('geojson', {
       ctx.restore();
     }
 
-    // console.log(canvas.node().toDataURL())
+    //console.log(canvas.node().toDataURL())
     const texture = new THREE.CanvasTexture(canvas.node());
 
     const geomComponent = this.el.components.geometry;

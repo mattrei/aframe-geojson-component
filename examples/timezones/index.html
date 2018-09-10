@@ -13,17 +13,18 @@
       <a-assets>
         <a-asset-item id="json-world-110m" src="assets/world-110m.v1.json" />
         <a-asset-item id="tsv-world-110m" src="assets/world-110m.v1.tsv" />
+        <a-asset-item id="json-timezones" src="assets/timezones.topojson" />
       </a-assets>
 
 
         <a-entity id="countries-plate"
-          position="0 0 -5"
+          position="0 0 -3"
           class="gazeactivated"
           geometry="primitive: sphere; radius: 1.6;"
           material="shader: flat; color: #000; transparent: true; side: front;"
-          geojson="src: #json-world-110m; topologyObject: countries;
+          geojson="src: #json-timezones;
             lineWidth: 1; 
-            dataSrc: #tsv-world-110m; dataType: tsv; dataKey: iso_n3;
+            featureKey: Name;
             featureEventName: raycaster-intersected;"
           visible="true"
           selection-to-text
