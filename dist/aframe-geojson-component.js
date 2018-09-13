@@ -951,7 +951,7 @@ AFRAME.registerComponent('geojson-texture', {
   },
   getStrokeColorOr: function (feature, defaultColor) {
     if (feature.properties.stroke) {
-      const color = feature.properties['stroke'];
+      const color = feature.properties.stroke;
       const opacity = feature.properties['stroke-opacity'] || 1.0;
 
       return this._getColorStyle(new THREE.Color(color), opacity);
@@ -959,8 +959,8 @@ AFRAME.registerComponent('geojson-texture', {
     return defaultColor;
   },
   getFillColorOr: function (feature, defaultColor) {
-    if (feature.properties.stroke) {
-      const color = feature.properties['fill'];
+    if (feature.properties.fill) {
+      const color = feature.properties.fill;
       const opacity = feature.properties['fill-opacity'] || 0.6;
 
       return this._getColorStyle(new THREE.Color(color), opacity);
@@ -968,10 +968,7 @@ AFRAME.registerComponent('geojson-texture', {
     return defaultColor;
   },
   getLineWidthOr: function (feature, defaultWidth) {
-    if (feature.properties.stroke) {
-      return feature.properties['stroke-width'] || defaultWidth;
-    }
-    return defaultWidth;
+    return feature.properties['stroke-width'] || defaultWidth;
   },
   _getColorStyle: function (color, opacity) {
     const r = (color.r * 255) | 0;
