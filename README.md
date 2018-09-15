@@ -54,7 +54,7 @@ This component so far can be just used as a texture for a geometry object (plane
 | src | The GeoJSON/TopoJSON asset. |  | |
 | topologyObjct | *Only for TopoJSON*: Specifies the TopoJSON object to use (see [specification](https://github.com/topojson/topojson-specification#2-topojson-objects) for details). If empty then the first will be taken. | | |
 | canvas | The DOM canvas to use as the texture. Please set width and height to power of twos | | |
-| projection | One of [D3's projection](https://github.com/d3/d3-geo/blob/master/README.md#projections). Use the function name, like "geoEquirectangular" or "geoOrthographic". Use "geoEquirectangular" if you have global data and want to wrap it around a sphere. |  eoEquirectangular | |
+| projection | One of [D3's projection](https://github.com/d3/d3-geo/blob/master/README.md#projections) or [D3's geo projection](https://github.com/d3/d3-geo-projection). Use the function name, like "geoEquirectangular" or "geoOrthographic". Use "geoEquirectangular" if you have global data and want to wrap it around a sphere. |  'geoEquirectangular' | |
 | fillColor | Polygon filling color | #fff | |
 | fillOpacity | Opacity of the polygons | 1 | |
 | lineColor | Line color | #fff | |

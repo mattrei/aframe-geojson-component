@@ -13,6 +13,7 @@ if (typeof AFRAME === 'undefined') {
 require('pathseg'); // polyfill
 
 const d3 = require('d3');
+const d3GeoProjection = require('d3-geo-projection');
 const topojson = require('topojson-client');
 
 const FEATURE_SELECTED_EVENT = 'geojson-feature-selected';
@@ -165,7 +166,8 @@ AFRAME.registerComponent('geojson', {
     const width = 360; // corresponds to longitude
     const height = 180; // corresponds to positive scaled latitude
 
-    const projection = d3[data.projection]().scale(height / Math.PI)
+    const projectionFunc = d3[data.projection] ? d3[data.projection] : d3GeoProjection[data.projection];
+    const projection = projectionFunc().scale(height / Math.PI)
             // http://bl.ocks.org/mbostock/3757119
             .translate([
               width / 2,
@@ -909,7 +911,9 @@ AFRAME.registerComponent('geojson-texture', {
     if (oldData.projection !== data.projection) {
       const width = data.canvas.width;
       const height = data.canvas.height;
-      this.projection = d3[data.projection]()
+      
+      const projectionFunc = d3[data.projection] ? d3[data.projection] : d3GeoProjection[data.projection];
+      this.projection = projectionFunc()
                 .scale(height / Math.PI)
                 .translate([width / 2, height / 2]);
       this.mapPath = d3.geoPath(this.projection);
