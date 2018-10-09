@@ -82,8 +82,18 @@ AFRAME.registerComponent('geojson', {
       const mesh = this.el.getObject3D('mesh');
       if (evt.detail.name === 'material') {
         const matData = evt.target.getAttribute('material');
-        mesh.material.color = new THREE.Color(matData.color);
-        mesh.material.opacity = matData.opacity;
+        if (mesh.type === 'Group') {
+
+          let i;
+          for (i=0; i < mesh.children.length; i++) {
+            const child = mesh.children[i];
+            child.material.color = new THREE.Color(matData.color);
+            child.material.opacity = matData.opacity;
+          }
+        } else {
+          mesh.material.color = new THREE.Color(matData.color);
+          mesh.material.opacity = matData.opacity;
+        }
       }
     });
 
@@ -221,15 +231,15 @@ AFRAME.registerComponent('geojson', {
 
     this.mesh = mesh;
 
-    const compoundMesh = new THREE.Object3D();
+    const group = new THREE.Group();
     this.shapesMap.forEach(function (shape) {
-      compoundMesh.add(shape);
+      group.add(shape);
     });
 
     if (isTopojson || isPointData) {
       this.el.setObject3D('mesh', mesh);
     } else {
-      this.el.setObject3D('mesh', compoundMesh);
+      this.el.setObject3D('mesh', group);
     }
 
     this.maskMesh = this.generateMask(features);
@@ -486,9 +496,9 @@ AFRAME.registerComponent('geojson', {
     });
 
     const mesh = new THREE.LineSegments(
-    geometry,
-    material
-  );
+      geometry,
+      material
+    );
     // mesh.frustumCulled = false;
 
     return mesh;
