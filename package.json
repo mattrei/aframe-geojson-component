@@ -1,16 +1,16 @@
 {
   "name": "aframe-geojson-component",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Visualize GeoJSON/TopoJSON documents in A-Frame with the help of the D3 library",
   "main": "index.js",
   "unpkg": "dist/aframe-geojson-component.min.js",
   "scripts": {
-    "dev": "budo index.js:dist/aframe-geojson-component.min.js --port 7000 --live",
-    "dist": "npm run rollup && uglifyjs dist/aframe-geojson-component.js > dist/aframe-geojson-component.min.js",
-    "lint": "semistandard -v --fix | snazzy",
+    "build": "webpack index.js dist/aframe-geojson-component.js",
+    "dev": "budo index.js:dist/aframe-geojson-component.min.js --port 7000 --live --open",
+    "dist": "npm run build && uglifyjs dist/aframe-geojson-component.js > dist/aframe-geojson-component.min.js",
+    "lint": "semistandard -v | snazzy",
     "prepublish": "npm run dist",
     "ghpages": "ghpages",
-    "rollup": "rollup index.js --output.format umd --name 'aframe-geojson-component' --output.file dist/aframe-geojson-component.js",
     "start": "npm run dev",
     "test": "karma start ./tests/karma.conf.js",
     "test:firefox": "karma start ./tests/karma.conf.js --browsers Firefox",
@@ -34,9 +34,9 @@
   "author": "Matthias Treitler matthias.treitler@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mattrei/issues"
+    "url": "https://github.com/mattrei/aframe-geojson-component/issues"
   },
-  "homepage": "https://github.com/mattrei#readme",
+  "homepage": "https://github.com/mattrei/aframe-geojson-component#readme",
   "devDependencies": {
     "aframe": "*",
     "browserify": "^13.0.0",
