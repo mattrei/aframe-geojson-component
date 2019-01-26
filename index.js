@@ -958,7 +958,7 @@ AFRAME.registerComponent('geojson-texture', {
     this.el.emit(CANVAS_GENERATED_EVENT, {});
   },
   getStrokeColorOr: function (feature, defaultColor) {
-    if (feature.properties.stroke) {
+    if (feature.properties && feature.properties.stroke) {
       const color = feature.properties.stroke;
       const opacity = feature.properties['stroke-opacity'] || 1.0;
 
@@ -967,7 +967,7 @@ AFRAME.registerComponent('geojson-texture', {
     return defaultColor;
   },
   getFillColorOr: function (feature, defaultColor) {
-    if (feature.properties.fill) {
+    if (feature.properties && feature.properties.fill) {
       const color = feature.properties.fill;
       const opacity = feature.properties['fill-opacity'] || 0.6;
 
@@ -976,7 +976,7 @@ AFRAME.registerComponent('geojson-texture', {
     return defaultColor;
   },
   getLineWidthOr: function (feature, defaultWidth) {
-    return feature.properties['stroke-width'] || defaultWidth;
+    return (feature.properties && feature.properties['stroke-width']) || defaultWidth;
   },
   _getColorStyle: function (color, opacity) {
     const r = (color.r * 255) | 0;
