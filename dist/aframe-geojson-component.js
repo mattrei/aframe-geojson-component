@@ -14018,7 +14018,6 @@ AFRAME.registerComponent('geojson-texture', {
     }
 
     this.redraw();
-
     this.el.emit(CANVAS_GENERATED_EVENT, {});
   },
   getStrokeColorOr: function (feature, defaultColor) {
@@ -14052,18 +14051,16 @@ AFRAME.registerComponent('geojson-texture', {
   redraw: function () {
     if (!this.features) return;
 
-    var self = this;
-
     const data = this.data;
     var context = this.ctx;
     var contextPath = this.mapPath.context(context);
 
     context.clearRect(0, 0, data.canvas.width, data.canvas.height);
-    for (var i = 0; i < this.features.length; i++) {
+    for (let i = 0; i < this.features.length; i++) {
       const feature = this.features[i];
-      const strokeColor = self.getStrokeColorOr(feature, this._lineColor);
-      const fillColor = self.getFillColorOr(feature, this._fillColor);
-      const lineWidth = self.getLineWidthOr(feature, data.lineWidth);
+      const strokeColor = this.getStrokeColorOr(feature, this._lineColor);
+      const fillColor = this.getFillColorOr(feature, this._fillColor);
+      const lineWidth = this.getLineWidthOr(feature, data.lineWidth);
 
       context.beginPath();
       contextPath(feature);
@@ -14073,6 +14070,9 @@ AFRAME.registerComponent('geojson-texture', {
       context.fillStyle = fillColor;
       context.fill();
     }
+
+    const mesh = this.el.getObject3D('mesh')
+    mesh.material.map.needsUpdate = true;
   },
   getProjection: function () {
     return this.projection;
