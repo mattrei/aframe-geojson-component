@@ -177,7 +177,7 @@ AFRAME.registerComponent('geojson', {
               width / 2,
               height / 2
             ]);
-    const path = d3.geoPath(projection).pointRadius(0.1);
+    const path = d3.geoPath(projection).pointRadius(0.1); // why 0.1?
 
     var svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
 
@@ -251,19 +251,16 @@ AFRAME.registerComponent('geojson', {
     this.el.emit(GEOJSON_GENERATED_EVENT, {data: this.geometryMap});
   },
   onDataLoaded: function (file) {
-    var self = this;
     const data = this.data;
 
     const contents = data.dataType === 'tsv' ? d3.tsvParse(file) : d3.csvParse(file);
 
     for (var i = 0; i < contents.length; i++) {
       const content = contents[i];
-      self.dataMap.set(content[data.dataKey], content);
+      this.dataMap.set(content[data.dataKey], content);
     }
   },
   generatePointsMap: function (paths) {
-    var self = this;
-
     var map = new Map();
 
     var pathNodes = paths.nodes();
@@ -272,9 +269,9 @@ AFRAME.registerComponent('geojson', {
       const p = pathNodes[i];
 
       const properties = p.__data__.properties;
-      const key = properties[self.data.featureKey];
+      const key = properties[this.data.featureKey];
       const type = p.__data__.geometry.type; // Point, String, Polygon
-      // const pointSize = properties[self.data.pointSizeFeature] || 1;
+      // const pointSize = properties[this.data.pointSizeFeature] || 1;
 
       var segments = p.pathSegList;
       for (var j = 0; j < segments.numberOfItems; j++) {
@@ -291,13 +288,12 @@ AFRAME.registerComponent('geojson', {
     return map;
   },
   generateLinesMap: function (paths, isTopojson) {
-    var self = this;
     var map = new Map();
 
     const pathNodes = paths.nodes();
 
-    pathNodes.forEach(function (p) {
-      const key = isTopojson ? p.__data__.id : p.__data__.properties[self.data.featureKey];
+    pathNodes.forEach((p) => {
+      const key = isTopojson ? p.__data__.id : p.__data__.properties[this.data.featureKey];
       const type = p.__data__.geometry.type; // Point, String, Polygon
 
       if (type.includes('Point')) return;
@@ -322,7 +318,7 @@ AFRAME.registerComponent('geojson', {
       for (var i = 0; i < segments.numberOfItems; i++) {
         var segment = segments.getItem(i);
 
-        if (self.data.omitBoundingBox &&
+        if (this.data.omitBoundingBox &&
               (
               (segment.x >= 359.9 || segment.x <= 0.1) ||
               (segment.y >= 179.9 || segment.y <= 0.1)
@@ -406,8 +402,6 @@ AFRAME.registerComponent('geojson', {
     return map;
   },
   generatePoints: function (features) {
-    var self = this;
-
     const mapData = this.geometryMap;
 
     const geometry = new THREE.BufferGeometry();
@@ -418,8 +412,8 @@ AFRAME.registerComponent('geojson', {
     // const colors = new Float32Array(points)
 
     var i = 0;
-    mapData.forEach(function (entry, idx) {
-      const pos = self.latLngToVec3(entry.point.y, entry.point.x);
+    mapData.forEach((entry, idx) => {
+      const pos = this.latLngToVec3(entry.point.y, entry.point.x);
 
       positions[i * 3] = pos.x;
       positions[i * 3 + 1] = pos.y;
@@ -453,8 +447,6 @@ AFRAME.registerComponent('geojson', {
     return mesh;
   },
   generateBars: function () {
-    var self = this;
-
     const mapData = this.geometryMap;
 
     const geometry = new THREE.BufferGeometry();
@@ -462,20 +454,20 @@ AFRAME.registerComponent('geojson', {
 
     const tmp = new THREE.Vector3();
     var i = 0;
-    mapData.forEach(function (entry, idx) {
-      const pos = self.latLngToVec3(entry.point.y, entry.point.x);
+    mapData.forEach((entry, idx) => {
+      const pos = this.latLngToVec3(entry.point.y, entry.point.x);
       positions[i * 6] = pos.x;
       positions[i * 6 + 1] = pos.y;
       positions[i * 6 + 2] = pos.z;
       entry.position = new THREE.Vector3().copy(pos);
 
-      var pointSize = entry.properties[self.data.pointSizeFeature] || 1;
+      var pointSize = entry.properties[this.data.pointSizeFeature] || 1;
 
-      if (self.data.pointScaling === 'exponential') {
+      if (this.data.pointScaling === 'exponential') {
         pointSize = Math.pow(pointSize, 2);
       }
 
-      const scalingFactor = pointSize * self.data.pointScale;
+      const scalingFactor = pointSize * this.data.pointScale;
       tmp.copy(pos).multiplyScalar(1 + scalingFactor);
       positions[ i * 6 + 3 ] = tmp.x;
       positions[ i * 6 + 4 ] = tmp.y;
@@ -504,7 +496,6 @@ AFRAME.registerComponent('geojson', {
     return mesh;
   },
   generateLines: function (features) {
-    var self = this;
     const data = this.data;
 
     const mapData = this.geometryMap;
@@ -529,16 +520,16 @@ AFRAME.registerComponent('geojson', {
     const defaultPartMaterial = new THREE.LineBasicMaterial({
       transparent: true,
       linewidth: 2,
-      opacity: self.matComponent.data.opacity,
+      opacity: this.matComponent.data.opacity,
       color: 0xff0000,
       side: THREE.DoubleSide
     });
 
-    mapData.forEach(function (entry, id) {
+    mapData.forEach((entry, id) => {
       var parts = [];
 
-      entry.forEach(function (path) {
-        path.lines.forEach(function (line) {
+      entry.forEach( (path) => {
+        path.lines.forEach((line) => {
           var partPositions = new Float32Array(line.length * 2 * 3);
           var ptr = 0;
 
@@ -547,7 +538,7 @@ AFRAME.registerComponent('geojson', {
             if (p.y < min) min = p.y;
             if (p.y > max) max = p.x;
 
-            var res = self.latLngToVec3(p.y, p.x);
+            var res = this.latLngToVec3(p.y, p.x);
 
             partPositions[ptr] = res.x;
             partPositions[ptr + 1] = res.y;
@@ -557,7 +548,7 @@ AFRAME.registerComponent('geojson', {
 
             p = line[j + 1];
 
-            res = self.latLngToVec3(p.y, p.x);
+            res = this.latLngToVec3(p.y, p.x);
 
             partPositions[ptr] = res.x;
             partPositions[ptr + 1] = res.y;
@@ -574,7 +565,7 @@ AFRAME.registerComponent('geojson', {
       });
 
       // the positions only of the curent polygon or line
-      var partPositions = new Float32Array(parts.reduce(function (a, b) {
+      var partPositions = new Float32Array(parts.reduce((a, b) => {
         return a + b.length;
       }, 0));
 
@@ -593,14 +584,14 @@ AFRAME.registerComponent('geojson', {
 
       if (entry[0].properties) {
         const properties = entry[0].properties;
-        partMaterial = self._getLineMaterial(properties);
+        partMaterial = this._getLineMaterial(properties);
       }
 
       var mesh = new THREE.LineSegments(partGeometry, partMaterial);
       mesh.fustrumCulled = false;
       mesh.visible = true;
 
-      self.shapesMap.set(entry[0].id, mesh);
+      this.shapesMap.set(entry[0].id, mesh);
 
       entry.shape = mesh;
     });
@@ -700,7 +691,6 @@ AFRAME.registerComponent('geojson', {
     }
   },
   hitTest: function (obj) {
-    var self = this;
     const pixelBuffer = new Uint8Array(4);
 
     var renderer = this.el.sceneEl.renderer;
@@ -713,16 +703,16 @@ AFRAME.registerComponent('geojson', {
     renderer.render(this.hitScene, this.hitCamera, this.hitTexture);
     renderer.vr.enabled = isVREnabled;
 
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       var res = null;
 
-      renderer.readRenderTargetPixels(self.hitTexture, 0, 0, 1, 1, pixelBuffer);
+      renderer.readRenderTargetPixels(this.hitTexture, 0, 0, 1, 1, pixelBuffer);
       if (pixelBuffer[0] === 255) { // encoding test
         var multiplicator = pixelBuffer[1];
         var number = pixelBuffer[2];
 
         var code = multiplicator * 255 + number;
-        res = self.codes.get(code);
+        res = this.codes.get(code);
       }
       resolve(res);
     });
@@ -730,7 +720,6 @@ AFRAME.registerComponent('geojson', {
   select: (function () {
     const dummy = new THREE.Object3D();
     return function (raycasterEl) {
-      var self = this;
       if (this.isSelecting || !this.maskMesh) return;
 
       if (!raycasterEl || !raycasterEl.components) {
@@ -750,16 +739,14 @@ AFRAME.registerComponent('geojson', {
         dummy.lookAt(p);
         dummy.rotation.y += Math.PI;
 
-        this.hitTest(dummy).then(function (res) {
-          self.selectFeature(res);
+        this.hitTest(dummy).then((res) => {
+          this.selectFeature(res);
         });
       }
             // entity.components.raycaster.refreshObjects()
     };
   }()),
   generateMask: function (features) {
-    var self = this;
-
     const CANVAS_DATA_FACTOR = 10;
 
     const width = 512 * 2;
@@ -790,19 +777,20 @@ AFRAME.registerComponent('geojson', {
       var multiplicator = Math.floor(i / 255);
       var number = i % 255;
 
-      self.codes.set(multiplicator * 255 + number, feature); // feature.id
+      this.codes.set(multiplicator * 255 + number, feature); // feature.id
 
       ctx.save();
       ctx.beginPath();
       ctx.fillStyle = 'rgb(255,' + multiplicator + ',' + number + ')';
       ctx.strokeStyle = 'rgb(255,' + multiplicator + ',' + number + ')';
-      ctx.lineWidth = CANVAS_DATA_FACTOR * self.data.raycasterAccuracy;
+      ctx.lineWidth = CANVAS_DATA_FACTOR * this.data.raycasterAccuracy;
       ctxPath(feature);
       if (feature.geometry.type.includes('LineString')) {
         ctx.stroke();
       } else if (feature.geometry.type.includes('Polygon')) {
         ctx.fill();
       } else if (feature.geometry.type.includes('Point')) {
+        // TODO how to adjust point size according to raycaster accuracy?
         ctx.fill();
       }
       ctx.restore();
