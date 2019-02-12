@@ -2,7 +2,7 @@
   <head>
     <title>A-Frame Geojson Component - Rotation</title>
     <meta name="description" content="Basic example for Geojson component."></meta>
-    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
     <script src="../../dist/aframe-geojson-component.min.js"></script>
     <script src="./highlight-selection.js"></script>
   </head>
@@ -26,17 +26,15 @@
             featureEventName: raycaster-intersected;
             "
           highlight-selection
+
+          animation="property: rotation; dur: 20000; from: 0 0 0; to: 0 360 0; repeat: indefinite"
           
           >
-          <a-animation attribute="rotation"
-               dur="20000"
-               to="0 360 0"
-               repeat="indefinite"></a-animation>
         </a-entity>
       </a-entity>
 
 
-        <a-camera id="camera"  user-height="0" wasd-controls-enabled="true" look-controls-enabled="true">
+        <a-camera id="camera" position="0 0 0"  wasd-controls-enabled="true" look-controls-enabled="true">
 
           <a-text id="infoText" color="black" value="" position="0.5 0 -0.8" scale="0.4 0.4 0.4"></a-text>
 

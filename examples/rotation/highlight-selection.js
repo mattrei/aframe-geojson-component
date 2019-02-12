@@ -40,8 +40,8 @@ AFRAME.registerComponent('highlight-selection', {
 
     const mesh = this.el.getObject3D('mesh');
     if (maskMesh) {
-      maskMesh.rotation.copy(mesh.getWorldRotation());
-      maskMesh.scale.copy(mesh.getWorldScale());
+      mesh.getWorldQuaternion(maskMesh.quaternion);
+      mesh.getWorldScale(maskMesh.scale);
     }
 
     if (this.lastSelectedMesh) {
