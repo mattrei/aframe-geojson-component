@@ -66,7 +66,7 @@ This component so far can be just used as a texture for a geometry object (plane
 ##### Events
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
-| geojson-texture-generated | _None_| Fired when the GeoJSON has finished loading (asynchronous operation!). |
+| geojson-texture-generated | _None_| Fired when the GeoJSON has finished loading (asynchronous operation!) or when the style has changed and the canvas is redrawn. You must set the _needsUpdate_ to true on your mesh map to be reflected on the mesh! |
 
 
 ##### API
