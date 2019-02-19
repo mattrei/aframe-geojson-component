@@ -14468,7 +14468,7 @@ function memcpy (src, srcOffset, dst, dstOffset, length) {
 const CANVAS_GENERATED_EVENT = 'geojson-texture-generated';
 
 AFRAME.registerComponent('geojson-texture', {
-  dependencies: ['material'],
+  //dependencies: ['material'],
   schema: {
     src: {
       type: 'asset'
@@ -14543,10 +14543,12 @@ AFRAME.registerComponent('geojson-texture', {
     if (oldData.center !== data.center) {
       this.projection.center(this._vec2ToArray(data.center));
     }
-    this.redraw();
 
     if (data.src && data.src !== oldData.src) {
       this.loader.load(data.src, this.onGeojsonLoaded.bind(this));
+    } else {
+      this.redraw();
+      this.el.emit(CANVAS_GENERATED_EVENT);
     }
   },
   _vec2ToArray: function (vec2) {
@@ -14569,7 +14571,7 @@ AFRAME.registerComponent('geojson-texture', {
     }
 
     this.redraw();
-    this.el.emit(CANVAS_GENERATED_EVENT, {});
+    this.el.emit(CANVAS_GENERATED_EVENT);
   },
   getStrokeColorOr: function (feature, defaultColor) {
     if (feature.properties && feature.properties.stroke) {
@@ -14621,9 +14623,6 @@ AFRAME.registerComponent('geojson-texture', {
       context.fillStyle = fillColor;
       context.fill();
     }
-
-    const mesh = this.el.getObject3D('mesh')
-    mesh.material.map.needsUpdate = true;
   },
   getProjection: function () {
     return this.projection;
