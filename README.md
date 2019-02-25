@@ -36,7 +36,7 @@ The geojson component has the `material` and `geometry` components as a dependen
 | Name | Data | Description |
 | -------- | ----------- | ------------- |
 | geojson-loaded | `{ data }`| Fired when the GeoJSON has finished loading (asynchronous operation!). `data` contains the generated GeoJSON and graphical data. |
-| geojson-feature-selected | `{ feature, mesh }`| The selected feature and mesh by the raycaster if the _featureEventName_ parameter is given. To highlight the mesh you have to configure its _material_ property and add it to the scene. |
+| geojson-feature-selected | `{ feature, mesh }`| The selected feature and mesh by the raycaster if the _featureEventName_ parameter is given. To highlight the mesh you have to configure its _material_ property and add it to the scene. This works only with the *first* _enabled_ raycaster!  |
 
 ##### API
 | Name | Data | Description |
