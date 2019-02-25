@@ -13771,9 +13771,11 @@ AFRAME.registerComponent('geojson', {
       for (i=0; i < raycasterEls.length; i++) {
         const raycasterEl = raycasterEls[i];
         //raycasterEl.components.raycaster.updateOriginDirection();
-        const detail = raycasterEl.components.raycaster.getIntersection(this.el);
-        if (detail) {
-          this.select(raycasterEl);
+        if (raycasterEl.components.raycaster.data.enabled) {
+          const detail = raycasterEl.components.raycaster.getIntersection(this.el);
+          if (detail) {
+            this.select(raycasterEl);
+          }
         }
       }
     }
