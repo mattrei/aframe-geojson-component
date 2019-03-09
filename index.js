@@ -590,7 +590,7 @@ AFRAME.registerComponent('geojson', {
       }
 
       var mesh = new THREE.LineSegments(partGeometry, partMaterial);
-      mesh.fustrumCulled = false;
+      mesh.frustumCulled = false;
       mesh.visible = true;
 
       this.shapesMap.set(entry[0].id, mesh);
@@ -604,7 +604,7 @@ AFRAME.registerComponent('geojson', {
     const material = this._getLineMaterial();
 
     const mesh = new THREE.LineSegments(lineGeometry, material);
-    mesh.fustrumCulled = false;
+    mesh.frustumCulled = false;
 
     return mesh;
   },
