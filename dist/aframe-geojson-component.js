@@ -14347,6 +14347,7 @@ AFRAME.registerComponent('geojson', {
     });
   },
   select: (function () {
+    const up = new THREE.Vector3(0,1,0);
     const dummy = new THREE.Object3D();
     return function (raycasterEl) {
       if (this.isSelecting || !this.maskMesh) return;
@@ -14369,6 +14370,7 @@ AFRAME.registerComponent('geojson', {
         dummy.rotation.y += Math.PI;
 
         this.hitTest(dummy).then((res) => {
+          point.applyAxisAngle(up, Math.PI/2)
           this.selectFeature(res, point);
         });
       }
