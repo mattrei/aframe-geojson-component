@@ -590,7 +590,7 @@ AFRAME.registerComponent('geojson', {
       }
 
       var mesh = new THREE.LineSegments(partGeometry, partMaterial);
-      mesh.frustumCulled = false;
+      //mesh.frustumCulled = false;
       mesh.visible = true;
 
       this.shapesMap.set(entry[0].id, mesh);
@@ -604,7 +604,7 @@ AFRAME.registerComponent('geojson', {
     const material = this._getLineMaterial();
 
     const mesh = new THREE.LineSegments(lineGeometry, material);
-    mesh.frustumCulled = false;
+    //mesh.frustumCulled = false;
 
     return mesh;
   },
@@ -668,7 +668,7 @@ AFRAME.registerComponent('geojson', {
 
     return new THREE.Vector3(x, y, z);
   },
-  selectFeature: function (feature) {
+  selectFeature: function (feature, point) {
     const data = this.data;
     this.isSelecting = false;
     if (!feature) return;
@@ -689,7 +689,7 @@ AFRAME.registerComponent('geojson', {
                 (selected[data.featureKey] || selected[data.dataKey])) {
       this._selectedFeature = selected;
 
-      this.el.emit(FEATURE_SELECTED_EVENT, {feature: selected, mesh: shape});
+      this.el.emit(FEATURE_SELECTED_EVENT, {feature: selected, mesh: shape, point: point});
     }
   },
   hitTest: function (obj) {
@@ -732,17 +732,17 @@ AFRAME.registerComponent('geojson', {
       const intersections = raycaster.intersectObject(this.maskMesh);
       if (intersections.length > 0) {
         this.isSelecting = true;
-        var p = intersections[0].point.clone();
+        const point = intersections[0].point.clone();
 
         // needed if its a sphere
         if (this.el.components.geometry.data.primitive === 'sphere') {
            this.el.object3D.getWorldPosition(dummy.position);
         } 
-        dummy.lookAt(p);
+        dummy.lookAt(point);
         dummy.rotation.y += Math.PI;
 
         this.hitTest(dummy).then((res) => {
-          this.selectFeature(res);
+          this.selectFeature(res, point);
         });
       }
             // entity.components.raycaster.refreshObjects()

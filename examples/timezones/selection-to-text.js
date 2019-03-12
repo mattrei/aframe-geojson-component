@@ -7,7 +7,7 @@ AFRAME.registerComponent('selection-to-text', {
 
   init: function () {
     this.el.addEventListener('geojson-feature-selected', evt => {
-      console.log(evt.detail.feature);
+      console.log(evt.detail.feature, evt.detail.point);
     });
   }
 });

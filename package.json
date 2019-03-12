@@ -1,12 +1,12 @@
 {
   "name": "aframe-geojson-component",
-  "version": "1.3.6",
+  "version": "1.4.0",
   "description": "Visualize GeoJSON/TopoJSON documents in A-Frame with the help of the D3 library",
   "main": "index.js",
   "unpkg": "dist/aframe-geojson-component.min.js",
   "scripts": {
     "build": "webpack index.js dist/aframe-geojson-component.js",
-    "dev": "budo index.js:dist/aframe-geojson-component.min.js --port 7000 --live --open",
+    "dev": "budo index.js:dist/aframe-geojson-component.min.js --port 7000 --live",
     "dist": "npm run build && uglifyjs dist/aframe-geojson-component.js > dist/aframe-geojson-component.min.js",
     "lint": "semistandard -v | snazzy",
     "prepublish": "npm run dist",
