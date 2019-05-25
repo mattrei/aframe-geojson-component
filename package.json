@@ -1,6 +1,6 @@
 {
   "name": "aframe-geojson-component",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Visualize GeoJSON/TopoJSON documents in A-Frame with the help of the D3 library",
   "main": "index.js",
   "unpkg": "dist/aframe-geojson-component.min.js",
@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/mattrei/aframe-geojson-component#readme",
   "devDependencies": {
-    "aframe": "^0.9.0",
+    "aframe": "*",
     "browserify": "^13.0.0",
     "budo": "^8.2.2",
     "chai": "^3.4.1",

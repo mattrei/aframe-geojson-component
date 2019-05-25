@@ -220,9 +220,12 @@ AFRAME.registerComponent('geojson', {
     this.codes = new Map(); // country color codes for selecting
     this.hitScene = new THREE.Scene();
     this.hitCamera = new THREE.PerspectiveCamera(0.001, 1, 0.01, 3000);
-    this.hitTexture = new THREE.WebGLRenderTarget(1, 1);
-    this.hitTexture.texture.minFilter = THREE.NearestFilter;
-    this.hitTexture.texture.magFilter = THREE.NearestFilter;
+    this.hitTexture = new THREE.WebGLRenderTarget(1, 1, {
+      minFilter: THREE.NearestFilter,
+      magFilter: THREE.NearestFilter,
+      format: THREE.RGBAFormat,
+      type: THREE.UnsignedByteType
+    });
     this.hitTexture.generateMipMaps = false;
     this.hitTexture.setSize(100, 100);
 
@@ -702,7 +705,10 @@ AFRAME.registerComponent('geojson', {
 
     const isVREnabled = renderer.vr.enabled;
     renderer.vr.enabled = false;
-    renderer.render(this.hitScene, this.hitCamera, this.hitTexture);
+    renderer.setRenderTarget(this.hitTexture);
+    renderer.clear();
+    renderer.render(this.hitScene, this.hitCamera);
+    renderer.setRenderTarget(null);
     renderer.vr.enabled = isVREnabled;
 
     return new Promise((resolve, reject) => {

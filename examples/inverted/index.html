@@ -2,7 +2,7 @@
   <head>
     <title>A-Frame Geojson Component - Basic</title>
     <meta name="description" content="Basic example for Geojson component."></meta>
-    <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
     <script src="../../dist/aframe-geojson-component.min.js"></script>
     <script src="./selection-to-text.js"></script>
   </head>
@@ -20,10 +20,11 @@
         <a-asset-item id="json-places" src="assets/ne_110m_populated_places_simple.geojson" />
       </a-assets>
 
-      <a-entity scale="-1 1 1">
+      <a-entity scale="1 1 1">
 
 
         <a-entity id="countries-globe"
+          scale="-1 1 1"
           class="gazeactivated"
           geometry="primitive: sphere; radius: 2;"
           material="color: #000; transparent: true; side: back;"
@@ -38,6 +39,7 @@
 
 
         <a-entity id="rivers-globe"
+          scale="-1 1 1"
           class="gazeactivated"
           geometry="primitive: sphere; radius: 2;"
           material="color: #0AF; transparent: true; side: back;"
@@ -50,6 +52,7 @@
    
 
         <a-entity id="places-globe"
+          scale="-1 1 1"
           class="gazeactivated"
           geometry="primitive: sphere; radius: 2;"
           material="color: #F0A; transparent: true; side: back;"
