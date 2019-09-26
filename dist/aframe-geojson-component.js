@@ -14123,7 +14123,6 @@ AFRAME.registerComponent('geojson', {
       geometry,
       material
     );
-    // mesh.frustumCulled = false;
 
     return mesh;
   },
@@ -14220,7 +14219,6 @@ AFRAME.registerComponent('geojson', {
       }
 
       var mesh = new THREE.LineSegments(partGeometry, partMaterial);
-      //mesh.frustumCulled = false;
       mesh.visible = true;
 
       this.shapesMap.set(entry[0].id, mesh);
@@ -14234,7 +14232,6 @@ AFRAME.registerComponent('geojson', {
     const material = this._getLineMaterial();
 
     const mesh = new THREE.LineSegments(lineGeometry, material);
-    //mesh.frustumCulled = false;
 
     return mesh;
   },
@@ -14584,18 +14581,18 @@ AFRAME.registerComponent('geojson-texture', {
     this.el.emit(CANVAS_GENERATED_EVENT);
   },
   getStrokeColorOr: function (feature, defaultColor) {
-    if (feature.properties && feature.properties.stroke) {
-      const color = feature.properties.stroke;
-      const opacity = feature.properties['stroke-opacity'] || 1.0;
+    if (feature.properties) {
+      const color = feature.properties.stroke || this.data.lineColor;
+      const opacity = feature.properties['stroke-opacity'] || this.data.lineOpacity;
 
       return this._getColorStyle(new THREE.Color(color), opacity);
     }
     return defaultColor;
   },
   getFillColorOr: function (feature, defaultColor) {
-    if (feature.properties && feature.properties.fill) {
-      const color = feature.properties.fill;
-      const opacity = feature.properties['fill-opacity'] || 0.6;
+    if (feature.properties) {
+      const color = feature.properties.fill || this.data.fillColor;
+      const opacity = feature.properties['fill-opacity'] || this.data.fillOpacity;
 
       return this._getColorStyle(new THREE.Color(color), opacity);
     }
