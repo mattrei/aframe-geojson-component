@@ -746,7 +746,7 @@ AFRAME.registerComponent('geojson', {
         dummy.rotation.y += Math.PI;
 
         this.hitTest(dummy).then((res) => {
-          point.applyAxisAngle(up, Math.PI/2)
+          //point.applyAxisAngle(up, Math.PI/2)
           this.selectFeature(res, point);
         });
       }
