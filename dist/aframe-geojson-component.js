@@ -14123,8 +14123,8 @@ AFRAME.registerComponent('geojson', {
       i += 1;
     });
 
-    geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
-    // geometry.addAttribute('size', new THREE.BufferAttribute(sizes, 1));
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    // geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
     // does not work or?
     geometry.computeBoundingSphere();
 
@@ -14174,7 +14174,7 @@ AFRAME.registerComponent('geojson', {
       i += 1;
     });
 
-    geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.computeBoundingSphere();
 
     const material = new THREE.LineBasicMaterial({
@@ -14272,7 +14272,7 @@ AFRAME.registerComponent('geojson', {
       });
 
       var partGeometry = new THREE.BufferGeometry();
-      partGeometry.addAttribute('position', new THREE.BufferAttribute(partPositions, 3));
+      partGeometry.setAttribute('position', new THREE.BufferAttribute(partPositions, 3));
       partGeometry.computeBoundingSphere();
 
       var partMaterial = defaultPartMaterial;
@@ -14291,7 +14291,7 @@ AFRAME.registerComponent('geojson', {
       entry.shape = mesh;
     });
 
-    lineGeometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+    lineGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     lineGeometry.computeBoundingSphere();
 
     const material = this._getLineMaterial();
