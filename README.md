@@ -1,6 +1,6 @@
 ## aframe-geojson-component
 
-A GeoJSON/TopoJSON component for easily building an orthographic globe in [A-Frame](https://aframe.io).
+A GeoJSON/TopoJSON component using [D3.js](https://d3js.org) for easily building an orthographic globe in [A-Frame](https://aframe.io).
 
 > Supports A-Frame 1.0.x.
 
@@ -95,7 +95,8 @@ Install and use by directly including the [browser files](dist):
 ```html
 <head>
   <title>My A-Frame Scene</title>
-  <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+  <script src="https://aframe.io/releases/1.0.3/aframe.min.js"></script>
+  <script src="https://d3js.org/d3.v5.js"></script>
   <script src="https://unpkg.com/aframe-geojson-component/dist/aframe-geojson-component.min.js"></script>
 </head>
 

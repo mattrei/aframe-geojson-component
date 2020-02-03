@@ -6,8 +6,9 @@ if (typeof AFRAME === 'undefined') {
 
 require('pathseg'); // polyfill
 
-const d3 = require('d3');
-const d3GeoProjection = require('d3-geo-projection');
+const d3sel = require('d3-selection')
+const d3geo = require('d3-geo')
+const d3dsv = require('d3-dsv')
 const topojson = require('topojson-client');
 
 const FEATURE_SELECTED_EVENT = 'geojson-feature-selected';
@@ -172,16 +173,16 @@ AFRAME.registerComponent('geojson', {
     const width = 360; // corresponds to longitude
     const height = 180; // corresponds to positive scaled latitude
 
-    const projectionFunc = d3[data.projection] ? d3[data.projection] : d3GeoProjection[data.projection];
+    const projectionFunc = d3geo[data.projection];
     const projection = projectionFunc().scale(height / Math.PI)
             // http://bl.ocks.org/mbostock/3757119
             .translate([
               width / 2,
               height / 2
             ]);
-    const path = d3.geoPath(projection).pointRadius(0.1); // why 0.1?
+    const path = d3geo.geoPath(projection).pointRadius(0.1); // why 0.1?
 
-    var svg = d3.select('body').append('svg').attr('width', width).attr('height', height);
+    var svg = d3sel.select('body').append('svg').attr('width', width).attr('height', height);
 
     var isTopojson = json.features === undefined;
 
@@ -258,7 +259,7 @@ AFRAME.registerComponent('geojson', {
   onDataLoaded: function (file) {
     const data = this.data;
 
-    const contents = data.dataType === 'tsv' ? d3.tsvParse(file) : d3.csvParse(file);
+    const contents = data.dataType === 'tsv' ? d3dsv.tsvParse(file) : d3dsv.csvParse(file);
 
     for (var i = 0; i < contents.length; i++) {
       const content = contents[i];
@@ -759,21 +760,21 @@ AFRAME.registerComponent('geojson', {
     const width = 512 * 2;
     const height = 256 * 2;
 
-    const projection = d3.geoEquirectangular()
+    const projection = d3geo.geoEquirectangular()
             .scale(height / Math.PI)
             .translate([width / 2, height / 2])
             .rotate([0, 0, 0]);
 
-    const path = d3.geoPath(projection);
+    const path = d3geo.geoPath(projection);
 
-    var canvas = d3
+    var canvas = d3sel
             .select('body')
             .append('canvas')
             .attr('id', 'mask-canvas')
             .attr('image-rendering', 'pixelated')
             .attr('width', width + 'px')
             .attr('height', height + 'px');
-    const ctx = d3.select('#mask-canvas').node().getContext('2d');
+    const ctx = d3sel.select('#mask-canvas').node().getContext('2d');
     const ctxPath = path.context(ctx);
 
     ctx.imageSmoothingEnabled = false;
@@ -911,11 +912,11 @@ AFRAME.registerComponent('geojson-texture', {
       const width = data.canvas.width;
       const height = data.canvas.height;
       
-      const projectionFunc = d3[data.projection] ? d3[data.projection] : d3GeoProjection[data.projection];
+      const projectionFunc = d3geo[data.projection];
       this.projection = projectionFunc()
                 .scale(height / Math.PI)
                 .translate([width / 2, height / 2]);
-      this.mapPath = d3.geoPath(this.projection);
+      this.mapPath = d3geo.geoPath(this.projection);
     }
     if (oldData.rotation !== data.rotation) {
       this.projection.rotate(this._vec2ToArray(data.rotation));
