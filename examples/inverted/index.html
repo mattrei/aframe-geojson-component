@@ -25,13 +25,13 @@
 
         <a-entity id="countries-globe"
           scale="-1 1 1"
-          class="gazeactivated"
+          class="clickable"
           geometry="primitive: sphere; radius: 2;"
           material="color: #000; transparent: true; side: back;"
           geojson="src: #json-world-110m; topologyObject: countries;
             lineWidth: 1; 
             dataSrc: #tsv-world-110m; dataType: tsv; dataKey: iso_n3;
-            featureEventName: click;
+            featureEventName: raycaster-intersected;
             "
           selection-to-text
           >
@@ -40,7 +40,7 @@
 
         <a-entity id="rivers-globe"
           scale="-1 1 1"
-          class="gazeactivated"
+          class="clickable"
           geometry="primitive: sphere; radius: 2;"
           material="color: #0AF; transparent: true; side: back;"
           geojson="src: #json-rivers; 
@@ -53,7 +53,7 @@
 
         <a-entity id="places-globe"
           scale="-1 1 1"
-          class="gazeactivated"
+          class="clickable"
           geometry="primitive: sphere; radius: 2;"
           material="color: #F0A; transparent: true; side: back;"
           geojson="src: #json-places; 
@@ -65,7 +65,7 @@
           
         <!--
         <a-entity id="plates-globe"
-          class="gazeactivated"
+          class="clickable"
           geometry="primitive: sphere; radius: 2;"
           material="color: #000; transparent: true; side: back;"
           geojson="src: #json-plates;
@@ -86,9 +86,26 @@
 
         <a-camera id="camera" position="0 0 0" wasd-controls-enabled="true" look-controls-enabled="true">
 
-          <a-text id="infoText" color="black" value="" position="0.5 0 -0.8" scale="0.4 0.4 0.4"></a-text>
+          <a-text id="infoText" color="black" value="" position="-0.2 0.1 -0.8" scale="0.4 0.4 0.4"></a-text>
 
-          <a-cursor fuse objects=".gazeactivated" interval="2000"></a-cursor>
+<a-entity
+  animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+  animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+  animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+  raycaster="objects: .clickable;"
+  cursor="fuse: true; rayOrigin: mouse"
+  material="color: red; shader: flat"
+  position="0 0 -1"
+  geometry="primitive: ring; radiusOuter: 0.016; radiusInner: 0.01;"></a-entity>
+          
+
+          <!--
+          <a-cursor fuse objects=".clickable" interval="1000"
+  animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 150; from: 0.1 0.1 0.1; to: 1 1 1"
+  animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 0.1 0.1 0.1"
+  animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 500; to: 1 1 1"
+  ></a-cursor>
+          -->
         </a-camera>
     </a-scene>
   </body>

@@ -13737,7 +13737,7 @@ AFRAME.registerComponent('geojson', {
     },
     featureEventName: {
       default: '',
-      oneOf: ['', 'click', 'raycaster-intersected']
+      //oneOf: ['', 'click', 'raycaster-intersected']
     },
     lineWidth: {
       default: 1
@@ -13941,7 +13941,7 @@ AFRAME.registerComponent('geojson', {
 
     this.maskMesh = this.generateMask(features);
 
-    if (data.featureEventName === 'click') {
+    if (data.featureEventName !== 'raycaster-intersected') {
       this.el.addEventListener(data.featureEventName, this.select.bind(this));
     }
 
@@ -14392,13 +14392,13 @@ AFRAME.registerComponent('geojson', {
     this.hitCamera.position.copy(obj.position);
     this.hitCamera.rotation.copy(obj.rotation);
 
-    const isVREnabled = renderer.vr.enabled;
-    renderer.vr.enabled = false;
+    const isXREnabled = renderer.xr.enabled;
+    renderer.xr.enabled = false;
     renderer.setRenderTarget(this.hitTexture);
     renderer.clear();
     renderer.render(this.hitScene, this.hitCamera);
     renderer.setRenderTarget(null);
-    renderer.vr.enabled = isVREnabled;
+    renderer.xr.enabled = isXREnabled;
 
     return new Promise((resolve, reject) => {
       var res = null;

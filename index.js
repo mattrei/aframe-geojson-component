@@ -45,7 +45,7 @@ AFRAME.registerComponent('geojson', {
     },
     featureEventName: {
       default: '',
-      oneOf: ['', 'click', 'raycaster-intersected']
+      //oneOf: ['', 'click', 'raycaster-intersected']
     },
     lineWidth: {
       default: 1
@@ -249,7 +249,7 @@ AFRAME.registerComponent('geojson', {
 
     this.maskMesh = this.generateMask(features);
 
-    if (data.featureEventName === 'click') {
+    if (data.featureEventName !== 'raycaster-intersected') {
       this.el.addEventListener(data.featureEventName, this.select.bind(this));
     }
 

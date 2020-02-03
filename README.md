@@ -25,7 +25,7 @@ The geojson component has the `material` and `geometry` components as a dependen
 | dataType | The data type of the dataSrc attribute. Only needed if _dataSrc_ is specified. | csv | csv, tsv |
 | dataKey | The name of the property of the metadata that is matched to the GeoJSON's _featureKey_ attribute. Only needed if _dataSrc_ is specified. | id | |
 | raycasterAccuracy | The "accuracy" of the raycaster selection. The smaller the closer you have to point with raycaster on the feature to be selected. Set smaller if you have many features close by, higher otherwise. Normalized to a generally good working condition. Unfortunately point features are not respected ... | 1 | |
-| featureEventName | The event name that should be added as a listener. No events will be omitted if empty. |  | click, raycaster-intersected |
+| featureEventName | The event name that should be added as a listener. No events will be omitted if empty. |  | click, raycaster-intersected, mousedown, mouseup, ... |
 | lineWidth | The width of the line for _Polygons_ and _Line_ elements. | 1 | |
 | pointScale | The scaling factor of the _Point_ data | 0.1 | |
 | pointSizeFeature | Sets the size of the point using a feature. Optional. | | |
