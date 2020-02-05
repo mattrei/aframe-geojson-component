@@ -63,11 +63,242 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 73);
+/******/ 	return __webpack_require__(__webpack_require__.s = 97);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return abs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return atan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return atan2; });
+/* unused harmony export ceil */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return cos; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return exp; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return floor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return log; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return max; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return min; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return pow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return round; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return sign; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return sin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return tan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return epsilon; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return epsilon2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return pi; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return halfPi; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return quarterPi; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return sqrt1_2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return sqrt2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return sqrtPi; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return tau; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return degrees; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return radians; });
+/* harmony export (immutable) */ __webpack_exports__["H"] = sinci;
+/* harmony export (immutable) */ __webpack_exports__["i"] = asin;
+/* harmony export (immutable) */ __webpack_exports__["d"] = acos;
+/* harmony export (immutable) */ __webpack_exports__["e"] = sqrt;
+/* harmony export (immutable) */ __webpack_exports__["C"] = tanh;
+/* harmony export (immutable) */ __webpack_exports__["D"] = sinh;
+/* harmony export (immutable) */ __webpack_exports__["B"] = cosh;
+/* harmony export (immutable) */ __webpack_exports__["G"] = arsinh;
+/* harmony export (immutable) */ __webpack_exports__["F"] = arcosh;
+var abs = Math.abs;
+var atan = Math.atan;
+var atan2 = Math.atan2;
+var ceil = Math.ceil;
+var cos = Math.cos;
+var exp = Math.exp;
+var floor = Math.floor;
+var log = Math.log;
+var max = Math.max;
+var min = Math.min;
+var pow = Math.pow;
+var round = Math.round;
+var sign = Math.sign || function(x) { return x > 0 ? 1 : x < 0 ? -1 : 0; };
+var sin = Math.sin;
+var tan = Math.tan;
+
+var epsilon = 1e-6;
+var epsilon2 = 1e-12;
+var pi = Math.PI;
+var halfPi = pi / 2;
+var quarterPi = pi / 4;
+var sqrt1_2 = Math.SQRT1_2;
+var sqrt2 = sqrt(2);
+var sqrtPi = sqrt(pi);
+var tau = pi * 2;
+var degrees = 180 / pi;
+var radians = pi / 180;
+
+function sinci(x) {
+  return x ? x / Math.sin(x) : 1;
+}
+
+function asin(x) {
+  return x > 1 ? halfPi : x < -1 ? -halfPi : Math.asin(x);
+}
+
+function acos(x) {
+  return x > 1 ? 0 : x < -1 ? pi : Math.acos(x);
+}
+
+function sqrt(x) {
+  return x > 0 ? Math.sqrt(x) : 0;
+}
+
+function tanh(x) {
+  x = exp(2 * x);
+  return (x - 1) / (x + 1);
+}
+
+function sinh(x) {
+  return (exp(x) - exp(-x)) / 2;
+}
+
+function cosh(x) {
+  return (exp(x) + exp(-x)) / 2;
+}
+
+function arsinh(x) {
+  return log(x + sqrt(x * x + 1));
+}
+
+function arcosh(x) {
+  return log(x + sqrt(x * x - 1));
+}
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__area_js__ = __webpack_require__(67);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoArea", function() { return __WEBPACK_IMPORTED_MODULE_0__area_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bounds_js__ = __webpack_require__(202);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBounds", function() { return __WEBPACK_IMPORTED_MODULE_1__bounds_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__centroid_js__ = __webpack_require__(203);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCentroid", function() { return __WEBPACK_IMPORTED_MODULE_2__centroid_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__circle_js__ = __webpack_require__(68);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCircle", function() { return __WEBPACK_IMPORTED_MODULE_3__circle_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__clip_antimeridian_js__ = __webpack_require__(69);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoClipAntimeridian", function() { return __WEBPACK_IMPORTED_MODULE_4__clip_antimeridian_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__clip_circle_js__ = __webpack_require__(71);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoClipCircle", function() { return __WEBPACK_IMPORTED_MODULE_5__clip_circle_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__clip_extent_js__ = __webpack_require__(204);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoClipExtent", function() { return __WEBPACK_IMPORTED_MODULE_6__clip_extent_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__clip_rectangle_js__ = __webpack_require__(20);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoClipRectangle", function() { return __WEBPACK_IMPORTED_MODULE_7__clip_rectangle_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__contains_js__ = __webpack_require__(207);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoContains", function() { return __WEBPACK_IMPORTED_MODULE_8__contains_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__distance_js__ = __webpack_require__(75);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoDistance", function() { return __WEBPACK_IMPORTED_MODULE_9__distance_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__graticule_js__ = __webpack_require__(208);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGraticule", function() { return __WEBPACK_IMPORTED_MODULE_10__graticule_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGraticule10", function() { return __WEBPACK_IMPORTED_MODULE_10__graticule_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__interpolate_js__ = __webpack_require__(209);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoInterpolate", function() { return __WEBPACK_IMPORTED_MODULE_11__interpolate_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__length_js__ = __webpack_require__(76);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLength", function() { return __WEBPACK_IMPORTED_MODULE_12__length_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__path_index_js__ = __webpack_require__(213);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPath", function() { return __WEBPACK_IMPORTED_MODULE_13__path_index_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__projection_albers_js__ = __webpack_require__(80);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAlbers", function() { return __WEBPACK_IMPORTED_MODULE_14__projection_albers_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__projection_albersUsa_js__ = __webpack_require__(216);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAlbersUsa", function() { return __WEBPACK_IMPORTED_MODULE_15__projection_albersUsa_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__projection_azimuthalEqualArea_js__ = __webpack_require__(217);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAzimuthalEqualArea", function() { return __WEBPACK_IMPORTED_MODULE_16__projection_azimuthalEqualArea_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAzimuthalEqualAreaRaw", function() { return __WEBPACK_IMPORTED_MODULE_16__projection_azimuthalEqualArea_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__projection_azimuthalEquidistant_js__ = __webpack_require__(218);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAzimuthalEquidistant", function() { return __WEBPACK_IMPORTED_MODULE_17__projection_azimuthalEquidistant_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAzimuthalEquidistantRaw", function() { return __WEBPACK_IMPORTED_MODULE_17__projection_azimuthalEquidistant_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__projection_conicConformal_js__ = __webpack_require__(219);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicConformal", function() { return __WEBPACK_IMPORTED_MODULE_18__projection_conicConformal_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicConformalRaw", function() { return __WEBPACK_IMPORTED_MODULE_18__projection_conicConformal_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__projection_conicEqualArea_js__ = __webpack_require__(34);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicEqualArea", function() { return __WEBPACK_IMPORTED_MODULE_19__projection_conicEqualArea_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicEqualAreaRaw", function() { return __WEBPACK_IMPORTED_MODULE_19__projection_conicEqualArea_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__projection_conicEquidistant_js__ = __webpack_require__(220);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicEquidistant", function() { return __WEBPACK_IMPORTED_MODULE_20__projection_conicEquidistant_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicEquidistantRaw", function() { return __WEBPACK_IMPORTED_MODULE_20__projection_conicEquidistant_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__projection_equalEarth_js__ = __webpack_require__(222);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEqualEarth", function() { return __WEBPACK_IMPORTED_MODULE_21__projection_equalEarth_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEqualEarthRaw", function() { return __WEBPACK_IMPORTED_MODULE_21__projection_equalEarth_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__projection_equirectangular_js__ = __webpack_require__(81);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEquirectangular", function() { return __WEBPACK_IMPORTED_MODULE_22__projection_equirectangular_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEquirectangularRaw", function() { return __WEBPACK_IMPORTED_MODULE_22__projection_equirectangular_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__projection_gnomonic_js__ = __webpack_require__(223);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGnomonic", function() { return __WEBPACK_IMPORTED_MODULE_23__projection_gnomonic_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGnomonicRaw", function() { return __WEBPACK_IMPORTED_MODULE_23__projection_gnomonic_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__projection_identity_js__ = __webpack_require__(224);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoIdentity", function() { return __WEBPACK_IMPORTED_MODULE_24__projection_identity_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__projection_index_js__ = __webpack_require__(3);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoProjection", function() { return __WEBPACK_IMPORTED_MODULE_25__projection_index_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoProjectionMutator", function() { return __WEBPACK_IMPORTED_MODULE_25__projection_index_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__projection_mercator_js__ = __webpack_require__(36);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMercator", function() { return __WEBPACK_IMPORTED_MODULE_26__projection_mercator_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMercatorRaw", function() { return __WEBPACK_IMPORTED_MODULE_26__projection_mercator_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__projection_naturalEarth1_js__ = __webpack_require__(225);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNaturalEarth1", function() { return __WEBPACK_IMPORTED_MODULE_27__projection_naturalEarth1_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNaturalEarth1Raw", function() { return __WEBPACK_IMPORTED_MODULE_27__projection_naturalEarth1_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__projection_orthographic_js__ = __webpack_require__(226);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoOrthographic", function() { return __WEBPACK_IMPORTED_MODULE_28__projection_orthographic_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoOrthographicRaw", function() { return __WEBPACK_IMPORTED_MODULE_28__projection_orthographic_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__projection_stereographic_js__ = __webpack_require__(228);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoStereographic", function() { return __WEBPACK_IMPORTED_MODULE_29__projection_stereographic_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoStereographicRaw", function() { return __WEBPACK_IMPORTED_MODULE_29__projection_stereographic_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__projection_transverseMercator_js__ = __webpack_require__(229);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTransverseMercator", function() { return __WEBPACK_IMPORTED_MODULE_30__projection_transverseMercator_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTransverseMercatorRaw", function() { return __WEBPACK_IMPORTED_MODULE_30__projection_transverseMercator_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__rotation_js__ = __webpack_require__(21);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoRotation", function() { return __WEBPACK_IMPORTED_MODULE_31__rotation_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__stream_js__ = __webpack_require__(8);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoStream", function() { return __WEBPACK_IMPORTED_MODULE_32__stream_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__transform_js__ = __webpack_require__(22);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTransform", function() { return __WEBPACK_IMPORTED_MODULE_33__transform_js__["a"]; });
+
+
+
+
+
+
+ // DEPRECATED! Use d3.geoIdentity().clipExtent(…).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -133,22 +364,22 @@ function haversin(x) {
 
 
 /***/ }),
-/* 1 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = projection;
 /* harmony export (immutable) */ __webpack_exports__["b"] = projectionMutator;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__clip_antimeridian_js__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__clip_circle_js__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__clip_rectangle_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__compose_js__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__identity_js__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__rotation_js__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__transform_js__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fit_js__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__resample_js__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__clip_antimeridian_js__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__clip_circle_js__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__clip_rectangle_js__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__compose_js__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__identity_js__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__rotation_js__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__transform_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__fit_js__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__resample_js__ = __webpack_require__(227);
 
 
 
@@ -316,43 +547,43 @@ function projectionMutator(projectAt) {
 
 
 /***/ }),
-/* 2 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return root; });
 /* harmony export (immutable) */ __webpack_exports__["b"] = Selection;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__select__ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selectAll__ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filter__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__enter__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__exit__ = __webpack_require__(136);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__join__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__merge__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__order__ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__sort__ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__call__ = __webpack_require__(128);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__nodes__ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__node__ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__size__ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__empty__ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__each__ = __webpack_require__(134);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__attr__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__style__ = __webpack_require__(62);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__property__ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__classed__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__text__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__html__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__raise__ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__lower__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__append__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__insert__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__remove__ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__clone__ = __webpack_require__(130);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__datum__ = __webpack_require__(132);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__on__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__dispatch__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__select__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selectAll__ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__filter__ = __webpack_require__(246);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__data__ = __webpack_require__(240);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__enter__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__exit__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__join__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__merge__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__order__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__sort__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__call__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__nodes__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__node__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__size__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__empty__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__each__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__attr__ = __webpack_require__(236);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__style__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__property__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__classed__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__text__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__html__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__raise__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__lower__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__append__ = __webpack_require__(235);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__insert__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__remove__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__clone__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__datum__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__on__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__dispatch__ = __webpack_require__(242);
 
 
 
@@ -435,7 +666,205 @@ Selection.prototype = selection.prototype = {
 
 
 /***/ }),
-/* 3 */
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_array__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
+
+
+
+
+function pointEqual(a, b) {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["f" /* abs */])(a[0] - b[0]) < __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */] && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["f" /* abs */])(a[1] - b[1]) < __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */];
+}
+
+function interpolateLine(coordinates, m) {
+  var i = -1,
+      n = coordinates.length,
+      p0 = coordinates[0],
+      p1,
+      dx,
+      dy,
+      resampled = [];
+  while (++i < n) {
+    p1 = coordinates[i];
+    dx = (p1[0] - p0[0]) / m;
+    dy = (p1[1] - p0[1]) / m;
+    for (var j = 0; j < m; ++j) resampled.push([p0[0] + j * dx, p0[1] + j * dy]);
+    p0 = p1;
+  }
+  resampled.push(p1);
+  return resampled;
+}
+
+function interpolateSphere(lobes) {
+  var coordinates = [],
+      lobe,
+      lambda0, phi0, phi1,
+      lambda2, phi2,
+      i, n = lobes[0].length;
+
+  // Northern Hemisphere
+  for (i = 0; i < n; ++i) {
+    lobe = lobes[0][i];
+    lambda0 = lobe[0][0], phi0 = lobe[0][1], phi1 = lobe[1][1];
+    lambda2 = lobe[2][0], phi2 = lobe[2][1];
+    coordinates.push(interpolateLine([
+      [lambda0 + __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */], phi0 + __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */]],
+      [lambda0 + __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */], phi1 - __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */]],
+      [lambda2 - __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */], phi1 - __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */]],
+      [lambda2 - __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */], phi2 + __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */]]
+    ], 30));
+  }
+
+  // Southern Hemisphere
+  for (i = lobes[1].length - 1; i >= 0; --i) {
+    lobe = lobes[1][i];
+    lambda0 = lobe[0][0], phi0 = lobe[0][1], phi1 = lobe[1][1];
+    lambda2 = lobe[2][0], phi2 = lobe[2][1];
+    coordinates.push(interpolateLine([
+      [lambda2 - __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */], phi2 - __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */]],
+      [lambda2 - __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */], phi1 + __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */]],
+      [lambda0 + __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */], phi1 + __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */]],
+      [lambda0 + __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */], phi0 - __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */]]
+    ], 30));
+  }
+
+  return {
+    type: "Polygon",
+    coordinates: [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["a" /* merge */])(coordinates)]
+  };
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function(project, lobes, inverse) {
+  var sphere, bounds;
+
+  function forward(lambda, phi) {
+    var sign = phi < 0 ? -1 : +1, lobe = lobes[+(phi < 0)];
+    for (var i = 0, n = lobe.length - 1; i < n && lambda > lobe[i][2][0]; ++i);
+    var p = project(lambda - lobe[i][1][0], phi);
+    p[0] += project(lobe[i][1][0], sign * phi > sign * lobe[i][0][1] ? lobe[i][0][1] : phi)[0];
+    return p;
+  }
+
+  if (inverse) {
+    forward.invert = inverse(forward);
+  } else if (project.invert) {
+    forward.invert = function(x, y) {
+      var bound = bounds[+(y < 0)], lobe = lobes[+(y < 0)];
+      for (var i = 0, n = bound.length; i < n; ++i) {
+        var b = bound[i];
+        if (b[0][0] <= x && x < b[1][0] && b[0][1] <= y && y < b[1][1]) {
+          var p = project.invert(x - project(lobe[i][1][0], 0)[0], y);
+          p[0] += lobe[i][1][0];
+          return pointEqual(forward(p[0], p[1]), [x, y]) ? p : null;
+        }
+      }
+    };
+  }
+
+  var p = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_d3_geo__["geoProjection"])(forward),
+      stream_ = p.stream;
+
+  p.stream = function(stream) {
+    var rotate = p.rotate(),
+        rotateStream = stream_(stream),
+        sphereStream = (p.rotate([0, 0]), stream_(stream));
+    p.rotate(rotate);
+    rotateStream.sphere = function() { __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_d3_geo__["geoStream"])(sphere, sphereStream); };
+    return rotateStream;
+  };
+  
+  p.lobes = function(_) {
+    if (!arguments.length) return lobes.map(function(lobe) {
+      return lobe.map(function(l) {
+        return [
+          [l[0][0] * __WEBPACK_IMPORTED_MODULE_2__math_js__["p" /* degrees */], l[0][1] * __WEBPACK_IMPORTED_MODULE_2__math_js__["p" /* degrees */]],
+          [l[1][0] * __WEBPACK_IMPORTED_MODULE_2__math_js__["p" /* degrees */], l[1][1] * __WEBPACK_IMPORTED_MODULE_2__math_js__["p" /* degrees */]],
+          [l[2][0] * __WEBPACK_IMPORTED_MODULE_2__math_js__["p" /* degrees */], l[2][1] * __WEBPACK_IMPORTED_MODULE_2__math_js__["p" /* degrees */]]
+        ];
+      });
+    });
+
+    sphere = interpolateSphere(_);
+
+    lobes = _.map(function(lobe) {
+      return lobe.map(function(l) {
+        return [
+          [l[0][0] * __WEBPACK_IMPORTED_MODULE_2__math_js__["o" /* radians */], l[0][1] * __WEBPACK_IMPORTED_MODULE_2__math_js__["o" /* radians */]],
+          [l[1][0] * __WEBPACK_IMPORTED_MODULE_2__math_js__["o" /* radians */], l[1][1] * __WEBPACK_IMPORTED_MODULE_2__math_js__["o" /* radians */]],
+          [l[2][0] * __WEBPACK_IMPORTED_MODULE_2__math_js__["o" /* radians */], l[2][1] * __WEBPACK_IMPORTED_MODULE_2__math_js__["o" /* radians */]]
+        ];
+      });
+    });
+
+    bounds = lobes.map(function(lobe) {
+      return lobe.map(function(l) {
+        var x0 = project(l[0][0], l[0][1])[0],
+            x1 = project(l[2][0], l[2][1])[0],
+            y0 = project(l[1][0], l[0][1])[1],
+            y1 = project(l[1][0], l[1][1])[1],
+            t;
+        if (y0 > y1) t = y0, y0 = y1, y1 = t;
+        return [[x0, y0], [x1, y1]];
+      });
+    });
+
+    return p;
+  };
+
+  if (lobes != null) p.lobes(lobes);
+
+  return p;
+});
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["d"] = mollweideBromleyTheta;
+/* harmony export (immutable) */ __webpack_exports__["c"] = mollweideBromleyRaw;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mollweideRaw; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function mollweideBromleyTheta(cp, phi) {
+  var cpsinPhi = cp * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi), i = 30, delta;
+  do phi -= delta = (phi + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi) - cpsinPhi) / (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi));
+  while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && --i > 0);
+  return phi / 2;
+}
+
+function mollweideBromleyRaw(cx, cy, cp) {
+
+  function forward(lambda, phi) {
+    return [cx * lambda * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi = mollweideBromleyTheta(cp, phi)), cy * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi)];
+  }
+
+  forward.invert = function(x, y) {
+    return y = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(y / cy), [x / (cx * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(y)), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])((2 * y + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(2 * y)) / cp)];
+  };
+
+  return forward;
+}
+
+var mollweideRaw = mollweideBromleyRaw(__WEBPACK_IMPORTED_MODULE_1__math_js__["k" /* sqrt2 */] / __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */], __WEBPACK_IMPORTED_MODULE_1__math_js__["k" /* sqrt2 */], __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(mollweideRaw)
+      .scale(169.529);
+});
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -444,7 +873,7 @@ function noop() {}
 
 
 /***/ }),
-/* 4 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -520,7 +949,7 @@ function streamPolygon(coordinates, stream) {
 
 
 /***/ }),
-/* 5 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -530,7 +959,103 @@ function streamPolygon(coordinates, stream) {
 
 
 /***/ }),
-/* 6 */
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = solve;
+/* harmony export (immutable) */ __webpack_exports__["b"] = solve2d;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+
+
+// Approximate Newton-Raphson
+// Solve f(x) = y, start from x
+function solve(f, y, x) {
+  var steps = 100, delta, f0, f1;
+  x = x === undefined ? 0 : +x;
+  y = +y;
+  do {
+    f0 = f(x);
+    f1 = f(x + __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */]);
+    if (f0 === f1) f1 = f0 + __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */];
+    x -= delta = (-1 * __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */] * (f0 - y)) / (f0 - f1);
+  } while (steps-- > 0 && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */]);
+  return steps < 0 ? NaN : x;
+}
+
+// Approximate Newton-Raphson in 2D
+// Solve f(a,b) = [x,y]
+function solve2d(f, MAX_ITERATIONS, eps) {
+  if (MAX_ITERATIONS === undefined) MAX_ITERATIONS = 40;
+  if (eps === undefined) eps = __WEBPACK_IMPORTED_MODULE_0__math_js__["u" /* epsilon2 */];
+  return function(x, y, a, b) {
+    var err2, da, db;
+    a = a === undefined ? 0 : +a;
+    b = b === undefined ? 0 : +b;
+    for (var i = 0; i < MAX_ITERATIONS; i++) {
+      var p = f(a, b),
+        // diffs
+        tx = p[0] - x,
+        ty = p[1] - y;
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(tx) < eps && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(ty) < eps) break; // we're there!
+
+      // backtrack if we overshot
+      var h = tx * tx + ty * ty;
+      if (h > err2) {
+        a -= da /= 2;
+        b -= db /= 2;
+        continue;
+      }
+      err2 = h;
+
+      // partial derivatives
+      var ea = (a > 0 ? -1 : 1) * eps,
+        eb = (b > 0 ? -1 : 1) * eps,
+        pa = f(a + ea, b),
+        pb = f(a, b + eb),
+        dxa = (pa[0] - p[0]) / ea,
+        dya = (pa[1] - p[1]) / ea,
+        dxb = (pb[0] - p[0]) / eb,
+        dyb = (pb[1] - p[1]) / eb,
+        // determinant
+        D = dyb * dxa - dya * dxb,
+        // newton step — or half-step for small D
+        l = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(D) < 0.5 ? 0.5 : 1) / D;
+      da = (ty * dxb - tx * dyb) * l;
+      db = (tx * dya - ty * dxa) * l;
+      a += da;
+      b += db;
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(da) < eps && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(db) < eps) break; // we're crawling
+    }
+    return [a, b];
+  };
+}
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function(projectAt) {
+  var phi0 = 0,
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(projectAt),
+      p = m(phi0);
+
+  p.parallel = function(_) {
+    return arguments.length ? m(phi0 = _ * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]) : phi0 * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */];
+  };
+
+  return p;
+});
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -577,7 +1102,99 @@ function add(adder, a, b) {
 
 
 /***/ }),
-/* 7 */
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bisect__ = __webpack_require__(46);
+/* unused harmony reexport bisect */
+/* unused harmony reexport bisectRight */
+/* unused harmony reexport bisectLeft */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ascending__ = __webpack_require__(9);
+/* unused harmony reexport ascending */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bisector__ = __webpack_require__(47);
+/* unused harmony reexport bisector */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cross__ = __webpack_require__(99);
+/* unused harmony reexport cross */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__descending__ = __webpack_require__(100);
+/* unused harmony reexport descending */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__deviation__ = __webpack_require__(48);
+/* unused harmony reexport deviation */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__extent__ = __webpack_require__(49);
+/* unused harmony reexport extent */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__histogram__ = __webpack_require__(101);
+/* unused harmony reexport histogram */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__threshold_freedmanDiaconis__ = __webpack_require__(111);
+/* unused harmony reexport thresholdFreedmanDiaconis */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__threshold_scott__ = __webpack_require__(112);
+/* unused harmony reexport thresholdScott */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__threshold_sturges__ = __webpack_require__(53);
+/* unused harmony reexport thresholdSturges */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__max__ = __webpack_require__(103);
+/* unused harmony reexport max */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__mean__ = __webpack_require__(104);
+/* unused harmony reexport mean */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__median__ = __webpack_require__(105);
+/* unused harmony reexport median */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__merge__ = __webpack_require__(106);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_14__merge__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__min__ = __webpack_require__(50);
+/* unused harmony reexport min */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pairs__ = __webpack_require__(51);
+/* unused harmony reexport pairs */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__permute__ = __webpack_require__(107);
+/* unused harmony reexport permute */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__quantile__ = __webpack_require__(25);
+/* unused harmony reexport quantile */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__range__ = __webpack_require__(52);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_19__range__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__scan__ = __webpack_require__(108);
+/* unused harmony reexport scan */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__shuffle__ = __webpack_require__(109);
+/* unused harmony reexport shuffle */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__sum__ = __webpack_require__(110);
+/* unused harmony reexport sum */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ticks__ = __webpack_require__(54);
+/* unused harmony reexport ticks */
+/* unused harmony reexport tickIncrement */
+/* unused harmony reexport tickStep */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__transpose__ = __webpack_require__(55);
+/* unused harmony reexport transpose */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__variance__ = __webpack_require__(56);
+/* unused harmony reexport variance */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__zip__ = __webpack_require__(113);
+/* unused harmony reexport zip */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -587,7 +1204,32 @@ function add(adder, a, b) {
 
 
 /***/ }),
-/* 8 */
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = sinusoidalRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function sinusoidalRaw(lambda, phi) {
+  return [lambda * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi), phi];
+}
+
+sinusoidalRaw.invert = function(x, y) {
+  return [x / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(y), y];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(sinusoidalRaw)
+      .scale(152.63);
+});
+
+
+/***/ }),
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -598,7 +1240,7 @@ function add(adder, a, b) {
 /* harmony export (immutable) */ __webpack_exports__["f"] = cartesianAddInPlace;
 /* harmony export (immutable) */ __webpack_exports__["e"] = cartesianScale;
 /* harmony export (immutable) */ __webpack_exports__["c"] = cartesianNormalizeInPlace;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
 
 
 function spherical(cartesian) {
@@ -635,13 +1277,13 @@ function cartesianNormalizeInPlace(d) {
 
 
 /***/ }),
-/* 9 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = azimuthalRaw;
 /* harmony export (immutable) */ __webpack_exports__["a"] = azimuthalInvert;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
 
 
 function azimuthalRaw(scale) {
@@ -671,16 +1313,264 @@ function azimuthalInvert(angle) {
 
 
 /***/ }),
-/* 10 */
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function(a, b, c, d, e, f, g, h) {
+  if (arguments.length < 8) h = 0;
+
+  function forward(lambda, phi) {
+    if (!phi) return [a * lambda / __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */], 0];
+    var phi2 = phi * phi,
+        xB = a + phi2 * (b + phi2 * (c + phi2 * d)),
+        yB = phi * (e - 1 + phi2 * (f - h + phi2 * g)),
+        m = (xB * xB + yB * yB) / (2 * yB),
+        alpha = lambda * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["i" /* asin */])(xB / m) / __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */];
+    return [m * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(alpha), phi * (1 + phi2 * h) + m * (1 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(alpha))];
+  }
+
+  forward.invert = function(x, y) {
+    var lambda = __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */] * x / a,
+        phi = y,
+        deltaLambda, deltaPhi, i = 50;
+    do {
+      var phi2 = phi * phi,
+          xB = a + phi2 * (b + phi2 * (c + phi2 * d)),
+          yB = phi * (e - 1 + phi2 * (f - h + phi2 * g)),
+          p = xB * xB + yB * yB,
+          q = 2 * yB,
+          m = p / q,
+          m2 = m * m,
+          dAlphadLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["i" /* asin */])(xB / m) / __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */],
+          alpha = lambda * dAlphadLambda,
+          xB2 = xB * xB,
+          dxBdPhi = (2 * b + phi2 * (4 * c + phi2 * 6 * d)) * phi,
+          dyBdPhi = e + phi2 * (3 * f + phi2 * 5 * g),
+          dpdPhi = 2 * (xB * dxBdPhi + yB * (dyBdPhi - 1)),
+          dqdPhi = 2 * (dyBdPhi - 1),
+          dmdPhi = (dpdPhi * q - p * dqdPhi) / (q * q),
+          cosAlpha = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(alpha),
+          sinAlpha = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(alpha),
+          mcosAlpha = m * cosAlpha,
+          msinAlpha = m * sinAlpha,
+          dAlphadPhi = ((lambda / __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */]) * (1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(1 - xB2 / m2)) * (dxBdPhi * m - xB * dmdPhi)) / m2,
+          fx = msinAlpha - x,
+          fy = phi * (1 + phi2 * h) + m - mcosAlpha - y,
+          deltaxDeltaPhi = dmdPhi * sinAlpha + mcosAlpha * dAlphadPhi,
+          deltaxDeltaLambda = mcosAlpha * dAlphadLambda,
+          deltayDeltaPhi = 1 + dmdPhi - (dmdPhi * cosAlpha - msinAlpha * dAlphadPhi),
+          deltayDeltaLambda = msinAlpha * dAlphadLambda,
+          denominator = deltaxDeltaPhi * deltayDeltaLambda - deltayDeltaPhi * deltaxDeltaLambda;
+      if (!denominator) break;
+      lambda -= deltaLambda = (fy * deltaxDeltaPhi - fx * deltayDeltaPhi) / denominator;
+      phi -= deltaPhi = (fx * deltayDeltaLambda - fy * deltaxDeltaLambda) / denominator;
+    } while ((__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(deltaLambda) > __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(deltaPhi) > __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */]) && --i > 0);
+    return [lambda, phi];
+  };
+
+  return forward;
+});
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__matrix_js__ = __webpack_require__(179);
+
+
+
+
+// Creates a polyhedral projection.
+//  * root: a spanning tree of polygon faces.  Nodes are automatically
+//    augmented with a transform matrix.
+//  * face: a function that returns the appropriate node for a given {lambda, phi}
+//    point (radians).
+//  * r: rotation angle for root face [deprecated by .angle()].
+/* harmony default export */ __webpack_exports__["a"] = (function(root, face, r) {
+
+  recurse(root, {transform: null});
+
+  function recurse(node, parent) {
+    node.edges = faceEdges(node.face);
+    // Find shared edge.
+    if (parent.face) {
+      var shared = node.shared = sharedEdge(node.face, parent.face),
+          m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__matrix_js__["a" /* default */])(shared.map(parent.project), shared.map(node.project));
+      node.transform = parent.transform ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__matrix_js__["b" /* multiply */])(parent.transform, m) : m;
+      // Replace shared edge in parent edges array.
+      var edges = parent.edges;
+      for (var i = 0, n = edges.length; i < n; ++i) {
+        if (pointEqual(shared[0], edges[i][1]) && pointEqual(shared[1], edges[i][0])) edges[i] = node;
+        if (pointEqual(shared[0], edges[i][0]) && pointEqual(shared[1], edges[i][1])) edges[i] = node;
+      }
+      edges = node.edges;
+      for (i = 0, n = edges.length; i < n; ++i) {
+        if (pointEqual(shared[0], edges[i][0]) && pointEqual(shared[1], edges[i][1])) edges[i] = parent;
+        if (pointEqual(shared[0], edges[i][1]) && pointEqual(shared[1], edges[i][0])) edges[i] = parent;
+      }
+    } else {
+      node.transform = parent.transform;
+    }
+    if (node.children) {
+      node.children.forEach(function(child) {
+        recurse(child, node);
+      });
+    }
+    return node;
+  }
+
+  function forward(lambda, phi) {
+    var node = face(lambda, phi),
+        point = node.project([lambda * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */], phi * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]]),
+        t;
+    if (t = node.transform) {
+      return [
+        t[0] * point[0] + t[1] * point[1] + t[2],
+        -(t[3] * point[0] + t[4] * point[1] + t[5])
+      ];
+    }
+    point[1] = -point[1];
+    return point;
+  }
+
+  // Naive inverse!  A faster solution would use bounding boxes, or even a
+  // polygonal quadtree.
+  if (hasInverse(root)) forward.invert = function(x, y) {
+    var coordinates = faceInvert(root, [x, -y]);
+    return coordinates && (coordinates[0] *= __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */], coordinates[1] *= __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */], coordinates);
+  };
+
+  function faceInvert(node, coordinates) {
+    var invert = node.project.invert,
+        t = node.transform,
+        point = coordinates;
+    if (t) {
+      t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__matrix_js__["c" /* inverse */])(t);
+      point = [
+        t[0] * point[0] + t[1] * point[1] + t[2],
+        (t[3] * point[0] + t[4] * point[1] + t[5])
+      ];
+    }
+    if (invert && node === faceDegrees(p = invert(point))) return p;
+    var p,
+        children = node.children;
+    for (var i = 0, n = children && children.length; i < n; ++i) {
+      if (p = faceInvert(children[i], coordinates)) return p;
+    }
+  }
+
+  function faceDegrees(coordinates) {
+    return face(coordinates[0] * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */], coordinates[1] * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]);
+  }
+
+  var proj = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(forward),
+      stream_ = proj.stream;
+
+  proj.stream = function(stream) {
+    var rotate = proj.rotate(),
+        rotateStream = stream_(stream),
+        sphereStream = (proj.rotate([0, 0]), stream_(stream));
+    proj.rotate(rotate);
+    rotateStream.sphere = function() {
+      sphereStream.polygonStart();
+      sphereStream.lineStart();
+      outline(sphereStream, root);
+      sphereStream.lineEnd();
+      sphereStream.polygonEnd();
+    };
+    return rotateStream;
+  };
+
+  return proj.angle(r == null ? -30 : r * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]);
+});
+
+function outline(stream, node, parent) {
+  var point,
+      edges = node.edges,
+      n = edges.length,
+      edge,
+      multiPoint = {type: "MultiPoint", coordinates: node.face},
+      notPoles = node.face.filter(function(d) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(d[1]) !== 90; }),
+      b = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoBounds"])({type: "MultiPoint", coordinates: notPoles}),
+      inside = false,
+      j = -1,
+      dx = b[1][0] - b[0][0];
+  // TODO
+  var c = dx === 180 || dx === 360
+      ? [(b[0][0] + b[1][0]) / 2, (b[0][1] + b[1][1]) / 2]
+      : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoCentroid"])(multiPoint);
+  // First find the shared edge…
+  if (parent) while (++j < n) {
+    if (edges[j] === parent) break;
+  }
+  ++j;
+  for (var i = 0; i < n; ++i) {
+    edge = edges[(i + j) % n];
+    if (Array.isArray(edge)) {
+      if (!inside) {
+        stream.point((point = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoInterpolate"])(edge[0], c)(__WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]))[0], point[1]);
+        inside = true;
+      }
+      stream.point((point = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoInterpolate"])(edge[1], c)(__WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]))[0], point[1]);
+    } else {
+      inside = false;
+      if (edge !== parent) outline(stream, edge, node);
+    }
+  }
+}
+
+// Tests equality of two spherical points.
+function pointEqual(a, b) {
+  return a && b && a[0] === b[0] && a[1] === b[1];
+}
+
+// Finds a shared edge given two clockwise polygons.
+function sharedEdge(a, b) {
+  var x, y, n = a.length, found = null;
+  for (var i = 0; i < n; ++i) {
+    x = a[i];
+    for (var j = b.length; --j >= 0;) {
+      y = b[j];
+      if (x[0] === y[0] && x[1] === y[1]) {
+        if (found) return [found, x];
+        found = x;
+      }
+    }
+  }
+}
+
+// Converts an array of n face vertices to an array of n + 1 edges.
+function faceEdges(face) {
+  var n = face.length,
+      edges = [];
+  for (var a = face[n - 1], i = 0; i < n; ++i) edges.push([a, a = face[i]]);
+  return edges;
+}
+
+function hasInverse(node) {
+  return node.project.invert || node.children && node.children.some(hasInverse);
+}
+
+
+/***/ }),
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = clipRectangle;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__buffer_js__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__line_js__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rejoin_js__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_d3_array__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__buffer_js__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__line_js__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rejoin_js__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_d3_array__ = __webpack_require__(13);
 
 
 
@@ -776,7 +1666,7 @@ function clipRectangle(x0, y0, x1, y1) {
     function polygonEnd() {
       var startInside = polygonInside(),
           cleanInside = clean && startInside,
-          visible = (segments = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_d3_array__["b" /* merge */])(segments)).length;
+          visible = (segments = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_d3_array__["a" /* merge */])(segments)).length;
       if (cleanInside || visible) {
         stream.polygonStart();
         if (cleanInside) {
@@ -852,13 +1742,13 @@ function clipRectangle(x0, y0, x1, y1) {
 
 
 /***/ }),
-/* 11 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = rotateRadians;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose_js__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__compose_js__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(2);
 
 
 
@@ -938,7 +1828,7 @@ function rotationPhiGamma(deltaPhi, deltaGamma) {
 
 
 /***/ }),
-/* 12 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -972,12 +1862,12 @@ TransformStream.prototype = {
 
 
 /***/ }),
-/* 13 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__namespace__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__namespaces__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__namespace__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__namespaces__ = __webpack_require__(38);
 
 
 
@@ -1006,7 +1896,7 @@ function creatorFixed(fullname) {
 
 
 /***/ }),
-/* 14 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1026,103 +1916,11 @@ function creatorFixed(fullname) {
 
 
 /***/ }),
-/* 15 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bisect__ = __webpack_require__(32);
-/* unused harmony reexport bisect */
-/* unused harmony reexport bisectRight */
-/* unused harmony reexport bisectLeft */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ascending__ = __webpack_require__(5);
-/* unused harmony reexport ascending */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__bisector__ = __webpack_require__(33);
-/* unused harmony reexport bisector */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cross__ = __webpack_require__(75);
-/* unused harmony reexport cross */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__descending__ = __webpack_require__(76);
-/* unused harmony reexport descending */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__deviation__ = __webpack_require__(34);
-/* unused harmony reexport deviation */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__extent__ = __webpack_require__(35);
-/* unused harmony reexport extent */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__histogram__ = __webpack_require__(77);
-/* unused harmony reexport histogram */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__threshold_freedmanDiaconis__ = __webpack_require__(87);
-/* unused harmony reexport thresholdFreedmanDiaconis */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__threshold_scott__ = __webpack_require__(88);
-/* unused harmony reexport thresholdScott */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__threshold_sturges__ = __webpack_require__(39);
-/* unused harmony reexport thresholdSturges */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__max__ = __webpack_require__(79);
-/* unused harmony reexport max */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__mean__ = __webpack_require__(80);
-/* unused harmony reexport mean */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__median__ = __webpack_require__(81);
-/* unused harmony reexport median */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__merge__ = __webpack_require__(82);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_14__merge__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__min__ = __webpack_require__(36);
-/* unused harmony reexport min */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pairs__ = __webpack_require__(37);
-/* unused harmony reexport pairs */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__permute__ = __webpack_require__(83);
-/* unused harmony reexport permute */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__quantile__ = __webpack_require__(16);
-/* unused harmony reexport quantile */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__range__ = __webpack_require__(38);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_19__range__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__scan__ = __webpack_require__(84);
-/* unused harmony reexport scan */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__shuffle__ = __webpack_require__(85);
-/* unused harmony reexport shuffle */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__sum__ = __webpack_require__(86);
-/* unused harmony reexport sum */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__ticks__ = __webpack_require__(40);
-/* unused harmony reexport ticks */
-/* unused harmony reexport tickIncrement */
-/* unused harmony reexport tickStep */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__transpose__ = __webpack_require__(41);
-/* unused harmony reexport transpose */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__variance__ = __webpack_require__(42);
-/* unused harmony reexport variance */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__zip__ = __webpack_require__(89);
-/* unused harmony reexport zip */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__number__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__number__ = __webpack_require__(14);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(values, p, valueof) {
@@ -1140,7 +1938,7 @@ function creatorFixed(fullname) {
 
 
 /***/ }),
-/* 17 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1311,7 +2109,212 @@ function formatDate(date) {
 
 
 /***/ }),
-/* 18 */
+/* 27 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = collignonRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function collignonRaw(lambda, phi) {
+  var alpha = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi));
+  return [(2 / __WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */]) * lambda * alpha, __WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */] * (1 - alpha)];
+}
+
+collignonRaw.invert = function(x, y) {
+  var lambda = (lambda = y / __WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */] - 1) * lambda;
+  return [lambda > 0 ? x * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / lambda) / 2 : 0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(1 - lambda)];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(collignonRaw)
+      .scale(95.6464)
+      .center([0, 30]);
+});
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = hammerRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function hammerRaw(A, B) {
+  if (arguments.length < 2) B = A;
+  if (B === 1) return __WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoAzimuthalEqualAreaRaw"];
+  if (B === Infinity) return hammerQuarticAuthalicRaw;
+
+  function forward(lambda, phi) {
+    var coordinates = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoAzimuthalEqualAreaRaw"])(lambda / B, phi);
+    coordinates[0] *= A;
+    return coordinates;
+  }
+
+  forward.invert = function(x, y) {
+    var coordinates = __WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoAzimuthalEqualAreaRaw"].invert(x / A, y);
+    coordinates[0] *= B;
+    return coordinates;
+  };
+
+  return forward;
+}
+
+function hammerQuarticAuthalicRaw(lambda, phi) {
+  return [
+    lambda * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi /= 2),
+    2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi)
+  ];
+}
+
+hammerQuarticAuthalicRaw.invert = function(x, y) {
+  var phi = 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(y / 2);
+  return [
+    x * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi / 2) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+    phi
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var B = 2,
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(hammerRaw),
+      p = m(B);
+
+  p.coefficient = function(_) {
+    if (!arguments.length) return B;
+    return m(B = +_);
+  };
+
+  return p
+    .scale(169.529);
+});
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// TODO generate on-the-fly to avoid external modification.
+var octahedron = [
+  [0, 90],
+  [-90, 0], [0, 0], [90, 0], [180, 0],
+  [0, -90]
+];
+
+/* harmony default export */ __webpack_exports__["a"] = ([
+  [0, 2, 1],
+  [0, 3, 2],
+  [5, 1, 2],
+  [5, 2, 3],
+  [0, 1, 4],
+  [0, 4, 3],
+  [5, 4, 1],
+  [5, 3, 4]
+].map(function(face) {
+  return face.map(function(i) {
+    return octahedron[i];
+  });
+}));
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function(project) {
+  var dx = project(__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */], 0)[0] - project(-__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */], 0)[0];
+
+  function projectQuincuncial(lambda, phi) {
+    var t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda) < __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+        p = project(t ? lambda : lambda > 0 ? lambda - __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] : lambda + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */], phi),
+        x = (p[0] - p[1]) * __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */],
+        y = (p[0] + p[1]) * __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */];
+    if (t) return [x, y];
+    var d = dx * __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */],
+        s = x > 0 ^ y > 0 ? -1 : 1;
+    return [s * x - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y) * d, s * y - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(x) * d];
+  }
+
+  if (project.invert) projectQuincuncial.invert = function(x0, y0) {
+    var x = (x0 + y0) * __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */],
+        y = (y0 - x0) * __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */],
+        t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x) < 0.5 * dx && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) < 0.5 * dx;
+
+    if (!t) {
+      var d = dx * __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */],
+          s = x > 0 ^ y > 0 ? -1 : 1,
+          x1 = -s * x0 + (y > 0 ? 1 : -1) * d,
+          y1 = -s * y0 + (x > 0 ? 1 : -1) * d;
+      x = (-x1 - y1) * __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */];
+      y = (x1 - y1) * __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */];
+    }
+
+    var p = project.invert(x, y);
+    if (!t) p[0] += x > 0 ? __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] : -__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */];
+    return p;
+  };
+
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(projectQuincuncial)
+      .rotate([-90, -90, 45])
+      .clipAngle(180 - 1e-3);
+});
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return sinuMollweidePhi; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return sinuMollweideY; });
+/* harmony export (immutable) */ __webpack_exports__["b"] = sinuMollweideRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mollweide_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sinusoidal_js__ = __webpack_require__(15);
+
+
+
+
+var sinuMollweidePhi = 0.7109889596207567;
+
+var sinuMollweideY = 0.0528035274542;
+
+function sinuMollweideRaw(lambda, phi) {
+  return phi > -sinuMollweidePhi
+      ? (lambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__mollweide_js__["b" /* mollweideRaw */])(lambda, phi), lambda[1] += sinuMollweideY, lambda)
+      : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__sinusoidal_js__["b" /* sinusoidalRaw */])(lambda, phi);
+}
+
+sinuMollweideRaw.invert = function(x, y) {
+  return y > -sinuMollweidePhi
+      ? __WEBPACK_IMPORTED_MODULE_1__mollweide_js__["b" /* mollweideRaw */].invert(x, y - sinuMollweideY)
+      : __WEBPACK_IMPORTED_MODULE_2__sinusoidal_js__["b" /* sinusoidalRaw */].invert(x, y);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(sinuMollweideRaw)
+      .rotate([-20, -55])
+      .scale(164.263)
+      .center([0, -5.4036]);
+});
+
+
+/***/ }),
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1321,13 +2324,13 @@ function formatDate(date) {
 
 
 /***/ }),
-/* 19 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = conicProjection;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(3);
 
 
 
@@ -1346,14 +2349,14 @@ function conicProjection(projectAt) {
 
 
 /***/ }),
-/* 20 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = conicEqualAreaRaw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conic_js__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cylindricalEqualArea_js__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conic_js__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cylindricalEqualArea_js__ = __webpack_require__(221);
 
 
 
@@ -1387,7 +2390,7 @@ function conicEqualAreaRaw(y0, y1) {
 
 
 /***/ }),
-/* 21 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1395,8 +2398,8 @@ function conicEqualAreaRaw(y0, y1) {
 /* harmony export (immutable) */ __webpack_exports__["b"] = fitSize;
 /* harmony export (immutable) */ __webpack_exports__["c"] = fitWidth;
 /* harmony export (immutable) */ __webpack_exports__["d"] = fitHeight;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__stream_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__path_bounds_js__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__stream_js__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__path_bounds_js__ = __webpack_require__(77);
 
 
 
@@ -1447,15 +2450,15 @@ function fitHeight(projection, height, object) {
 
 
 /***/ }),
-/* 22 */
+/* 36 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = mercatorRaw;
 /* harmony export (immutable) */ __webpack_exports__["c"] = mercatorProjection;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rotation_js__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rotation_js__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(3);
 
 
 
@@ -1511,11 +2514,11 @@ function mercatorProjection(project) {
 
 
 /***/ }),
-/* 23 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__namespaces__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__namespaces__ = __webpack_require__(38);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(name) {
@@ -1526,7 +2529,7 @@ function mercatorProjection(project) {
 
 
 /***/ }),
-/* 24 */
+/* 38 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1543,7 +2546,7 @@ var xhtml = "http://www.w3.org/1999/xhtml";
 
 
 /***/ }),
-/* 25 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1659,7 +2662,7 @@ function customEvent(event1, listener, that, args) {
 
 
 /***/ }),
-/* 26 */
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1673,11 +2676,11 @@ function none() {}
 
 
 /***/ }),
-/* 27 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection_on__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection_on__ = __webpack_require__(39);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function() {
@@ -1688,7 +2691,7 @@ function none() {}
 
 
 /***/ }),
-/* 28 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1700,13 +2703,13 @@ function none() {}
 
 
 /***/ }),
-/* 29 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = object;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reverse_js__ = __webpack_require__(161);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transform_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__reverse_js__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transform_js__ = __webpack_require__(44);
 
 
 
@@ -1780,11 +2783,11 @@ function object(topology, o) {
 
 
 /***/ }),
-/* 30 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__identity_js__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__identity_js__ = __webpack_require__(89);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(transform) {
@@ -1807,7 +2810,7 @@ function object(topology, o) {
 
 
 /***/ }),
-/* 31 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1820,14 +2823,14 @@ var map = array.map;
 
 
 /***/ }),
-/* 32 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export bisectRight */
 /* unused harmony export bisectLeft */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ascending__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bisector__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ascending__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bisector__ = __webpack_require__(47);
 
 
 
@@ -1838,11 +2841,11 @@ var bisectLeft = ascendingBisect.left;
 
 
 /***/ }),
-/* 33 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ascending__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ascending__ = __webpack_require__(9);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(compare) {
@@ -1879,11 +2882,11 @@ function ascendingComparator(f) {
 
 
 /***/ }),
-/* 34 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__variance__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__variance__ = __webpack_require__(56);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(array, f) {
@@ -1893,7 +2896,7 @@ function ascendingComparator(f) {
 
 
 /***/ }),
-/* 35 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1937,7 +2940,7 @@ function ascendingComparator(f) {
 
 
 /***/ }),
-/* 36 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1978,7 +2981,7 @@ function ascendingComparator(f) {
 
 
 /***/ }),
-/* 37 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1996,7 +2999,7 @@ function pair(a, b) {
 
 
 /***/ }),
-/* 38 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2016,7 +3019,7 @@ function pair(a, b) {
 
 
 /***/ }),
-/* 39 */
+/* 53 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2026,7 +3029,7 @@ function pair(a, b) {
 
 
 /***/ }),
-/* 40 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2086,11 +3089,11 @@ function tickStep(start, stop, count) {
 
 
 /***/ }),
-/* 41 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__min__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__min__ = __webpack_require__(50);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(matrix) {
@@ -2109,11 +3112,11 @@ function length(d) {
 
 
 /***/ }),
-/* 42 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__number__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__number__ = __webpack_require__(14);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(values, valueof) {
@@ -2150,16 +3153,530 @@ function length(d) {
 
 
 /***/ }),
-/* 43 */
+/* 57 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = aitoffRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function aitoffRaw(x, y) {
+  var cosy = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(y), sincia = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["H" /* sinci */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(cosy * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(x /= 2)));
+  return [2 * cosy * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(x) * sincia, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(y) * sincia];
+}
+
+// Abort if [x, y] is not within an ellipse centered at [0, 0] with
+// semi-major axis pi and semi-minor axis pi/2.
+aitoffRaw.invert = function(x, y) {
+  if (x * x + 4 * y * y > __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] + __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return;
+  var x1 = x, y1 = y, i = 25;
+  do {
+    var sinx = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(x1),
+        sinx_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(x1 / 2),
+        cosx_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(x1 / 2),
+        siny = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(y1),
+        cosy = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(y1),
+        sin_2y = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(2 * y1),
+        sin2y = siny * siny,
+        cos2y = cosy * cosy,
+        sin2x_2 = sinx_2 * sinx_2,
+        c = 1 - cos2y * cosx_2 * cosx_2,
+        e = c ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(cosy * cosx_2) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(f = 1 / c) : f = 0,
+        f,
+        fx = 2 * e * cosy * sinx_2 - x,
+        fy = e * siny - y,
+        dxdx = f * (cos2y * sin2x_2 + e * cosy * cosx_2 * sin2y),
+        dxdy = f * (0.5 * sinx * sin_2y - e * 2 * siny * sinx_2),
+        dydx = f * 0.25 * (sin_2y * sinx_2 - e * siny * cos2y * sinx),
+        dydy = f * (sin2y * cosx_2 + e * sin2x_2 * cosy),
+        z = dxdy * dydx - dydy * dxdx;
+    if (!z) break;
+    var dx = (fy * dxdy - fx * dydy) / z,
+        dy = (fx * dydx - fy * dxdx) / z;
+    x1 -= dx, y1 -= dy;
+  } while ((__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(dx) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(dy) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) && --i > 0);
+  return [x1, y1];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(aitoffRaw)
+      .scale(152.63);
+});
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = augustRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function augustRaw(lambda, phi) {
+  var tanPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi / 2),
+      k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - tanPhi * tanPhi),
+      c = 1 + k * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda /= 2),
+      x = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda) * k / c,
+      y = tanPhi / c,
+      x2 = x * x,
+      y2 = y * y;
+  return [
+    4 / 3 * x * (3 + x2 - 3 * y2),
+    4 / 3 * y * (3 + 3 * x2 - y2)
+  ];
+}
+
+augustRaw.invert = function(x, y) {
+  x *= 3 / 8, y *= 3 / 8;
+  if (!x && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) > 1) return null;
+  var x2 = x * x,
+      y2 = y * y,
+      s = 1 + x2 + y2,
+      sin3Eta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])((s - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(s * s - 4 * y * y)) / 2),
+      eta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(sin3Eta) / 3,
+      xi = sin3Eta ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["F" /* arcosh */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y / sin3Eta)) / 3 : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["G" /* arsinh */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x)) / 3,
+      cosEta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(eta),
+      coshXi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["B" /* cosh */])(xi),
+      d = coshXi * coshXi - cosEta * cosEta;
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(x) * 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["D" /* sinh */])(xi) * cosEta, 0.25 - d),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y) * 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(coshXi * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(eta), 0.25 + d)
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(augustRaw)
+      .scale(66.1603);
+});
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = boggsRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mollweide_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
+
+
+
+
+var k = 2.00276,
+    w = 1.11072;
+
+function boggsRaw(lambda, phi) {
+  var theta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__mollweide_js__["d" /* mollweideBromleyTheta */])(__WEBPACK_IMPORTED_MODULE_2__math_js__["j" /* pi */], phi);
+  return [k * lambda / (1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(phi) + w / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(theta)), (phi + __WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(theta)) / k];
+}
+
+boggsRaw.invert = function(x, y) {
+  var ky = k * y, theta = y < 0 ? -__WEBPACK_IMPORTED_MODULE_2__math_js__["s" /* quarterPi */] : __WEBPACK_IMPORTED_MODULE_2__math_js__["s" /* quarterPi */], i = 25, delta, phi;
+  do {
+    phi = ky - __WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(theta);
+    theta -= delta = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(2 * theta) + 2 * theta - __WEBPACK_IMPORTED_MODULE_2__math_js__["j" /* pi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(phi)) / (2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(2 * theta) + 2 + __WEBPACK_IMPORTED_MODULE_2__math_js__["j" /* pi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(phi) * __WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(theta));
+  } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */] && --i > 0);
+  phi = ky - __WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(theta);
+  return [x * (1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(phi) + w / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(theta)) / k, phi];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(boggsRaw)
+      .scale(160.857);
+});
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = cylindricalEqualAreaRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__parallel1_js__ = __webpack_require__(11);
+
+
+
+function cylindricalEqualAreaRaw(phi0) {
+  var cosPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(phi0);
+
+  function forward(lambda, phi) {
+    return [lambda * cosPhi0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(phi) / cosPhi0];
+  }
+
+  forward.invert = function(x, y) {
+    return [x / cosPhi0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["i" /* asin */])(y * cosPhi0)];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__parallel1_js__["a" /* default */])(cylindricalEqualAreaRaw)
+      .parallel(38.58) // acos(sqrt(width / height / pi)) * radians
+      .scale(195.044); // width / (sqrt(width / height / pi) * 2 * pi)
+});
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = gringortenRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__square_js__ = __webpack_require__(65);
+
+
+
+
+function gringortenRaw(lambda, phi) {
+  var sLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(lambda),
+      sPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(phi),
+      cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+      x = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda) * cosPhi,
+      y = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda) * cosPhi,
+      z = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(sPhi * phi);
+  lambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(y, z));
+  phi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(x);
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) lambda %= __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */];
+  var point = gringortenHexadecant(lambda > __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 4 ? __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] - lambda : lambda, phi);
+  if (lambda > __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 4) z = point[0], point[0] = -point[1], point[1] = -z;
+  return (point[0] *= sLambda, point[1] *= -sPhi, point);
+}
+
+gringortenRaw.invert = function(x, y) {
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x) > 1) x = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(x) * 2 - x;
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) > 1) y = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y) * 2 - y;
+  var sx = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(x),
+      sy = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y),
+      x0 = -sx * x,
+      y0 = -sy * y,
+      t = y0 / x0 < 1,
+      p = gringortenHexadecantInvert(t ? y0 : x0, t ? x0 : y0),
+      lambda = p[0],
+      phi = p[1],
+      cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi);
+  if (t) lambda = -__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] - lambda;
+  return [sx * (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda) * cosPhi, -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi)) + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]), sy * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda) * cosPhi)];
+};
+
+function gringortenHexadecant(lambda, phi) {
+  if (phi === __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) return [0, 0];
+
+  var sinPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+      r = sinPhi * sinPhi,
+      r2 = r * r,
+      j = 1 + r2,
+      k = 1 + 3 * r2,
+      q = 1 - r2,
+      z = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(j)),
+      v = q + r * j * z,
+      p2 = (1 - sinPhi) / v,
+      p = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(p2),
+      a2 = p2 * j,
+      a = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(a2),
+      h = p * q,
+      x,
+      i;
+
+  if (lambda === 0) return [0, -(h + r * a)];
+
+  var cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+      secPhi = 1 / cosPhi,
+      drdPhi = 2 * sinPhi * cosPhi,
+      dvdPhi = (-3 * r + z * k) * drdPhi,
+      dp2dPhi = (-v * cosPhi - (1 - sinPhi) * dvdPhi) / (v * v),
+      dpdPhi = (0.5 * dp2dPhi) / p,
+      dhdPhi = q * dpdPhi - 2 * r * p * drdPhi,
+      dra2dPhi = r * j * dp2dPhi + p2 * k * drdPhi,
+      mu = -secPhi * drdPhi,
+      nu = -secPhi * dra2dPhi,
+      zeta = -2 * secPhi * dhdPhi,
+      lambda1 = 4 * lambda / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */],
+      delta;
+
+  // Slower but accurate bisection method.
+  if (lambda > 0.222 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] || phi < __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 4 && lambda > 0.175 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) {
+    x = (h + r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(a2 * (1 + r2) - h * h)) / (1 + r2);
+    if (lambda > __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 4) return [x, x];
+    var x1 = x, x0 = 0.5 * x;
+    x = 0.5 * (x0 + x1), i = 50;
+    do {
+      var g = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(a2 - x * x),
+          f = (x * (zeta + mu * g) + nu * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(x / a)) - lambda1;
+      if (!f) break;
+      if (f < 0) x0 = x;
+      else x1 = x;
+      x = 0.5 * (x0 + x1);
+    } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x1 - x0) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && --i > 0);
+  }
+
+  // Newton-Raphson.
+  else {
+    x = __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */], i = 25;
+    do {
+      var x2 = x * x,
+          g2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(a2 - x2),
+          zetaMug = zeta + mu * g2,
+          f2 = x * zetaMug + nu * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(x / a) - lambda1,
+          df = zetaMug + (nu - mu * x2) / g2;
+      x -= delta = g2 ? f2 / df : 0;
+    } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && --i > 0);
+  }
+
+  return [x, -h - r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(a2 - x * x)];
+}
+
+function gringortenHexadecantInvert(x, y) {
+  var x0 = 0,
+      x1 = 1,
+      r = 0.5,
+      i = 50;
+
+  while (true) {
+    var r2 = r * r,
+        sinPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(r),
+        z = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 + r2)),
+        v = (1 - r2) + r * (1 + r2) * z,
+        p2 = (1 - sinPhi) / v,
+        p = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(p2),
+        a2 = p2 * (1 + r2),
+        h = p * (1 - r2),
+        g2 = a2 - x * x,
+        g = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(g2),
+        y0 = y + h + r * g;
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x1 - x0) < __WEBPACK_IMPORTED_MODULE_1__math_js__["u" /* epsilon2 */] || --i === 0 || y0 === 0) break;
+    if (y0 > 0) x0 = r;
+    else x1 = r;
+    r = 0.5 * (x0 + x1);
+  }
+
+  if (!i) return null;
+
+  var phi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(sinPhi),
+      cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+      secPhi = 1 / cosPhi,
+      drdPhi = 2 * sinPhi * cosPhi,
+      dvdPhi = (-3 * r + z * (1 + 3 * r2)) * drdPhi,
+      dp2dPhi = (-v * cosPhi - (1 - sinPhi) * dvdPhi) / (v * v),
+      dpdPhi = 0.5 * dp2dPhi / p,
+      dhdPhi = (1 - r2) * dpdPhi - 2 * r * p * drdPhi,
+      zeta = -2 * secPhi * dhdPhi,
+      mu = -secPhi * drdPhi,
+      nu = -secPhi * (r * (1 + r2) * dp2dPhi + p2 * (1 + 3 * r2) * drdPhi);
+
+  return [__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 4 * (x * (zeta + mu * g) + nu * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(x / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(a2))), phi];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__square_js__["a" /* default */])(gringortenRaw))
+      .scale(239.75);
+});
+
+
+/***/ }),
+/* 62 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = guyouRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__elliptic_js__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__square_js__ = __webpack_require__(65);
+
+
+
+
+
+function guyouRaw(lambda, phi) {
+  var k_ = (__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] - 1) / (__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] + 1),
+      k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])(1 - k_ * k_),
+      K = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__elliptic_js__["a" /* ellipticF */])(__WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */], k * k),
+      f = -1,
+      psi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["w" /* log */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["l" /* tan */])(__WEBPACK_IMPORTED_MODULE_2__math_js__["j" /* pi */] / 4 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["f" /* abs */])(phi) / 2)),
+      r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["x" /* exp */])(f * psi) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])(k_),
+      at = guyouComplexAtan(r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(f * lambda), r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(f * lambda)),
+      t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__elliptic_js__["b" /* ellipticFi */])(at[0], at[1], k * k);
+  return [-t[1], (phi >= 0 ? 1 : -1) * (0.5 * K - t[0])];
+}
+
+function guyouComplexAtan(x, y) {
+  var x2 = x * x,
+      y_1 = y + 1,
+      t = 1 - x2 - y * y;
+  return [
+   0.5 * ((x >= 0 ? __WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */] : -__WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */]) - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["h" /* atan2 */])(t, 2 * x)),
+    -0.25 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["w" /* log */])(t * t + 4 * x2) +0.5 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["w" /* log */])(y_1 * y_1 + x2)
+  ];
+}
+
+function guyouComplexDivide(a, b) {
+  var denominator = b[0] * b[0] + b[1] * b[1];
+  return [
+    (a[0] * b[0] + a[1] * b[1]) / denominator,
+    (a[1] * b[0] - a[0] * b[1]) / denominator
+  ];
+}
+
+guyouRaw.invert = function(x, y) {
+  var k_ = (__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] - 1) / (__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] + 1),
+      k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])(1 - k_ * k_),
+      K = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__elliptic_js__["a" /* ellipticF */])(__WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */], k * k),
+      f = -1,
+      j = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__elliptic_js__["c" /* ellipticJi */])(0.5 * K - y, -x, k * k),
+      tn = guyouComplexDivide(j[0], j[1]),
+      lambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["h" /* atan2 */])(tn[1], tn[0]) / f;
+  return [
+    lambda,
+    2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["r" /* atan */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["x" /* exp */])(0.5 / f * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["w" /* log */])(k_ * tn[0] * tn[0] + k_ * tn[1] * tn[1]))) - __WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */]
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__square_js__["a" /* default */])(guyouRaw))
+      .scale(151.496);
+});
+
+
+/***/ }),
+/* 63 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = homolosineRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mollweide_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__sinusoidal_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sinuMollweide_js__ = __webpack_require__(31);
+
+
+
+
+
+
+function homolosineRaw(lambda, phi) {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) > __WEBPACK_IMPORTED_MODULE_4__sinuMollweide_js__["c" /* sinuMollweidePhi */]
+      ? (lambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__mollweide_js__["b" /* mollweideRaw */])(lambda, phi), lambda[1] -= phi > 0 ? __WEBPACK_IMPORTED_MODULE_4__sinuMollweide_js__["d" /* sinuMollweideY */] : -__WEBPACK_IMPORTED_MODULE_4__sinuMollweide_js__["d" /* sinuMollweideY */], lambda)
+      : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__sinusoidal_js__["b" /* sinusoidalRaw */])(lambda, phi);
+}
+
+homolosineRaw.invert = function(x, y) {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) > __WEBPACK_IMPORTED_MODULE_4__sinuMollweide_js__["c" /* sinuMollweidePhi */]
+      ? __WEBPACK_IMPORTED_MODULE_2__mollweide_js__["b" /* mollweideRaw */].invert(x, y + (y > 0 ? __WEBPACK_IMPORTED_MODULE_4__sinuMollweide_js__["d" /* sinuMollweideY */] : -__WEBPACK_IMPORTED_MODULE_4__sinuMollweide_js__["d" /* sinuMollweideY */]))
+      : __WEBPACK_IMPORTED_MODULE_3__sinusoidal_js__["b" /* sinusoidalRaw */].invert(x, y);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(homolosineRaw)
+      .scale(152.63);
+});
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__guyou_js__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(30);
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__index_js__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__guyou_js__["b" /* guyouRaw */])
+      .scale(111.48);
+});
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function(project) {
+  var dx = project(__WEBPACK_IMPORTED_MODULE_0__math_js__["a" /* halfPi */], 0)[0] - project(-__WEBPACK_IMPORTED_MODULE_0__math_js__["a" /* halfPi */], 0)[0];
+
+  function projectSquare(lambda, phi) {
+    var s = lambda > 0 ? -0.5 : 0.5,
+        point = project(lambda + s * __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */], phi);
+    point[0] -= s * dx;
+    return point;
+  }
+
+  if (project.invert) projectSquare.invert = function(x, y) {
+    var s = x > 0 ? -0.5 : 0.5,
+        location = project.invert(x + s * dx, y),
+        lambda = location[0] - s * __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */];
+    if (lambda < -__WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */]) lambda += 2 * __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */];
+    else if (lambda > __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */]) lambda -= 2 * __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */];
+    location[0] = lambda;
+    return location;
+  };
+
+  return projectSquare;
+});
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+// Compute the origin as the midpoint of the two reference points.
+// Rotate one of the reference points by the origin.
+// Apply the spherical law of sines to compute gamma rotation.
+/* harmony default export */ __webpack_exports__["a"] = (function(raw, p0, p1) {
+  var i = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoInterpolate"])(p0, p1),
+      o = i(0.5),
+      a = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoRotation"])([-o[0], -o[1]])(p0),
+      b = i.distance / 2,
+      y = -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(a[1] * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(b)),
+      R = [-o[0], -o[1], -(a[0] > 0 ? __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] - y : y) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]],
+      p = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(raw(b)).rotate(R),
+      r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoRotation"])(R),
+      center = p.center;
+
+  delete p.rotate;
+
+  p.center = function(_) {
+    return arguments.length ? center(r(_)) : r.invert(center());
+  };
+
+  return p
+      .clipAngle(90);
+});
+
+
+/***/ }),
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return areaRingSum; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return areaStream; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__noop_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stream_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__noop_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stream_js__ = __webpack_require__(8);
 
 
 
@@ -2237,15 +3754,15 @@ function areaPoint(lambda, phi) {
 
 
 /***/ }),
-/* 44 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = circleStream;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cartesian_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constant_js__ = __webpack_require__(97);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rotation_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cartesian_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constant_js__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rotation_js__ = __webpack_require__(21);
 
 
 
@@ -2321,12 +3838,12 @@ function circleRadius(cosRadius, point) {
 
 
 /***/ }),
-/* 45 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_js__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_js__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(2);
 
 
 
@@ -2422,11 +3939,11 @@ function clipAntimeridianInterpolate(from, to, direction, stream) {
 
 
 /***/ }),
-/* 46 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__noop_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__noop_js__ = __webpack_require__(7);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function() {
@@ -2454,15 +3971,15 @@ function clipAntimeridianInterpolate(from, to, direction, stream) {
 
 
 /***/ }),
-/* 47 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cartesian_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__circle_js__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pointEqual_js__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__index_js__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cartesian_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__circle_js__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pointEqual_js__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__index_js__ = __webpack_require__(72);
 
 
 
@@ -2648,15 +4165,15 @@ function clipAntimeridianInterpolate(from, to, direction, stream) {
 
 
 /***/ }),
-/* 48 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buffer_js__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rejoin_js__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polygonContains_js__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_d3_array__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__buffer_js__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rejoin_js__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polygonContains_js__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_d3_array__ = __webpack_require__(13);
 
 
 
@@ -2688,7 +4205,7 @@ function clipAntimeridianInterpolate(from, to, direction, stream) {
         clip.point = point;
         clip.lineStart = lineStart;
         clip.lineEnd = lineEnd;
-        segments = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_d3_array__["b" /* merge */])(segments);
+        segments = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4_d3_array__["a" /* merge */])(segments);
         var startInside = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__polygonContains_js__["a" /* default */])(polygon, start);
         if (segments.length) {
           if (!polygonStarted) sink.polygonStart(), polygonStarted = true;
@@ -2791,11 +4308,11 @@ function compareIntersection(a, b) {
 
 
 /***/ }),
-/* 49 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pointEqual_js__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pointEqual_js__ = __webpack_require__(78);
 
 
 function Intersection(point, points, other, entry) {
@@ -2900,7 +4417,7 @@ function link(array) {
 
 
 /***/ }),
-/* 50 */
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2919,11 +4436,11 @@ function link(array) {
 
 
 /***/ }),
-/* 51 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__length_js__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__length_js__ = __webpack_require__(76);
 
 
 var coordinates = [null, null],
@@ -2937,14 +4454,14 @@ var coordinates = [null, null],
 
 
 /***/ }),
-/* 52 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__noop_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stream_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__noop_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__stream_js__ = __webpack_require__(8);
 
 
 
@@ -3001,11 +4518,11 @@ function lengthPoint(lambda, phi) {
 
 
 /***/ }),
-/* 53 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__noop_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__noop_js__ = __webpack_require__(7);
 
 
 var x0 = Infinity,
@@ -3037,11 +4554,11 @@ function boundsPoint(x, y) {
 
 
 /***/ }),
-/* 54 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(a, b) {
@@ -3050,13 +4567,13 @@ function boundsPoint(x, y) {
 
 
 /***/ }),
-/* 55 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cartesian_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cartesian_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(2);
 
 
 
@@ -3139,11 +4656,11 @@ function longitude(point) {
 
 
 /***/ }),
-/* 56 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conicEqualArea_js__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__conicEqualArea_js__ = __webpack_require__(34);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function() {
@@ -3157,12 +4674,12 @@ function longitude(point) {
 
 
 /***/ }),
-/* 57 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = equirectangularRaw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_js__ = __webpack_require__(3);
 
 
 function equirectangularRaw(lambda, phi) {
@@ -3178,7 +4695,7 @@ equirectangularRaw.invert = equirectangularRaw;
 
 
 /***/ }),
-/* 58 */
+/* 82 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3190,11 +4707,11 @@ equirectangularRaw.invert = equirectangularRaw;
 
 
 /***/ }),
-/* 59 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection_index__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection_index__ = __webpack_require__(4);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(selector) {
@@ -3205,13 +4722,13 @@ equirectangularRaw.invert = equirectangularRaw;
 
 
 /***/ }),
-/* 60 */
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = EnterNode;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sparse__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sparse__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(4);
 
 
 
@@ -3237,7 +4754,7 @@ EnterNode.prototype = {
 
 
 /***/ }),
-/* 61 */
+/* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3247,12 +4764,12 @@ EnterNode.prototype = {
 
 
 /***/ }),
-/* 62 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = styleValue;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__window__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__window__ = __webpack_require__(42);
 
 
 function styleRemove(name) {
@@ -3291,7 +4808,7 @@ function styleValue(node, name) {
 
 
 /***/ }),
-/* 63 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3307,11 +4824,11 @@ function empty() {
 
 
 /***/ }),
-/* 64 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transform_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transform_js__ = __webpack_require__(44);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(topology) {
@@ -3354,7 +4871,7 @@ function empty() {
 
 
 /***/ }),
-/* 65 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3364,7 +4881,7 @@ function empty() {
 
 
 /***/ }),
-/* 66 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3444,11 +4961,11 @@ function empty() {
 
 
 /***/ }),
-/* 67 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__identity_js__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__identity_js__ = __webpack_require__(89);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(transform) {
@@ -3475,14 +4992,14 @@ function empty() {
 
 
 /***/ }),
-/* 68 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dsv_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dsv_js__ = __webpack_require__(26);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "dsvFormat", function() { return __WEBPACK_IMPORTED_MODULE_0__dsv_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__csv_js__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__csv_js__ = __webpack_require__(115);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "csvParse", function() { return __WEBPACK_IMPORTED_MODULE_1__csv_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "csvParseRows", function() { return __WEBPACK_IMPORTED_MODULE_1__csv_js__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "csvFormat", function() { return __WEBPACK_IMPORTED_MODULE_1__csv_js__["c"]; });
@@ -3490,7 +5007,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "csvFormatRows", function() { return __WEBPACK_IMPORTED_MODULE_1__csv_js__["e"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "csvFormatRow", function() { return __WEBPACK_IMPORTED_MODULE_1__csv_js__["f"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "csvFormatValue", function() { return __WEBPACK_IMPORTED_MODULE_1__csv_js__["g"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tsv_js__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__tsv_js__ = __webpack_require__(116);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "tsvParse", function() { return __WEBPACK_IMPORTED_MODULE_2__tsv_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "tsvParseRows", function() { return __WEBPACK_IMPORTED_MODULE_2__tsv_js__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "tsvFormat", function() { return __WEBPACK_IMPORTED_MODULE_2__tsv_js__["c"]; });
@@ -3498,7 +5015,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "tsvFormatRows", function() { return __WEBPACK_IMPORTED_MODULE_2__tsv_js__["e"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "tsvFormatRow", function() { return __WEBPACK_IMPORTED_MODULE_2__tsv_js__["f"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "tsvFormatValue", function() { return __WEBPACK_IMPORTED_MODULE_2__tsv_js__["g"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__autoType_js__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__autoType_js__ = __webpack_require__(114);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "autoType", function() { return __WEBPACK_IMPORTED_MODULE_3__autoType_js__["a"]; });
 
 
@@ -3507,101 +5024,296 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 69 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__area_js__ = __webpack_require__(43);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoArea", function() { return __WEBPACK_IMPORTED_MODULE_0__area_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bounds_js__ = __webpack_require__(93);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBounds", function() { return __WEBPACK_IMPORTED_MODULE_1__bounds_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__centroid_js__ = __webpack_require__(94);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCentroid", function() { return __WEBPACK_IMPORTED_MODULE_2__centroid_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__circle_js__ = __webpack_require__(44);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCircle", function() { return __WEBPACK_IMPORTED_MODULE_3__circle_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__clip_antimeridian_js__ = __webpack_require__(45);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoClipAntimeridian", function() { return __WEBPACK_IMPORTED_MODULE_4__clip_antimeridian_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__clip_circle_js__ = __webpack_require__(47);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoClipCircle", function() { return __WEBPACK_IMPORTED_MODULE_5__clip_circle_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__clip_extent_js__ = __webpack_require__(95);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoClipExtent", function() { return __WEBPACK_IMPORTED_MODULE_6__clip_extent_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__clip_rectangle_js__ = __webpack_require__(10);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoClipRectangle", function() { return __WEBPACK_IMPORTED_MODULE_7__clip_rectangle_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__contains_js__ = __webpack_require__(98);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoContains", function() { return __WEBPACK_IMPORTED_MODULE_8__contains_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__distance_js__ = __webpack_require__(51);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoDistance", function() { return __WEBPACK_IMPORTED_MODULE_9__distance_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__graticule_js__ = __webpack_require__(99);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGraticule", function() { return __WEBPACK_IMPORTED_MODULE_10__graticule_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGraticule10", function() { return __WEBPACK_IMPORTED_MODULE_10__graticule_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__interpolate_js__ = __webpack_require__(100);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoInterpolate", function() { return __WEBPACK_IMPORTED_MODULE_11__interpolate_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__length_js__ = __webpack_require__(52);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLength", function() { return __WEBPACK_IMPORTED_MODULE_12__length_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__path_index_js__ = __webpack_require__(104);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPath", function() { return __WEBPACK_IMPORTED_MODULE_13__path_index_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__projection_albers_js__ = __webpack_require__(56);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAlbers", function() { return __WEBPACK_IMPORTED_MODULE_14__projection_albers_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__projection_albersUsa_js__ = __webpack_require__(107);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAlbersUsa", function() { return __WEBPACK_IMPORTED_MODULE_15__projection_albersUsa_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__projection_azimuthalEqualArea_js__ = __webpack_require__(108);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAzimuthalEqualArea", function() { return __WEBPACK_IMPORTED_MODULE_16__projection_azimuthalEqualArea_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAzimuthalEqualAreaRaw", function() { return __WEBPACK_IMPORTED_MODULE_16__projection_azimuthalEqualArea_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__projection_azimuthalEquidistant_js__ = __webpack_require__(109);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAzimuthalEquidistant", function() { return __WEBPACK_IMPORTED_MODULE_17__projection_azimuthalEquidistant_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAzimuthalEquidistantRaw", function() { return __WEBPACK_IMPORTED_MODULE_17__projection_azimuthalEquidistant_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__projection_conicConformal_js__ = __webpack_require__(110);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicConformal", function() { return __WEBPACK_IMPORTED_MODULE_18__projection_conicConformal_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicConformalRaw", function() { return __WEBPACK_IMPORTED_MODULE_18__projection_conicConformal_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__projection_conicEqualArea_js__ = __webpack_require__(20);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicEqualArea", function() { return __WEBPACK_IMPORTED_MODULE_19__projection_conicEqualArea_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicEqualAreaRaw", function() { return __WEBPACK_IMPORTED_MODULE_19__projection_conicEqualArea_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__projection_conicEquidistant_js__ = __webpack_require__(111);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicEquidistant", function() { return __WEBPACK_IMPORTED_MODULE_20__projection_conicEquidistant_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoConicEquidistantRaw", function() { return __WEBPACK_IMPORTED_MODULE_20__projection_conicEquidistant_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__projection_equalEarth_js__ = __webpack_require__(113);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEqualEarth", function() { return __WEBPACK_IMPORTED_MODULE_21__projection_equalEarth_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEqualEarthRaw", function() { return __WEBPACK_IMPORTED_MODULE_21__projection_equalEarth_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__projection_equirectangular_js__ = __webpack_require__(57);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEquirectangular", function() { return __WEBPACK_IMPORTED_MODULE_22__projection_equirectangular_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEquirectangularRaw", function() { return __WEBPACK_IMPORTED_MODULE_22__projection_equirectangular_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__projection_gnomonic_js__ = __webpack_require__(114);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGnomonic", function() { return __WEBPACK_IMPORTED_MODULE_23__projection_gnomonic_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGnomonicRaw", function() { return __WEBPACK_IMPORTED_MODULE_23__projection_gnomonic_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__projection_identity_js__ = __webpack_require__(115);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoIdentity", function() { return __WEBPACK_IMPORTED_MODULE_24__projection_identity_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__projection_index_js__ = __webpack_require__(1);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoProjection", function() { return __WEBPACK_IMPORTED_MODULE_25__projection_index_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoProjectionMutator", function() { return __WEBPACK_IMPORTED_MODULE_25__projection_index_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__projection_mercator_js__ = __webpack_require__(22);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMercator", function() { return __WEBPACK_IMPORTED_MODULE_26__projection_mercator_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMercatorRaw", function() { return __WEBPACK_IMPORTED_MODULE_26__projection_mercator_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__projection_naturalEarth1_js__ = __webpack_require__(116);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNaturalEarth1", function() { return __WEBPACK_IMPORTED_MODULE_27__projection_naturalEarth1_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNaturalEarth1Raw", function() { return __WEBPACK_IMPORTED_MODULE_27__projection_naturalEarth1_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__projection_orthographic_js__ = __webpack_require__(117);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoOrthographic", function() { return __WEBPACK_IMPORTED_MODULE_28__projection_orthographic_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoOrthographicRaw", function() { return __WEBPACK_IMPORTED_MODULE_28__projection_orthographic_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__projection_stereographic_js__ = __webpack_require__(119);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoStereographic", function() { return __WEBPACK_IMPORTED_MODULE_29__projection_stereographic_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoStereographicRaw", function() { return __WEBPACK_IMPORTED_MODULE_29__projection_stereographic_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__projection_transverseMercator_js__ = __webpack_require__(120);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTransverseMercator", function() { return __WEBPACK_IMPORTED_MODULE_30__projection_transverseMercator_js__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTransverseMercatorRaw", function() { return __WEBPACK_IMPORTED_MODULE_30__projection_transverseMercator_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__rotation_js__ = __webpack_require__(11);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoRotation", function() { return __WEBPACK_IMPORTED_MODULE_31__rotation_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__stream_js__ = __webpack_require__(4);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoStream", function() { return __WEBPACK_IMPORTED_MODULE_32__stream_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__transform_js__ = __webpack_require__(12);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTransform", function() { return __WEBPACK_IMPORTED_MODULE_33__transform_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__airy__ = __webpack_require__(117);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAiry", function() { return __WEBPACK_IMPORTED_MODULE_0__airy__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAiryRaw", function() { return __WEBPACK_IMPORTED_MODULE_0__airy__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__aitoff__ = __webpack_require__(57);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAitoff", function() { return __WEBPACK_IMPORTED_MODULE_1__aitoff__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAitoffRaw", function() { return __WEBPACK_IMPORTED_MODULE_1__aitoff__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__armadillo__ = __webpack_require__(118);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoArmadillo", function() { return __WEBPACK_IMPORTED_MODULE_2__armadillo__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoArmadilloRaw", function() { return __WEBPACK_IMPORTED_MODULE_2__armadillo__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__august__ = __webpack_require__(58);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAugust", function() { return __WEBPACK_IMPORTED_MODULE_3__august__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoAugustRaw", function() { return __WEBPACK_IMPORTED_MODULE_3__august__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__baker__ = __webpack_require__(119);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBaker", function() { return __WEBPACK_IMPORTED_MODULE_4__baker__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBakerRaw", function() { return __WEBPACK_IMPORTED_MODULE_4__baker__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__berghaus__ = __webpack_require__(120);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBerghaus", function() { return __WEBPACK_IMPORTED_MODULE_5__berghaus__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBerghausRaw", function() { return __WEBPACK_IMPORTED_MODULE_5__berghaus__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__bertin__ = __webpack_require__(121);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBertin1953", function() { return __WEBPACK_IMPORTED_MODULE_6__bertin__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBertin1953Raw", function() { return __WEBPACK_IMPORTED_MODULE_6__bertin__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__boggs__ = __webpack_require__(59);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBoggs", function() { return __WEBPACK_IMPORTED_MODULE_7__boggs__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBoggsRaw", function() { return __WEBPACK_IMPORTED_MODULE_7__boggs__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__bonne__ = __webpack_require__(122);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBonne", function() { return __WEBPACK_IMPORTED_MODULE_8__bonne__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBonneRaw", function() { return __WEBPACK_IMPORTED_MODULE_8__bonne__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__bottomley__ = __webpack_require__(123);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBottomley", function() { return __WEBPACK_IMPORTED_MODULE_9__bottomley__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBottomleyRaw", function() { return __WEBPACK_IMPORTED_MODULE_9__bottomley__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__bromley__ = __webpack_require__(124);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBromley", function() { return __WEBPACK_IMPORTED_MODULE_10__bromley__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoBromleyRaw", function() { return __WEBPACK_IMPORTED_MODULE_10__bromley__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__chamberlin__ = __webpack_require__(125);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoChamberlin", function() { return __WEBPACK_IMPORTED_MODULE_11__chamberlin__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoChamberlinRaw", function() { return __WEBPACK_IMPORTED_MODULE_11__chamberlin__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoChamberlinAfrica", function() { return __WEBPACK_IMPORTED_MODULE_11__chamberlin__["c"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__collignon__ = __webpack_require__(27);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCollignon", function() { return __WEBPACK_IMPORTED_MODULE_12__collignon__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCollignonRaw", function() { return __WEBPACK_IMPORTED_MODULE_12__collignon__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__craig__ = __webpack_require__(126);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCraig", function() { return __WEBPACK_IMPORTED_MODULE_13__craig__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCraigRaw", function() { return __WEBPACK_IMPORTED_MODULE_13__craig__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__craster__ = __webpack_require__(127);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCraster", function() { return __WEBPACK_IMPORTED_MODULE_14__craster__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCrasterRaw", function() { return __WEBPACK_IMPORTED_MODULE_14__craster__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__cylindricalEqualArea__ = __webpack_require__(60);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCylindricalEqualArea", function() { return __WEBPACK_IMPORTED_MODULE_15__cylindricalEqualArea__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCylindricalEqualAreaRaw", function() { return __WEBPACK_IMPORTED_MODULE_15__cylindricalEqualArea__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__cylindricalStereographic__ = __webpack_require__(128);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCylindricalStereographic", function() { return __WEBPACK_IMPORTED_MODULE_16__cylindricalStereographic__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoCylindricalStereographicRaw", function() { return __WEBPACK_IMPORTED_MODULE_16__cylindricalStereographic__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__eckert1_js__ = __webpack_require__(129);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert1", function() { return __WEBPACK_IMPORTED_MODULE_17__eckert1_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert1Raw", function() { return __WEBPACK_IMPORTED_MODULE_17__eckert1_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__eckert2_js__ = __webpack_require__(130);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert2", function() { return __WEBPACK_IMPORTED_MODULE_18__eckert2_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert2Raw", function() { return __WEBPACK_IMPORTED_MODULE_18__eckert2_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__eckert3_js__ = __webpack_require__(131);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert3", function() { return __WEBPACK_IMPORTED_MODULE_19__eckert3_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert3Raw", function() { return __WEBPACK_IMPORTED_MODULE_19__eckert3_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__eckert4_js__ = __webpack_require__(132);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert4", function() { return __WEBPACK_IMPORTED_MODULE_20__eckert4_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert4Raw", function() { return __WEBPACK_IMPORTED_MODULE_20__eckert4_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__eckert5_js__ = __webpack_require__(133);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert5", function() { return __WEBPACK_IMPORTED_MODULE_21__eckert5_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert5Raw", function() { return __WEBPACK_IMPORTED_MODULE_21__eckert5_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__eckert6_js__ = __webpack_require__(134);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert6", function() { return __WEBPACK_IMPORTED_MODULE_22__eckert6_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEckert6Raw", function() { return __WEBPACK_IMPORTED_MODULE_22__eckert6_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__eisenlohr_js__ = __webpack_require__(135);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEisenlohr", function() { return __WEBPACK_IMPORTED_MODULE_23__eisenlohr_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoEisenlohrRaw", function() { return __WEBPACK_IMPORTED_MODULE_23__eisenlohr_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__fahey_js__ = __webpack_require__(137);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoFahey", function() { return __WEBPACK_IMPORTED_MODULE_24__fahey_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoFaheyRaw", function() { return __WEBPACK_IMPORTED_MODULE_24__fahey_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__foucaut_js__ = __webpack_require__(138);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoFoucaut", function() { return __WEBPACK_IMPORTED_MODULE_25__foucaut_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoFoucautRaw", function() { return __WEBPACK_IMPORTED_MODULE_25__foucaut_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__foucautSinusoidal_js__ = __webpack_require__(139);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoFoucautSinusoidal", function() { return __WEBPACK_IMPORTED_MODULE_26__foucautSinusoidal_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoFoucautSinusoidalRaw", function() { return __WEBPACK_IMPORTED_MODULE_26__foucautSinusoidal_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__gilbert_js__ = __webpack_require__(140);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGilbert", function() { return __WEBPACK_IMPORTED_MODULE_27__gilbert_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__gingery_js__ = __webpack_require__(141);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGingery", function() { return __WEBPACK_IMPORTED_MODULE_28__gingery_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGingeryRaw", function() { return __WEBPACK_IMPORTED_MODULE_28__gingery_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__ginzburg4_js__ = __webpack_require__(142);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGinzburg4", function() { return __WEBPACK_IMPORTED_MODULE_29__ginzburg4_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGinzburg4Raw", function() { return __WEBPACK_IMPORTED_MODULE_29__ginzburg4_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ginzburg5_js__ = __webpack_require__(143);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGinzburg5", function() { return __WEBPACK_IMPORTED_MODULE_30__ginzburg5_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGinzburg5Raw", function() { return __WEBPACK_IMPORTED_MODULE_30__ginzburg5_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__ginzburg6_js__ = __webpack_require__(144);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGinzburg6", function() { return __WEBPACK_IMPORTED_MODULE_31__ginzburg6_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGinzburg6Raw", function() { return __WEBPACK_IMPORTED_MODULE_31__ginzburg6_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__ginzburg8_js__ = __webpack_require__(145);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGinzburg8", function() { return __WEBPACK_IMPORTED_MODULE_32__ginzburg8_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGinzburg8Raw", function() { return __WEBPACK_IMPORTED_MODULE_32__ginzburg8_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__ginzburg9_js__ = __webpack_require__(146);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGinzburg9", function() { return __WEBPACK_IMPORTED_MODULE_33__ginzburg9_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGinzburg9Raw", function() { return __WEBPACK_IMPORTED_MODULE_33__ginzburg9_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__gringorten_js__ = __webpack_require__(61);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGringorten", function() { return __WEBPACK_IMPORTED_MODULE_34__gringorten_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGringortenRaw", function() { return __WEBPACK_IMPORTED_MODULE_34__gringorten_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__guyou_js__ = __webpack_require__(62);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGuyou", function() { return __WEBPACK_IMPORTED_MODULE_35__guyou_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGuyouRaw", function() { return __WEBPACK_IMPORTED_MODULE_35__guyou_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36__hammer_js__ = __webpack_require__(28);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHammer", function() { return __WEBPACK_IMPORTED_MODULE_36__hammer_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHammerRaw", function() { return __WEBPACK_IMPORTED_MODULE_36__hammer_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__hammerRetroazimuthal_js__ = __webpack_require__(147);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHammerRetroazimuthal", function() { return __WEBPACK_IMPORTED_MODULE_37__hammerRetroazimuthal_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHammerRetroazimuthalRaw", function() { return __WEBPACK_IMPORTED_MODULE_37__hammerRetroazimuthal_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__healpix_js__ = __webpack_require__(148);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHealpix", function() { return __WEBPACK_IMPORTED_MODULE_38__healpix_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHealpixRaw", function() { return __WEBPACK_IMPORTED_MODULE_38__healpix_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__hill_js__ = __webpack_require__(149);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHill", function() { return __WEBPACK_IMPORTED_MODULE_39__hill_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHillRaw", function() { return __WEBPACK_IMPORTED_MODULE_39__hill_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__homolosine_js__ = __webpack_require__(63);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHomolosine", function() { return __WEBPACK_IMPORTED_MODULE_40__homolosine_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHomolosineRaw", function() { return __WEBPACK_IMPORTED_MODULE_40__homolosine_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_41__hufnagel_js__ = __webpack_require__(150);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHufnagel", function() { return __WEBPACK_IMPORTED_MODULE_41__hufnagel_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHufnagelRaw", function() { return __WEBPACK_IMPORTED_MODULE_41__hufnagel_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_42__hyperelliptical__ = __webpack_require__(151);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHyperelliptical", function() { return __WEBPACK_IMPORTED_MODULE_42__hyperelliptical__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoHyperellipticalRaw", function() { return __WEBPACK_IMPORTED_MODULE_42__hyperelliptical__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_43__interrupted_index__ = __webpack_require__(5);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoInterrupt", function() { return __WEBPACK_IMPORTED_MODULE_43__interrupted_index__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__interrupted_boggs__ = __webpack_require__(153);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoInterruptedBoggs", function() { return __WEBPACK_IMPORTED_MODULE_44__interrupted_boggs__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__interrupted_homolosine__ = __webpack_require__(154);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoInterruptedHomolosine", function() { return __WEBPACK_IMPORTED_MODULE_45__interrupted_homolosine__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__interrupted_mollweide__ = __webpack_require__(155);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoInterruptedMollweide", function() { return __WEBPACK_IMPORTED_MODULE_46__interrupted_mollweide__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__interrupted_mollweideHemispheres__ = __webpack_require__(156);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoInterruptedMollweideHemispheres", function() { return __WEBPACK_IMPORTED_MODULE_47__interrupted_mollweideHemispheres__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_48__interrupted_sinuMollweide__ = __webpack_require__(158);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoInterruptedSinuMollweide", function() { return __WEBPACK_IMPORTED_MODULE_48__interrupted_sinuMollweide__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_49__interrupted_sinusoidal__ = __webpack_require__(159);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoInterruptedSinusoidal", function() { return __WEBPACK_IMPORTED_MODULE_49__interrupted_sinusoidal__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_50__kavrayskiy7_js__ = __webpack_require__(160);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoKavrayskiy7", function() { return __WEBPACK_IMPORTED_MODULE_50__kavrayskiy7_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoKavrayskiy7Raw", function() { return __WEBPACK_IMPORTED_MODULE_50__kavrayskiy7_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_51__lagrange_js__ = __webpack_require__(161);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLagrange", function() { return __WEBPACK_IMPORTED_MODULE_51__lagrange_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLagrangeRaw", function() { return __WEBPACK_IMPORTED_MODULE_51__lagrange_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__larrivee__ = __webpack_require__(162);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLarrivee", function() { return __WEBPACK_IMPORTED_MODULE_52__larrivee__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLarriveeRaw", function() { return __WEBPACK_IMPORTED_MODULE_52__larrivee__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__laskowski__ = __webpack_require__(163);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLaskowski", function() { return __WEBPACK_IMPORTED_MODULE_53__laskowski__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLaskowskiRaw", function() { return __WEBPACK_IMPORTED_MODULE_53__laskowski__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__littrow_js__ = __webpack_require__(164);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLittrow", function() { return __WEBPACK_IMPORTED_MODULE_54__littrow_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLittrowRaw", function() { return __WEBPACK_IMPORTED_MODULE_54__littrow_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__loximuthal_js__ = __webpack_require__(165);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLoximuthal", function() { return __WEBPACK_IMPORTED_MODULE_55__loximuthal_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoLoximuthalRaw", function() { return __WEBPACK_IMPORTED_MODULE_55__loximuthal_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__miller__ = __webpack_require__(166);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMiller", function() { return __WEBPACK_IMPORTED_MODULE_56__miller__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMillerRaw", function() { return __WEBPACK_IMPORTED_MODULE_56__miller__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_57__modifiedStereographic__ = __webpack_require__(167);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoModifiedStereographic", function() { return __WEBPACK_IMPORTED_MODULE_57__modifiedStereographic__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoModifiedStereographicRaw", function() { return __WEBPACK_IMPORTED_MODULE_57__modifiedStereographic__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoModifiedStereographicAlaska", function() { return __WEBPACK_IMPORTED_MODULE_57__modifiedStereographic__["c"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoModifiedStereographicGs48", function() { return __WEBPACK_IMPORTED_MODULE_57__modifiedStereographic__["d"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoModifiedStereographicGs50", function() { return __WEBPACK_IMPORTED_MODULE_57__modifiedStereographic__["e"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoModifiedStereographicMiller", function() { return __WEBPACK_IMPORTED_MODULE_57__modifiedStereographic__["f"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoModifiedStereographicLee", function() { return __WEBPACK_IMPORTED_MODULE_57__modifiedStereographic__["g"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_58__mollweide__ = __webpack_require__(6);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMollweide", function() { return __WEBPACK_IMPORTED_MODULE_58__mollweide__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMollweideRaw", function() { return __WEBPACK_IMPORTED_MODULE_58__mollweide__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_59__mtFlatPolarParabolic__ = __webpack_require__(168);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMtFlatPolarParabolic", function() { return __WEBPACK_IMPORTED_MODULE_59__mtFlatPolarParabolic__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMtFlatPolarParabolicRaw", function() { return __WEBPACK_IMPORTED_MODULE_59__mtFlatPolarParabolic__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_60__mtFlatPolarQuartic__ = __webpack_require__(169);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMtFlatPolarQuartic", function() { return __WEBPACK_IMPORTED_MODULE_60__mtFlatPolarQuartic__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMtFlatPolarQuarticRaw", function() { return __WEBPACK_IMPORTED_MODULE_60__mtFlatPolarQuartic__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_61__mtFlatPolarSinusoidal__ = __webpack_require__(170);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMtFlatPolarSinusoidal", function() { return __WEBPACK_IMPORTED_MODULE_61__mtFlatPolarSinusoidal__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoMtFlatPolarSinusoidalRaw", function() { return __WEBPACK_IMPORTED_MODULE_61__mtFlatPolarSinusoidal__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_62_d3_geo__ = __webpack_require__(1);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNaturalEarth", function() { return __WEBPACK_IMPORTED_MODULE_62_d3_geo__["geoNaturalEarth1"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNaturalEarthRaw", function() { return __WEBPACK_IMPORTED_MODULE_62_d3_geo__["geoNaturalEarth1Raw"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_63__naturalEarth2__ = __webpack_require__(171);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNaturalEarth2", function() { return __WEBPACK_IMPORTED_MODULE_63__naturalEarth2__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNaturalEarth2Raw", function() { return __WEBPACK_IMPORTED_MODULE_63__naturalEarth2__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_64__nellHammer__ = __webpack_require__(172);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNellHammer", function() { return __WEBPACK_IMPORTED_MODULE_64__nellHammer__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNellHammerRaw", function() { return __WEBPACK_IMPORTED_MODULE_64__nellHammer__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_65__interrupted_quarticAuthalic__ = __webpack_require__(157);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoInterruptedQuarticAuthalic", function() { return __WEBPACK_IMPORTED_MODULE_65__interrupted_quarticAuthalic__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__nicolosi__ = __webpack_require__(173);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNicolosi", function() { return __WEBPACK_IMPORTED_MODULE_66__nicolosi__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoNicolosiRaw", function() { return __WEBPACK_IMPORTED_MODULE_66__nicolosi__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__patterson__ = __webpack_require__(175);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPatterson", function() { return __WEBPACK_IMPORTED_MODULE_67__patterson__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPattersonRaw", function() { return __WEBPACK_IMPORTED_MODULE_67__patterson__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__polyconic__ = __webpack_require__(176);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPolyconic", function() { return __WEBPACK_IMPORTED_MODULE_68__polyconic__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPolyconicRaw", function() { return __WEBPACK_IMPORTED_MODULE_68__polyconic__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__polyhedral_index_js__ = __webpack_require__(19);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPolyhedral", function() { return __WEBPACK_IMPORTED_MODULE_69__polyhedral_index_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__polyhedral_butterfly_js__ = __webpack_require__(177);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPolyhedralButterfly", function() { return __WEBPACK_IMPORTED_MODULE_70__polyhedral_butterfly_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__polyhedral_collignon_js__ = __webpack_require__(178);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPolyhedralCollignon", function() { return __WEBPACK_IMPORTED_MODULE_71__polyhedral_collignon_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__polyhedral_waterman_js__ = __webpack_require__(180);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPolyhedralWaterman", function() { return __WEBPACK_IMPORTED_MODULE_72__polyhedral_waterman_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_73__project_index__ = __webpack_require__(183);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoProject", function() { return __WEBPACK_IMPORTED_MODULE_73__project_index__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_74__quincuncial_gringorten_js__ = __webpack_require__(185);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoGringortenQuincuncial", function() { return __WEBPACK_IMPORTED_MODULE_74__quincuncial_gringorten_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_75__quincuncial_peirce_js__ = __webpack_require__(64);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPeirceQuincuncial", function() { return __WEBPACK_IMPORTED_MODULE_75__quincuncial_peirce_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoPierceQuincuncial", function() { return __WEBPACK_IMPORTED_MODULE_75__quincuncial_peirce_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_76__quantize__ = __webpack_require__(184);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoQuantize", function() { return __WEBPACK_IMPORTED_MODULE_76__quantize__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_77__quincuncial_index_js__ = __webpack_require__(30);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoQuincuncial", function() { return __WEBPACK_IMPORTED_MODULE_77__quincuncial_index_js__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_78__rectangularPolyconic__ = __webpack_require__(186);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoRectangularPolyconic", function() { return __WEBPACK_IMPORTED_MODULE_78__rectangularPolyconic__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoRectangularPolyconicRaw", function() { return __WEBPACK_IMPORTED_MODULE_78__rectangularPolyconic__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_79__robinson__ = __webpack_require__(187);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoRobinson", function() { return __WEBPACK_IMPORTED_MODULE_79__robinson__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoRobinsonRaw", function() { return __WEBPACK_IMPORTED_MODULE_79__robinson__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_80__satellite__ = __webpack_require__(188);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoSatellite", function() { return __WEBPACK_IMPORTED_MODULE_80__satellite__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoSatelliteRaw", function() { return __WEBPACK_IMPORTED_MODULE_80__satellite__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_81__sinuMollweide__ = __webpack_require__(31);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoSinuMollweide", function() { return __WEBPACK_IMPORTED_MODULE_81__sinuMollweide__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoSinuMollweideRaw", function() { return __WEBPACK_IMPORTED_MODULE_81__sinuMollweide__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_82__sinusoidal__ = __webpack_require__(15);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoSinusoidal", function() { return __WEBPACK_IMPORTED_MODULE_82__sinusoidal__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoSinusoidalRaw", function() { return __WEBPACK_IMPORTED_MODULE_82__sinusoidal__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_83__stitch__ = __webpack_require__(189);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoStitch", function() { return __WEBPACK_IMPORTED_MODULE_83__stitch__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_84__times__ = __webpack_require__(190);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTimes", function() { return __WEBPACK_IMPORTED_MODULE_84__times__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTimesRaw", function() { return __WEBPACK_IMPORTED_MODULE_84__times__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_85__twoPointAzimuthal__ = __webpack_require__(191);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTwoPointAzimuthal", function() { return __WEBPACK_IMPORTED_MODULE_85__twoPointAzimuthal__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTwoPointAzimuthalRaw", function() { return __WEBPACK_IMPORTED_MODULE_85__twoPointAzimuthal__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTwoPointAzimuthalUsa", function() { return __WEBPACK_IMPORTED_MODULE_85__twoPointAzimuthal__["c"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_86__twoPointEquidistant__ = __webpack_require__(192);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTwoPointEquidistant", function() { return __WEBPACK_IMPORTED_MODULE_86__twoPointEquidistant__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTwoPointEquidistantRaw", function() { return __WEBPACK_IMPORTED_MODULE_86__twoPointEquidistant__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoTwoPointEquidistantUsa", function() { return __WEBPACK_IMPORTED_MODULE_86__twoPointEquidistant__["c"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_87__vanDerGrinten__ = __webpack_require__(193);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoVanDerGrinten", function() { return __WEBPACK_IMPORTED_MODULE_87__vanDerGrinten__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoVanDerGrintenRaw", function() { return __WEBPACK_IMPORTED_MODULE_87__vanDerGrinten__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_88__vanDerGrinten2__ = __webpack_require__(194);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoVanDerGrinten2", function() { return __WEBPACK_IMPORTED_MODULE_88__vanDerGrinten2__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoVanDerGrinten2Raw", function() { return __WEBPACK_IMPORTED_MODULE_88__vanDerGrinten2__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_89__vanDerGrinten3__ = __webpack_require__(195);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoVanDerGrinten3", function() { return __WEBPACK_IMPORTED_MODULE_89__vanDerGrinten3__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoVanDerGrinten3Raw", function() { return __WEBPACK_IMPORTED_MODULE_89__vanDerGrinten3__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_90__vanDerGrinten4__ = __webpack_require__(196);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoVanDerGrinten4", function() { return __WEBPACK_IMPORTED_MODULE_90__vanDerGrinten4__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoVanDerGrinten4Raw", function() { return __WEBPACK_IMPORTED_MODULE_90__vanDerGrinten4__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_91__wagner_js__ = __webpack_require__(197);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWagner", function() { return __WEBPACK_IMPORTED_MODULE_91__wagner_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWagner7", function() { return __WEBPACK_IMPORTED_MODULE_91__wagner_js__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWagnerRaw", function() { return __WEBPACK_IMPORTED_MODULE_91__wagner_js__["c"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_92__wagner4_js__ = __webpack_require__(198);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWagner4", function() { return __WEBPACK_IMPORTED_MODULE_92__wagner4_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWagner4Raw", function() { return __WEBPACK_IMPORTED_MODULE_92__wagner4_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_93__wagner6_js__ = __webpack_require__(199);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWagner6", function() { return __WEBPACK_IMPORTED_MODULE_93__wagner6_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWagner6Raw", function() { return __WEBPACK_IMPORTED_MODULE_93__wagner6_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_94__wiechel_js__ = __webpack_require__(200);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWiechel", function() { return __WEBPACK_IMPORTED_MODULE_94__wiechel_js__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWiechelRaw", function() { return __WEBPACK_IMPORTED_MODULE_94__wiechel_js__["b"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_95__winkel3__ = __webpack_require__(201);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWinkel3", function() { return __WEBPACK_IMPORTED_MODULE_95__winkel3__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "geoWinkel3Raw", function() { return __WEBPACK_IMPORTED_MODULE_95__winkel3__["b"]; });
 
 
 
 
 
 
- // DEPRECATED! Use d3.geoIdentity().clipExtent(…).
 
 
 
@@ -3609,6 +5321,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // DEPRECATED moved to d3-geo
+
+
+
+
+
+
+
+
+
+
+
+
+
+ // DEPRECATED misspelling
 
 
 
@@ -3632,46 +5408,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 70 */
+/* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__create__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__create__ = __webpack_require__(231);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "create", function() { return __WEBPACK_IMPORTED_MODULE_0__create__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__creator__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__creator__ = __webpack_require__(23);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "creator", function() { return __WEBPACK_IMPORTED_MODULE_1__creator__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__local__ = __webpack_require__(123);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__local__ = __webpack_require__(232);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "local", function() { return __WEBPACK_IMPORTED_MODULE_2__local__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__matcher__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__matcher__ = __webpack_require__(82);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matcher", function() { return __WEBPACK_IMPORTED_MODULE_3__matcher__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mouse__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mouse__ = __webpack_require__(233);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mouse", function() { return __WEBPACK_IMPORTED_MODULE_4__mouse__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__namespace__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__namespace__ = __webpack_require__(37);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "namespace", function() { return __WEBPACK_IMPORTED_MODULE_5__namespace__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__namespaces__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__namespaces__ = __webpack_require__(38);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "namespaces", function() { return __WEBPACK_IMPORTED_MODULE_6__namespaces__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__point__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__point__ = __webpack_require__(24);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "clientPoint", function() { return __WEBPACK_IMPORTED_MODULE_7__point__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__select__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__select__ = __webpack_require__(83);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "select", function() { return __WEBPACK_IMPORTED_MODULE_8__select__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__selectAll__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__selectAll__ = __webpack_require__(234);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "selectAll", function() { return __WEBPACK_IMPORTED_MODULE_9__selectAll__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__selection_index__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__selection_index__ = __webpack_require__(4);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "selection", function() { return __WEBPACK_IMPORTED_MODULE_10__selection_index__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__selector__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__selector__ = __webpack_require__(40);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "selector", function() { return __WEBPACK_IMPORTED_MODULE_11__selector__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__selectorAll__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__selectorAll__ = __webpack_require__(87);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "selectorAll", function() { return __WEBPACK_IMPORTED_MODULE_12__selectorAll__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__selection_style__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__selection_style__ = __webpack_require__(86);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "style", function() { return __WEBPACK_IMPORTED_MODULE_13__selection_style__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__touch__ = __webpack_require__(154);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__touch__ = __webpack_require__(263);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "touch", function() { return __WEBPACK_IMPORTED_MODULE_14__touch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__touches__ = __webpack_require__(155);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__touches__ = __webpack_require__(264);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "touches", function() { return __WEBPACK_IMPORTED_MODULE_15__touches__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__window__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__window__ = __webpack_require__(42);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "window", function() { return __WEBPACK_IMPORTED_MODULE_16__window__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__selection_on__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__selection_on__ = __webpack_require__(39);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "event", function() { return __WEBPACK_IMPORTED_MODULE_17__selection_on__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "customEvent", function() { return __WEBPACK_IMPORTED_MODULE_17__selection_on__["b"]; });
 
@@ -3695,7 +5471,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 71 */
+/* 95 */
 /***/ (function(module, exports) {
 
 // SVGPathSeg API polyfill
@@ -4550,28 +6326,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 72 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bbox_js__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bbox_js__ = __webpack_require__(88);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "bbox", function() { return __WEBPACK_IMPORTED_MODULE_0__bbox_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__feature_js__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__feature_js__ = __webpack_require__(43);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "feature", function() { return __WEBPACK_IMPORTED_MODULE_1__feature_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mesh_js__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mesh_js__ = __webpack_require__(267);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mesh", function() { return __WEBPACK_IMPORTED_MODULE_2__mesh_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "meshArcs", function() { return __WEBPACK_IMPORTED_MODULE_2__mesh_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__merge_js__ = __webpack_require__(157);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__merge_js__ = __webpack_require__(266);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "merge", function() { return __WEBPACK_IMPORTED_MODULE_3__merge_js__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "mergeArcs", function() { return __WEBPACK_IMPORTED_MODULE_3__merge_js__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__neighbors_js__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__neighbors_js__ = __webpack_require__(268);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "neighbors", function() { return __WEBPACK_IMPORTED_MODULE_4__neighbors_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__quantize_js__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__quantize_js__ = __webpack_require__(269);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "quantize", function() { return __WEBPACK_IMPORTED_MODULE_5__quantize_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__transform_js__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__transform_js__ = __webpack_require__(44);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "transform", function() { return __WEBPACK_IMPORTED_MODULE_6__transform_js__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__untransform_js__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__untransform_js__ = __webpack_require__(91);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "untransform", function() { return __WEBPACK_IMPORTED_MODULE_7__untransform_js__["a"]; });
 
 
@@ -4584,7 +6360,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 73 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* globals AFRAME, THREE, SVGPathSegMovetoAbs, SVGPathSegLinetoRel, SVGPathSegLinetoVerticalRel, SVGPathSegLinetoHorizontalRel, SVGPathSegLinetoHorizontalAbs, SVGPathSegLinetoVerticalAbs, SVGPathSegClosePath, SVGPathSegLinetoAbs */
@@ -4593,12 +6369,13 @@ if (typeof AFRAME === 'undefined') {
   throw new Error('Component attempted to register before AFRAME was available.');
 }
 
-__webpack_require__(71); // polyfill
+__webpack_require__(95); // polyfill
 
-const d3sel = __webpack_require__(70)
-const d3geo = __webpack_require__(69)
-const d3dsv = __webpack_require__(68)
-const topojson = __webpack_require__(72);
+const d3sel = __webpack_require__(94)
+const d3geo = __webpack_require__(1)
+const d3geoprojection = __webpack_require__(93)
+const d3dsv = __webpack_require__(92)
+const topojson = __webpack_require__(96);
 
 const FEATURE_SELECTED_EVENT = 'geojson-feature-selected';
 const GEOJSON_GENERATED_EVENT = 'geojson-loaded';
@@ -4762,7 +6539,7 @@ AFRAME.registerComponent('geojson', {
     const width = 360; // corresponds to longitude
     const height = 180; // corresponds to positive scaled latitude
 
-    const projectionFunc = d3geo[data.projection];
+    const projectionFunc = d3geo[data.projection] || d3geoprojection[data.projection];
     const projection = projectionFunc().scale(height / Math.PI)
             // http://bl.ocks.org/mbostock/3757119
             .translate([
@@ -5501,7 +7278,7 @@ AFRAME.registerComponent('geojson-texture', {
       const width = data.canvas.width;
       const height = data.canvas.height;
       
-      const projectionFunc = d3geo[data.projection];
+      const projectionFunc = d3geo[data.projection] || d3geoprojection[data.projection];
       this.projection = projectionFunc()
                 .scale(height / Math.PI)
                 .translate([width / 2, height / 2]);
@@ -5602,7 +7379,7 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 74 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5614,11 +7391,11 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 75 */
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pairs__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pairs__ = __webpack_require__(51);
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (function(values0, values1, reduce) {
@@ -5643,7 +7420,7 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 76 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5653,18 +7430,18 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 77 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bisect__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constant__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__extent__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__identity__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ticks__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__threshold_sturges__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__bisect__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constant__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__extent__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__identity__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__range__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ticks__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__threshold_sturges__ = __webpack_require__(53);
 
 
 
@@ -5743,7 +7520,7 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 78 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5753,7 +7530,7 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 79 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5794,11 +7571,11 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 80 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__number__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__number__ = __webpack_require__(14);
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (function(values, valueof) {
@@ -5827,13 +7604,13 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 81 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ascending__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__number__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__quantile__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ascending__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__number__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__quantile__ = __webpack_require__(25);
 
 
 
@@ -5865,7 +7642,7 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 82 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5893,7 +7670,7 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 83 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5905,11 +7682,11 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 84 */
+/* 108 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ascending__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ascending__ = __webpack_require__(9);
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (function(values, compare) {
@@ -5933,7 +7710,7 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 85 */
+/* 109 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5954,7 +7731,7 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 86 */
+/* 110 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5981,14 +7758,14 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 87 */
+/* 111 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ascending__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__number__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__quantile__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__array__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ascending__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__number__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__quantile__ = __webpack_require__(25);
 
 
 
@@ -6001,11 +7778,11 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 88 */
+/* 112 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__deviation__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__deviation__ = __webpack_require__(48);
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (function(values, min, max) {
@@ -6014,11 +7791,11 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 89 */
+/* 113 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transpose__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__transpose__ = __webpack_require__(55);
 
 
 /* unused harmony default export */ var _unused_webpack_default_export = (function() {
@@ -6027,7 +7804,7 @@ AFRAME.registerComponent('geojson-texture', {
 
 
 /***/ }),
-/* 90 */
+/* 114 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6054,7 +7831,7 @@ function autoType(object) {
 var fixtz = new Date("2019-01-01T00:00").getHours() || new Date("2019-07-01T00:00").getHours();
 
 /***/ }),
-/* 91 */
+/* 115 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6065,7 +7842,7 @@ var fixtz = new Date("2019-01-01T00:00").getHours() || new Date("2019-07-01T00:0
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return csvFormatRows; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return csvFormatRow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return csvFormatValue; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dsv_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dsv_js__ = __webpack_require__(26);
 
 
 var csv = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__dsv_js__["a" /* default */])(",");
@@ -6080,7 +7857,7 @@ var csvFormatValue = csv.formatValue;
 
 
 /***/ }),
-/* 92 */
+/* 116 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6091,7 +7868,7 @@ var csvFormatValue = csv.formatValue;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return tsvFormatRows; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return tsvFormatRow; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return tsvFormatValue; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dsv_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dsv_js__ = __webpack_require__(26);
 
 
 var tsv = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__dsv_js__["a" /* default */])("\t");
@@ -6106,15 +7883,4786 @@ var tsvFormatValue = tsv.formatValue;
 
 
 /***/ }),
-/* 93 */
+/* 117 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__area_js__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cartesian_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stream_js__ = __webpack_require__(4);
+/* harmony export (immutable) */ __webpack_exports__["b"] = airyRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function airyRaw(beta) {
+  var tanBeta_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(beta / 2),
+      b = 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["w" /* log */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(beta / 2)) / (tanBeta_2 * tanBeta_2);
+
+  function forward(x, y) {
+    var cosx = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(x),
+        cosy = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(y),
+        siny = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(y),
+        cosz = cosy * cosx,
+        k = -((1 - cosz ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["w" /* log */])((1 + cosz) / 2) / (1 - cosz) : -0.5) + b / (1 + cosz));
+    return [k * cosy * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(x), k * siny];
+  }
+
+  forward.invert = function(x, y) {
+    var r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(x * x + y * y),
+        z = -beta / 2,
+        i = 50, delta;
+    if (!r) return [0, 0];
+    do {
+      var z_2 = z / 2,
+          cosz_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(z_2),
+          sinz_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(z_2),
+          tanz_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(z_2),
+          lnsecz_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["w" /* log */])(1 / cosz_2);
+      z -= delta = (2 / tanz_2 * lnsecz_2 - b * tanz_2 - r) / (-lnsecz_2 / (sinz_2 * sinz_2) + 1 - b / (2 * cosz_2 * cosz_2));
+    } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && --i > 0);
+    var sinz = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(z);
+    return [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(x * sinz, r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(z)), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(y * sinz / r)];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var beta = __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(airyRaw),
+      p = m(beta);
+
+  p.radius = function(_) {
+    return arguments.length ? m(beta = _ * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]) : beta * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */];
+  };
+
+  return p
+      .scale(179.976)
+      .clipAngle(147);
+});
+
+
+/***/ }),
+/* 118 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = armadilloRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function armadilloRaw(phi0) {
+  var sinPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi0),
+      cosPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi0),
+      sPhi0 = phi0 >= 0 ? 1 : -1,
+      tanPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(sPhi0 * phi0),
+      k = (1 + sinPhi0 - cosPhi0) / 2;
+
+  function forward(lambda, phi) {
+    var cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+        cosLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda /= 2);
+    return [
+      (1 + cosPhi) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda),
+      (sPhi0 * phi > -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(cosLambda, tanPhi0) - 1e-3 ? 0 : -sPhi0 * 10) + k + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi) * cosPhi0 - (1 + cosPhi) * sinPhi0 * cosLambda // TODO D3 core should allow null or [NaN, NaN] to be returned.
+    ];
+  }
+
+  forward.invert = function(x, y) {
+    var lambda = 0,
+        phi = 0,
+        i = 50;
+    do {
+      var cosLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda),
+          sinLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda),
+          cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+          sinPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+          A = 1 + cosPhi,
+          fx = A * sinLambda - x,
+          fy = k + sinPhi * cosPhi0 - A * sinPhi0 * cosLambda - y,
+          dxdLambda = A * cosLambda / 2,
+          dxdPhi = -sinLambda * sinPhi,
+          dydLambda = sinPhi0 * A * sinLambda / 2,
+          dydPhi = cosPhi0 * cosPhi + sinPhi0 * cosLambda * sinPhi,
+          denominator = dxdPhi * dydLambda - dydPhi * dxdLambda,
+          dLambda = (fy * dxdPhi - fx * dydPhi) / denominator / 2,
+          dPhi = (fx * dydLambda - fy * dxdLambda) / denominator;
+      lambda -= dLambda, phi -= dPhi;
+    } while ((__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(dLambda) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(dPhi) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) && --i > 0);
+    return sPhi0 * phi > -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda), tanPhi0) - 1e-3 ? [lambda * 2, phi] : null;
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var phi0 = 20 * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */],
+      sPhi0 = phi0 >= 0 ? 1 : -1,
+      tanPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(sPhi0 * phi0),
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(armadilloRaw),
+      p = m(phi0),
+      stream_ = p.stream;
+
+  p.parallel = function(_) {
+    if (!arguments.length) return phi0 * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */];
+    tanPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])((sPhi0 = (phi0 = _ * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]) >= 0 ? 1 : -1) * phi0);
+    return m(phi0);
+  };
+
+  p.stream = function(stream) {
+    var rotate = p.rotate(),
+        rotateStream = stream_(stream),
+        sphereStream = (p.rotate([0, 0]), stream_(stream)),
+        precision = p.precision();
+    p.rotate(rotate);
+    rotateStream.sphere = function() {
+      sphereStream.polygonStart(), sphereStream.lineStart();
+      for (var lambda = sPhi0 * -180; sPhi0 * lambda < 180; lambda += sPhi0 * 90)
+        sphereStream.point(lambda, sPhi0 * 90);
+      if (phi0) while (sPhi0 * (lambda -= 3 * sPhi0 * precision) >= -180) {
+        sphereStream.point(lambda, sPhi0 * -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */] / 2), tanPhi0) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]);
+      }
+      sphereStream.lineEnd(), sphereStream.polygonEnd();
+    };
+    return rotateStream;
+  };
+
+  return p
+      .scale(218.695)
+      .center([0, 28.0974]);
+});
+
+
+/***/ }),
+/* 119 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = bakerRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+var sqrt8 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(8),
+    phi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["w" /* log */])(1 + __WEBPACK_IMPORTED_MODULE_1__math_js__["k" /* sqrt2 */]);
+
+function bakerRaw(lambda, phi) {
+  var phi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi);
+  return phi0 < __WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */]
+      ? [lambda, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["w" /* log */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */] + phi / 2))]
+      : [lambda * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi0) * (2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["k" /* sqrt2 */] - 1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi0)), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(phi) * (2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["k" /* sqrt2 */] * (phi0 - __WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */]) - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["w" /* log */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi0 / 2)))];
+}
+
+bakerRaw.invert = function(x, y) {
+  if ((y0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y)) < phi0) return [x, 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["x" /* exp */])(y)) - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]];
+  var phi = __WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */], i = 25, delta, y0;
+  do {
+    var cosPhi_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi / 2), tanPhi_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi / 2);
+    phi -= delta = (sqrt8 * (phi - __WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */]) - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["w" /* log */])(tanPhi_2) - y0) / (sqrt8 - cosPhi_2 * cosPhi_2 / (2 * tanPhi_2));
+  } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["u" /* epsilon2 */] && --i > 0);
+  return [x / (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi) * (sqrt8 - 1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi))), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y) * phi];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(bakerRaw)
+      .scale(112.314);
+});
+
+
+/***/ }),
+/* 120 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = berghausRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function berghausRaw(lobes) {
+  var k = 2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / lobes;
+
+  function forward(lambda, phi) {
+    var p = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoAzimuthalEquidistantRaw"])(lambda, phi);
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda) > __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) { // back hemisphere
+      var theta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(p[1], p[0]),
+          r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(p[0] * p[0] + p[1] * p[1]),
+          theta0 = k * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["E" /* round */])((theta - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) / k) + __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+          alpha = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta -= theta0), 2 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta)); // angle relative to lobe end
+      theta = theta0 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(alpha)) - alpha;
+      p[0] = r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta);
+      p[1] = r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta);
+    }
+    return p;
+  }
+
+  forward.invert = function(x, y) {
+    var r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(x * x + y * y);
+    if (r > __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) {
+      var theta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(y, x),
+          theta0 = k * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["E" /* round */])((theta - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) / k) + __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+          s = theta > theta0 ? -1 : 1,
+          A = r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta0 - theta),
+          cotAlpha = 1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(s * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])((A - __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] - 2 * A) + r * r)));
+      theta = theta0 + 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])((cotAlpha + s * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(cotAlpha * cotAlpha - 3)) / 3);
+      x = r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta), y = r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta);
+    }
+    return __WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoAzimuthalEquidistantRaw"].invert(x, y);
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var lobes = 5,
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(berghausRaw),
+      p = m(lobes),
+      projectionStream = p.stream,
+      epsilon = 1e-2,
+      cr = -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(epsilon * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]),
+      sr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(epsilon * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]);
+
+  p.lobes = function(_) {
+    return arguments.length ? m(lobes = +_) : lobes;
+  };
+
+  p.stream = function(stream) {
+    var rotate = p.rotate(),
+        rotateStream = projectionStream(stream),
+        sphereStream = (p.rotate([0, 0]), projectionStream(stream));
+    p.rotate(rotate);
+    rotateStream.sphere = function() {
+      sphereStream.polygonStart(), sphereStream.lineStart();
+      for (var i = 0, delta = 360 / lobes, delta0 = 2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / lobes, phi = 90 - 180 / lobes, phi0 = __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]; i < lobes; ++i, phi -= delta, phi0 -= delta0) {
+        sphereStream.point(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(sr * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi0), cr) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(sr * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi0)) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]);
+        if (phi < -90) {
+          sphereStream.point(-90, -180 - phi - epsilon);
+          sphereStream.point(-90, -180 - phi + epsilon);
+        } else {
+          sphereStream.point(90, phi + epsilon);
+          sphereStream.point(90, phi - epsilon);
+        }
+      }
+      sphereStream.lineEnd(), sphereStream.polygonEnd();
+    };
+    return rotateStream;
+  };
+
+  return p
+      .scale(87.8076)
+      .center([0, 17.1875])
+      .clipAngle(180 - 1e-3);
+});
+
+
+/***/ }),
+/* 121 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = bertin1953Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__hammer_js__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__newton_js__ = __webpack_require__(10);
+
+
+
+
+
+// Bertin 1953 as a modified Briesemeister
+// https://bl.ocks.org/Fil/5b9ee9636dfb6ffa53443c9006beb642
+function bertin1953Raw() {
+  var hammer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__hammer_js__["b" /* hammerRaw */])(1.68, 2),
+      fu = 1.4, k = 12;
+
+  function forward(lambda, phi) {
+
+    if (lambda + phi < -fu) {
+      var u = (lambda - phi + 1.6) * (lambda + phi + fu) / 8;
+      lambda += u;
+      phi -= 0.8 * u * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(phi + __WEBPACK_IMPORTED_MODULE_2__math_js__["j" /* pi */] / 2);
+    }
+
+    var r = hammer(lambda, phi);
+
+    var d = (1 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(lambda * phi)) / k;
+
+    if (r[1] < 0) {
+      r[0] *= 1 + d;
+    }
+    if (r[1] > 0) {
+      r[1] *= 1 + d / 1.5 * r[0] * r[0];
+    }
+
+    return r;
+  }
+  
+  forward.invert = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__newton_js__["b" /* solve2d */])(forward);
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  // this projection should not be rotated
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(bertin1953Raw())
+    .rotate([-16.5, -42])
+    .scale(176.57)
+    .center([7.93, 0.09]);
+});
+
+
+/***/ }),
+/* 122 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = bonneRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parallel1_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sinusoidal_js__ = __webpack_require__(15);
+
+
+
+
+function bonneRaw(phi0) {
+  if (!phi0) return __WEBPACK_IMPORTED_MODULE_2__sinusoidal_js__["b" /* sinusoidalRaw */];
+  var cotPhi0 = 1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi0);
+
+  function forward(lambda, phi) {
+    var rho = cotPhi0 + phi0 - phi,
+        e = rho ? lambda * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi) / rho : rho;
+    return [rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(e), cotPhi0 - rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(e)];
+  }
+
+  forward.invert = function(x, y) {
+    var rho = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(x * x + (y = cotPhi0 - y) * y),
+        phi = cotPhi0 + phi0 - rho;
+    return [rho / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(x, y), phi];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parallel1_js__["a" /* default */])(bonneRaw)
+      .scale(123.082)
+      .center([0, 26.1441])
+      .parallel(45);
+});
+
+
+/***/ }),
+/* 123 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = bottomleyRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function bottomleyRaw(sinPsi) {
+
+  function forward(lambda, phi) {
+    var rho = __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] - phi,
+        eta = rho ? lambda * sinPsi * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(rho) / rho : rho;
+    return [rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(eta) / sinPsi, __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] - rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(eta)];
+  }
+
+  forward.invert = function(x, y) {
+    var x1 = x * sinPsi,
+        y1 = __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] - y,
+        rho = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(x1 * x1 + y1 * y1),
+        eta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(x1, y1);
+    return [(rho ? rho / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(rho) : 1) * eta / sinPsi, __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] - rho];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var sinPsi = 0.5,
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(bottomleyRaw),
+      p = m(sinPsi);
+
+  p.fraction = function(_) {
+    return arguments.length ? m(sinPsi = +_) : sinPsi;
+  };
+
+  return p
+      .scale(158.837);
+});
+
+
+/***/ }),
+/* 124 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return bromleyRaw; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mollweide_js__ = __webpack_require__(6);
+
+
+
+
+var bromleyRaw = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__mollweide_js__["c" /* mollweideBromleyRaw */])(1, 4 / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */], __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(bromleyRaw)
+      .scale(152.63);
+});
+
+
+/***/ }),
+/* 125 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = chamberlinRaw;
+/* harmony export (immutable) */ __webpack_exports__["c"] = chamberlinAfrica;
+/* harmony export (immutable) */ __webpack_exports__["a"] = chamberlin;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__newton_js__ = __webpack_require__(10);
+
+
+
+
+// Azimuthal distance.
+function distance(dPhi, c1, s1, c2, s2, dLambda) {
+  var cosdLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(dLambda), r;
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(dPhi) > 1 || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(dLambda) > 1) {
+    r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(s1 * s2 + c1 * c2 * cosdLambda);
+  } else {
+    var sindPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(dPhi / 2), sindLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(dLambda / 2);
+    r = 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(sindPhi * sindPhi + c1 * c2 * sindLambda * sindLambda));
+  }
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(r) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] ? [r, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(c2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(dLambda), c1 * s2 - s1 * c2 * cosdLambda)] : [0, 0];
+}
+
+// Angle opposite a, and contained between sides of lengths b and c.
+function angle(b, c, a) {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])((b * b + c * c - a * a) / (2 * b * c));
+}
+
+// Normalize longitude.
+function longitude(lambda) {
+  return lambda - 2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["t" /* floor */])((lambda + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) / (2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]));
+}
+
+function chamberlinRaw(p0, p1, p2) {
+  var points = [
+    [p0[0], p0[1], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(p0[1]), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(p0[1])],
+    [p1[0], p1[1], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(p1[1]), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(p1[1])],
+    [p2[0], p2[1], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(p2[1]), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(p2[1])]
+  ];
+
+  for (var a = points[2], b, i = 0; i < 3; ++i, a = b) {
+    b = points[i];
+    a.v = distance(b[1] - a[1], a[3], a[2], b[3], b[2], b[0] - a[0]);
+    a.point = [0, 0];
+  }
+
+  var beta0 = angle(points[0].v[0], points[2].v[0], points[1].v[0]),
+      beta1 = angle(points[0].v[0], points[1].v[0], points[2].v[0]),
+      beta2 = __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] - beta0;
+
+  points[2].point[1] = 0;
+  points[0].point[0] = -(points[1].point[0] = points[0].v[0] / 2);
+
+  var mean = [
+    points[2].point[0] = points[0].point[0] + points[2].v[0] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(beta0),
+    2 * (points[0].point[1] = points[1].point[1] = points[2].v[0] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(beta0))
+  ];
+
+  function forward(lambda, phi) {
+    var sinPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+        cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+        v = new Array(3), i;
+
+    // Compute distance and azimuth from control points.
+    for (i = 0; i < 3; ++i) {
+      var p = points[i];
+      v[i] = distance(phi - p[1], p[3], p[2], cosPhi, sinPhi, lambda - p[0]);
+      if (!v[i][0]) return p.point;
+      v[i][1] = longitude(v[i][1] - p.v[1]);
+    }
+
+    // Arithmetic mean of interception points.
+    var point = mean.slice();
+    for (i = 0; i < 3; ++i) {
+      var j = i == 2 ? 0 : i + 1;
+      var a = angle(points[i].v[0], v[i][0], v[j][0]);
+      if (v[i][1] < 0) a = -a;
+
+      if (!i) {
+        point[0] += v[i][0] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(a);
+        point[1] -= v[i][0] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(a);
+      } else if (i == 1) {
+        a = beta1 - a;
+        point[0] -= v[i][0] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(a);
+        point[1] -= v[i][0] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(a);
+      } else {
+        a = beta2 - a;
+        point[0] += v[i][0] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(a);
+        point[1] += v[i][0] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(a);
+      }
+    }
+
+    point[0] /= 3, point[1] /= 3;
+    return point;
+  }
+
+  return forward;
+}
+
+function pointRadians(p) {
+  return p[0] *= __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */], p[1] *= __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */], p;
+}
+
+function chamberlinAfrica() {
+  return chamberlin([0, 22], [45, 22], [22.5, -22])
+      .scale(380)
+      .center([22.5, 2]);
+}
+
+function chamberlin(p0, p1, p2) { // TODO order matters!
+  var c = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoCentroid"])({type: "MultiPoint", coordinates: [p0, p1, p2]}),
+      R = [-c[0], -c[1]],
+      r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoRotation"])(R),
+      f = chamberlinRaw(pointRadians(r(p0)), pointRadians(r(p1)), pointRadians(r(p2)));
+  f.invert = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__newton_js__["b" /* solve2d */])(f);
+  var p = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(f).rotate(R),
+      center = p.center;
+
+  delete p.rotate;
+
+  p.center = function(_) {
+    return arguments.length ? center(r(_)) : r.invert(center());
+  };
+
+  return p
+      .clipAngle(90);
+}
+
+
+/***/ }),
+/* 126 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = craigRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__parallel1_js__ = __webpack_require__(11);
+
+
+
+function craigRaw(phi0) {
+  var tanPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(phi0);
+
+  function forward(lambda, phi) {
+    return [lambda, (lambda ? lambda / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(lambda) : 1) * (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(phi) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(lambda) - tanPhi0 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(phi))];
+  }
+
+  forward.invert = tanPhi0 ? function(x, y) {
+    if (x) y *= __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(x) / x;
+    var cosLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(x);
+    return [x, 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["h" /* atan2 */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(cosLambda * cosLambda + tanPhi0 * tanPhi0 - y * y) - cosLambda, tanPhi0 - y)];
+  } : function(x, y) {
+    return [x, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["i" /* asin */])(x ? y * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(x) / x : y)];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__parallel1_js__["a" /* default */])(craigRaw)
+      .scale(249.828)
+      .clipAngle(90);
+});
+
+
+/***/ }),
+/* 127 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = crasterRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+var sqrt3 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(3);
+
+function crasterRaw(lambda, phi) {
+  return [sqrt3 * lambda * (2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(2 * phi / 3) - 1) / __WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */], sqrt3 * __WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi / 3)];
+}
+
+crasterRaw.invert = function(x, y) {
+  var phi = 3 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(y / (sqrt3 * __WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */]));
+  return [__WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */] * x / (sqrt3 * (2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(2 * phi / 3) - 1)), phi];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(crasterRaw)
+      .scale(156.19);
+});
+
+
+/***/ }),
+/* 128 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = cylindricalStereographicRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__parallel1_js__ = __webpack_require__(11);
+
+
+
+function cylindricalStereographicRaw(phi0) {
+  var cosPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(phi0);
+
+  function forward(lambda, phi) {
+    return [lambda * cosPhi0, (1 + cosPhi0) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(phi / 2)];
+  }
+
+  forward.invert = function(x, y) {
+    return [x / cosPhi0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["r" /* atan */])(y / (1 + cosPhi0)) * 2];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__parallel1_js__["a" /* default */])(cylindricalStereographicRaw)
+      .scale(124.75);
+});
+
+
+/***/ }),
+/* 129 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = eckert1Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function eckert1Raw(lambda, phi) {
+  var alpha = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(8 / (3 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]));
+  return [
+    alpha * lambda * (1 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]),
+    alpha * phi
+  ];
+}
+
+eckert1Raw.invert = function(x, y) {
+  var alpha = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(8 / (3 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])),
+      phi = y / alpha;
+  return [
+    x / (alpha * (1 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])),
+    phi
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(eckert1Raw)
+      .scale(165.664);
+});
+
+
+/***/ }),
+/* 130 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = eckert2Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function eckert2Raw(lambda, phi) {
+  var alpha = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(4 - 3 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi)));
+  return [
+    2 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(6 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) * lambda * alpha,
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(phi) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 3) * (2 - alpha)
+  ];
+}
+
+eckert2Raw.invert = function(x, y) {
+  var alpha = 2 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 3);
+  return [
+    x * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(6 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) / (2 * alpha),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])((4 - alpha * alpha) / 3)
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(eckert2Raw)
+      .scale(165.664);
+});
+
+
+/***/ }),
+/* 131 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = eckert3Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function eckert3Raw(lambda, phi) {
+  var k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (4 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]));
+  return [
+    2 / k * lambda * (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - 4 * phi * phi / (__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]))),
+    4 / k * phi
+  ];
+}
+
+eckert3Raw.invert = function(x, y) {
+  var k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (4 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])) / 2;
+  return [
+    x * k / (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - y * y * (4 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) / (4 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]))),
+    y * k / 2
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(eckert3Raw)
+      .scale(180.739);
+});
+
+
+/***/ }),
+/* 132 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = eckert4Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function eckert4Raw(lambda, phi) {
+  var k = (2 + __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi);
+  phi /= 2;
+  for (var i = 0, delta = Infinity; i < 10 && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]; i++) {
+    var cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi);
+    phi -= delta = (phi + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi) * (cosPhi + 2) - k) / (2 * cosPhi * (1 + cosPhi));
+  }
+  return [
+    2 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (4 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])) * lambda * (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi)),
+    2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / (4 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi)
+  ];
+}
+
+eckert4Raw.invert = function(x, y) {
+  var A = y * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])((4 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) / 2,
+      k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(A),
+      c = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(k);
+  return [
+    x / (2 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (4 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])) * (1 + c)),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])((k + A * (c + 2)) / (2 + __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]))
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(eckert4Raw)
+      .scale(180.739);
+});
+
+
+/***/ }),
+/* 133 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = eckert5Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function eckert5Raw(lambda, phi) {
+  return [
+    lambda * (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi)) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]),
+    2 * phi / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])
+  ];
+}
+
+eckert5Raw.invert = function(x, y) {
+  var k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]),
+      phi = y * k / 2;
+  return [
+    k * x / (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi)),
+    phi
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(eckert5Raw)
+      .scale(173.044);
+});
+
+
+/***/ }),
+/* 134 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = eckert6Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function eckert6Raw(lambda, phi) {
+  var k = (1 + __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi);
+  for (var i = 0, delta = Infinity; i < 10 && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]; i++) {
+    phi -= delta = (phi + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi) - k) / (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi));
+  }
+  k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]);
+  return [
+    lambda * (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi)) / k,
+    2 * phi / k
+  ];
+}
+
+eckert6Raw.invert = function(x, y) {
+  var j = 1 + __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+      k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(j / 2);
+  return [
+    x * 2 * k / (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(y *= k)),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])((y + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(y)) / j)
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(eckert6Raw)
+      .scale(173.044);
+});
+
+
+/***/ }),
+/* 135 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = eisenlohrRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__august_js__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
+
+
+
+
+var eisenlohrK = 3 + 2 * __WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */];
+
+function eisenlohrRaw(lambda, phi) {
+  var s0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(lambda /= 2),
+      c0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(lambda),
+      k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(phi)),
+      c1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(phi /= 2),
+      t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(phi) / (c1 + __WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * c0 * k),
+      c = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])(2 / (1 + t * t)),
+      v = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])((__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * c1 + (c0 + s0) * k) / (__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * c1 + (c0 - s0) * k));
+  return [
+    eisenlohrK * (c * (v - 1 / v) - 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["w" /* log */])(v)),
+    eisenlohrK * (c * t * (v + 1 / v) - 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["r" /* atan */])(t))
+  ];
+}
+
+eisenlohrRaw.invert = function(x, y) {
+  if (!(p = __WEBPACK_IMPORTED_MODULE_1__august_js__["b" /* augustRaw */].invert(x / 1.2, y * 1.065))) return null;
+  var lambda = p[0], phi = p[1], i = 20, p;
+  x /= eisenlohrK, y /= eisenlohrK;
+  do {
+    var _0 = lambda / 2,
+        _1 = phi / 2,
+        s0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(_0),
+        c0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(_0),
+        s1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(_1),
+        c1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(_1),
+        cos1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(phi),
+        k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])(cos1),
+        t = s1 / (c1 + __WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * c0 * k),
+        t2 = t * t,
+        c = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])(2 / (1 + t2)),
+        v0 = (__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * c1 + (c0 + s0) * k),
+        v1 = (__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * c1 + (c0 - s0) * k),
+        v2 = v0 / v1,
+        v = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])(v2),
+        vm1v = v - 1 / v,
+        vp1v = v + 1 / v,
+        fx = c * vm1v - 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["w" /* log */])(v) - x,
+        fy = c * t * vp1v - 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["r" /* atan */])(t) - y,
+        deltatDeltaLambda = s1 && __WEBPACK_IMPORTED_MODULE_2__math_js__["v" /* sqrt1_2 */] * k * s0 * t2 / s1,
+        deltatDeltaPhi = (__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * c0 * c1 + k) / (2 * (c1 + __WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * c0 * k) * (c1 + __WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * c0 * k) * k),
+        deltacDeltat = -0.5 * t * c * c * c,
+        deltacDeltaLambda = deltacDeltat * deltatDeltaLambda,
+        deltacDeltaPhi = deltacDeltat * deltatDeltaPhi,
+        A = (A = 2 * c1 + __WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * k * (c0 - s0)) * A * v,
+        deltavDeltaLambda = (__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * c0 * c1 * k + cos1) / A,
+        deltavDeltaPhi = -(__WEBPACK_IMPORTED_MODULE_2__math_js__["k" /* sqrt2 */] * s0 * s1) / (k * A),
+        deltaxDeltaLambda = vm1v * deltacDeltaLambda - 2 * deltavDeltaLambda / v + c * (deltavDeltaLambda + deltavDeltaLambda / v2),
+        deltaxDeltaPhi = vm1v * deltacDeltaPhi - 2 * deltavDeltaPhi / v + c * (deltavDeltaPhi + deltavDeltaPhi / v2),
+        deltayDeltaLambda = t * vp1v * deltacDeltaLambda - 2 * deltatDeltaLambda / (1 + t2) + c * vp1v * deltatDeltaLambda + c * t * (deltavDeltaLambda - deltavDeltaLambda / v2),
+        deltayDeltaPhi = t * vp1v * deltacDeltaPhi - 2 * deltatDeltaPhi / (1 + t2) + c * vp1v * deltatDeltaPhi + c * t * (deltavDeltaPhi - deltavDeltaPhi / v2),
+        denominator = deltaxDeltaPhi * deltayDeltaLambda - deltayDeltaPhi * deltaxDeltaLambda;
+    if (!denominator) break;
+    var deltaLambda = (fy * deltaxDeltaPhi - fx * deltayDeltaPhi) / denominator,
+        deltaPhi = (fx * deltayDeltaLambda - fy * deltaxDeltaLambda) / denominator;
+    lambda -= deltaLambda;
+    phi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["m" /* max */])(-__WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["n" /* min */])(__WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */], phi - deltaPhi));
+  } while ((__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["f" /* abs */])(deltaLambda) > __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["f" /* abs */])(deltaPhi) > __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */]) && --i > 0);
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["f" /* abs */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["f" /* abs */])(phi) - __WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */]) < __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */] ? [0, phi] : i && [lambda, phi];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(eisenlohrRaw)
+      .scale(62.5271);
+});
+
+
+/***/ }),
+/* 136 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["c"] = ellipticJi;
+/* unused harmony export ellipticJ */
+/* harmony export (immutable) */ __webpack_exports__["b"] = ellipticFi;
+/* harmony export (immutable) */ __webpack_exports__["a"] = ellipticF;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+
+
+// Returns [sn, cn, dn](u + iv|m).
+function ellipticJi(u, v, m) {
+  var a, b, c;
+  if (!u) {
+    b = ellipticJ(v, 1 - m);
+    return [
+      [0, b[0] / b[1]],
+      [1 / b[1], 0],
+      [b[2] / b[1], 0]
+    ];
+  }
+  a = ellipticJ(u, m);
+  if (!v) return [[a[0], 0], [a[1], 0], [a[2], 0]];
+  b = ellipticJ(v, 1 - m);
+  c = b[1] * b[1] + m * a[0] * a[0] * b[0] * b[0];
+  return [
+    [a[0] * b[2] / c, a[1] * a[2] * b[0] * b[1] / c],
+    [a[1] * b[1] / c, -a[0] * a[2] * b[0] * b[2] / c],
+    [a[2] * b[1] * b[2] / c, -m * a[0] * a[1] * b[0] / c]
+  ];
+}
+
+// Returns [sn, cn, dn, ph](u|m).
+function ellipticJ(u, m) {
+  var ai, b, phi, t, twon;
+  if (m < __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */]) {
+    t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(u);
+    b = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(u);
+    ai = m * (u - t * b) / 4;
+    return [
+      t - ai * b,
+      b + ai * t,
+      1 - m * t * t / 2,
+      u - ai
+    ];
+  }
+  if (m >= 1 - __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */]) {
+    ai = (1 - m) / 4;
+    b = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["B" /* cosh */])(u);
+    t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["C" /* tanh */])(u);
+    phi = 1 / b;
+    twon = b * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["D" /* sinh */])(u);
+    return [
+      t + ai * (twon - u) / (b * b),
+      phi - ai * t * phi * (twon - u),
+      phi + ai * t * phi * (twon + u),
+      2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["r" /* atan */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["x" /* exp */])(u)) - __WEBPACK_IMPORTED_MODULE_0__math_js__["a" /* halfPi */] + ai * (twon - u) / b
+    ];
+  }
+
+  var a = [1, 0, 0, 0, 0, 0, 0, 0, 0],
+      c = [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(m), 0, 0, 0, 0, 0, 0, 0, 0],
+      i = 0;
+  b = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(1 - m);
+  twon = 1;
+
+  while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(c[i] / a[i]) > __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */] && i < 8) {
+    ai = a[i++];
+    c[i] = (ai - b) / 2;
+    a[i] = (ai + b) / 2;
+    b = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(ai * b);
+    twon *= 2;
+  }
+
+  phi = twon * a[i] * u;
+  do {
+    t = c[i] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(b = phi) / a[i];
+    phi = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["i" /* asin */])(t) + phi) / 2;
+  } while (--i);
+
+  return [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(phi), t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(phi), t / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(phi - b), phi];
+}
+
+// Calculate F(phi+iPsi|m).
+// See Abramowitz and Stegun, 17.4.11.
+function ellipticFi(phi, psi, m) {
+  var r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(phi),
+      i = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(psi),
+      sinhPsi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["D" /* sinh */])(i);
+  if (r) {
+    var cscPhi = 1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(r),
+        cotPhi2 = 1 / (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(r) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(r)),
+        b = -(cotPhi2 + m * (sinhPsi * sinhPsi * cscPhi * cscPhi) - 1 + m),
+        c = (m - 1) * cotPhi2,
+        cotLambda2 = (-b + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(b * b - 4 * c)) / 2;
+    return [
+      ellipticF(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["r" /* atan */])(1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(cotLambda2)), m) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["q" /* sign */])(phi),
+      ellipticF(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["r" /* atan */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])((cotLambda2 / cotPhi2 - 1) / m)), 1 - m) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["q" /* sign */])(psi)
+    ];
+  }
+  return [
+    0,
+    ellipticF(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["r" /* atan */])(sinhPsi), 1 - m) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["q" /* sign */])(psi)
+  ];
+}
+
+// Calculate F(phi|m) where m = k² = sin²α.
+// See Abramowitz and Stegun, 17.6.7.
+function ellipticF(phi, m) {
+  if (!m) return phi;
+  if (m === 1) return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["w" /* log */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(phi / 2 + __WEBPACK_IMPORTED_MODULE_0__math_js__["s" /* quarterPi */]));
+  var a = 1,
+      b = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(1 - m),
+      c = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(m);
+  for (var i = 0; __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(c) > __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */]; i++) {
+    if (phi % __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */]) {
+      var dPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["r" /* atan */])(b * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(phi) / a);
+      if (dPhi < 0) dPhi += __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */];
+      phi += dPhi + ~~(phi / __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */]) * __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */];
+    } else phi += phi;
+    c = (a + b) / 2;
+    b = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(a * b);
+    c = ((a = c) - b) / 2;
+  }
+  return phi / (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["y" /* pow */])(2, i) * a);
+}
+
+
+/***/ }),
+/* 137 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = faheyRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+var faheyK = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(35 * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]);
+
+function faheyRaw(lambda, phi) {
+  var t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi / 2);
+  return [lambda * faheyK * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - t * t), (1 + faheyK) * t];
+}
+
+faheyRaw.invert = function(x, y) {
+  var t = y / (1 + faheyK);
+  return [x && x / (faheyK * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - t * t)), 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])(t)];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(faheyRaw)
+      .scale(137.152);
+});
+
+
+/***/ }),
+/* 138 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = foucautRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function foucautRaw(lambda, phi) {
+  var k = phi / 2, cosk = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(k);
+  return [ 2 * lambda / __WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi) * cosk * cosk, __WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(k)];
+}
+
+foucautRaw.invert = function(x, y) {
+  var k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])(y / __WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */]), cosk = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(k), phi = 2 * k;
+  return [x * __WEBPACK_IMPORTED_MODULE_1__math_js__["A" /* sqrtPi */] / 2 / (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi) * cosk * cosk), phi];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(foucautRaw)
+      .scale(135.264);
+});
+
+
+/***/ }),
+/* 139 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = foucautSinusoidalRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__newton_js__ = __webpack_require__(10);
+
+
+
+
+function foucautSinusoidalRaw(alpha) {
+  var beta = 1 - alpha,
+      equatorial = raw(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */], 0)[0] - raw(-__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */], 0)[0],
+      polar = raw(0, __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */])[1] - raw(0, -__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */])[1],
+      ratio = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 * polar / equatorial);
+
+  function raw(lambda, phi) {
+    var cosphi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+        sinphi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi);
+    return [
+      cosphi / (beta + alpha * cosphi) * lambda,
+      beta * phi + alpha * sinphi
+    ];
+  }
+
+  function forward(lambda, phi) {
+    var p = raw(lambda, phi);
+    return [p[0] * ratio, p[1] / ratio];
+  }
+
+  function forwardMeridian(phi) {
+    return forward(0, phi)[1];
+  }
+
+  forward.invert = function(x, y) {
+    var phi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__newton_js__["a" /* solve */])(forwardMeridian, y),
+        lambda = x / ratio * (alpha + beta / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi));
+    return [lambda, phi];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var alpha = 0.5,
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(foucautSinusoidalRaw),
+      p = m(alpha);
+
+  p.alpha = function(_) {
+    return arguments.length ? m(alpha = +_) : alpha;
+  };
+
+  return p
+      .scale(168.725);
+});
+
+
+/***/ }),
+/* 140 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function gilbertForward(point) {
+  return [point[0] / 2, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(point[1] / 2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */])) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]];
+}
+
+function gilbertInvert(point) {
+  return [point[0] * 2, 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(point[1] * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */])) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]];
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function(projectionType) {
+  if (projectionType == null) projectionType = __WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoOrthographic"];
+  var projection = projectionType(),
+      equirectangular = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoEquirectangular"])().scale(__WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]).precision(0).clipAngle(null).translate([0, 0]); // antimeridian cutting
+
+  function gilbert(point) {
+    return projection(gilbertForward(point));
+  }
+
+  if (projection.invert) gilbert.invert = function(point) {
+    return gilbertInvert(projection.invert(point));
+  };
+
+  gilbert.stream = function(stream) {
+    var s1 = projection.stream(stream), s0 = equirectangular.stream({
+      point: function(lambda, phi) { s1.point(lambda / 2, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(-phi / 2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */])) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]); },
+      lineStart: function() { s1.lineStart(); },
+      lineEnd: function() { s1.lineEnd(); },
+      polygonStart: function() { s1.polygonStart(); },
+      polygonEnd: function() { s1.polygonEnd(); }
+    });
+    s0.sphere = s1.sphere;
+    return s0;
+  };
+
+  function property(name) {
+    gilbert[name] = function() {
+      return arguments.length ? (projection[name].apply(projection, arguments), gilbert) : projection[name]();
+    };
+  }
+
+  gilbert.rotate = function(_) {
+    return arguments.length ? (equirectangular.rotate(_), gilbert) : equirectangular.rotate();
+  };
+
+  gilbert.center = function(_) {
+    return arguments.length ? (projection.center(gilbertForward(_)), gilbert) : gilbertInvert(projection.center());
+  };
+
+  property("angle");
+  property("clipAngle");
+  property("clipExtent");
+  property("fitExtent");
+  property("fitHeight");
+  property("fitSize");
+  property("fitWidth");
+  property("scale");
+  property("translate");
+  property("precision");
+
+  return gilbert
+      .scale(249.5);
+});
+
+
+/***/ }),
+/* 141 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = gingeryRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function gingeryRaw(rho, n) {
+  var k = 2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / n,
+      rho2 = rho * rho;
+
+  function forward(lambda, phi) {
+    var p = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoAzimuthalEquidistantRaw"])(lambda, phi),
+        x = p[0],
+        y = p[1],
+        r2 = x * x + y * y;
+
+    if (r2 > rho2) {
+      var r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(r2),
+          theta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(y, x),
+          theta0 = k * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["E" /* round */])(theta / k),
+          alpha = theta - theta0,
+          rhoCosAlpha = rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(alpha),
+          k_ = (rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(alpha) - alpha * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(rhoCosAlpha)) / (__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] - rhoCosAlpha),
+          s_ = gingeryLength(alpha, k_),
+          e = (__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] - rho) / gingeryIntegrate(s_, rhoCosAlpha, __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]);
+
+      x = r;
+      var i = 50, delta;
+      do {
+        x -= delta = (rho + gingeryIntegrate(s_, rhoCosAlpha, x) * e - r) / (s_(x) * e);
+      } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && --i > 0);
+
+      y = alpha * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(x);
+      if (x < __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) y -= k_ * (x - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]);
+
+      var s = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta0),
+          c = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta0);
+      p[0] = x * c - y * s;
+      p[1] = x * s + y * c;
+    }
+    return p;
+  }
+
+  forward.invert = function(x, y) {
+    var r2 = x * x + y * y;
+    if (r2 > rho2) {
+      var r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(r2),
+          theta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(y, x),
+          theta0 = k * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["E" /* round */])(theta / k),
+          dTheta = theta - theta0;
+
+      x = r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(dTheta);
+      y = r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(dTheta);
+
+      var x_halfPi = x - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+          sinx = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(x),
+          alpha = y / sinx,
+          delta = x < __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] ? Infinity : 0,
+          i = 10;
+
+      while (true) {
+        var rhosinAlpha = rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(alpha),
+            rhoCosAlpha = rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(alpha),
+            sinRhoCosAlpha = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(rhoCosAlpha),
+            halfPi_RhoCosAlpha = __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] - rhoCosAlpha,
+            k_ = (rhosinAlpha - alpha * sinRhoCosAlpha) / halfPi_RhoCosAlpha,
+            s_ = gingeryLength(alpha, k_);
+
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) < __WEBPACK_IMPORTED_MODULE_1__math_js__["u" /* epsilon2 */] || !--i) break;
+
+        alpha -= delta = (alpha * sinx - k_ * x_halfPi - y) / (
+          sinx - x_halfPi * 2 * (
+            halfPi_RhoCosAlpha * (rhoCosAlpha + alpha * rhosinAlpha * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(rhoCosAlpha) - sinRhoCosAlpha) -
+            rhosinAlpha * (rhosinAlpha - alpha * sinRhoCosAlpha)
+          ) / (halfPi_RhoCosAlpha * halfPi_RhoCosAlpha));
+      }
+      r = rho + gingeryIntegrate(s_, rhoCosAlpha, x) * (__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] - rho) / gingeryIntegrate(s_, rhoCosAlpha, __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]);
+      theta = theta0 + alpha;
+      x = r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta);
+      y = r * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta);
+    }
+    return __WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoAzimuthalEquidistantRaw"].invert(x, y);
+  };
+
+  return forward;
+}
+
+function gingeryLength(alpha, k) {
+  return function(x) {
+    var y_ = alpha * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(x);
+    if (x < __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) y_ -= k;
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 + y_ * y_);
+  };
+}
+
+// Numerical integration: trapezoidal rule.
+function gingeryIntegrate(f, a, b) {
+  var n = 50,
+      h = (b - a) / n,
+      s = f(a) + f(b);
+  for (var i = 1, x = a; i < n; ++i) s += 2 * f(x += h);
+  return s * 0.5 * h;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var n = 6,
+      rho = 30 * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */],
+      cRho = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(rho),
+      sRho = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(rho),
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(gingeryRaw),
+      p = m(rho, n),
+      stream_ = p.stream,
+      epsilon = 1e-2,
+      cr = -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(epsilon * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]),
+      sr = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(epsilon * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]);
+
+  p.radius = function(_) {
+    if (!arguments.length) return rho * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */];
+    cRho = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(rho = _ * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]);
+    sRho = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(rho);
+    return m(rho, n);
+  };
+
+  p.lobes = function(_) {
+    if (!arguments.length) return n;
+    return m(rho, n = +_);
+  };
+
+  p.stream = function(stream) {
+    var rotate = p.rotate(),
+        rotateStream = stream_(stream),
+        sphereStream = (p.rotate([0, 0]), stream_(stream));
+    p.rotate(rotate);
+    rotateStream.sphere = function() {
+      sphereStream.polygonStart(), sphereStream.lineStart();
+      for (var i = 0, delta = 2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / n, phi = 0; i < n; ++i, phi -= delta) {
+        sphereStream.point(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(sr * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi), cr) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(sr * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi)) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]);
+        sphereStream.point(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(sRho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi - delta / 2), cRho) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(sRho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi - delta / 2)) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]);
+      }
+      sphereStream.lineEnd(), sphereStream.polygonEnd();
+    };
+    return rotateStream;
+  };
+
+  return p
+      .rotate([90, -40])
+      .scale(91.7095)
+      .clipAngle(180 - 1e-3);
+});
+
+
+/***/ }),
+/* 142 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ginzburg4Raw; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ginzburgPolyconic_js__ = __webpack_require__(18);
+
+
+
+var ginzburg4Raw = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__ginzburgPolyconic_js__["a" /* default */])(2.8284, -1.6988, 0.75432, -0.18071, 1.76003, -0.38914, 0.042555);
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(ginzburg4Raw)
+      .scale(149.995);
+});
+
+
+/***/ }),
+/* 143 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ginzburg5Raw; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ginzburgPolyconic_js__ = __webpack_require__(18);
+
+
+
+var ginzburg5Raw = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__ginzburgPolyconic_js__["a" /* default */])(2.583819, -0.835827, 0.170354, -0.038094, 1.543313, -0.411435,0.082742);
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(ginzburg5Raw)
+      .scale(153.93);
+});
+
+
+/***/ }),
+/* 144 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ginzburg6Raw; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ginzburgPolyconic_js__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
+
+
+
+
+var ginzburg6Raw = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__ginzburgPolyconic_js__["a" /* default */])(5 / 6 * __WEBPACK_IMPORTED_MODULE_2__math_js__["j" /* pi */], -0.62636, -0.0344, 0, 1.3493, -0.05524, 0, 0.045);
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(ginzburg6Raw)
+      .scale(130.945);
+});
+
+
+/***/ }),
+/* 145 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = ginzburg8Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function ginzburg8Raw(lambda, phi) {
+  var lambda2 = lambda * lambda,
+      phi2 = phi * phi;
+  return [
+    lambda * (1 - 0.162388 * phi2) * (0.87 - 0.000952426 * lambda2 * lambda2),
+    phi * (1 + phi2 / 12)
+  ];
+}
+
+ginzburg8Raw.invert = function(x, y) {
+  var lambda = x,
+      phi = y,
+      i = 50, delta;
+  do {
+    var phi2 = phi * phi;
+    phi -= delta = (phi * (1 + phi2 / 12) - y) / (1 + phi2 / 4);
+  } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && --i > 0);
+  i = 50;
+  x /= 1 -0.162388 * phi2;
+  do {
+    var lambda4 = (lambda4 = lambda * lambda) * lambda4;
+    lambda -= delta = (lambda * (0.87 - 0.000952426 * lambda4) - x) / (0.87 - 0.00476213 * lambda4);
+  } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && --i > 0);
+  return [lambda, phi];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(ginzburg8Raw)
+      .scale(131.747);
+});
+
+
+/***/ }),
+/* 146 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ginzburg9Raw; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ginzburgPolyconic_js__ = __webpack_require__(18);
+
+
+
+var ginzburg9Raw = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__ginzburgPolyconic_js__["a" /* default */])(2.6516, -0.76534, 0.19123, -0.047094, 1.36289, -0.13965,0.031762);
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(ginzburg9Raw)
+      .scale(131.087);
+});
+
+
+/***/ }),
+/* 147 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = hammerRetroazimuthalRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function hammerRetroazimuthalRaw(phi0) {
+  var sinPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi0),
+      cosPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi0),
+      rotate = hammerRetroazimuthalRotation(phi0);
+
+  rotate.invert = hammerRetroazimuthalRotation(-phi0);
+
+  function forward(lambda, phi) {
+    var p = rotate(lambda, phi);
+    lambda = p[0], phi = p[1];
+    var sinPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+        cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+        cosLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda),
+        z = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(sinPhi0 * sinPhi + cosPhi0 * cosPhi * cosLambda),
+        sinz = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(z),
+        K = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(sinz) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] ? z / sinz : 1;
+    return [
+      K * cosPhi0 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda),
+      (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda) > __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] ? K : -K) // rotate for back hemisphere
+        * (sinPhi0 * cosPhi - cosPhi0 * sinPhi * cosLambda)
+    ];
+  }
+
+  forward.invert = function(x, y) {
+    var rho = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(x * x + y * y),
+        sinz = -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(rho),
+        cosz = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(rho),
+        a = rho * cosz,
+        b = -y * sinz,
+        c = rho * sinPhi0,
+        d = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(a * a + b * b - c * c),
+        phi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(a * c + b * d, b * c - a * d),
+        lambda = (rho > __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] ? -1 : 1) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(x * sinz, rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi) * cosz + y * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi) * sinz);
+    return rotate.invert(lambda, phi);
+  };
+
+  return forward;
+}
+
+// Latitudinal rotation by phi0.
+// Temporary hack until D3 supports arbitrary small-circle clipping origins.
+function hammerRetroazimuthalRotation(phi0) {
+  var sinPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi0),
+      cosPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi0);
+
+  return function(lambda, phi) {
+    var cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+        x = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda) * cosPhi,
+        y = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda) * cosPhi,
+        z = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi);
+    return [
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(y, x * cosPhi0 - z * sinPhi0),
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(z * cosPhi0 + x * sinPhi0)
+    ];
+  };
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var phi0 = 0,
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(hammerRetroazimuthalRaw),
+      p = m(phi0),
+      rotate_ = p.rotate,
+      stream_ = p.stream,
+      circle = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoCircle"])();
+
+  p.parallel = function(_) {
+    if (!arguments.length) return phi0 * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */];
+    var r = p.rotate();
+    return m(phi0 = _ * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]).rotate(r);
+  };
+
+  // Temporary hack; see hammerRetroazimuthalRotation.
+  p.rotate = function(_) {
+    if (!arguments.length) return (_ = rotate_.call(p), _[1] += phi0 * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */], _);
+    rotate_.call(p, [_[0], _[1] - phi0 * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]]);
+    circle.center([-_[0], -_[1]]);
+    return p;
+  };
+
+  p.stream = function(stream) {
+    stream = stream_(stream);
+    stream.sphere = function() {
+      stream.polygonStart();
+      var epsilon = 1e-2,
+          ring = circle.radius(90 - epsilon)().coordinates[0],
+          n = ring.length - 1,
+          i = -1,
+          p;
+      stream.lineStart();
+      while (++i < n) stream.point((p = ring[i])[0], p[1]);
+      stream.lineEnd();
+      ring = circle.radius(90 + epsilon)().coordinates[0];
+      n = ring.length - 1;
+      stream.lineStart();
+      while (--i >= 0) stream.point((p = ring[i])[0], p[1]);
+      stream.lineEnd();
+      stream.polygonEnd();
+    };
+    return stream;
+  };
+
+  return p
+      .scale(79.4187)
+      .parallel(45)
+      .clipAngle(180 - 1e-3);
+});
+
+
+/***/ }),
+/* 148 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = healpixRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_array__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__collignon_js__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cylindricalEqualArea_js__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__math_js__ = __webpack_require__(0);
+
+
+
+
+
+
+var K = 3,
+    healpixParallel = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__math_js__["i" /* asin */])(1 - 1 / K) * __WEBPACK_IMPORTED_MODULE_4__math_js__["p" /* degrees */],
+    healpixLambert = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__cylindricalEqualArea_js__["b" /* cylindricalEqualAreaRaw */])(0);
+
+function healpixRaw(H) {
+  var phi0 = healpixParallel * __WEBPACK_IMPORTED_MODULE_4__math_js__["o" /* radians */],
+      dx = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__collignon_js__["b" /* collignonRaw */])(__WEBPACK_IMPORTED_MODULE_4__math_js__["j" /* pi */], phi0)[0] - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__collignon_js__["b" /* collignonRaw */])(-__WEBPACK_IMPORTED_MODULE_4__math_js__["j" /* pi */], phi0)[0],
+      y0 = healpixLambert(0, phi0)[1],
+      y1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__collignon_js__["b" /* collignonRaw */])(0, phi0)[1],
+      dy1 = __WEBPACK_IMPORTED_MODULE_4__math_js__["A" /* sqrtPi */] - y1,
+      k = __WEBPACK_IMPORTED_MODULE_4__math_js__["z" /* tau */] / H,
+      w = 4 / __WEBPACK_IMPORTED_MODULE_4__math_js__["z" /* tau */],
+      h = y0 + (dy1 * dy1 * 4) / __WEBPACK_IMPORTED_MODULE_4__math_js__["z" /* tau */];
+
+  function forward(lambda, phi) {
+    var point,
+        phi2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__math_js__["f" /* abs */])(phi);
+    if (phi2 > phi0) {
+      var i = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__math_js__["n" /* min */])(H - 1, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__math_js__["m" /* max */])(0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__math_js__["t" /* floor */])((lambda + __WEBPACK_IMPORTED_MODULE_4__math_js__["j" /* pi */]) / k)));
+      lambda += __WEBPACK_IMPORTED_MODULE_4__math_js__["j" /* pi */] * (H - 1) / H - i * k;
+      point = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__collignon_js__["b" /* collignonRaw */])(lambda, phi2);
+      point[0] = point[0] * __WEBPACK_IMPORTED_MODULE_4__math_js__["z" /* tau */] / dx - __WEBPACK_IMPORTED_MODULE_4__math_js__["z" /* tau */] * (H - 1) / (2 * H) + i * __WEBPACK_IMPORTED_MODULE_4__math_js__["z" /* tau */] / H;
+      point[1] = y0 + (point[1] - y1) * 4 * dy1 / __WEBPACK_IMPORTED_MODULE_4__math_js__["z" /* tau */];
+      if (phi < 0) point[1] = -point[1];
+    } else {
+      point = healpixLambert(lambda, phi);
+    }
+    point[0] *= w, point[1] /= h;
+    return point;
+  }
+
+  forward.invert = function(x, y) {
+    x /= w, y *= h;
+    var y2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__math_js__["f" /* abs */])(y);
+    if (y2 > y0) {
+      var i = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__math_js__["n" /* min */])(H - 1, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__math_js__["m" /* max */])(0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__math_js__["t" /* floor */])((x + __WEBPACK_IMPORTED_MODULE_4__math_js__["j" /* pi */]) / k)));
+      x = (x + __WEBPACK_IMPORTED_MODULE_4__math_js__["j" /* pi */] * (H - 1) / H - i * k) * dx / __WEBPACK_IMPORTED_MODULE_4__math_js__["z" /* tau */];
+      var point = __WEBPACK_IMPORTED_MODULE_2__collignon_js__["b" /* collignonRaw */].invert(x, 0.25 * (y2 - y0) * __WEBPACK_IMPORTED_MODULE_4__math_js__["z" /* tau */] / dy1 + y1);
+      point[0] -= __WEBPACK_IMPORTED_MODULE_4__math_js__["j" /* pi */] * (H - 1) / H - i * k;
+      if (y < 0) point[1] = -point[1];
+      return point;
+    }
+    return healpixLambert.invert(x, y);
+  };
+
+  return forward;
+}
+
+function sphereTop(x, i) {
+  return [x, i & 1 ? 90 - __WEBPACK_IMPORTED_MODULE_4__math_js__["g" /* epsilon */] : healpixParallel];
+}
+
+function sphereBottom(x, i) {
+  return [x, i & 1 ? -90 + __WEBPACK_IMPORTED_MODULE_4__math_js__["g" /* epsilon */] : -healpixParallel];
+}
+
+function sphereNudge(d) {
+  return [d[0] * (1 - __WEBPACK_IMPORTED_MODULE_4__math_js__["g" /* epsilon */]), d[1]];
+}
+
+function sphere(step) {
+  var c = [].concat(
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["b" /* range */])(-180, 180 + step / 2, step).map(sphereTop),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["b" /* range */])(180, -180 - step / 2, -step).map(sphereBottom)
+  );
+  return {
+    type: "Polygon",
+    coordinates: [step === 180 ? c.map(sphereNudge) : c]
+  };
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var H = 4,
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_d3_geo__["geoProjectionMutator"])(healpixRaw),
+      p = m(H),
+      stream_ = p.stream;
+
+  p.lobes = function(_) {
+    return arguments.length ? m(H = +_) : H;
+  };
+
+  p.stream = function(stream) {
+    var rotate = p.rotate(),
+        rotateStream = stream_(stream),
+        sphereStream = (p.rotate([0, 0]), stream_(stream));
+    p.rotate(rotate);
+    rotateStream.sphere = function() { __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1_d3_geo__["geoStream"])(sphere(180 / H), sphereStream); };
+    return rotateStream;
+  };
+
+  return p
+      .scale(239.75);
+});
+
+
+/***/ }),
+/* 149 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = hillRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function hillRaw(K) {
+  var L = 1 + K,
+      sinBt = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(1 / L),
+      Bt = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(sinBt),
+      A = 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / (B = __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] + 4 * Bt * L)),
+      B,
+      rho0 = 0.5 * A * (L + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(K * (2 + K))),
+      K2 = K * K,
+      L2 = L * L;
+
+  function forward(lambda, phi) {
+    var t = 1 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+        rho,
+        omega;
+    if (t && t < 2) {
+      var theta = __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] - phi, i = 25, delta;
+      do {
+        var sinTheta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta),
+            cosTheta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta),
+            Bt_Bt1 = Bt + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(sinTheta, L - cosTheta),
+            C = 1 + L2 - 2 * L * cosTheta;
+        theta -= delta = (theta - K2 * Bt - L * sinTheta + C * Bt_Bt1 -0.5 * t * B) / (2 * L * sinTheta * Bt_Bt1);
+      } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["u" /* epsilon2 */] && --i > 0);
+      rho = A * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(C);
+      omega = lambda * Bt_Bt1 / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */];
+    } else {
+      rho = A * (K + t);
+      omega = lambda * Bt / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */];
+    }
+    return [
+      rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(omega),
+      rho0 - rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(omega)
+    ];
+  }
+
+  forward.invert = function(x, y) {
+    var rho2 = x * x + (y -= rho0) * y,
+        cosTheta = (1 + L2 - rho2 / (A * A)) / (2 * L),
+        theta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(cosTheta),
+        sinTheta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta),
+        Bt_Bt1 = Bt + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(sinTheta, L - cosTheta);
+    return [
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(x / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(rho2)) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / Bt_Bt1,
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(1 - 2 * (theta - K2 * Bt - L * sinTheta + (1 + L2 - 2 * L * cosTheta) * Bt_Bt1) / B)
+    ];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var K = 1,
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(hillRaw),
+      p = m(K);
+
+  p.ratio = function(_) {
+    return arguments.length ? m(K = +_) : K;
+  };
+
+  return p
+      .scale(167.774)
+      .center([0, 18.67]);
+});
+
+
+/***/ }),
+/* 150 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = hufnagelRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__newton_js__ = __webpack_require__(10);
+
+
+
+
+function hufnagelRaw(a, b, psiMax, ratio) {
+  var k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(
+      (4 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) /
+        (2 * psiMax +
+          (1 + a - b / 2) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(2 * psiMax) +
+          ((a + b) / 2) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(4 * psiMax) +
+          (b / 2) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(6 * psiMax))
+    ),
+    c = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(
+      ratio *
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(psiMax) *
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])((1 + a * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(2 * psiMax) + b * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(4 * psiMax)) / (1 + a + b))
+    ),
+    M = psiMax * mapping(1);
+
+  function radius(psi) {
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 + a * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(2 * psi) + b * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(4 * psi));
+  }
+
+  function mapping(t) {
+    var psi = t * psiMax;
+    return (
+      (2 * psi +
+        (1 + a - b / 2) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(2 * psi) +
+        ((a + b) / 2) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(4 * psi) +
+        (b / 2) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(6 * psi)) /
+      psiMax
+    );
+  }
+
+  function inversemapping(psi) {
+    return radius(psi) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(psi);
+  }
+
+  var forward = function(lambda, phi) {
+    var psi = psiMax * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__newton_js__["a" /* solve */])(mapping, (M * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi)) / psiMax, phi / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]);
+    if (isNaN(psi)) psi = psiMax * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(phi);
+    var kr = k * radius(psi);
+    return [((kr * c * lambda) / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(psi), (kr / c) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(psi)];
+  };
+
+  forward.invert = function(x, y) {
+    var psi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__newton_js__["a" /* solve */])(inversemapping, (y * c) / k);
+    return [
+      (x * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) / (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(psi) * k * c * radius(psi)),
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])((psiMax * mapping(psi / psiMax)) / M)
+    ];
+  };
+
+  if (psiMax === 0) {
+    k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(ratio / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]);
+    forward = function(lambda, phi) {
+      return [lambda * k, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi) / k];
+    };
+    forward.invert = function(x, y) {
+      return [x / k, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(y * k)];
+    };
+  }
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var a = 1,
+    b = 0,
+    psiMax = 45 * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */],
+    ratio = 2,
+    mutate = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(hufnagelRaw),
+    projection = mutate(a, b, psiMax, ratio);
+
+  projection.a = function(_) {
+    return arguments.length ? mutate((a = +_), b, psiMax, ratio) : a;
+  };
+  projection.b = function(_) {
+    return arguments.length ? mutate(a, (b = +_), psiMax, ratio) : b;
+  };
+  projection.psiMax = function(_) {
+    return arguments.length
+      ? mutate(a, b, (psiMax = +_ * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]), ratio)
+      : psiMax * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */];
+  };
+  projection.ratio = function(_) {
+    return arguments.length ? mutate(a, b, psiMax, (ratio = +_)) : ratio;
+  };
+
+  return projection.scale(180.739);
+});
+
+
+/***/ }),
+/* 151 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = hyperellipticalRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__integrate_js__ = __webpack_require__(152);
+
+
+
+
+function hyperellipticalRaw(alpha, k, gamma) {
+
+  function elliptic (f) {
+    return alpha + (1 - alpha) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["y" /* pow */])(1 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["y" /* pow */])(f, k), 1 / k);
+  }
+
+  function z(f) {
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__integrate_js__["a" /* integrate */])(elliptic, 0, f, 1e-4);
+  }
+
+  var G = 1 / z(1),
+      n = 1000,
+      m = (1 + 1e-8) * G,
+      approx = [];
+  for (var i = 0; i <= n; i++)
+      approx.push(z(i / n) * m);
+
+  function Y(sinphi) {
+    var rmin = 0, rmax = n, r = n >> 1;
+    do {
+      if (approx[r] > sinphi) rmax = r; else rmin = r;
+      r = (rmin + rmax) >> 1;
+    } while (r > rmin);
+    var u = approx[r + 1] - approx[r];
+    if (u) u = (sinphi - approx[r + 1]) / u;
+    return (r + 1 + u) / n;
+  }
+
+  var ratio = 2 * Y(1) / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * G / gamma;
+
+  var forward = function(lambda, phi) {
+    var y = Y(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi))),
+        x = elliptic(y) * lambda;
+    y /= ratio;
+    return [ x, (phi >= 0) ? y : -y ];
+  };
+
+  forward.invert = function(x, y) {
+    var phi;
+    y *= ratio;
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) < 1) phi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(z(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y)) * G);
+    return [ x / elliptic(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y)), phi ];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var alpha = 0,
+      k = 2.5,
+      gamma = 1.183136, // affine = sqrt(2 * gamma / pi) = 0.8679
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(hyperellipticalRaw),
+      p = m(alpha, k, gamma);
+
+  p.alpha = function(_) {
+    return arguments.length ? m(alpha = +_, k, gamma) : alpha;
+  };
+
+  p.k = function(_) {
+    return arguments.length ? m(alpha, k = +_, gamma) : k;
+  };
+
+  p.gamma = function(_) {
+    return arguments.length ? m(alpha, k, gamma = +_) : gamma;
+  };
+
+  return p
+      .scale(152.63);
+});
+
+
+/***/ }),
+/* 152 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = integrate;
+// https://github.com/scijs/integrate-adaptive-simpson
+
+// This algorithm adapted from pseudocode in:
+// http://www.math.utk.edu/~ccollins/refs/Handouts/rich.pdf
+function adsimp (f, a, b, fa, fm, fb, V0, tol, maxdepth, depth, state) {
+  if (state.nanEncountered) {
+    return NaN;
+  }
+
+  var h, f1, f2, sl, sr, s2, m, V1, V2, err;
+
+  h = b - a;
+  f1 = f(a + h * 0.25);
+  f2 = f(b - h * 0.25);
+
+  // Simple check for NaN:
+  if (isNaN(f1)) {
+    state.nanEncountered = true;
+    return;
+  }
+
+  // Simple check for NaN:
+  if (isNaN(f2)) {
+    state.nanEncountered = true;
+    return;
+  }
+
+  sl = h * (fa + 4 * f1 + fm) / 12;
+  sr = h * (fm + 4 * f2 + fb) / 12;
+  s2 = sl + sr;
+  err = (s2 - V0) / 15;
+
+  if (depth > maxdepth) {
+    state.maxDepthCount++;
+    return s2 + err;
+  } else if (Math.abs(err) < tol) {
+    return s2 + err;
+  } else {
+    m = a + h * 0.5;
+
+    V1 = adsimp(f, a, m, fa, f1, fm, sl, tol * 0.5, maxdepth, depth + 1, state);
+
+    if (isNaN(V1)) {
+      state.nanEncountered = true;
+      return NaN;
+    }
+
+    V2 = adsimp(f, m, b, fm, f2, fb, sr, tol * 0.5, maxdepth, depth + 1, state);
+
+    if (isNaN(V2)) {
+      state.nanEncountered = true;
+      return NaN;
+    }
+
+    return V1 + V2;
+  }
+}
+
+function integrate (f, a, b, tol, maxdepth) {
+  var state = {
+    maxDepthCount: 0,
+    nanEncountered: false
+  };
+
+  if (tol === undefined) {
+    tol = 1e-8;
+  }
+  if (maxdepth === undefined) {
+    maxdepth = 20;
+  }
+
+  var fa = f(a);
+  var fm = f(0.5 * (a + b));
+  var fb = f(b);
+
+  var V0 = (fa + 4 * fm + fb) * (b - a) / 6;
+
+  var result = adsimp(f, a, b, fa, fm, fb, V0, tol, maxdepth, 1, state);
+
+/*
+  if (state.maxDepthCount > 0 && console && console.warn) {
+    console.warn('integrate-adaptive-simpson: Warning: maximum recursion depth (' + maxdepth + ') reached ' + state.maxDepthCount + ' times');
+  }
+
+  if (state.nanEncountered && console && console.warn) {
+    console.warn('integrate-adaptive-simpson: Warning: NaN encountered. Halting early.');
+  }
+*/
+
+  return result;
+}
+
+/***/ }),
+/* 153 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__boggs_js__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(5);
+
+
+
+var lobes = [[ // northern hemisphere
+  [[-180,   0], [-100,  90], [ -40,   0]],
+  [[ -40,   0], [  30,  90], [ 180,   0]]
+], [ // southern hemisphere
+  [[-180,   0], [-160, -90], [-100,   0]],
+  [[-100,   0], [ -60, -90], [ -20,   0]],
+  [[ -20,   0], [  20, -90], [  80,   0]],
+  [[  80,   0], [ 140, -90], [ 180,   0]]
+]];
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__index_js__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__boggs_js__["b" /* boggsRaw */], lobes)
+      .scale(160.857);
+});
+
+
+/***/ }),
+/* 154 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__homolosine_js__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(5);
+
+
+
+var lobes = [[ // northern hemisphere
+  [[-180,   0], [-100,  90], [ -40,   0]],
+  [[ -40,   0], [  30,  90], [ 180,   0]]
+], [ // southern hemisphere
+  [[-180,   0], [-160, -90], [-100,   0]],
+  [[-100,   0], [ -60, -90], [ -20,   0]],
+  [[ -20,   0], [  20, -90], [  80,   0]],
+  [[  80,   0], [ 140, -90], [ 180,   0]]
+]];
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__index_js__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__homolosine_js__["b" /* homolosineRaw */], lobes)
+      .scale(152.63);
+});
+
+
+/***/ }),
+/* 155 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mollweide_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(5);
+
+
+
+var lobes = [[ // northern hemisphere
+  [[-180,   0], [-100,  90], [ -40,   0]],
+  [[ -40,   0], [  30,  90], [ 180,   0]]
+], [ // southern hemisphere
+  [[-180,   0], [-160, -90], [-100,   0]],
+  [[-100,   0], [ -60, -90], [ -20,   0]],
+  [[ -20,   0], [  20, -90], [  80,   0]],
+  [[  80,   0], [ 140, -90], [ 180,   0]]
+]];
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__index_js__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__mollweide_js__["b" /* mollweideRaw */], lobes)
+      .scale(169.529);
+});
+
+
+/***/ }),
+/* 156 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mollweide_js__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(5);
+
+
+
+var lobes = [[ // northern hemisphere
+  [[-180,   0], [ -90,  90], [   0,   0]],
+  [[   0,   0], [  90,  90], [ 180,   0]]
+], [ // southern hemisphere
+  [[-180,   0], [ -90, -90], [   0,   0]],
+  [[   0,   0], [  90, -90], [ 180,   0]]
+]];
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__index_js__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__mollweide_js__["b" /* mollweideRaw */], lobes)
+      .scale(169.529)
+      .rotate([20, 0]);
+});
+
+
+/***/ }),
+/* 157 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__hammer_js__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(5);
+
+
+
+var lobes = [[ // northern hemisphere
+  [[-180,  0],  [-90,  90], [   0,  0]],
+  [[   0,  0], [  90,  90], [ 180, 0]]
+], [ // southern hemisphere
+  [[-180, 0], [-90, -90], [  0, 0]],
+  [[   0, 0], [ 90, -90], [180, 0]]
+]];
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__index_js__["a" /* default */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__hammer_js__["b" /* hammerRaw */])(Infinity), lobes)
+      .rotate([20, 0])
+      .scale(152.63);
+});
+
+
+/***/ }),
+/* 158 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sinuMollweide_js__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__newton_js__ = __webpack_require__(10);
+
+
+
+
+var lobes = [[ // northern hemisphere
+  [[-180,  35], [ -30,  90], [   0,  35]],
+  [[   0,  35], [  30,  90], [ 180,  35]]
+], [ // southern hemisphere
+  [[-180, -10], [-102, -90], [ -65, -10]],
+  [[ -65, -10], [   5, -90], [  77, -10]],
+  [[  77, -10], [ 103, -90], [ 180, -10]]
+]];
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__index_js__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__sinuMollweide_js__["b" /* sinuMollweideRaw */], lobes, __WEBPACK_IMPORTED_MODULE_2__newton_js__["b" /* solve2d */])
+      .rotate([-20, -55])
+      .scale(164.263)
+      .center([0, -5.4036]);
+});
+
+
+/***/ }),
+/* 159 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sinusoidal_js__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(5);
+
+
+
+var lobes = [[ // northern hemisphere
+  [[-180,   0], [-110,  90], [ -40,   0]],
+  [[ -40,   0], [   0,  90], [  40,   0]],
+  [[  40,   0], [ 110,  90], [ 180,   0]]
+], [ // southern hemisphere
+  [[-180,   0], [-110, -90], [ -40,   0]],
+  [[ -40,   0], [   0, -90], [  40,   0]],
+  [[  40,   0], [ 110, -90], [ 180,   0]]
+]];
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__index_js__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__sinusoidal_js__["b" /* sinusoidalRaw */], lobes)
+      .scale(152.63)
+      .rotate([-20, 0]);
+});
+
+
+/***/ }),
+/* 160 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = kavrayskiy7Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function kavrayskiy7Raw(lambda, phi) {
+  return [3 / __WEBPACK_IMPORTED_MODULE_1__math_js__["z" /* tau */] * lambda * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 3 - phi * phi), phi];
+}
+
+kavrayskiy7Raw.invert = function(x, y) {
+  return [__WEBPACK_IMPORTED_MODULE_1__math_js__["z" /* tau */] / 3 * x / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 3 - y * y), y];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(kavrayskiy7Raw)
+      .scale(158.837);
+});
+
+
+/***/ }),
+/* 161 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = lagrangeRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function lagrangeRaw(n) {
+
+  function forward(lambda, phi) {
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [0, phi < 0 ? -2 : 2];
+    var sinPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+        v = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["y" /* pow */])((1 + sinPhi) / (1 - sinPhi), n / 2),
+        c = 0.5 * (v + 1 / v) + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda *= n);
+    return [
+      2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda) / c,
+      (v - 1 / v) / c
+    ];
+  }
+
+  forward.invert = function(x, y) {
+    var y0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y);
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y0 - 2) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return x ? null : [0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y) * __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]];
+    if (y0 > 2) return null;
+
+    x /= 2, y /= 2;
+    var x2 = x * x,
+        y2 = y * y,
+        t = 2 * y / (1 + x2 + y2); // tanh(nPhi)
+    t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["y" /* pow */])((1 + t) / (1 - t), 1 / n);
+    return [
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(2 * x, 1 - x2 - y2) / n,
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])((t - 1) / (t + 1))
+    ];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var n = 0.5,
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(lagrangeRaw),
+      p = m(n);
+
+  p.spacing = function(_) {
+    return arguments.length ? m(n = +_) : n;
+  };
+
+  return p
+      .scale(124.75);
+});
+
+
+/***/ }),
+/* 162 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = larriveeRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+var pi_sqrt2 = __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / __WEBPACK_IMPORTED_MODULE_1__math_js__["k" /* sqrt2 */];
+
+function larriveeRaw(lambda, phi) {
+  return [
+    lambda * (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi))) / 2,
+    phi / (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi / 2) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda / 6))
+  ];
+}
+
+larriveeRaw.invert = function(x, y) {
+  var x0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x),
+      y0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y),
+      lambda = __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */],
+      phi = __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */];
+  if (y0 < pi_sqrt2) phi *= y0 / pi_sqrt2;
+  else lambda += 6 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(pi_sqrt2 / y0);
+  for (var i = 0; i < 25; i++) {
+    var sinPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+        sqrtcosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi)),
+        sinPhi_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi / 2),
+        cosPhi_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi / 2),
+        sinLambda_6 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda / 6),
+        cosLambda_6 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda / 6),
+        f0 = 0.5 * lambda * (1 + sqrtcosPhi) - x0,
+        f1 = phi / (cosPhi_2 * cosLambda_6) - y0,
+        df0dPhi = sqrtcosPhi ? -0.25 * lambda * sinPhi / sqrtcosPhi : 0,
+        df0dLambda = 0.5 * (1 + sqrtcosPhi),
+        df1dPhi = (1 +0.5 * phi * sinPhi_2 / cosPhi_2) / (cosPhi_2 * cosLambda_6),
+        df1dLambda = (phi / cosPhi_2) * (sinLambda_6 / 6) / (cosLambda_6 * cosLambda_6),
+        denom = df0dPhi * df1dLambda - df1dPhi * df0dLambda,
+        dPhi = (f0 * df1dLambda - f1 * df0dLambda) / denom,
+        dLambda = (f1 * df0dPhi - f0 * df1dPhi) / denom;
+    phi -= dPhi;
+    lambda -= dLambda;
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(dPhi) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(dLambda) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) break;
+  }
+  return [x < 0 ? -lambda : lambda, y < 0 ? -phi : phi];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(larriveeRaw)
+      .scale(97.2672);
+});
+
+
+/***/ }),
+/* 163 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = laskowskiRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function laskowskiRaw(lambda, phi) {
+  var lambda2 = lambda * lambda, phi2 = phi * phi;
+  return [
+    lambda * (0.975534 + phi2 * (-0.119161 + lambda2 * -0.0143059 + phi2 * -0.0547009)),
+    phi * (1.00384 + lambda2 * (0.0802894 + phi2 * -0.02855 + lambda2 * 0.000199025) + phi2 * (0.0998909 + phi2 * -0.0491032))
+  ];
+}
+
+laskowskiRaw.invert = function(x, y) {
+  var lambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(x) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */],
+      phi = y / 2,
+      i = 50;
+  do {
+    var lambda2 = lambda * lambda,
+        phi2 = phi * phi,
+        lambdaPhi = lambda * phi,
+        fx = lambda * (0.975534 + phi2 * (-0.119161 + lambda2 * -0.0143059 + phi2 * -0.0547009)) - x,
+        fy = phi * (1.00384 + lambda2 * (0.0802894 + phi2 * -0.02855 + lambda2 * 0.000199025) + phi2 * (0.0998909 + phi2 * -0.0491032)) - y,
+        deltaxDeltaLambda = 0.975534 - phi2 * (0.119161 + 3 * lambda2 * 0.0143059 + phi2 * 0.0547009),
+        deltaxDeltaPhi = -lambdaPhi * (2 * 0.119161 + 4 * 0.0547009 * phi2 + 2 * 0.0143059 * lambda2),
+        deltayDeltaLambda = lambdaPhi * (2 * 0.0802894 + 4 * 0.000199025 * lambda2 + 2 * -0.02855 * phi2),
+        deltayDeltaPhi = 1.00384 + lambda2 * (0.0802894 + 0.000199025 * lambda2) + phi2 * (3 * (0.0998909 - 0.02855 * lambda2) - 5 * 0.0491032 * phi2),
+        denominator = deltaxDeltaPhi * deltayDeltaLambda - deltayDeltaPhi * deltaxDeltaLambda,
+        deltaLambda = (fy * deltaxDeltaPhi - fx * deltayDeltaPhi) / denominator,
+        deltaPhi = (fx * deltayDeltaLambda - fy * deltaxDeltaLambda) / denominator;
+    lambda -= deltaLambda, phi -= deltaPhi;
+  } while ((__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(deltaLambda) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(deltaPhi) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) && --i > 0);
+  return i && [lambda, phi];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(laskowskiRaw)
+      .scale(139.98);
+});
+
+
+/***/ }),
+/* 164 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = littrowRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function littrowRaw(lambda, phi) {
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda)
+  ];
+}
+
+littrowRaw.invert = function(x, y) {
+  var x2 = x * x,
+      y2 = y * y,
+      y2_1 = y2 + 1,
+      x2_y2_1 = x2 + y2_1,
+      cosPhi = x
+          ? __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])((x2_y2_1 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(x2_y2_1 * x2_y2_1 - 4 * x2)) / x2)
+          : 1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(y2_1);
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(x * cosPhi),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(cosPhi)
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(littrowRaw)
+      .scale(144.049)
+      .clipAngle(90 - 1e-3);
+});
+
+
+/***/ }),
+/* 165 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = loximuthalRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__parallel1_js__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function loximuthalRaw(phi0) {
+  var cosPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi0),
+      tanPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */] + phi0 / 2);
+
+  function forward(lambda, phi) {
+    var y = phi - phi0,
+        x = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] ? lambda * cosPhi0
+            : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x = __WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */] + phi / 2) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x) - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]
+            ? 0 : lambda * y / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["w" /* log */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(x) / tanPhi0);
+    return [x, y];
+  }
+
+  forward.invert = function(x, y) {
+    var lambda,
+        phi = y + phi0;
+    return [
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] ? x / cosPhi0
+          : (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda = __WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */] + phi / 2) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda) - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) ? 0
+          : x * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["w" /* log */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(lambda) / tanPhi0) / y,
+      phi
+    ];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__parallel1_js__["a" /* default */])(loximuthalRaw)
+      .parallel(40)
+      .scale(158.837);
+});
+
+
+/***/ }),
+/* 166 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = millerRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function millerRaw(lambda, phi) {
+  return [lambda, 1.25 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["w" /* log */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */] + 0.4 * phi))];
+}
+
+millerRaw.invert = function(x, y) {
+  return [x, 2.5 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["x" /* exp */])(0.8 * y)) - 0.625 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(millerRaw)
+      .scale(108.318);
+});
+
+
+/***/ }),
+/* 167 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = modifiedStereographicRaw;
+/* harmony export (immutable) */ __webpack_exports__["c"] = modifiedStereographicAlaska;
+/* harmony export (immutable) */ __webpack_exports__["d"] = modifiedStereographicGs48;
+/* harmony export (immutable) */ __webpack_exports__["e"] = modifiedStereographicGs50;
+/* harmony export (immutable) */ __webpack_exports__["f"] = modifiedStereographicMiller;
+/* harmony export (immutable) */ __webpack_exports__["g"] = modifiedStereographicLee;
+/* harmony export (immutable) */ __webpack_exports__["a"] = modifiedStereographic;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function modifiedStereographicRaw(C) {
+  var m = C.length - 1;
+
+  function forward(lambda, phi) {
+    var cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+        k = 2 / (1 + cosPhi * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda)),
+        zr = k * cosPhi * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda),
+        zi = k * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+        i = m,
+        w = C[i],
+        ar = w[0],
+        ai = w[1],
+        t;
+    while (--i >= 0) {
+      w = C[i];
+      ar = w[0] + zr * (t = ar) - zi * ai;
+      ai = w[1] + zr * ai + zi * t;
+    }
+    ar = zr * (t = ar) - zi * ai;
+    ai = zr * ai + zi * t;
+    return [ar, ai];
+  }
+
+  forward.invert = function(x, y) {
+    var i = 20,
+        zr = x,
+        zi = y;
+    do {
+      var j = m,
+          w = C[j],
+          ar = w[0],
+          ai = w[1],
+          br = 0,
+          bi = 0,
+          t;
+
+      while (--j >= 0) {
+        w = C[j];
+        br = ar + zr * (t = br) - zi * bi;
+        bi = ai + zr * bi + zi * t;
+        ar = w[0] + zr * (t = ar) - zi * ai;
+        ai = w[1] + zr * ai + zi * t;
+      }
+      br = ar + zr * (t = br) - zi * bi;
+      bi = ai + zr * bi + zi * t;
+      ar = zr * (t = ar) - zi * ai - x;
+      ai = zr * ai + zi * t - y;
+
+      var denominator = br * br + bi * bi, deltar, deltai;
+      zr -= deltar = (ar * br + ai * bi) / denominator;
+      zi -= deltai = (ai * br - ar * bi) / denominator;
+    } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(deltar) + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(deltai) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] * __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && --i > 0);
+
+    if (i) {
+      var rho = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(zr * zr + zi * zi),
+          c = 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])(rho * 0.5),
+          sinc = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(c);
+      return [__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(zr * sinc, rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(c)), rho ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(zi * sinc / rho) : 0];
+    }
+  };
+
+  return forward;
+}
+
+var alaska = [[0.9972523, 0], [0.0052513, -0.0041175], [0.0074606, 0.0048125], [-0.0153783, -0.1968253], [0.0636871, -0.1408027], [0.3660976, -0.2937382]],
+    gs48 = [[0.98879, 0], [0, 0], [-0.050909, 0], [0, 0], [0.075528, 0]],
+    gs50 = [[0.9842990, 0], [0.0211642, 0.0037608], [-0.1036018, -0.0575102], [-0.0329095, -0.0320119], [0.0499471, 0.1223335], [0.0260460, 0.0899805], [0.0007388, -0.1435792], [0.0075848, -0.1334108], [-0.0216473, 0.0776645], [-0.0225161, 0.0853673]],
+    miller = [[0.9245, 0], [0, 0], [0.01943, 0]],
+    lee = [[0.721316, 0], [0, 0], [-0.00881625, -0.00617325]];
+
+function modifiedStereographicAlaska() {
+  return modifiedStereographic(alaska, [152, -64])
+      .scale(1400)
+      .center([-160.908, 62.4864])
+      .clipAngle(30)
+      .angle(7.8);
+}
+
+function modifiedStereographicGs48() {
+  return modifiedStereographic(gs48, [95, -38])
+      .scale(1000)
+      .clipAngle(55)
+      .center([-96.5563, 38.8675]);
+}
+
+function modifiedStereographicGs50() {
+  return modifiedStereographic(gs50, [120, -45])
+      .scale(359.513)
+      .clipAngle(55)
+      .center([-117.474, 53.0628]);
+}
+
+function modifiedStereographicMiller() {
+  return modifiedStereographic(miller, [-20, -18])
+      .scale(209.091)
+      .center([20, 16.7214])
+      .clipAngle(82);
+}
+
+function modifiedStereographicLee() {
+  return modifiedStereographic(lee, [165, 10])
+      .scale(250)
+      .clipAngle(130)
+      .center([-165, -10]);
+}
+
+function modifiedStereographic(coefficients, rotate) {
+  var p = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(modifiedStereographicRaw(coefficients)).rotate(rotate).clipAngle(90),
+      r = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoRotation"])(rotate),
+      center = p.center;
+
+  delete p.rotate;
+
+  p.center = function(_) {
+    return arguments.length ? center(r(_)) : r.invert(center());
+  };
+
+  return p;
+}
+
+
+/***/ }),
+/* 168 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = mtFlatPolarParabolicRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+var sqrt6 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(6),
+    sqrt7 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(7);
+
+function mtFlatPolarParabolicRaw(lambda, phi) {
+  var theta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(7 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi) / (3 * sqrt6));
+  return [
+    sqrt6 * lambda * (2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(2 * theta / 3) - 1) / sqrt7,
+    9 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta / 3) / sqrt7
+  ];
+}
+
+mtFlatPolarParabolicRaw.invert = function(x, y) {
+  var theta = 3 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(y * sqrt7 / 9);
+  return [
+    x * sqrt7 / (sqrt6 * (2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(2 * theta / 3) - 1)),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta) * 3 * sqrt6 / 7)
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(mtFlatPolarParabolicRaw)
+      .scale(164.859);
+});
+
+
+/***/ }),
+/* 169 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = mtFlatPolarQuarticRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function mtFlatPolarQuarticRaw(lambda, phi) {
+  var k = (1 + __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */]) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+      theta = phi;
+  for (var i = 0, delta; i < 25; i++) {
+    theta -= delta = (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta / 2) + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta) - k) / (0.5 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta / 2) + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta));
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) break;
+  }
+  return [
+    lambda * (1 + 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta / 2)) / (3 * __WEBPACK_IMPORTED_MODULE_1__math_js__["k" /* sqrt2 */]),
+    2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(3) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta / 2) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 + __WEBPACK_IMPORTED_MODULE_1__math_js__["k" /* sqrt2 */])
+  ];
+}
+
+mtFlatPolarQuarticRaw.invert = function(x, y) {
+  var sinTheta_2 = y * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 + __WEBPACK_IMPORTED_MODULE_1__math_js__["k" /* sqrt2 */]) / (2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(3)),
+      theta = 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(sinTheta_2);
+  return [
+    3 * __WEBPACK_IMPORTED_MODULE_1__math_js__["k" /* sqrt2 */] * x / (1 + 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta / 2)),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])((sinTheta_2 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta)) / (1 + __WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* sqrt1_2 */]))
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(mtFlatPolarQuarticRaw)
+      .scale(188.209);
+});
+
+
+/***/ }),
+/* 170 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = mtFlatPolarSinusoidalRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function mtFlatPolarSinusoidalRaw(lambda, phi) {
+  var A = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(6 / (4 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])),
+      k = (1 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 4) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+      theta = phi / 2;
+  for (var i = 0, delta; i < 25; i++) {
+    theta -= delta = (theta / 2 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta) - k) / (0.5 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta));
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) break;
+  }
+  return [
+    A * (0.5 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta)) * lambda / 1.5,
+    A * theta
+  ];
+}
+
+mtFlatPolarSinusoidalRaw.invert = function(x, y) {
+  var A = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(6 / (4 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])),
+      theta = y / A;
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(theta) - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) theta = theta < 0 ? -__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] : __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */];
+  return [
+    1.5 * x / (A * (0.5 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta))),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])((theta / 2 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(theta)) / (1 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 4))
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(mtFlatPolarSinusoidalRaw)
+      .scale(166.518);
+});
+
+
+/***/ }),
+/* 171 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = naturalEarth2Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function naturalEarth2Raw(lambda, phi) {
+  var phi2 = phi * phi, phi4 = phi2 * phi2, phi6 = phi2 * phi4;
+  return [
+    lambda * (0.84719 - 0.13063 * phi2 + phi6 * phi6 * (-0.04515 + 0.05494 * phi2 - 0.02326 * phi4 + 0.00331 * phi6)),
+    phi * (1.01183 + phi4 * phi4 * (-0.02625 + 0.01926 * phi2 - 0.00396 * phi4))
+  ];
+}
+
+naturalEarth2Raw.invert = function(x, y) {
+  var phi = y, i = 25, delta, phi2, phi4, phi6;
+  do {
+    phi2 = phi * phi; phi4 = phi2 * phi2;
+    phi -= delta = ((phi * (1.01183 + phi4 * phi4 * (-0.02625 + 0.01926 * phi2 - 0.00396 * phi4))) - y) /
+      (1.01183 + phi4 * phi4 * ((9 * -0.02625) + (11 * 0.01926) * phi2 + (13 * -0.00396) * phi4));
+  } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["u" /* epsilon2 */] && --i > 0);
+  phi2 = phi * phi; phi4 = phi2 * phi2; phi6 = phi2 * phi4;
+  return [
+    x / (0.84719 - 0.13063 * phi2 + phi6 * phi6 * (-0.04515 + 0.05494 * phi2 - 0.02326 * phi4 + 0.00331 * phi6)),
+    phi
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(naturalEarth2Raw)
+      .scale(175.295);
+});
+
+
+/***/ }),
+/* 172 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = nellHammerRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function nellHammerRaw(lambda, phi) {
+  return [
+    lambda * (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi)) / 2,
+    2 * (phi - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi / 2))
+  ];
+}
+
+nellHammerRaw.invert = function(x, y) {
+  var p = y / 2;
+  for (var i = 0, delta = Infinity; i < 10 && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]; ++i) {
+    var c = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(y / 2);
+    y -= delta = (y - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(y / 2) - p) / (1 - 0.5 / (c * c));
+  }
+  return [
+    2 * x / (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(y)),
+    y
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(nellHammerRaw)
+      .scale(152.63);
+});
+
+
+/***/ }),
+/* 173 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = nicolosiRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__newton_js__ = __webpack_require__(10);
+
+
+
+
+// Based on Torben Jansen's implementation
+// https://beta.observablehq.com/@toja/nicolosi-globular-projection
+// https://beta.observablehq.com/@toja/nicolosi-globular-inverse
+
+function nicolosiRaw(lambda, phi) {
+  var sinPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+    q = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+    s = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(lambda);
+
+  if (lambda === 0 || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) === __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) return [0, phi];
+  else if (phi === 0) return [lambda, 0];
+  else if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda) === __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) return [lambda * q, __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] * sinPhi];
+
+  var b = __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / (2 * lambda) - (2 * lambda) / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */],
+    c = (2 * phi) / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */],
+    d = (1 - c * c) / (sinPhi - c);
+
+  var b2 = b * b,
+    d2 = d * d,
+    b2d2 = 1 + b2 / d2,
+    d2b2 = 1 + d2 / b2;
+
+  var M = ((b * sinPhi) / d - b / 2) / b2d2,
+    N = ((d2 * sinPhi) / b2 + d / 2) / d2b2,
+    m = M * M + (q * q) / b2d2,
+    n = N * N - ((d2 * sinPhi * sinPhi) / b2 + d * sinPhi - 1) / d2b2;
+
+  return [
+    __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] * (M + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(m) * s),
+    __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] * (N + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(n < 0 ? 0 : n) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(-phi * b) * s)
+  ];
+}
+
+nicolosiRaw.invert = function(x, y) {
+
+  x /= __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */];
+  y /= __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */];
+
+  var x2 = x * x,
+    y2 = y * y,
+    x2y2 = x2 + y2,
+    pi2 = __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */];
+
+  return [
+    x ? (x2y2 -1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])((1 - x2y2) * (1 - x2y2) + 4 * x2)) / (2 * x) * __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] : 0,
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__newton_js__["a" /* solve */])(function(phi) {
+      return (
+        x2y2 * (__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi) - 2 * phi) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] +
+        4 * phi * phi * (y - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi)) +
+        2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * phi -
+        pi2 * y
+      );
+    }, 0)
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(nicolosiRaw)
+    .scale(127.267);
+});
+
+
+/***/ }),
+/* 174 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = (function() {});
+
+
+/***/ }),
+/* 175 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = pattersonRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+// Based on Java implementation by Bojan Savric.
+// https://github.com/OSUCartography/JMapProjLib/blob/master/src/com/jhlabs/map/proj/PattersonProjection.java
+
+var pattersonK1 = 1.0148,
+    pattersonK2 = 0.23185,
+    pattersonK3 = -0.14499,
+    pattersonK4 = 0.02406,
+    pattersonC1 = pattersonK1,
+    pattersonC2 = 5 * pattersonK2,
+    pattersonC3 = 7 * pattersonK3,
+    pattersonC4 = 9 * pattersonK4,
+    pattersonYmax = 1.790857183;
+
+function pattersonRaw(lambda, phi) {
+  var phi2 = phi * phi;
+  return [
+    lambda,
+    phi * (pattersonK1 + phi2 * phi2 * (pattersonK2 + phi2 * (pattersonK3 + pattersonK4 * phi2)))
+  ];
+}
+
+pattersonRaw.invert = function(x, y) {
+  if (y > pattersonYmax) y = pattersonYmax;
+  else if (y < -pattersonYmax) y = -pattersonYmax;
+  var yc = y, delta;
+
+  do { // Newton-Raphson
+    var y2 = yc * yc;
+    yc -= delta = ((yc * (pattersonK1 + y2 * y2 * (pattersonK2 + y2 * (pattersonK3 + pattersonK4 * y2)))) - y) / (pattersonC1 + y2 * y2 * (pattersonC2 + y2 * (pattersonC3 + pattersonC4 * y2)));
+  } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]);
+
+  return [x, yc];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(pattersonRaw)
+      .scale(139.319);
+});
+
+
+/***/ }),
+/* 176 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = polyconicRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function polyconicRaw(lambda, phi) {
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [lambda, 0];
+  var tanPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi),
+      k = lambda * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi);
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(k) / tanPhi,
+    phi + (1 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(k)) / tanPhi
+  ];
+}
+
+polyconicRaw.invert = function(x, y) {
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [x, 0];
+  var k = x * x + y * y,
+      phi = y * 0.5,
+      i = 10, delta;
+  do {
+    var tanPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi),
+        secPhi = 1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+        j = k - 2 * y * phi + phi * phi;
+    phi -= delta = (tanPhi * j + 2 * (phi - y)) / (2 + j * secPhi * secPhi + 2 * (phi - y) * tanPhi);
+  } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && --i > 0);
+  tanPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi);
+  return [
+    (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) < __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi + 1 / tanPhi) ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(x * tanPhi) : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(x) * (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x * tanPhi)) + __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */])) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi),
+    phi
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(polyconicRaw)
+      .scale(103.74);
+});
+
+
+/***/ }),
+/* 177 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__octahedron_js__ = __webpack_require__(29);
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function(faceProjection) {
+
+  faceProjection = faceProjection || function(face) {
+    var c = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoCentroid"])({type: "MultiPoint", coordinates: face});
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoGnomonic"])().scale(1).translate([0, 0]).rotate([-c[0], -c[1]]);
+  };
+
+  var faces = __WEBPACK_IMPORTED_MODULE_3__octahedron_js__["a" /* default */].map(function(face) {
+    return {face: face, project: faceProjection(face)};
+  });
+
+  [-1, 0, 0, 1, 0, 1, 4, 5].forEach(function(d, i) {
+    var node = faces[d];
+    node && (node.children || (node.children = [])).push(faces[i]);
+  });
+
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__index_js__["a" /* default */])(faces[0], function(lambda, phi) {
+        return faces[lambda < -__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 2 ? phi < 0 ? 6 : 4
+            : lambda < 0 ? phi < 0 ? 2 : 0
+            : lambda < __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 2 ? phi < 0 ? 3 : 1
+            : phi < 0 ? 7 : 5];
+      })
+      .angle(-30)
+      .scale(101.858)
+      .center([0, 45]);
+});
+
+
+/***/ }),
+/* 178 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__collignon_js__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__octahedron_js__ = __webpack_require__(29);
+
+
+
+
+
+
+var kx = 2 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])(3);
+
+function collignonK(a, b) {
+  var p = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__collignon_js__["b" /* collignonRaw */])(a, b);
+  return [p[0] * kx, p[1]];
+}
+
+collignonK.invert = function(x,y) {
+  return __WEBPACK_IMPORTED_MODULE_1__collignon_js__["b" /* collignonRaw */].invert(x / kx, y);
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function(faceProjection) {
+
+  faceProjection = faceProjection || function(face) {
+    var c = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoCentroid"])({type: "MultiPoint", coordinates: face});
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(collignonK).translate([0, 0]).scale(1).rotate(c[1] > 0 ? [-c[0], 0] : [180 - c[0], 180]);
+  };
+
+  var faces = __WEBPACK_IMPORTED_MODULE_4__octahedron_js__["a" /* default */].map(function(face) {
+    return {face: face, project: faceProjection(face)};
+  });
+
+  [-1, 0, 0, 1, 0, 1, 4, 5].forEach(function(d, i) {
+    var node = faces[d];
+    node && (node.children || (node.children = [])).push(faces[i]);
+  });
+
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__index_js__["a" /* default */])(faces[0], function(lambda, phi) {
+        return faces[lambda < -__WEBPACK_IMPORTED_MODULE_2__math_js__["j" /* pi */] / 2 ? phi < 0 ? 6 : 4
+            : lambda < 0 ? phi < 0 ? 2 : 0
+            : lambda < __WEBPACK_IMPORTED_MODULE_2__math_js__["j" /* pi */] / 2 ? phi < 0 ? 3 : 1
+            : phi < 0 ? 7 : 5];
+      })
+      .angle(-30)
+      .scale(121.906)
+      .center([0, 48.5904]);
+});
+
+
+/***/ }),
+/* 179 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["c"] = inverse;
+/* harmony export (immutable) */ __webpack_exports__["b"] = multiply;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+
+
+// Note: 6-element arrays are used to denote the 3x3 affine transform matrix:
+// [a, b, c,
+//  d, e, f,
+//  0, 0, 1] - this redundant row is left out.
+
+// Transform matrix for [a0, a1] -> [b0, b1].
+/* harmony default export */ __webpack_exports__["a"] = (function(a, b) {
+  var u = subtract(a[1], a[0]),
+      v = subtract(b[1], b[0]),
+      phi = angle(u, v),
+      s = length(u) / length(v);
+
+  return multiply([
+    1, 0, a[0][0],
+    0, 1, a[0][1]
+  ], multiply([
+    s, 0, 0,
+    0, s, 0
+  ], multiply([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(phi), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(phi), 0,
+    -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(phi), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(phi), 0
+  ], [
+    1, 0, -b[0][0],
+    0, 1, -b[0][1]
+  ])));
+});
+
+// Inverts a transform matrix.
+function inverse(m) {
+  var k = 1 / (m[0] * m[4] - m[1] * m[3]);
+  return [
+    k * m[4], -k * m[1], k * (m[1] * m[5] - m[2] * m[4]),
+    -k * m[3], k * m[0], k * (m[2] * m[3] - m[0] * m[5])
+  ];
+}
+
+// Multiplies two 3x2 matrices.
+function multiply(a, b) {
+  return [
+    a[0] * b[0] + a[1] * b[3],
+    a[0] * b[1] + a[1] * b[4],
+    a[0] * b[2] + a[1] * b[5] + a[2],
+    a[3] * b[0] + a[4] * b[3],
+    a[3] * b[1] + a[4] * b[4],
+    a[3] * b[2] + a[4] * b[5] + a[5]
+  ];
+}
+
+// Subtracts 2D vectors.
+function subtract(a, b) {
+  return [a[0] - b[0], a[1] - b[1]];
+}
+
+// Magnitude of a 2D vector.
+function length(v) {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["e" /* sqrt */])(v[0] * v[0] + v[1] * v[1]);
+}
+
+// Angle between two 2D vectors.
+function angle(a, b) {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["h" /* atan2 */])(a[0] * b[1] - a[1] * b[0], a[0] * b[0] + a[1] * b[1]);
+}
+
+
+/***/ }),
+/* 180 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__octahedron_js__ = __webpack_require__(29);
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function(faceProjection) {
+
+  faceProjection = faceProjection || function(face) {
+    var c = face.length === 6 ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoCentroid"])({type: "MultiPoint", coordinates: face}) : face[0];
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoGnomonic"])().scale(1).translate([0, 0]).rotate([-c[0], -c[1]]);
+  };
+
+  var w5 = __WEBPACK_IMPORTED_MODULE_3__octahedron_js__["a" /* default */].map(function(face) {
+    var xyz = face.map(cartesian),
+        n = xyz.length,
+        a = xyz[n - 1],
+        b,
+        hexagon = [];
+    for (var i = 0; i < n; ++i) {
+      b = xyz[i];
+      hexagon.push(spherical([
+        a[0] * 0.9486832980505138 + b[0] * 0.31622776601683794,
+        a[1] * 0.9486832980505138 + b[1] * 0.31622776601683794,
+        a[2] * 0.9486832980505138 + b[2] * 0.31622776601683794
+      ]), spherical([
+        b[0] * 0.9486832980505138 + a[0] * 0.31622776601683794,
+        b[1] * 0.9486832980505138 + a[1] * 0.31622776601683794,
+        b[2] * 0.9486832980505138 + a[2] * 0.31622776601683794
+      ]));
+      a = b;
+    }
+    return hexagon;
+  });
+
+  var cornerNormals = [];
+
+  var parents = [-1, 0, 0, 1, 0, 1, 4, 5];
+
+  w5.forEach(function(hexagon, j) {
+    var face = __WEBPACK_IMPORTED_MODULE_3__octahedron_js__["a" /* default */][j],
+        n = face.length,
+        normals = cornerNormals[j] = [];
+    for (var i = 0; i < n; ++i) {
+      w5.push([
+        face[i],
+        hexagon[(i * 2 + 2) % (2 * n)],
+        hexagon[(i * 2 + 1) % (2 * n)]
+      ]);
+      parents.push(j);
+      normals.push(cross(
+        cartesian(hexagon[(i * 2 + 2) % (2 * n)]),
+        cartesian(hexagon[(i * 2 + 1) % (2 * n)])
+      ));
+    }
+  });
+
+  var faces = w5.map(function(face) {
+    return {
+      project: faceProjection(face),
+      face: face
+    };
+  });
+
+  parents.forEach(function(d, i) {
+    var parent = faces[d];
+    parent && (parent.children || (parent.children = [])).push(faces[i]);
+  });
+
+  function face(lambda, phi) {
+    var cosphi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+        p = [cosphi * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda), cosphi * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi)];
+
+    var hexagon = lambda < -__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 2 ? phi < 0 ? 6 : 4
+        : lambda < 0 ? phi < 0 ? 2 : 0
+        : lambda < __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 2 ? phi < 0 ? 3 : 1
+        : phi < 0 ? 7 : 5;
+
+    var n = cornerNormals[hexagon];
+
+    return faces[dot(n[0], p) < 0 ? 8 + 3 * hexagon
+        : dot(n[1], p) < 0 ? 8 + 3 * hexagon + 1
+        : dot(n[2], p) < 0 ? 8 + 3 * hexagon + 2
+        : hexagon];
+  }
+
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__index_js__["a" /* default */])(faces[0], face)
+      .angle(-30)
+      .scale(110.625)
+      .center([0,45]);
+});
+
+function dot(a, b) {
+  for (var i = 0, n = a.length, s = 0; i < n; ++i) s += a[i] * b[i];
+  return s;
+}
+
+function cross(a, b) {
+  return [
+    a[1] * b[2] - a[2] * b[1],
+    a[2] * b[0] - a[0] * b[2],
+    a[0] * b[1] - a[1] * b[0]
+  ];
+}
+
+// Converts 3D Cartesian to spherical coordinates (degrees).
+function spherical(cartesian) {
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(cartesian[1], cartesian[0]) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */],
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["m" /* max */])(-1, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(1, cartesian[2]))) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */]
+  ];
+}
+
+// Converts spherical coordinates (degrees) to 3D Cartesian.
+function cartesian(coordinates) {
+  var lambda = coordinates[0] * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */],
+      phi = coordinates[1] * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */],
+      cosphi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi);
+  return [
+    cosphi * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda),
+    cosphi * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi)
+  ];
+}
+
+
+/***/ }),
+/* 181 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = (function(ring) {
+  if ((n = ring.length) < 4) return false;
+  var i = 0,
+      n,
+      area = ring[n - 1][1] * ring[0][0] - ring[n - 1][0] * ring[0][1];
+  while (++i < n) area += ring[i - 1][1] * ring[i][0] - ring[i - 1][0] * ring[i][1];
+  return area <= 0;
+});
+
+
+/***/ }),
+/* 182 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = (function(ring, point) {
+  var x = point[0],
+      y = point[1],
+      contains = false;
+  for (var i = 0, n = ring.length, j = n - 1; i < n; j = i++) {
+    var pi = ring[i], xi = pi[0], yi = pi[1],
+        pj = ring[j], xj = pj[0], yj = pj[1];
+    if (((yi > y) ^ (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) contains = !contains;
+  }
+  return contains;
+});
+
+
+/***/ }),
+/* 183 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_js__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__clockwise_js__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__contains_js__ = __webpack_require__(182);
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function(object, projection) {
+  var stream = projection.stream, project;
+  if (!stream) throw new Error("invalid projection");
+  switch (object && object.type) {
+    case "Feature": project = projectFeature; break;
+    case "FeatureCollection": project = projectFeatureCollection; break;
+    default: project = projectGeometry; break;
+  }
+  return project(object, stream);
+});
+
+function projectFeatureCollection(o, stream) {
+  return {
+    type: "FeatureCollection",
+    features: o.features.map(function(f) {
+      return projectFeature(f, stream);
+    })
+  };
+}
+
+function projectFeature(o, stream) {
+  return {
+    type: "Feature",
+    id: o.id,
+    properties: o.properties,
+    geometry: projectGeometry(o.geometry, stream)
+  };
+}
+
+function projectGeometryCollection(o, stream) {
+  return {
+    type: "GeometryCollection",
+    geometries: o.geometries.map(function(o) {
+      return projectGeometry(o, stream);
+    })
+  };
+}
+
+function projectGeometry(o, stream) {
+  if (!o) return null;
+  if (o.type === "GeometryCollection") return projectGeometryCollection(o, stream);
+  var sink;
+  switch (o.type) {
+    case "Point": sink = sinkPoint; break;
+    case "MultiPoint": sink = sinkPoint; break;
+    case "LineString": sink = sinkLine; break;
+    case "MultiLineString": sink = sinkLine; break;
+    case "Polygon": sink = sinkPolygon; break;
+    case "MultiPolygon": sink = sinkPolygon; break;
+    case "Sphere": sink = sinkPolygon; break;
+    default: return null;
+  }
+  __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoStream"])(o, stream(sink));
+  return sink.result();
+}
+
+var points = [],
+    lines = [];
+
+var sinkPoint = {
+  point: function(x, y) {
+    points.push([x, y]);
+  },
+  result: function() {
+    var result = !points.length ? null
+        : points.length < 2 ? {type: "Point", coordinates: points[0]}
+        : {type: "MultiPoint", coordinates: points};
+    points = [];
+    return result;
+  }
+};
+
+var sinkLine = {
+  lineStart: __WEBPACK_IMPORTED_MODULE_1__noop_js__["a" /* default */],
+  point: function(x, y) {
+    points.push([x, y]);
+  },
+  lineEnd: function() {
+    if (points.length) lines.push(points), points = [];
+  },
+  result: function() {
+    var result = !lines.length ? null
+        : lines.length < 2 ? {type: "LineString", coordinates: lines[0]}
+        : {type: "MultiLineString", coordinates: lines};
+    lines = [];
+    return result;
+  }
+};
+
+var sinkPolygon = {
+  polygonStart: __WEBPACK_IMPORTED_MODULE_1__noop_js__["a" /* default */],
+  lineStart: __WEBPACK_IMPORTED_MODULE_1__noop_js__["a" /* default */],
+  point: function(x, y) {
+    points.push([x, y]);
+  },
+  lineEnd: function() {
+    var n = points.length;
+    if (n) {
+      do points.push(points[0].slice()); while (++n < 4);
+      lines.push(points), points = [];
+    }
+  },
+  polygonEnd: __WEBPACK_IMPORTED_MODULE_1__noop_js__["a" /* default */],
+  result: function() {
+    if (!lines.length) return null;
+    var polygons = [],
+        holes = [];
+
+    // https://github.com/d3/d3/issues/1558
+    lines.forEach(function(ring) {
+      if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__clockwise_js__["a" /* default */])(ring)) polygons.push([ring]);
+      else holes.push(ring);
+    });
+
+    holes.forEach(function(hole) {
+      var point = hole[0];
+      polygons.some(function(polygon) {
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__contains_js__["a" /* default */])(polygon[0], point)) {
+          polygon.push(hole);
+          return true;
+        }
+      }) || polygons.push([hole]);
+    });
+
+    lines = [];
+
+    return !polygons.length ? null
+        : polygons.length > 1 ? {type: "MultiPolygon", coordinates: polygons}
+        : {type: "Polygon", coordinates: polygons[0]};
+  }
+};
+
+
+/***/ }),
+/* 184 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = (function(input, digits) {
+  if (!(0 <= (digits = +digits) && digits <= 20)) throw new Error("invalid digits");
+
+  function quantizePoint(input) {
+    var n = input.length, i = 2, output = new Array(n);
+    output[0] = +input[0].toFixed(digits);
+    output[1] = +input[1].toFixed(digits);
+    while (i < n) output[i] = input[i], ++i;
+    return output;
+  }
+
+  function quantizePoints(input) {
+    return input.map(quantizePoint);
+  }
+
+  function quantizePointsNoDuplicates(input) {
+    var point0 = quantizePoint(input[0]);
+    var output = [point0];
+    for (var i = 1; i < input.length; i++) {
+      var point = quantizePoint(input[i]);
+      if (point.length > 2 || point[0] != point0[0] || point[1] != point0[1]) {
+        output.push(point);
+        point0 = point;
+      }
+    }
+    if (output.length === 1 && input.length > 1) {
+      output.push(quantizePoint(input[input.length - 1]));
+    }
+    return output;
+  }
+
+  function quantizePolygon(input) {
+    return input.map(quantizePointsNoDuplicates);
+  }
+
+  function quantizeGeometry(input) {
+    if (input == null) return input;
+    var output;
+    switch (input.type) {
+      case "GeometryCollection": output = {type: "GeometryCollection", geometries: input.geometries.map(quantizeGeometry)}; break;
+      case "Point": output = {type: "Point", coordinates: quantizePoint(input.coordinates)}; break;
+      case "MultiPoint": output = {type: input.type, coordinates: quantizePoints(input.coordinates)}; break;
+      case "LineString": output = {type: input.type, coordinates: quantizePointsNoDuplicates(input.coordinates)}; break;
+      case "MultiLineString": case "Polygon": output = {type: input.type, coordinates: quantizePolygon(input.coordinates)}; break;
+      case "MultiPolygon": output = {type: "MultiPolygon", coordinates: input.coordinates.map(quantizePolygon)}; break;
+      default: return input;
+    }
+    if (input.bbox != null) output.bbox = input.bbox;
+    return output;
+  }
+
+  function quantizeFeature(input) {
+    var output = {type: "Feature", properties: input.properties, geometry: quantizeGeometry(input.geometry)};
+    if (input.id != null) output.id = input.id;
+    if (input.bbox != null) output.bbox = input.bbox;
+    return output;
+  }
+
+  if (input != null) switch (input.type) {
+    case "Feature": return quantizeFeature(input);
+    case "FeatureCollection": {
+      var output = {type: "FeatureCollection", features: input.features.map(quantizeFeature)};
+      if (input.bbox != null) output.bbox = input.bbox;
+      return output;
+    }
+    default: return quantizeGeometry(input);
+  }
+
+  return input;
+});
+
+
+/***/ }),
+/* 185 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gringorten_js__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_js__ = __webpack_require__(30);
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__index_js__["a" /* default */])(__WEBPACK_IMPORTED_MODULE_0__gringorten_js__["b" /* gringortenRaw */])
+      .scale(176.423);
+});
+
+
+/***/ }),
+/* 186 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = rectangularPolyconicRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__parallel1_js__ = __webpack_require__(11);
+
+
+
+function rectangularPolyconicRaw(phi0) {
+  var sinPhi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(phi0);
+
+  function forward(lambda, phi) {
+    var A = sinPhi0 ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(lambda * sinPhi0 / 2) / sinPhi0 : lambda / 2;
+    if (!phi) return [2 * A, -phi0];
+    var E = 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["r" /* atan */])(A * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(phi)),
+        cotPhi = 1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(phi);
+    return [
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(E) * cotPhi,
+      phi + (1 - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(E)) * cotPhi - phi0
+    ];
+  }
+
+  // TODO return null for points outside outline.
+  forward.invert = function(x, y) {
+    if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(y += phi0) < __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */]) return [sinPhi0 ? 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["r" /* atan */])(sinPhi0 * x / 2) / sinPhi0 : x, 0];
+    var k = x * x + y * y,
+        phi = 0,
+        i = 10, delta;
+    do {
+      var tanPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(phi),
+          secPhi = 1 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["b" /* cos */])(phi),
+          j = k - 2 * y * phi + phi * phi;
+      phi -= delta = (tanPhi * j + 2 * (phi - y)) / (2 + j * secPhi * secPhi + 2 * (phi - y) * tanPhi);
+    } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_0__math_js__["g" /* epsilon */] && --i > 0);
+    var E = x * (tanPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(phi)),
+        A = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["l" /* tan */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(y) < __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["f" /* abs */])(phi + 1 / tanPhi) ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["i" /* asin */])(E) * 0.5 : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["d" /* acos */])(E) * 0.5 + __WEBPACK_IMPORTED_MODULE_0__math_js__["j" /* pi */] / 4) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["c" /* sin */])(phi);
+    return [
+      sinPhi0 ? 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__math_js__["r" /* atan */])(sinPhi0 * A) / sinPhi0 : 2 * A,
+      phi
+    ];
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__parallel1_js__["a" /* default */])(rectangularPolyconicRaw)
+      .scale(131.215);
+});
+
+
+/***/ }),
+/* 187 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = robinsonRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+var K = [
+  [0.9986, -0.062],
+  [1.0000, 0.0000],
+  [0.9986, 0.0620],
+  [0.9954, 0.1240],
+  [0.9900, 0.1860],
+  [0.9822, 0.2480],
+  [0.9730, 0.3100],
+  [0.9600, 0.3720],
+  [0.9427, 0.4340],
+  [0.9216, 0.4958],
+  [0.8962, 0.5571],
+  [0.8679, 0.6176],
+  [0.8350, 0.6769],
+  [0.7986, 0.7346],
+  [0.7597, 0.7903],
+  [0.7186, 0.8435],
+  [0.6732, 0.8936],
+  [0.6213, 0.9394],
+  [0.5722, 0.9761],
+  [0.5322, 1.0000]
+];
+
+K.forEach(function(d) {
+  d[1] *= 1.0144;
+});
+
+function robinsonRaw(lambda, phi) {
+  var i = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(18, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) * 36 / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]),
+      i0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["t" /* floor */])(i),
+      di = i - i0,
+      ax = (k = K[i0])[0],
+      ay = k[1],
+      bx = (k = K[++i0])[0],
+      by = k[1],
+      cx = (k = K[__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(19, ++i0)])[0],
+      cy = k[1],
+      k;
+  return [
+    lambda * (bx + di * (cx - ax) / 2 + di * di * (cx - 2 * bx + ax) / 2),
+    (phi > 0 ? __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] : -__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) * (by + di * (cy - ay) / 2 + di * di * (cy - 2 * by + ay) / 2)
+  ];
+}
+
+robinsonRaw.invert = function(x, y) {
+  var yy = y / __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+      phi = yy * 90,
+      i = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(18, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi / 5)),
+      i0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["m" /* max */])(0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["t" /* floor */])(i));
+  do {
+    var ay = K[i0][1],
+        by = K[i0 + 1][1],
+        cy = K[__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(19, i0 + 2)][1],
+        u = cy - ay,
+        v = cy - 2 * by + ay,
+        t = 2 * (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(yy) - by) / u,
+        c = v / u,
+        di = t * (1 - c * t * (1 - 2 * c * t));
+    if (di >= 0 || i0 === 1) {
+      phi = (y >= 0 ? 5 : -5) * (di + i);
+      var j = 50, delta;
+      do {
+        i = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(18, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) / 5);
+        i0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["t" /* floor */])(i);
+        di = i - i0;
+        ay = K[i0][1];
+        by = K[i0 + 1][1];
+        cy = K[__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(19, i0 + 2)][1];
+        phi -= (delta = (y >= 0 ? __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] : -__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) * (by + di * (cy - ay) / 2 + di * di * (cy - 2 * by + ay) / 2) - y) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */];
+      } while (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(delta) > __WEBPACK_IMPORTED_MODULE_1__math_js__["u" /* epsilon2 */] && --j > 0);
+      break;
+    }
+  } while (--i0 >= 0);
+  var ax = K[i0][0],
+      bx = K[i0 + 1][0],
+      cx = K[__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(19, i0 + 2)][0];
+  return [
+    x / (bx + di * (cx - ax) / 2 + di * di * (cx - 2 * bx + ax) / 2),
+    phi * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(robinsonRaw)
+      .scale(152.63);
+});
+
+
+/***/ }),
+/* 188 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = satelliteRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function satelliteVerticalRaw(P) {
+  function forward(lambda, phi) {
+    var cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+        k = (P - 1) / (P - cosPhi * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda));
+    return [
+      k * cosPhi * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda),
+      k * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi)
+    ];
+  }
+
+  forward.invert = function(x, y) {
+    var rho2 = x * x + y * y,
+        rho = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(rho2),
+        sinc = (P - __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - rho2 * (P + 1) / (P - 1))) / ((P - 1) / rho + rho / (P - 1));
+    return [
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(x * sinc, rho * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - sinc * sinc)),
+      rho ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(y * sinc / rho) : 0
+    ];
+  };
+
+  return forward;
+}
+
+function satelliteRaw(P, omega) {
+  var vertical = satelliteVerticalRaw(P);
+  if (!omega) return vertical;
+  var cosOmega = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(omega),
+      sinOmega = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(omega);
+
+  function forward(lambda, phi) {
+    var coordinates = vertical(lambda, phi),
+        y = coordinates[1],
+        A = y * sinOmega / (P - 1) + cosOmega;
+    return [
+      coordinates[0] * cosOmega / A,
+      y / A
+    ];
+  }
+
+  forward.invert = function(x, y) {
+    var k = (P - 1) / (P - 1 - y * sinOmega);
+    return vertical.invert(k * x, k * y * cosOmega);
+  };
+
+  return forward;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  var distance = 2,
+      omega = 0,
+      m = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(satelliteRaw),
+      p = m(distance, omega);
+
+  // As a multiple of radius.
+  p.distance = function(_) {
+    if (!arguments.length) return distance;
+    return m(distance = +_, omega);
+  };
+
+  p.tilt = function(_) {
+    if (!arguments.length) return omega * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */];
+    return m(distance, omega = _ * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */]);
+  };
+
+  return p
+      .scale(432.147)
+      .clipAngle(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(1 / distance) * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */] - 1e-6);
+});
+
+
+/***/ }),
+/* 189 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var epsilon = 1e-4,
+    epsilonInverse = 1e4,
+    x0 = -180, x0e = x0 + epsilon,
+    x1 = 180, x1e = x1 - epsilon,
+    y0 = -90, y0e = y0 + epsilon,
+    y1 = 90, y1e = y1 - epsilon;
+
+function nonempty(coordinates) {
+  return coordinates.length > 0;
+}
+
+function quantize(x) {
+  return Math.floor(x * epsilonInverse) / epsilonInverse;
+}
+
+function normalizePoint(y) {
+  return y === y0 || y === y1 ? [0, y] : [x0, quantize(y)]; // pole or antimeridian?
+}
+
+function clampPoint(p) {
+  var x = p[0], y = p[1], clamped = false;
+  if (x <= x0e) x = x0, clamped = true;
+  else if (x >= x1e) x = x1, clamped = true;
+  if (y <= y0e) y = y0, clamped = true;
+  else if (y >= y1e) y = y1, clamped = true;
+  return clamped ? [x, y] : p;
+}
+
+function clampPoints(points) {
+  return points.map(clampPoint);
+}
+
+// For each ring, detect where it crosses the antimeridian or pole.
+function extractFragments(rings, polygon, fragments) {
+  for (var j = 0, m = rings.length; j < m; ++j) {
+    var ring = rings[j].slice();
+
+    // By default, assume that this ring doesn’t need any stitching.
+    fragments.push({index: -1, polygon: polygon, ring: ring});
+
+    for (var i = 0, n = ring.length; i < n; ++i) {
+      var point = ring[i],
+          x = point[0],
+          y = point[1];
+
+      // If this is an antimeridian or polar point…
+      if (x <= x0e || x >= x1e || y <= y0e || y >= y1e) {
+        ring[i] = clampPoint(point);
+
+        // Advance through any antimeridian or polar points…
+        for (var k = i + 1; k < n; ++k) {
+          var pointk = ring[k],
+              xk = pointk[0],
+              yk = pointk[1];
+          if (xk > x0e && xk < x1e && yk > y0e && yk < y1e) break;
+        }
+
+        // If this was just a single antimeridian or polar point,
+        // we don’t need to cut this ring into a fragment;
+        // we can just leave it as-is.
+        if (k === i + 1) continue;
+
+        // Otherwise, if this is not the first point in the ring,
+        // cut the current fragment so that it ends at the current point.
+        // The current point is also normalized for later joining.
+        if (i) {
+          var fragmentBefore = {index: -1, polygon: polygon, ring: ring.slice(0, i + 1)};
+          fragmentBefore.ring[fragmentBefore.ring.length - 1] = normalizePoint(y);
+          fragments[fragments.length - 1] = fragmentBefore;
+        }
+
+        // If the ring started with an antimeridian fragment,
+        // we can ignore that fragment entirely.
+        else fragments.pop();
+
+        // If the remainder of the ring is an antimeridian fragment,
+        // move on to the next ring.
+        if (k >= n) break;
+
+        // Otherwise, add the remaining ring fragment and continue.
+        fragments.push({index: -1, polygon: polygon, ring: ring = ring.slice(k - 1)});
+        ring[0] = normalizePoint(ring[0][1]);
+        i = -1;
+        n = ring.length;
+      }
+    }
+  }
+}
+
+// Now stitch the fragments back together into rings.
+function stitchFragments(fragments) {
+  var i, n = fragments.length;
+
+  // To connect the fragments start-to-end, create a simple index by end.
+  var fragmentByStart = {},
+      fragmentByEnd = {},
+      fragment,
+      start,
+      startFragment,
+      end,
+      endFragment;
+
+  // For each fragment…
+  for (i = 0; i < n; ++i) {
+    fragment = fragments[i];
+    start = fragment.ring[0];
+    end = fragment.ring[fragment.ring.length - 1];
+
+    // If this fragment is closed, add it as a standalone ring.
+    if (start[0] === end[0] && start[1] === end[1]) {
+      fragment.polygon.push(fragment.ring);
+      fragments[i] = null;
+      continue;
+    }
+
+    fragment.index = i;
+    fragmentByStart[start] = fragmentByEnd[end] = fragment;
+  }
+
+  // For each open fragment…
+  for (i = 0; i < n; ++i) {
+    fragment = fragments[i];
+    if (fragment) {
+      start = fragment.ring[0];
+      end = fragment.ring[fragment.ring.length - 1];
+      startFragment = fragmentByEnd[start];
+      endFragment = fragmentByStart[end];
+
+      delete fragmentByStart[start];
+      delete fragmentByEnd[end];
+
+      // If this fragment is closed, add it as a standalone ring.
+      if (start[0] === end[0] && start[1] === end[1]) {
+        fragment.polygon.push(fragment.ring);
+        continue;
+      }
+
+      if (startFragment) {
+        delete fragmentByEnd[start];
+        delete fragmentByStart[startFragment.ring[0]];
+        startFragment.ring.pop(); // drop the shared coordinate
+        fragments[startFragment.index] = null;
+        fragment = {index: -1, polygon: startFragment.polygon, ring: startFragment.ring.concat(fragment.ring)};
+
+        if (startFragment === endFragment) {
+          // Connect both ends to this single fragment to create a ring.
+          fragment.polygon.push(fragment.ring);
+        } else {
+          fragment.index = n++;
+          fragments.push(fragmentByStart[fragment.ring[0]] = fragmentByEnd[fragment.ring[fragment.ring.length - 1]] = fragment);
+        }
+      } else if (endFragment) {
+        delete fragmentByStart[end];
+        delete fragmentByEnd[endFragment.ring[endFragment.ring.length - 1]];
+        fragment.ring.pop(); // drop the shared coordinate
+        fragment = {index: n++, polygon: endFragment.polygon, ring: fragment.ring.concat(endFragment.ring)};
+        fragments[endFragment.index] = null;
+        fragments.push(fragmentByStart[fragment.ring[0]] = fragmentByEnd[fragment.ring[fragment.ring.length - 1]] = fragment);
+      } else {
+        fragment.ring.push(fragment.ring[0]); // close ring
+        fragment.polygon.push(fragment.ring);
+      }
+    }
+  }
+}
+
+function stitchFeature(input) {
+  var output = {type: "Feature", geometry: stitchGeometry(input.geometry)};
+  if (input.id != null) output.id = input.id;
+  if (input.bbox != null) output.bbox = input.bbox;
+  if (input.properties != null) output.properties = input.properties;
+  return output;
+}
+
+function stitchGeometry(input) {
+  if (input == null) return input;
+  var output, fragments, i, n;
+  switch (input.type) {
+    case "GeometryCollection": output = {type: "GeometryCollection", geometries: input.geometries.map(stitchGeometry)}; break;
+    case "Point": output = {type: "Point", coordinates: clampPoint(input.coordinates)}; break;
+    case "MultiPoint": case "LineString": output = {type: input.type, coordinates: clampPoints(input.coordinates)}; break;
+    case "MultiLineString": output = {type: "MultiLineString", coordinates: input.coordinates.map(clampPoints)}; break;
+    case "Polygon": {
+      var polygon = [];
+      extractFragments(input.coordinates, polygon, fragments = []);
+      stitchFragments(fragments);
+      output = {type: "Polygon", coordinates: polygon};
+      break;
+    }
+    case "MultiPolygon": {
+      fragments = [], i = -1, n = input.coordinates.length;
+      var polygons = new Array(n);
+      while (++i < n) extractFragments(input.coordinates[i], polygons[i] = [], fragments);
+      stitchFragments(fragments);
+      output = {type: "MultiPolygon", coordinates: polygons.filter(nonempty)};
+      break;
+    }
+    default: return input;
+  }
+  if (input.bbox != null) output.bbox = input.bbox;
+  return output;
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function(input) {
+  if (input == null) return input;
+  switch (input.type) {
+    case "Feature": return stitchFeature(input);
+    case "FeatureCollection": {
+      var output = {type: "FeatureCollection", features: input.features.map(stitchFeature)};
+      if (input.bbox != null) output.bbox = input.bbox;
+      return output;
+    }
+    default: return stitchGeometry(input);
+  }
+});
+
+
+/***/ }),
+/* 190 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = timesRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function timesRaw(lambda, phi) {
+  var t = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(phi / 2),
+      s = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */] * t);
+  return [
+    lambda * (0.74482 - 0.34588 * s * s),
+    1.70711 * t
+  ];
+}
+
+timesRaw.invert = function(x, y) {
+  var t = y / 1.70711,
+      s = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["s" /* quarterPi */] * t);
+  return [
+    x / (0.74482 - 0.34588 * s * s),
+    2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])(t)
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(timesRaw)
+      .scale(146.153);
+});
+
+
+/***/ }),
+/* 191 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = twoPointAzimuthalRaw;
+/* harmony export (immutable) */ __webpack_exports__["c"] = twoPointAzimuthalUsa;
+/* harmony export (immutable) */ __webpack_exports__["a"] = twoPointAzimuthal;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__twoPoint_js__ = __webpack_require__(66);
+
+
+
+
+function twoPointAzimuthalRaw(d) {
+  var cosd = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(d);
+
+  function forward(lambda, phi) {
+    var coordinates = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoGnomonicRaw"])(lambda, phi);
+    coordinates[0] *= cosd;
+    return coordinates;
+  }
+
+  forward.invert = function(x, y) {
+    return __WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoGnomonicRaw"].invert(x / cosd, y);
+  };
+
+  return forward;
+}
+
+function twoPointAzimuthalUsa() {
+  return twoPointAzimuthal([-158, 21.5], [-77, 39])
+      .clipAngle(60)
+      .scale(400);
+}
+
+function twoPointAzimuthal(p0, p1) {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__twoPoint_js__["a" /* default */])(twoPointAzimuthalRaw, p0, p1);
+}
+
+
+/***/ }),
+/* 192 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = twoPointEquidistantRaw;
+/* harmony export (immutable) */ __webpack_exports__["c"] = twoPointEquidistantUsa;
+/* harmony export (immutable) */ __webpack_exports__["a"] = twoPointEquidistant;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__twoPoint_js__ = __webpack_require__(66);
+
+
+
+
+// TODO clip to ellipse
+function twoPointEquidistantRaw(z0) {
+  if (!(z0 *= 2)) return __WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoAzimuthalEquidistantRaw"];
+  var lambdaa = -z0 / 2,
+      lambdab = -lambdaa,
+      z02 = z0 * z0,
+      tanLambda0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(lambdab),
+      S = 0.5 / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambdab);
+
+  function forward(lambda, phi) {
+    var za = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda - lambdaa)),
+        zb = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda - lambdab)),
+        ys = phi < 0 ? -1 : 1;
+    za *= za, zb *= zb;
+    return [
+      (za - zb) / (2 * z0),
+      ys * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(4 * z02 * zb - (z02 - za + zb) * (z02 - za + zb)) / (2 * z0)
+    ];
+  }
+
+  forward.invert = function(x, y) {
+    var y2 = y * y,
+        cosza = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(y2 + (t = x + lambdaa) * t)),
+        coszb = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(y2 + (t = x + lambdab) * t)),
+        t,
+        d;
+    return [
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(d = cosza - coszb, t = (cosza + coszb) * tanLambda0),
+      (y < 0 ? -1 : 1) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(t * t + d * d) * S)
+    ];
+  };
+
+  return forward;
+}
+
+function twoPointEquidistantUsa() {
+  return twoPointEquidistant([-158, 21.5], [-77, 39])
+      .clipAngle(130)
+      .scale(122.571);
+}
+
+function twoPointEquidistant(p0, p1) {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__twoPoint_js__["a" /* default */])(twoPointEquidistantRaw, p0, p1);
+}
+
+
+/***/ }),
+/* 193 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = vanDerGrintenRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function vanDerGrintenRaw(lambda, phi) {
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [lambda, 0];
+  var sinTheta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi / __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]),
+      theta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(sinTheta);
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(phi) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(theta / 2)];
+  var cosTheta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta),
+      A = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / lambda - lambda / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) / 2,
+      A2 = A * A,
+      G = cosTheta / (sinTheta + cosTheta - 1),
+      P = G * (2 / sinTheta - 1),
+      P2 = P * P,
+      P2_A2 = P2 + A2,
+      G_P2 = G - P2,
+      Q = A2 + G;
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(lambda) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (A * G_P2 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(A2 * G_P2 * G_P2 - P2_A2 * (G * G - P2))) / P2_A2,
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(phi) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (P * Q - A * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])((A2 + 1) * P2_A2 - Q * Q)) / P2_A2
+  ];
+}
+
+vanDerGrintenRaw.invert = function(x, y) {
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [x, 0];
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [0, __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])(y / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]))];
+  var x2 = (x /= __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) * x,
+      y2 = (y /= __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) * y,
+      x2_y2 = x2 + y2,
+      z = x2_y2 * x2_y2,
+      c1 = -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(y) * (1 + x2_y2),
+      c2 = c1 - 2 * y2 + x2,
+      c3 = -2 * c1 + 1 + 2 * y2 + z,
+      d = y2 / c3 + (2 * c2 * c2 * c2 / (c3 * c3 * c3) - 9 * c1 * c2 / (c3 * c3)) / 27,
+      a1 = (c1 - c2 * c2 / (3 * c3)) / c3,
+      m1 = 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(-a1 / 3),
+      theta1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(3 * d / (a1 * m1)) / 3;
+  return [
+    __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (x2_y2 - 1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 + 2 * (x2 - y2) + z)) / (2 * x),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (-m1 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta1 + __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 3) - c2 / (3 * c3))
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(vanDerGrintenRaw)
+      .scale(79.4183);
+});
+
+
+/***/ }),
+/* 194 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = vanDerGrinten2Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function vanDerGrinten2Raw(lambda, phi) {
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [lambda, 0];
+  var sinTheta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi / __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]),
+      theta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(sinTheta);
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [0, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(phi) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(theta / 2)];
+  var cosTheta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta),
+      A = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / lambda - lambda / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) / 2,
+      A2 = A * A,
+      x1 = cosTheta * (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 + A2) - A * cosTheta) / (1 + A2 * sinTheta * sinTheta);
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(lambda) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * x1,
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(phi) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - x1 * (2 * A + x1))
+  ];
+}
+
+vanDerGrinten2Raw.invert = function(x, y) {
+  if (!x) return [0, __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])(y / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]))];
+  var x1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]),
+      A = (1 - x1 * x1 - (y /= __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) * y) / (2 * x1),
+      A2 = A * A,
+      B = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(A2 + 1);
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(x) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (B - A),
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(y) * __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])((1 - 2 * A * x1) * (A + B) - x1), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(B + A + x1)))
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(vanDerGrinten2Raw)
+      .scale(79.4183);
+});
+
+
+/***/ }),
+/* 195 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = vanDerGrinten3Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function vanDerGrinten3Raw(lambda, phi) {
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [lambda, 0];
+  var sinTheta = phi / __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+      theta = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(sinTheta);
+  if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi) - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) < __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]) return [0, __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(theta / 2)];
+  var A = (__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / lambda - lambda / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */]) / 2,
+      y1 = sinTheta / (1 + __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(theta));
+  return [
+    __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(lambda) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(A * A + 1 - y1 * y1) - A),
+    __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * y1
+  ];
+}
+
+vanDerGrinten3Raw.invert = function(x, y) {
+  if (!y) return [x, 0];
+  var y1 = y / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */],
+      A = (__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (1 - y1 * y1) - x * x) / (2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * x);
+  return [
+    x ? __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(x) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(A * A + 1) - A) : 0,
+    __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["r" /* atan */])(y1))
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(vanDerGrinten3Raw)
+        .scale(79.4183);
+});
+
+
+/***/ }),
+/* 196 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = vanDerGrinten4Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function vanDerGrinten4Raw(lambda, phi) {
+  if (!phi) return [lambda, 0];
+  var phi0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(phi);
+  if (!lambda || phi0 === __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) return [0, phi];
+  var B = phi0 / __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+      B2 = B * B,
+      C = (8 * B - B2 * (B2 + 2) - 5) / (2 * B2 * (B - 1)),
+      C2 = C * C,
+      BC = B * C,
+      B_C2 = B2 + C2 + 2 * BC,
+      B_3C = B + 3 * C,
+      lambda0 = lambda / __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+      lambda1 = lambda0 + 1 / lambda0,
+      D = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(lambda) - __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(lambda1 * lambda1 - 4),
+      D2 = D * D,
+      F = B_C2 * (B2 + C2 * D2 - 1) + (1 - B2) * (B2 * (B_3C * B_3C + 4 * C2) + 12 * BC * C2 + 4 * C2 * C2),
+      x1 = (D * (B_C2 + C2 - 1) + 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(F)) / (4 * B_C2 + D2);
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(lambda) * __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] * x1,
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(phi) * __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 + D * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x1) - x1 * x1)
+  ];
+}
+
+vanDerGrinten4Raw.invert = function(x, y) {
+  var delta;
+  if (!x || !y) return [x, y];
+  y /= __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */];
+  var x1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(x) * x / __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */],
+      D = (x1 * x1 - 1 + 4 * y * y) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["f" /* abs */])(x1),
+      D2 = D * D,
+      B = 2 * y,
+      i = 50;
+  do {
+    var B2 = B * B,
+        C = (8 * B - B2 * (B2 + 2) - 5) / (2 * B2 * (B - 1)),
+        C_ = (3 * B - B2 * B - 10) / (2 * B2 * B),
+        C2 = C * C,
+        BC = B * C,
+        B_C = B + C,
+        B_C2 = B_C * B_C,
+        B_3C = B + 3 * C,
+        F = B_C2 * (B2 + C2 * D2 - 1) + (1 - B2) * (B2 * (B_3C * B_3C + 4 * C2) + C2 * (12 * BC + 4 * C2)),
+        F_ = -2 * B_C * (4 * BC * C2 + (1 - 4 * B2 + 3 * B2 * B2) * (1 + C_) + C2 * (-6 + 14 * B2 - D2 + (-8 + 8 * B2 - 2 * D2) * C_) + BC * (-8 + 12 * B2 + (-10 + 10 * B2 - D2) * C_)),
+        sqrtF = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(F),
+        f = D * (B_C2 + C2 - 1) + 2 * sqrtF - x1 * (4 * B_C2 + D2),
+        f_ = D * (2 * C * C_ + 2 * B_C * (1 + C_)) + F_ / sqrtF - 8 * B_C * (D * (-1 + C2 + B_C2) + 2 * sqrtF) * (1 + C_) / (D2 + 4 * B_C2);
+    B -= delta = f / f_;
+  } while (delta > __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */] && --i > 0);
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["q" /* sign */])(x) * (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(D * D + 4) + D) * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 4,
+    __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */] * B
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(vanDerGrinten4Raw)
+      .scale(127.16);
+});
+
+
+/***/ }),
+/* 197 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["c"] = wagnerRaw;
+/* harmony export (immutable) */ __webpack_exports__["a"] = wagner;
+/* harmony export (immutable) */ __webpack_exports__["b"] = wagner7;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function wagnerFormula(cx, cy, m1, m2, n) {
+  function forward(lambda, phi) {
+    var s = m1 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(m2 * phi),
+        c0 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - s * s),
+        c1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 / (1 + c0 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda *= n)));
+    return [
+      cx * c0 * c1 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda),
+      cy * s * c1
+    ];
+  }
+
+  forward.invert = function(x, y) {
+    var t1 = x / cx,
+        t2 = y / cy,
+        p = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(t1 * t1 + t2 * t2),
+        c = 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(p / 2);
+    return [
+      __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(x * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["l" /* tan */])(c), cx * p) / n,
+      p && __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(y * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(c) / (cy * m1 * p)) / m2
+    ];
+  };
+
+  return forward;
+}
+
+function wagnerRaw(poleline, parallels, inflation, ratio) {
+  // 60 is always used as reference parallel
+  var phi1 = __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] / 3;
+
+  // sanitizing the input values
+  // poleline and parallels may approximate but never equal 0
+  poleline = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["m" /* max */])(poleline, __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]);
+  parallels = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["m" /* max */])(parallels, __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]);
+  // poleline must be <= 90; parallels may approximate but never equal 180
+  poleline = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(poleline, __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]);
+  parallels = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(parallels, __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] - __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]);
+  // 0 <= inflation <= 99.999
+  inflation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["m" /* max */])(inflation, 0);
+  inflation = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["n" /* min */])(inflation, 100 - __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]);
+  // ratio > 0.
+  // sensible values, i.e. something that renders a map which still can be
+  // recognized as world map, are e.g. 20 <= ratio <= 1000.
+  ratio = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["m" /* max */])(ratio, __WEBPACK_IMPORTED_MODULE_1__math_js__["g" /* epsilon */]);
+
+  // convert values from boehm notation
+  // areal inflation e.g. from 0 to 1 or 20 to 1.2:
+  var vinflation = inflation/100 + 1;
+  // axial ratio e.g. from 200 to 2:
+  var vratio  = ratio / 100;
+  // the other ones are a bit more complicated...
+  var m2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["d" /* acos */])(vinflation * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi1)) / phi1,
+      m1 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(poleline) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(m2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* halfPi */]),
+      n = parallels / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */],
+      k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(vratio * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(poleline / 2) / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(parallels / 2)),
+      cx = k / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(n * m1 * m2),
+      cy = 1 / (k * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(n * m1 * m2));
+
+  return wagnerFormula(cx, cy, m1, m2, n);
+}
+
+function wagner() {
+  // default values generate wagner8
+  var poleline = 65 * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */],
+      parallels = 60 * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */],
+      inflation = 20,
+      ratio = 200,
+      mutate = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjectionMutator"])(wagnerRaw),
+      projection = mutate(poleline, parallels, inflation, ratio);
+
+  projection.poleline = function(_) {
+    return arguments.length ? mutate(poleline = +_ * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */], parallels, inflation, ratio) : poleline * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */];
+  };
+
+  projection.parallels = function(_) {
+    return arguments.length ? mutate(poleline, parallels = +_ * __WEBPACK_IMPORTED_MODULE_1__math_js__["o" /* radians */], inflation, ratio) : parallels * __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* degrees */];
+  };
+  projection.inflation = function(_) {
+    return arguments.length ? mutate(poleline, parallels, inflation = +_, ratio) : inflation;
+  };
+  projection.ratio = function(_) {
+    return arguments.length ? mutate(poleline, parallels, inflation, ratio = +_) : ratio;
+  };
+
+  return projection
+    .scale(163.775);
+}
+
+function wagner7() {
+  return wagner()
+      .poleline(65)
+      .parallels(60)
+      .inflation(0)
+      .ratio(200)
+      .scale(172.633);
+}
+
+
+/***/ }),
+/* 198 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return wagner4Raw; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mollweide_js__ = __webpack_require__(6);
+
+
+
+
+var A = 4 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] + 3 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(3),
+    B = 2 * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(2 * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(3) / A);
+
+var wagner4Raw = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__mollweide_js__["c" /* mollweideBromleyRaw */])(B * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(3) / __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */], B, A / 6);
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(wagner4Raw)
+      .scale(176.84);
+});
+
+
+/***/ }),
+/* 199 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = wagner6Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function wagner6Raw(lambda, phi) {
+  return [lambda * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - 3 * phi * phi / (__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])), phi];
+}
+
+wagner6Raw.invert = function(x, y) {
+  return [x / __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - 3 * y * y / (__WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */] * __WEBPACK_IMPORTED_MODULE_1__math_js__["j" /* pi */])), y];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(wagner6Raw)
+      .scale(152.63);
+});
+
+
+/***/ }),
+/* 200 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = wiechelRaw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+
+
+
+function wiechelRaw(lambda, phi) {
+  var cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(phi),
+      sinPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda) * cosPhi,
+      sin1_Phi = 1 - sinPhi,
+      cosLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["b" /* cos */])(lambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda) * cosPhi, -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(phi))),
+      sinLambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["c" /* sin */])(lambda);
+  cosPhi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(1 - sinPhi * sinPhi);
+  return [
+    sinLambda * cosPhi - cosLambda * sin1_Phi,
+    -cosLambda * cosPhi - sinLambda * sin1_Phi
+  ];
+}
+
+wiechelRaw.invert = function(x, y) {
+  var w = (x * x + y * y) / -2,
+      k = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(-w * (2 + w)),
+      b = y * w + x * k,
+      a = x * w - y * k,
+      D = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["e" /* sqrt */])(a * a + b * b);
+  return [
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["h" /* atan2 */])(k * b, D * (1 + w)),
+    D ? -__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["i" /* asin */])(k * a / D) : 0
+  ];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(wiechelRaw)
+      .rotate([0, -90, 45])
+      .scale(124.75)
+      .clipAngle(180 - 1e-3);
+});
+
+
+/***/ }),
+/* 201 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["b"] = winkel3Raw;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_geo__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__aitoff_js__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
+
+
+
+
+function winkel3Raw(lambda, phi) {
+  var coordinates = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__aitoff_js__["b" /* aitoffRaw */])(lambda, phi);
+  return [
+    (coordinates[0] + lambda / __WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */]) / 2,
+    (coordinates[1] + phi) / 2
+  ];
+}
+
+winkel3Raw.invert = function(x, y) {
+  var lambda = x, phi = y, i = 25;
+  do {
+    var cosphi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(phi),
+        sinphi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(phi),
+        sin_2phi = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(2 * phi),
+        sin2phi = sinphi * sinphi,
+        cos2phi = cosphi * cosphi,
+        sinlambda = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(lambda),
+        coslambda_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["b" /* cos */])(lambda / 2),
+        sinlambda_2 = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["c" /* sin */])(lambda / 2),
+        sin2lambda_2 = sinlambda_2 * sinlambda_2,
+        C = 1 - cos2phi * coslambda_2 * coslambda_2,
+        E = C ? __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["d" /* acos */])(cosphi * coslambda_2) * __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["e" /* sqrt */])(F = 1 / C) : F = 0,
+        F,
+        fx = 0.5 * (2 * E * cosphi * sinlambda_2 + lambda / __WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */]) - x,
+        fy = 0.5 * (E * sinphi + phi) - y,
+        dxdlambda = 0.5 * F * (cos2phi * sin2lambda_2 + E * cosphi * coslambda_2 * sin2phi) + 0.5 / __WEBPACK_IMPORTED_MODULE_2__math_js__["a" /* halfPi */],
+        dxdphi = F * (sinlambda * sin_2phi / 4 - E * sinphi * sinlambda_2),
+        dydlambda = 0.125 * F * (sin_2phi * sinlambda_2 - E * sinphi * cos2phi * sinlambda),
+        dydphi = 0.5 * F * (sin2phi * coslambda_2 + E * sin2lambda_2 * cosphi) + 0.5,
+        denominator = dxdphi * dydlambda - dydphi * dxdlambda,
+        dlambda = (fy * dxdphi - fx * dydphi) / denominator,
+        dphi = (fx * dydlambda - fy * dxdlambda) / denominator;
+    lambda -= dlambda, phi -= dphi;
+  } while ((__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["f" /* abs */])(dlambda) > __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */] || __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__math_js__["f" /* abs */])(dphi) > __WEBPACK_IMPORTED_MODULE_2__math_js__["g" /* epsilon */]) && --i > 0);
+  return [lambda, phi];
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (function() {
+  return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_geo__["geoProjection"])(winkel3Raw)
+      .scale(158.837);
+});
+
+
+/***/ }),
+/* 202 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__area_js__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cartesian_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__stream_js__ = __webpack_require__(8);
 
 
 
@@ -6297,13 +12845,13 @@ function rangeContains(range, x) {
 
 
 /***/ }),
-/* 94 */
+/* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stream_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_js__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__stream_js__ = __webpack_require__(8);
 
 
 
@@ -6447,11 +12995,11 @@ function centroidRingPoint(lambda, phi) {
 
 
 /***/ }),
-/* 95 */
+/* 204 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rectangle_js__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__rectangle_js__ = __webpack_require__(20);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function() {
@@ -6475,7 +13023,7 @@ function centroidRingPoint(lambda, phi) {
 
 
 /***/ }),
-/* 96 */
+/* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6541,7 +13089,7 @@ function centroidRingPoint(lambda, phi) {
 
 
 /***/ }),
-/* 97 */
+/* 206 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6553,13 +13101,13 @@ function centroidRingPoint(lambda, phi) {
 
 
 /***/ }),
-/* 98 */
+/* 207 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polygonContains_js__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__distance_js__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polygonContains_js__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__distance_js__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__math_js__ = __webpack_require__(2);
 
 
 
@@ -6660,24 +13208,24 @@ function pointRadians(point) {
 
 
 /***/ }),
-/* 99 */
+/* 208 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = graticule;
 /* harmony export (immutable) */ __webpack_exports__["b"] = graticule10;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_array__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_d3_array__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(2);
 
 
 
 function graticuleX(y0, y1, dy) {
-  var y = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["a" /* range */])(y0, y1 - __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* epsilon */], dy).concat(y1);
+  var y = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["b" /* range */])(y0, y1 - __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* epsilon */], dy).concat(y1);
   return function(x) { return y.map(function(y) { return [x, y]; }); };
 }
 
 function graticuleY(x0, x1, dx) {
-  var x = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["a" /* range */])(x0, x1 - __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* epsilon */], dx).concat(x1);
+  var x = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["b" /* range */])(x0, x1 - __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* epsilon */], dx).concat(x1);
   return function(y) { return x.map(function(x) { return [x, y]; }); };
 }
 
@@ -6693,10 +13241,10 @@ function graticule() {
   }
 
   function lines() {
-    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["a" /* range */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* ceil */])(X0 / DX) * DX, X1, DX).map(X)
-        .concat(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["a" /* range */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* ceil */])(Y0 / DY) * DY, Y1, DY).map(Y))
-        .concat(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["a" /* range */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* ceil */])(x0 / dx) * dx, x1, dx).filter(function(x) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* abs */])(x % DX) > __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* epsilon */]; }).map(x))
-        .concat(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["a" /* range */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* ceil */])(y0 / dy) * dy, y1, dy).filter(function(y) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* abs */])(y % DY) > __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* epsilon */]; }).map(y));
+    return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["b" /* range */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* ceil */])(X0 / DX) * DX, X1, DX).map(X)
+        .concat(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["b" /* range */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* ceil */])(Y0 / DY) * DY, Y1, DY).map(Y))
+        .concat(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["b" /* range */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* ceil */])(x0 / dx) * dx, x1, dx).filter(function(x) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* abs */])(x % DX) > __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* epsilon */]; }).map(x))
+        .concat(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_d3_array__["b" /* range */])(__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["v" /* ceil */])(y0 / dy) * dy, y1, dy).filter(function(y) { return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__math_js__["a" /* abs */])(y % DY) > __WEBPACK_IMPORTED_MODULE_1__math_js__["p" /* epsilon */]; }).map(y));
   }
 
   graticule.lines = function() {
@@ -6776,11 +13324,11 @@ function graticule10() {
 
 
 /***/ }),
-/* 100 */
+/* 209 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(a, b) {
@@ -6820,13 +13368,13 @@ function graticule10() {
 
 
 /***/ }),
-/* 101 */
+/* 210 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__noop_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__noop_js__ = __webpack_require__(7);
 
 
 
@@ -6880,11 +13428,11 @@ function areaRingEnd() {
 
 
 /***/ }),
-/* 102 */
+/* 211 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
 
 
 // TODO Enforce positive area for exterior, negative area for interior?
@@ -6988,13 +13536,13 @@ function centroidPointRing(x, y) {
 
 
 /***/ }),
-/* 103 */
+/* 212 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = PathContext;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__noop_js__ = __webpack_require__(7);
 
 
 
@@ -7043,18 +13591,18 @@ PathContext.prototype = {
 
 
 /***/ }),
-/* 104 */
+/* 213 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__identity_js__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stream_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__area_js__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bounds_js__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__centroid_js__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__context_js__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__measure_js__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__string_js__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__identity_js__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stream_js__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__area_js__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__bounds_js__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__centroid_js__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__context_js__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__measure_js__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__string_js__ = __webpack_require__(215);
 
 
 
@@ -7119,13 +13667,13 @@ PathContext.prototype = {
 
 
 /***/ }),
-/* 105 */
+/* 214 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__noop_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__adder_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__noop_js__ = __webpack_require__(7);
 
 
 
@@ -7174,7 +13722,7 @@ function lengthPoint(x, y) {
 
 
 /***/ }),
-/* 106 */
+/* 215 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7241,14 +13789,14 @@ function circle(radius) {
 
 
 /***/ }),
-/* 107 */
+/* 216 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__albers_js__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conicEqualArea_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fit_js__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__albers_js__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__conicEqualArea_js__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fit_js__ = __webpack_require__(35);
 
 
 
@@ -7363,14 +13911,14 @@ function multiplex(streams) {
 
 
 /***/ }),
-/* 108 */
+/* 217 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return azimuthalEqualAreaRaw; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__azimuthal_js__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__azimuthal_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(3);
 
 
 
@@ -7391,14 +13939,14 @@ azimuthalEqualAreaRaw.invert = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1
 
 
 /***/ }),
-/* 109 */
+/* 218 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return azimuthalEquidistantRaw; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__azimuthal_js__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__azimuthal_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(3);
 
 
 
@@ -7419,14 +13967,14 @@ azimuthalEquidistantRaw.invert = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE
 
 
 /***/ }),
-/* 110 */
+/* 219 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = conicConformalRaw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conic_js__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mercator_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conic_js__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mercator_js__ = __webpack_require__(36);
 
 
 
@@ -7465,14 +14013,14 @@ function conicConformalRaw(y0, y1) {
 
 
 /***/ }),
-/* 111 */
+/* 220 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = conicEquidistantRaw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conic_js__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equirectangular_js__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__conic_js__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__equirectangular_js__ = __webpack_require__(81);
 
 
 
@@ -7505,12 +14053,12 @@ function conicEquidistantRaw(y0, y1) {
 
 
 /***/ }),
-/* 112 */
+/* 221 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["a"] = cylindricalEqualAreaRaw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
 
 
 function cylindricalEqualAreaRaw(phi0) {
@@ -7529,13 +14077,13 @@ function cylindricalEqualAreaRaw(phi0) {
 
 
 /***/ }),
-/* 113 */
+/* 222 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = equalEarthRaw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_js__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(2);
 
 
 
@@ -7575,14 +14123,14 @@ equalEarthRaw.invert = function(x, y) {
 
 
 /***/ }),
-/* 114 */
+/* 223 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = gnomonicRaw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__azimuthal_js__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__azimuthal_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(3);
 
 
 
@@ -7602,14 +14150,14 @@ gnomonicRaw.invert = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__azimutha
 
 
 /***/ }),
-/* 115 */
+/* 224 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__clip_rectangle_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__identity_js__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__transform_js__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fit_js__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__clip_rectangle_js__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__identity_js__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__transform_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__fit_js__ = __webpack_require__(35);
 
 
 
@@ -7675,13 +14223,13 @@ function scaleTranslate(kx, ky, tx, ty) {
 
 
 /***/ }),
-/* 116 */
+/* 225 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = naturalEarth1Raw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_js__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(2);
 
 
 
@@ -7713,14 +14261,14 @@ naturalEarth1Raw.invert = function(x, y) {
 
 
 /***/ }),
-/* 117 */
+/* 226 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = orthographicRaw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__azimuthal_js__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__azimuthal_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(3);
 
 
 
@@ -7739,13 +14287,13 @@ orthographicRaw.invert = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__azim
 
 
 /***/ }),
-/* 118 */
+/* 227 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cartesian_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__transform_js__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cartesian_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__transform_js__ = __webpack_require__(22);
 
 
 
@@ -7851,14 +14399,14 @@ function resample(project, delta2) {
 
 
 /***/ }),
-/* 119 */
+/* 228 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = stereographicRaw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__azimuthal_js__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__azimuthal_js__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_js__ = __webpack_require__(3);
 
 
 
@@ -7880,13 +14428,13 @@ stereographicRaw.invert = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__azi
 
 
 /***/ }),
-/* 120 */
+/* 229 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = transverseMercatorRaw;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mercator_js__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mercator_js__ = __webpack_require__(36);
 
 
 
@@ -7917,7 +14465,7 @@ transverseMercatorRaw.invert = function(x, y) {
 
 
 /***/ }),
-/* 121 */
+/* 230 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7929,12 +14477,12 @@ transverseMercatorRaw.invert = function(x, y) {
 
 
 /***/ }),
-/* 122 */
+/* 231 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__creator__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__select__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__creator__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__select__ = __webpack_require__(83);
 
 
 
@@ -7944,7 +14492,7 @@ transverseMercatorRaw.invert = function(x, y) {
 
 
 /***/ }),
-/* 123 */
+/* 232 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7979,12 +14527,12 @@ Local.prototype = local.prototype = {
 
 
 /***/ }),
-/* 124 */
+/* 233 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sourceEvent__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__point__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sourceEvent__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__point__ = __webpack_require__(24);
 
 
 
@@ -7996,11 +14544,11 @@ Local.prototype = local.prototype = {
 
 
 /***/ }),
-/* 125 */
+/* 234 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection_index__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__selection_index__ = __webpack_require__(4);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(selector) {
@@ -8011,11 +14559,11 @@ Local.prototype = local.prototype = {
 
 
 /***/ }),
-/* 126 */
+/* 235 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__creator__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__creator__ = __webpack_require__(23);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(name) {
@@ -8027,11 +14575,11 @@ Local.prototype = local.prototype = {
 
 
 /***/ }),
-/* 127 */
+/* 236 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__namespace__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__namespace__ = __webpack_require__(37);
 
 
 function attrRemove(name) {
@@ -8092,7 +14640,7 @@ function attrFunctionNS(fullname, value) {
 
 
 /***/ }),
-/* 128 */
+/* 237 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8105,7 +14653,7 @@ function attrFunctionNS(fullname, value) {
 
 
 /***/ }),
-/* 129 */
+/* 238 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8187,7 +14735,7 @@ function classedFunction(names, value) {
 
 
 /***/ }),
-/* 130 */
+/* 239 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8207,13 +14755,13 @@ function selection_cloneDeep() {
 
 
 /***/ }),
-/* 131 */
+/* 240 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__enter__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constant__ = __webpack_require__(121);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__enter__ = __webpack_require__(84);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constant__ = __webpack_require__(230);
 
 
 
@@ -8335,7 +14883,7 @@ function bindKey(parent, group, enter, update, exit, data, key) {
 
 
 /***/ }),
-/* 132 */
+/* 241 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8347,11 +14895,11 @@ function bindKey(parent, group, enter, update, exit, data, key) {
 
 
 /***/ }),
-/* 133 */
+/* 242 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__window__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__window__ = __webpack_require__(42);
 
 
 function dispatchEvent(node, type, params) {
@@ -8389,7 +14937,7 @@ function dispatchFunction(type, params) {
 
 
 /***/ }),
-/* 134 */
+/* 243 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8406,7 +14954,7 @@ function dispatchFunction(type, params) {
 
 
 /***/ }),
-/* 135 */
+/* 244 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8416,12 +14964,12 @@ function dispatchFunction(type, params) {
 
 
 /***/ }),
-/* 136 */
+/* 245 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sparse__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sparse__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(4);
 
 
 
@@ -8431,12 +14979,12 @@ function dispatchFunction(type, params) {
 
 
 /***/ }),
-/* 137 */
+/* 246 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__matcher__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__matcher__ = __webpack_require__(82);
 
 
 
@@ -8456,7 +15004,7 @@ function dispatchFunction(type, params) {
 
 
 /***/ }),
-/* 138 */
+/* 247 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8488,12 +15036,12 @@ function htmlFunction(value) {
 
 
 /***/ }),
-/* 139 */
+/* 248 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__creator__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selector__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__creator__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selector__ = __webpack_require__(40);
 
 
 
@@ -8511,7 +15059,7 @@ function constantNull() {
 
 
 /***/ }),
-/* 140 */
+/* 249 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8525,7 +15073,7 @@ function constantNull() {
 
 
 /***/ }),
-/* 141 */
+/* 250 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8539,11 +15087,11 @@ function lower() {
 
 
 /***/ }),
-/* 142 */
+/* 251 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(4);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(selection) {
@@ -8565,7 +15113,7 @@ function lower() {
 
 
 /***/ }),
-/* 143 */
+/* 252 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8583,7 +15131,7 @@ function lower() {
 
 
 /***/ }),
-/* 144 */
+/* 253 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8595,7 +15143,7 @@ function lower() {
 
 
 /***/ }),
-/* 145 */
+/* 254 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8615,7 +15163,7 @@ function lower() {
 
 
 /***/ }),
-/* 146 */
+/* 255 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8650,7 +15198,7 @@ function propertyFunction(name, value) {
 
 
 /***/ }),
-/* 147 */
+/* 256 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8664,7 +15212,7 @@ function raise() {
 
 
 /***/ }),
-/* 148 */
+/* 257 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8679,12 +15227,12 @@ function remove() {
 
 
 /***/ }),
-/* 149 */
+/* 258 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selector__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selector__ = __webpack_require__(40);
 
 
 
@@ -8705,12 +15253,12 @@ function remove() {
 
 
 /***/ }),
-/* 150 */
+/* 259 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selectorAll__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__selectorAll__ = __webpack_require__(87);
 
 
 
@@ -8731,7 +15279,7 @@ function remove() {
 
 
 /***/ }),
-/* 151 */
+/* 260 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8743,11 +15291,11 @@ function remove() {
 
 
 /***/ }),
-/* 152 */
+/* 261 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index__ = __webpack_require__(4);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(compare) {
@@ -8775,7 +15323,7 @@ function ascending(a, b) {
 
 
 /***/ }),
-/* 153 */
+/* 262 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8807,12 +15355,12 @@ function textFunction(value) {
 
 
 /***/ }),
-/* 154 */
+/* 263 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sourceEvent__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__point__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sourceEvent__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__point__ = __webpack_require__(24);
 
 
 
@@ -8830,12 +15378,12 @@ function textFunction(value) {
 
 
 /***/ }),
-/* 155 */
+/* 264 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sourceEvent__ = __webpack_require__(27);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__point__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__sourceEvent__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__point__ = __webpack_require__(24);
 
 
 
@@ -8851,7 +15399,7 @@ function textFunction(value) {
 
 
 /***/ }),
-/* 156 */
+/* 265 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8867,13 +15415,13 @@ function textFunction(value) {
 
 
 /***/ }),
-/* 157 */
+/* 266 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = mergeArcs;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__feature_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stitch_js__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__feature_js__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stitch_js__ = __webpack_require__(90);
 
 
 
@@ -8980,13 +15528,13 @@ function mergeArcs(topology, objects) {
 
 
 /***/ }),
-/* 158 */
+/* 267 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (immutable) */ __webpack_exports__["b"] = meshArcs;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__feature_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stitch_js__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__feature_js__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stitch_js__ = __webpack_require__(90);
 
 
 
@@ -9043,11 +15591,11 @@ function extractArcs(topology, object, filter) {
 
 
 /***/ }),
-/* 159 */
+/* 268 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bisect_js__ = __webpack_require__(156);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bisect_js__ = __webpack_require__(265);
 
 
 /* harmony default export */ __webpack_exports__["a"] = (function(objects) {
@@ -9096,12 +15644,12 @@ function extractArcs(topology, object, filter) {
 
 
 /***/ }),
-/* 160 */
+/* 269 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bbox_js__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__untransform_js__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bbox_js__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__untransform_js__ = __webpack_require__(91);
 
 
 
@@ -9159,7 +15707,7 @@ function extractArcs(topology, object, filter) {
 
 
 /***/ }),
-/* 161 */
+/* 270 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
